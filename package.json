@@ -1,0 +1,16 @@
+{
+  "name": "shumway-dist",
+  "version": "0.10.214",
+  "description": "Generic build of Mozilla's Shumway library.",
+  "keywords": [
+    "Mozilla",
+    "Shumway"
+  ],
+  "homepage": "http://mozilla.github.io/shumway/",
+  "bugs": "https://github.com/mozilla/shumway/issues",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla/shumway-dist"
+  }
+}
