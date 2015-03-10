@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.10.233";
-Shumway$$inline_0.build = "9b9a240";
+Shumway$$inline_0.version = "0.10.235";
+Shumway$$inline_0.build = "572c806";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -3121,9 +3121,9 @@ var __extends = this.__extends || function(k, r) {
         b.call(this, h);
         this._verifyHeader = h;
         this._specialInflate = e();
-        this._specialInflate.onData = function(b) {
+        this._specialInflate.setDataCallback(function(b) {
           this.onData(b);
-        }.bind(this);
+        }.bind(this));
       }
       __extends(h, b);
       h.prototype.push = function(b) {
@@ -12618,10 +12618,10 @@ __extends = this.__extends || function(k, r) {
           this._window.addEventListener("message", function(a) {
             this.onWindowMessage(a.data);
           }.bind(this));
-          "undefined" !== typeof ShumwayCom ? ShumwayCom.onSyncMessage = function(a) {
+          "undefined" !== typeof ShumwayCom ? ShumwayCom.setSyncMessageCallback(function(a) {
             this.onWindowMessage(a, !1);
             return a.result;
-          }.bind(this) : this._window.addEventListener("syncmessage", function(a) {
+          }.bind(this)) : this._window.addEventListener("syncmessage", function(a) {
             this.onWindowMessage(a.detail, !1);
           }.bind(this));
         }
