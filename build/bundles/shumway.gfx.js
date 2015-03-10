@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.10.235";
-Shumway$$inline_0.build = "572c806";
+Shumway$$inline_0.version = "0.10.253";
+Shumway$$inline_0.build = "082d99d";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -182,11 +182,11 @@ var START_TIME = performance.now();
       h.push(p);
       return h.length - 1;
     }
-    d.popManyInto = function(h, b, w) {
-      for (var e = b - 1;0 <= e;e--) {
-        w[e] = h.pop();
+    d.popManyInto = function(h, p, b) {
+      for (var e = p - 1;0 <= e;e--) {
+        b[e] = h.pop();
       }
-      w.length = b;
+      b.length = p;
     };
     d.popMany = function(h, b) {
       var w = h.length - b, e = h.slice(w, this.length);
@@ -247,6 +247,12 @@ var START_TIME = performance.now();
         h.set(w, 0);
       }
       return h;
+    };
+    d.memCopy = function(h, b, w, e, d) {
+      void 0 === w && (w = 0);
+      void 0 === e && (e = 0);
+      void 0 === d && (d = 0);
+      0 < e || 0 < d && d < b.length ? (0 >= d && (d = b.length - e), h.set(b.subarray(e, e + d), w)) : h.set(b, w);
     };
     var b = function() {
       function b(h) {
@@ -2780,8 +2786,12 @@ var __extends = this.__extends || function(k, r) {
         var d = new Uint8Array(p), a = 0;
         p = b.create(e);
         p.onData = function(b) {
-          d.set(b, a);
-          a += b.length;
+          var h = Math.min(b.length, d.length - a);
+          h && k.memCopy(d, b, a, 0, h);
+          a += h;
+        };
+        p.onError = function(b) {
+          throw Error(b);
         };
         p.push(h);
         p.close();
@@ -4388,7 +4398,6 @@ var __extends = this.__extends || function(k, r) {
         c[c.CODE_DEFINE_SPRITE = 39] = "CODE_DEFINE_SPRITE";
         c[c.CODE_DEFINE_MORPH_SHAPE = 46] = "CODE_DEFINE_MORPH_SHAPE";
         c[c.CODE_DEFINE_FONT2 = 48] = "CODE_DEFINE_FONT2";
-        c[c.CODE_DEFINE_VIDEO_STREAM = 60] = "CODE_DEFINE_VIDEO_STREAM";
         c[c.CODE_DEFINE_FONT3 = 75] = "CODE_DEFINE_FONT3";
         c[c.CODE_DEFINE_SHAPE4 = 83] = "CODE_DEFINE_SHAPE4";
         c[c.CODE_DEFINE_MORPH_SHAPE2 = 84] = "CODE_DEFINE_MORPH_SHAPE2";
