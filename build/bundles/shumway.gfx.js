@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.10.259";
-Shumway$$inline_0.build = "707468f";
+Shumway$$inline_0.version = "0.10.261";
+Shumway$$inline_0.build = "9c03b99";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
