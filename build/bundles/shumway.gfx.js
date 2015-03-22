@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.10.272";
-Shumway$$inline_0.build = "be50710";
+Shumway$$inline_0.version = "0.10.277";
+Shumway$$inline_0.build = "a8d1dae";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -9825,21 +9825,14 @@ __extends = this.__extends || function(k, r) {
             if (H > s) {
               do {
                 if (p.text && (m.runs.push(p), m.width += p.width, p = new d(p.font, p.fillStyle, "", 0, p.underline), s = new a, s.y = m.y + m.descent + m.leading + m.ascent | 0, s.ascent = m.ascent, s.descent = m.descent, s.leading = m.leading, s.align = m.align, c.push(s), m = s), s = b - H, 0 > s) {
-                  var H = t.length, C, y;
-                  do {
-                    H--;
-                    if (1 > H) {
-                      throw Error("Shall never happen: bad maxWidth?");
-                    }
-                    C = t.substr(0, H);
-                    y = g.measureText(C).width | 0;
-                  } while (y > b);
-                  p.text = C;
-                  p.width = y;
-                  t = t.substr(H);
+                  for (var C = t.length, y = t;1 < C && !(C--, y = t.substr(0, C), H = g.measureText(y).width | 0, H <= b);) {
+                  }
+                  p.text = y;
+                  p.width = H;
+                  t = t.substr(C);
                   H = g.measureText(t).width | 0;
                 }
-              } while (0 > s);
+              } while (t && 0 > s);
             } else {
               s -= H;
             }
