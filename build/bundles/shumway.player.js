@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_20 = Shumway || (Shumway = {});
-Shumway$$inline_20.version = "0.10.297";
-Shumway$$inline_20.build = "d81fc7b";
+Shumway$$inline_20.version = "0.10.299";
+Shumway$$inline_20.build = "828e666";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -837,7 +837,7 @@ var START_TIME = performance.now();
   })();
   u = function() {
     function f() {
-      "undefined" !== typeof netscape && netscape.security.PrivilegeManager ? this._map = new WeakMap : this._list = [];
+      "undefined" !== typeof ShumwayCom && ShumwayCom.getWeakMapKeys ? this._map = new WeakMap : this._list = [];
     }
     f.prototype.clear = function() {
       this._map ? this._map.clear() : this._list.length = 0;
@@ -850,7 +850,7 @@ var START_TIME = performance.now();
     };
     f.prototype.forEach = function(b) {
       if (this._map) {
-        "undefined" !== typeof netscape && netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect"), Components.utils.nondeterministicGetWeakMapKeys(this._map).forEach(function(p) {
+        ShumwayCom.getWeakMapKeys(this._map).forEach(function(p) {
           0 !== p._referenceCount && b(p);
         });
       } else {
