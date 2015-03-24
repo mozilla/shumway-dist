@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.10.295";
-Shumway$$inline_0.build = "76fb314";
+Shumway$$inline_0.version = "0.10.297";
+Shumway$$inline_0.build = "d81fc7b";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -6983,10 +6983,6 @@ console.time("Load GFX Dependencies");
           }});
         }
       }
-      ["resetTransform", "rotate", "scale", "transform", "translate"].forEach(function(d) {
-        CanvasRenderingContext2D.prototype[d] = function() {
-        };
-      });
     }();
     if ("undefined" !== typeof CanvasRenderingContext2D && void 0 === CanvasRenderingContext2D.prototype.globalColorMatrix) {
       var u = CanvasRenderingContext2D.prototype.fill, I = CanvasRenderingContext2D.prototype.stroke, H = CanvasRenderingContext2D.prototype.fillText, ea = CanvasRenderingContext2D.prototype.strokeText;
@@ -8678,9 +8674,9 @@ __extends = this.__extends || function(k, r) {
           }
         }
       };
-      c.prototype.addEventListener = function(d, a) {
+      c.prototype.addEventListener = function(a, c) {
         this._eventListeners || (this._eventListeners = []);
-        this._eventListeners.push({type:d, listener:a});
+        this._eventListeners.push({type:a, listener:c});
       };
       c.prototype.removeEventListener = function(a, c) {
         for (var b = this._eventListeners, e = 0;e < b.length;e++) {

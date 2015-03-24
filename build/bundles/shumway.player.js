@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_20 = Shumway || (Shumway = {});
-Shumway$$inline_20.version = "0.10.295";
-Shumway$$inline_20.build = "76fb314";
+Shumway$$inline_20.version = "0.10.297";
+Shumway$$inline_20.build = "d81fc7b";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -50588,10 +50588,6 @@ console.timeEnd("Load AVM1 Dependencies");
           }});
         }
       }
-      ["resetTransform", "rotate", "scale", "transform", "translate"].forEach(function(a) {
-        CanvasRenderingContext2D.prototype[a] = function() {
-        };
-      });
     }();
     if ("undefined" !== typeof CanvasRenderingContext2D && void 0 === CanvasRenderingContext2D.prototype.globalColorMatrix) {
       var C = CanvasRenderingContext2D.prototype.fill, I = CanvasRenderingContext2D.prototype.stroke, B = CanvasRenderingContext2D.prototype.fillText, D = CanvasRenderingContext2D.prototype.strokeText;
