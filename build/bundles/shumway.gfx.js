@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.10.314";
-Shumway$$inline_0.build = "adc17f2";
+Shumway$$inline_0.version = "0.10.316";
+Shumway$$inline_0.build = "cc28625";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -8586,8 +8586,8 @@ __extends = this.__extends || function(k, r) {
         a.set(this);
         return a;
       };
-      d.prototype.set = function(d) {
-        this.matrix.set(d.matrix);
+      d.prototype.set = function(a) {
+        this.matrix.set(a.matrix);
       };
       d.prototype.free = function() {
         d._dirtyStack.push(this);
@@ -8602,26 +8602,26 @@ __extends = this.__extends || function(k, r) {
         this.isDirty = !0;
       }
       __extends(d, a);
-      d.prototype.start = function(d, a) {
-        this._dirtyRegion = a;
+      d.prototype.start = function(a, d) {
+        this._dirtyRegion = d;
         var c = new w;
         c.matrix.setIdentity();
-        d.visit(this, c);
+        a.visit(this, c);
         c.free();
       };
-      d.prototype.visitGroup = function(d, a) {
-        var c = d.getChildren();
-        this.visitNode(d, a);
+      d.prototype.visitGroup = function(a, d) {
+        var c = a.getChildren();
+        this.visitNode(a, d);
         for (var b = 0;b < c.length;b++) {
-          var e = c[b], f = a.transform(e.getTransform());
+          var e = c[b], f = d.transform(e.getTransform());
           e.visit(this, f);
           f.free();
         }
       };
-      d.prototype.visitNode = function(d, a) {
-        d.hasFlags(16) && (this.isDirty = !0);
-        d.toggleFlags(16, !1);
-        d.depth = a.depth++;
+      d.prototype.visitNode = function(a, d) {
+        a.hasFlags(16) && (this.isDirty = !0);
+        a.toggleFlags(16, !1);
+        a.depth = d.depth++;
       };
       return d;
     }(p);
@@ -8632,23 +8632,23 @@ __extends = this.__extends || function(k, r) {
         this.writer = d;
       }
       __extends(d, a);
-      d.prototype.visitNode = function(d, a) {
+      d.prototype.visitNode = function(a, d) {
       };
-      d.prototype.visitShape = function(d, a) {
-        this.writer.writeLn(d.toString());
-        this.visitNode(d, a);
+      d.prototype.visitShape = function(a, d) {
+        this.writer.writeLn(a.toString());
+        this.visitNode(a, d);
       };
-      d.prototype.visitGroup = function(d, a) {
-        this.visitNode(d, a);
-        var c = d.getChildren();
-        this.writer.enter(d.toString() + " " + c.length);
+      d.prototype.visitGroup = function(a, d) {
+        this.visitNode(a, d);
+        var c = a.getChildren();
+        this.writer.enter(a.toString() + " " + c.length);
         for (var b = 0;b < c.length;b++) {
-          c[b].visit(this, a);
+          c[b].visit(this, d);
         }
         this.writer.outdent();
       };
-      d.prototype.visitStage = function(d, a) {
-        this.visitGroup(d, a);
+      d.prototype.visitStage = function(a, d) {
+        this.visitGroup(a, d);
       };
       return d;
     }(p);
@@ -8666,11 +8666,11 @@ __extends = this.__extends || function(k, r) {
       Object.defineProperty(c.prototype, "id", {get:function() {
         return this._id;
       }, enumerable:!0, configurable:!0});
-      c.prototype._dispatchEvent = function(d) {
+      c.prototype._dispatchEvent = function(a) {
         if (this._eventListeners) {
-          for (var a = this._eventListeners, c = 0;c < a.length;c++) {
-            var b = a[c];
-            b.type === d && b.listener(this, d);
+          for (var c = this._eventListeners, b = 0;b < c.length;b++) {
+            var e = c[b];
+            e.type === a && e.listener(this, a);
           }
         }
       };
@@ -13063,10 +13063,13 @@ __extends = this.__extends || function(k, r) {
         function a(a) {
           k.call(this, a);
           this.alwaysRenderFrame = this.ignoreTimestamps = !1;
-          this.cpuTime = 0;
+          this.cpuTimeRendering = this.cpuTimeUpdates = 0;
           this.onComplete = null;
         }
         __extends(a, k);
+        Object.defineProperty(a.prototype, "cpuTime", {get:function() {
+          return this.cpuTimeUpdates + this.cpuTimeRendering;
+        }, enumerable:!0, configurable:!0});
         a.prototype.playUrl = function(a) {
           var b = new XMLHttpRequest;
           b.open("GET", a, !0);
@@ -13112,7 +13115,6 @@ __extends = this.__extends || function(k, r) {
               l ? this.processUpdates(k, a.assets) : (l = new b, this.processUpdates(k, a.assets, l));
               break;
             case 3:
-              this.alwaysRenderFrame && this.easel.render();
               break;
             case 4:
               a = this._parser.parseFontOrImage();
@@ -13125,7 +13127,13 @@ __extends = this.__extends || function(k, r) {
             default:
               throw Error("Invalid movie record type");;
           }
-          this.cpuTime += performance.now() - g;
+          this.cpuTimeUpdates += performance.now() - g;
+          3 === this._parser.currentType && this.alwaysRenderFrame ? requestAnimationFrame(this._renderFrameJustAfterRAF.bind(this)) : this._parseNext();
+        };
+        a.prototype._renderFrameJustAfterRAF = function() {
+          var a = performance.now();
+          this.easel.render();
+          this.cpuTimeRendering += performance.now() - a;
           this._parseNext();
         };
         return a;
