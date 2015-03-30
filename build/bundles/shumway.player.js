@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_20 = Shumway || (Shumway = {});
-Shumway$$inline_20.version = "0.10.318";
-Shumway$$inline_20.build = "fab4448";
+Shumway$$inline_20.version = "0.10.320";
+Shumway$$inline_20.build = "61c6c86";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -37311,33 +37311,47 @@ var RtmpJs;
             };
             e.prototype.onLoadError = function() {
             };
+            e.prototype._addScenesToMovieClip = function(a, b, e) {
+              if (b) {
+                for (var c = [], f = b.scenes, d = 0;d < f.length;d++) {
+                  c.push({offset:f[d].offset, name:f[d].name});
+                }
+                c.sort(function(a, b) {
+                  return a.offset - b.offset;
+                });
+                var h = c.length, g, l;
+                0 < h && 0 < c[0].offset && (g = c[0].offset, l = Math.min(g, e), a.addScene("Scene 0", [], 0, l));
+                d = 0;
+                for (h = c.length;d < h;d++) {
+                  var m = c[d];
+                  g = m.offset;
+                  if (g >= e) {
+                    break;
+                  }
+                  l = d < h - 1 ? Math.min(f[d + 1].offset, e) : e;
+                  a.addScene(m.name, [], g, l - g);
+                }
+                b = b.labels;
+                for (d = 0;d < b.length;d++) {
+                  e = b[d], a.addFrameLabel(e.name, e.frame + 1);
+                }
+              } else {
+                a.addScene("Scene 1", [], 0, e);
+              }
+            };
             e.prototype.createContentRoot = function(b, c) {
               b.isAVM1Object && this._initAvm1(b);
               var f = b.symbolClass.initializeFrom(b);
               a.display.DisplayObject._instanceID--;
               f._name = this === e._rootLoader ? "root1" : "instance" + this._contentID;
-              if (w.MovieClip.isType(f)) {
-                var d = f;
-                if (c) {
-                  for (var h = c.scenes, g = 0, m = h.length;g < m;g++) {
-                    var t = h[g], k = t.offset;
-                    d.addScene(t.name, [], k, (g < m - 1 ? h[g + 1].offset : b.numFrames) - k);
-                  }
-                  h = c.labels;
-                  for (g = 0;g < h.length;g++) {
-                    m = h[g], d.addFrameLabel(m.name, m.frame + 1);
-                  }
-                } else {
-                  d.addScene("Scene 1", [], 0, b.numFrames);
-                }
-              }
-              d = this._contentLoaderInfo;
+              w.MovieClip.isType(f) && this._addScenesToMovieClip(f, c, b.numFrames);
+              var d = this._contentLoaderInfo;
               f._loaderInfo = d;
-              g = f;
+              var h = f;
               d.actionScriptVersion === l.ACTIONSCRIPT2 ? f = this._initAvm1Root(f) : this === e.getRootLoader() && (w.MovieClip.frameNavigationModel = 10 > d.swfVersion ? 9 : 10);
               this._content = f;
               this === e.getRootLoader() ? (e.runtimeStartTime = Date.now(), this._stage.setRoot(f)) : this.addTimelineObjectAtDepth(f, 0);
-              return g;
+              return h;
             };
             e.prototype._initAvm1 = function(a) {
               var b = this._contentLoaderInfo, c;
