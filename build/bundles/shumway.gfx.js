@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.10.324";
-Shumway$$inline_0.build = "2bd567e";
+Shumway$$inline_0.version = "0.10.337";
+Shumway$$inline_0.build = "6a54bc1";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -1901,16 +1901,16 @@ var START_TIME = performance.now();
       } else {
         if (1 === q && 3 === e) {
           for (k.ColorUtilities.ensureUnpremultiplyTable(), q = 0;q < p;q++) {
-            var b = a[q];
-            e = b & 255;
+            var m = a[q];
+            e = m & 255;
             if (0 === e) {
               h[q] = 0;
             } else {
               if (255 === e) {
-                h[q] = 4278190080 | b >> 8 & 16777215;
+                h[q] = 4278190080 | m >> 8 & 16777215;
               } else {
-                var m = b >> 24 & 255, l = b >> 16 & 255, b = b >> 8 & 255, t = e << 8, w = c, b = w[t + b], l = w[t + l], m = w[t + m];
-                h[q] = e << 24 | m << 16 | l << 8 | b;
+                var b = m >> 24 & 255, l = m >> 16 & 255, m = m >> 8 & 255, t = e << 8, w = c, m = w[t + m], l = w[t + l], b = w[t + b];
+                h[q] = e << 24 | b << 16 | l << 8 | m;
               }
             }
           }
@@ -2193,13 +2193,13 @@ var START_TIME = performance.now();
           var q = d.reaction, f = q.deferred, a = q.handler, h = void 0, p = void 0;
           try {
             h = a(d.argument);
-          } catch (b) {
-            var m = f.reject;
-            m(b);
+          } catch (m) {
+            var b = f.reject;
+            b(m);
             break a;
           }
           if (h === f.promise) {
-            m = f.reject, m(new TypeError("Self resolution"));
+            b = f.reject, b(new TypeError("Self resolution"));
           } else {
             try {
               if (p = r(h, f), !p) {
@@ -2207,7 +2207,7 @@ var START_TIME = performance.now();
                 l(h);
               }
             } catch (n) {
-              m = f.reject, m(n);
+              b = f.reject, b(n);
             }
           }
         }
@@ -4451,7 +4451,6 @@ var __extends = this.__extends || function(k, r) {
         b[b.CODE_REMOVE_OBJECT2 = 28] = "CODE_REMOVE_OBJECT2";
         b[b.CODE_START_SOUND = 15] = "CODE_START_SOUND";
         b[b.CODE_START_SOUND2 = 89] = "CODE_START_SOUND2";
-        b[b.CODE_VIDEO_FRAME = 61] = "CODE_VIDEO_FRAME";
       })(g.ControlTags || (g.ControlTags = {}));
       (function(b) {
         b[b.Move = 1] = "Move";
