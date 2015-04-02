@@ -1,6 +1,6 @@
 {
   "name": "shumway-dist",
-  "version": "0.10.337",
+  "version": "0.10.339",
   "main": [
     "shuobject.js"
   ],
