@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_20 = Shumway || (Shumway = {});
-Shumway$$inline_20.version = "0.10.344";
-Shumway$$inline_20.build = "efc9165";
+Shumway$$inline_20.version = "0.10.346";
+Shumway$$inline_20.build = "84cafb5";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
