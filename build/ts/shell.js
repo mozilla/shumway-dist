@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.5';
-    Shumway.build = '0d1feee';
+    Shumway.version = '0.11.7';
+    Shumway.build = 'a02f936';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -989,6 +989,7 @@ var Shumway;
         var verboseOption;
         var profileOption;
         var releaseOption;
+        var deterministicOption;
         var executeOption;
         var freshSecurityDomainOption;
         var printABCFileNameOption;
@@ -1015,6 +1016,7 @@ var Shumway;
             verboseOption = shellOptions.register(new Option("v", "verbose", "boolean", false, "Verbose"));
             profileOption = shellOptions.register(new Option("o", "profile", "boolean", false, "Profile"));
             releaseOption = shellOptions.register(new Option("r", "release", "boolean", false, "Release mode"));
+            deterministicOption = shellOptions.register(new Option("det", "deterministic", "boolean", false, "Deterministic execution, with rigged timers and random generator"));
             if (!disableBundleSelection) {
                 usePlayerClosureBundleOption = shellOptions.register(new Option('b', "closure-bundle", "boolean", false, "Use bundled and closure compiled source file for the player."));
                 usePlayerBundleOption = shellOptions.register(new Option('', "bundle", "boolean", false, "Use bundled source file for the player."));
@@ -1196,8 +1198,10 @@ var Shumway;
             }
             function runSWF(file) {
                 microTaskQueue.clear();
-                Shumway.Random.reset();
-                Shumway.Shell.installTimeWarper();
+                if (deterministicOption) {
+                    Shumway.Random.reset();
+                    Shumway.Shell.installTimeWarper();
+                }
                 var sec = createSecurityDomain(builtinABCPath, null, null);
                 var player = new Shumway.Player.Player(sec, new ShellGFXServer());
                 try {
