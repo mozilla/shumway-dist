@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.7";
-Shumway$$inline_17.build = "a02f936";
+Shumway$$inline_17.version = "0.11.9";
+Shumway$$inline_17.build = "638b6f9";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -12374,12 +12374,12 @@ function as3ToLowerCase(f) {
         };
         b.axApply = function(a, b) {
           var c = b[0];
-          if (a.axClass.axIsType(c)) {
+          if (this.axIsType(c)) {
             return c;
           }
           var h = c.axGetPublicProperty("length");
           if (void 0 !== h) {
-            for (var d = a.axClass.axConstruct([h, !1]), p = 0;p < h;p++) {
+            for (var d = this.axConstruct([h, !1]), p = 0;p < h;p++) {
               d.axSetNumericProperty(p, c.axGetPublicProperty(p));
             }
             return d;
@@ -12686,12 +12686,12 @@ function as3ToLowerCase(f) {
         };
         b.axApply = function(a, b) {
           var c = b[0];
-          if (a.sec.Int32Vector.axIsType(c)) {
+          if (this.axIsType(c)) {
             return c;
           }
           var h = c.axGetPublicProperty("length");
           if (void 0 !== h) {
-            for (var d = new a.sec.Int32Vector(h, !1), p = 0;p < h;p++) {
+            for (var d = this.axConstruct([h, !1]), p = 0;p < h;p++) {
               d.axSetNumericProperty(p, c.axGetPublicProperty(p));
             }
             return d;
@@ -13023,12 +13023,12 @@ function as3ToLowerCase(f) {
         };
         b.axApply = function(a, b) {
           var c = b[0];
-          if (a.sec.Uint32Vector.axIsType(c)) {
+          if (this.axIsType(c)) {
             return c;
           }
           var h = c.axGetPublicProperty("length");
           if (void 0 !== h) {
-            for (var d = new a.sec.Uint32Vector(h, !1), p = 0;p < h;p++) {
+            for (var d = this.axConstruct([h, !1]), p = 0;p < h;p++) {
               d.axSetNumericProperty(p, c.axGetPublicProperty(p));
             }
             return d;
@@ -13360,12 +13360,12 @@ function as3ToLowerCase(f) {
         };
         b.axApply = function(a, b) {
           var c = b[0];
-          if (a.sec.Float64Vector.axIsType(c)) {
+          if (this.axIsType(c)) {
             return c;
           }
           var h = c.axGetPublicProperty("length");
           if (void 0 !== h) {
-            for (var d = new a.sec.Float64Vector(h, !1), p = 0;p < h;p++) {
+            for (var d = this.axConstruct([h, !1]), p = 0;p < h;p++) {
               d.axSetNumericProperty(p, c.axGetPublicProperty(p));
             }
             return d;
