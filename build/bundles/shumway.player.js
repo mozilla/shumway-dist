@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.16";
-Shumway$$inline_17.build = "d80d109";
+Shumway$$inline_17.version = "0.11.18";
+Shumway$$inline_17.build = "3d31e18";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -50257,7 +50257,7 @@ __extends = this.__extends || function(f, d) {
         d.prototype.registerFont = function(b, a) {
           var c = this._assetDecodingRequests.length, d = new f.PromiseWrapper;
           this._assetDecodingRequests[c] = d;
-          this._parent.postMessage({type:"registerFont", syncId:b, data:a, requestId:c}, "*");
+          this._sendSyncMessage({type:"registerFont", syncId:b, data:a, requestId:c});
           return d.promise;
         };
         d.prototype.registerImage = function(b, a, c, d) {
