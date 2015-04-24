@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.20";
-Shumway$$inline_17.build = "8b39712";
+Shumway$$inline_17.version = "0.11.23";
+Shumway$$inline_17.build = "aeaea6d";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -699,7 +699,7 @@ var START_TIME = performance.now();
       }
       return n === a.length ? -1 : n;
     };
-    var g = Array(3), h = Array(4), q = Array(5), p = Array(6), m = Array(7), d = Array(8), c = Array(9);
+    var g = Array(3), h = Array(4), q = Array(5), p = Array(6), m = Array(7), c = Array(8), d = Array(9);
     a.concat3 = k;
     a.concat4 = e;
     a.concat5 = function(a, b, k, n, e) {
@@ -730,17 +730,6 @@ var START_TIME = performance.now();
       return m.join("");
     };
     a.concat8 = function(a, b, k, n, e, g, t, v) {
-      d[0] = a;
-      d[1] = b;
-      d[2] = k;
-      d[3] = n;
-      d[4] = e;
-      d[5] = g;
-      d[6] = t;
-      d[7] = v;
-      return d.join("");
-    };
-    a.concat9 = function(a, b, k, n, e, g, t, v, h) {
       c[0] = a;
       c[1] = b;
       c[2] = k;
@@ -749,8 +738,19 @@ var START_TIME = performance.now();
       c[5] = g;
       c[6] = t;
       c[7] = v;
-      c[8] = h;
       return c.join("");
+    };
+    a.concat9 = function(a, b, k, n, e, g, t, v, h) {
+      d[0] = a;
+      d[1] = b;
+      d[2] = k;
+      d[3] = n;
+      d[4] = e;
+      d[5] = g;
+      d[6] = t;
+      d[7] = v;
+      d[8] = h;
+      return d.join("");
     };
   })(f.StringUtilities || (f.StringUtilities = {}));
   (function(a) {
@@ -4592,6 +4592,24 @@ var __extends = this.__extends || function(f, d) {
   f.BinaryFileReader = c;
 })(Shumway || (Shumway = {}));
 (function(f) {
+  var d = function() {
+    function c() {
+      this.isAS3TraceOn = !0;
+      this._startTime = Date.now();
+    }
+    Object.defineProperty(c.prototype, "currentTimestamp", {get:function() {
+      return Date.now() - this._startTime;
+    }, enumerable:!0, configurable:!0});
+    c.prototype._writeLine = function(c) {
+    };
+    c.prototype.writeAS3Trace = function(c) {
+    };
+    return c;
+  }();
+  f.FlashLog = d;
+  f.flashlog = null;
+})(Shumway || (Shumway = {}));
+(function(f) {
   (function(d) {
     (function(c) {
       c[c.Objects = 0] = "Objects";
@@ -6151,16 +6169,16 @@ __extends = this.__extends || function(f, d) {
         }
         __extends(m, l);
         m.prototype.draw = function() {
-          var b = this._context, a = window.devicePixelRatio, e = this._width, g = this._height;
+          var b = this._context, a = window.devicePixelRatio, e = this._width, c = this._height;
           b.save();
           b.scale(a, a);
           b.fillStyle = this._controller.theme.tabToolbar(1);
-          b.fillRect(0, 0, e, g);
-          this._initialized && (0 == this._type ? (a = this._toPixels(this._windowStart), e = this._toPixels(this._windowEnd), b.fillStyle = this._controller.theme.bodyBackground(1), b.fillRect(a, 0, e - a, g), this._drawLabels(this._rangeStart, this._rangeEnd), this._drawDragHandle(a), this._drawDragHandle(e)) : this._drawLabels(this._windowStart, this._windowEnd));
+          b.fillRect(0, 0, e, c);
+          this._initialized && (0 == this._type ? (a = this._toPixels(this._windowStart), e = this._toPixels(this._windowEnd), b.fillStyle = this._controller.theme.bodyBackground(1), b.fillRect(a, 0, e - a, c), this._drawLabels(this._rangeStart, this._rangeEnd), this._drawDragHandle(a), this._drawDragHandle(e)) : this._drawLabels(this._windowStart, this._windowEnd));
           b.restore();
         };
         m.prototype._drawLabels = function(b, a) {
-          var e = this._context, g = this._calculateTickInterval(b, a), c = Math.ceil(b / g) * g, d = 500 <= g, p = d ? 1E3 : 1, v = this._decimalPlaces(g / p), d = d ? "s" : "ms", n = this._toPixels(c), k = this._height / 2, t = this._controller.theme;
+          var e = this._context, c = this._calculateTickInterval(b, a), h = Math.ceil(b / c) * c, d = 500 <= c, p = d ? 1E3 : 1, v = this._decimalPlaces(c / p), d = d ? "s" : "ms", n = this._toPixels(h), k = this._height / 2, t = this._controller.theme;
           e.lineWidth = 1;
           e.strokeStyle = t.contentTextDarkGrey(.5);
           e.fillStyle = t.contentTextDarkGrey(1);
@@ -6168,15 +6186,15 @@ __extends = this.__extends || function(f, d) {
           e.textBaseline = "middle";
           e.font = "11px sans-serif";
           for (t = this._width + m.TICK_MAX_WIDTH;n < t;) {
-            var x = (c / p).toFixed(v) + " " + d;
+            var x = (h / p).toFixed(v) + " " + d;
             e.fillText(x, n - 7, k + 1);
             e.beginPath();
             e.moveTo(n, 0);
             e.lineTo(n, this._height + 1);
             e.closePath();
             e.stroke();
-            c += g;
-            n = this._toPixels(c);
+            h += c;
+            n = this._toPixels(h);
           }
         };
         m.prototype._calculateTickInterval = function(b, a) {
@@ -7706,6 +7724,10 @@ __extends = this.__extends || function(f, d) {
       b.prototype.toString = function() {
         return a[this.kind] + " " + this.name;
       };
+      b.prototype.toFlashlogString = function() {
+        this.resolve();
+        return this.getName().toFlashlogString();
+      };
       b.prototype.isConst = function() {
         return 6 === this.kind;
       };
@@ -7949,6 +7971,9 @@ __extends = this.__extends || function(f, d) {
       b.prototype.toString = function() {
         return "InstanceInfo " + this.getName().name;
       };
+      b.prototype.toFlashlogString = function() {
+        return this.getName().toFlashlogString();
+      };
       b.prototype.trace = function(a) {
         a.enter("InstanceInfo: " + this.getName());
         this.superName && a.writeLn("Super: " + this.getSuperName());
@@ -8127,6 +8152,14 @@ __extends = this.__extends || function(f, d) {
         this.returnTypeNameIndex && (a += ": " + this.abc.getMultiname(this.returnTypeNameIndex).name);
         return a;
       };
+      a.prototype.toFlashlogString = function() {
+        var a = this.trait, b = 2 === a.kind ? "get " : 3 === a.kind ? "set " : "", e = a.toFlashlogString(), a = a.holder, c;
+        a && a instanceof I && (c = a.toFlashlogString(), b = c + "/" + b);
+        a && a instanceof y && a.trait && (c = a.trait.toFlashlogString(), b = c + "$/" + b);
+        var g;
+        c && 0 < (g = e.indexOf("::")) && 0 === c.indexOf(e.substring(0, g + 2)) && (e = e.substring(g + 2));
+        return "MTHD " + b + e + " ()";
+      };
       a.prototype.isNative = function() {
         return !!(this.flags & 32);
       };
@@ -8281,6 +8314,10 @@ __extends = this.__extends || function(f, d) {
         }
         this.parameterType && (a += "<" + this.parameterType + ">");
         return a;
+      };
+      a.prototype.toFlashlogString = function() {
+        var a = this.uri;
+        return a ? a + "::" + this.name : this.name;
       };
       a.stripPublicMangledName = function(a) {
         if (0 === a.indexOf("$Bg")) {
@@ -17361,53 +17398,53 @@ console.time("Load SWF Parser");
           }
           return e;
         }
-        function m(a, b, e, g, k) {
+        function m(a, b, e, k, g) {
           e || (e = {});
-          5 === k && (e.symbolId = c.readUi16(a, b));
+          5 === g && (e.symbolId = c.readUi16(a, b));
           e.depth = c.readUi16(a, b);
           return e;
         }
-        function b(a, b, e, g, k, h, d) {
-          g = e || {};
-          g.id = c.readUi16(a, b);
-          if (21 < k) {
+        function b(a, b, e, k, g, h, d) {
+          k = e || {};
+          k.id = c.readUi16(a, b);
+          if (21 < g) {
             var n = c.readUi32(a, b);
-            90 === k && (g.deblock = c.readFixed8(a, b));
+            90 === g && (k.deblock = c.readFixed8(a, b));
             n += b.pos;
-            e = g.imgData = a.subarray(b.pos, n);
-            g.alphaData = a.subarray(n, h);
+            e = k.imgData = a.subarray(b.pos, n);
+            k.alphaData = a.subarray(n, h);
           } else {
-            e = g.imgData = a.subarray(b.pos, h);
+            e = k.imgData = a.subarray(b.pos, h);
           }
           b.pos = h;
           switch(e[0] << 8 | e[1]) {
             case 65496:
             ;
             case 65497:
-              g.mimeType = "image/jpeg";
+              k.mimeType = "image/jpeg";
               break;
             case 35152:
-              g.mimeType = "image/png";
+              k.mimeType = "image/png";
               break;
             case 18249:
-              g.mimeType = "image/gif";
+              k.mimeType = "image/gif";
               break;
             default:
-              g.mimeType = "application/octet-stream";
+              k.mimeType = "application/octet-stream";
           }
-          g.jpegTables = 6 === k ? d : null;
-          return g;
+          k.jpegTables = 6 === g ? d : null;
+          return k;
         }
-        function a(a, b, e, g, k, h) {
+        function a(a, b, e, k, g, h) {
           var d;
           e || (e = {});
           e.id = c.readUi16(a, b);
-          if (7 == k) {
+          if (7 == g) {
             var n = e.characters = [];
             do {
               var t = {};
               d = a;
-              var q = b, p = t, v = g, x = k, m = c.readUi8(d, q), l = p.eob = !m;
+              var q = b, p = t, v = k, x = g, m = c.readUi8(d, q), l = p.eob = !m;
               p.flags = 8 <= v ? (m >> 5 & 1 ? 512 : 0) | (m >> 4 & 1 ? 256 : 0) : 0;
               p.stateHitTest = m >> 3 & 1;
               p.stateDown = m >> 2 & 1;
@@ -17428,7 +17465,7 @@ console.time("Load SWF Parser");
               q = {};
               p = c.readUi8(a, b);
               d = q.eob = !p;
-              q.flags = 8 <= g ? (p >> 5 & 1 ? 512 : 0) | (p >> 4 & 1 ? 256 : 0) : 0;
+              q.flags = 8 <= k ? (p >> 5 & 1 ? 512 : 0) | (p >> 4 & 1 ? 256 : 0) : 0;
               q.stateHitTest = p >> 3 & 1;
               q.stateDown = p >> 2 & 1;
               q.stateOver = p >> 1 & 1;
@@ -17437,7 +17474,7 @@ console.time("Load SWF Parser");
                 q.symbolId = c.readUi16(a, b);
                 q.depth = c.readUi16(a, b);
                 q.matrix = B(a, b);
-                34 === k && (p = q.cxform = {}, I(a, b, p, k));
+                34 === g && (p = q.cxform = {}, I(a, b, p, g));
                 if (q.flags & 256) {
                   for (l = c.readUi8(a, b), p = e.filters = [];l--;) {
                     x = {}, J(a, b, x), p.push(x);
@@ -17448,25 +17485,25 @@ console.time("Load SWF Parser");
               n.push(q);
             } while (!d);
             if (t) {
-              for (g = e.buttonActions = [];b.pos < h;) {
-                k = a;
+              for (k = e.buttonActions = [];b.pos < h;) {
+                g = a;
                 n = b;
                 d = h;
                 t = n.pos;
-                d = (q = c.readUi16(k, n)) ? t + q : d;
-                q = c.readUi16(k, n);
+                d = (q = c.readUi16(g, n)) ? t + q : d;
+                q = c.readUi16(g, n);
                 n.pos = d;
                 if (b.pos > h) {
                   break;
                 }
-                g.push({keyCode:(q & 65024) >> 9, stateTransitionFlags:q & 511, actionsData:k.subarray(t + 4, d)});
+                k.push({keyCode:(q & 65024) >> 9, stateTransitionFlags:q & 511, actionsData:g.subarray(t + 4, d)});
               }
               b.pos = h;
             }
           }
           return e;
         }
-        function e(a, b, e, g, k) {
+        function e(a, b, e, k, g) {
           e || (e = {});
           e.id = c.readUi16(a, b);
           for (var h = c.readUi16(a, b), d = e.glyphCount = h / 2, n = [], t = d - 1;t--;) {
@@ -17474,7 +17511,7 @@ console.time("Load SWF Parser");
           }
           e.offsets = [h].concat(n);
           for (h = e.glyphs = [];d--;) {
-            n = {}, A(a, b, n, g, k), h.push(n);
+            n = {}, A(a, b, n, k, g), h.push(n);
           }
           return e;
         }
@@ -17508,23 +17545,23 @@ console.time("Load SWF Parser");
           } while (!d);
           return e;
         }
-        function h(a, b, e, g, k) {
+        function h(a, b, e, k, g) {
           e || (e = {});
-          15 == k && (e.soundId = c.readUi16(a, b));
-          89 == k && (e.soundClassName = c.readString(a, b, -1));
-          g = e;
-          k = {};
+          15 == g && (e.soundId = c.readUi16(a, b));
+          89 == g && (e.soundClassName = c.readString(a, b, -1));
+          k = e;
+          g = {};
           c.readUb(a, b, 2);
-          k.stop = c.readUb(a, b, 1);
-          k.noMultiple = c.readUb(a, b, 1);
-          var h = k.hasEnvelope = c.readUb(a, b, 1), d = k.hasLoops = c.readUb(a, b, 1), n = k.hasOutPoint = c.readUb(a, b, 1);
-          if (k.hasInPoint = c.readUb(a, b, 1)) {
-            k.inPoint = c.readUi32(a, b);
+          g.stop = c.readUb(a, b, 1);
+          g.noMultiple = c.readUb(a, b, 1);
+          var h = g.hasEnvelope = c.readUb(a, b, 1), d = g.hasLoops = c.readUb(a, b, 1), n = g.hasOutPoint = c.readUb(a, b, 1);
+          if (g.hasInPoint = c.readUb(a, b, 1)) {
+            g.inPoint = c.readUi32(a, b);
           }
-          n && (k.outPoint = c.readUi32(a, b));
-          d && (k.loopCount = c.readUi16(a, b));
+          n && (g.outPoint = c.readUi32(a, b));
+          d && (g.loopCount = c.readUi16(a, b));
           if (h) {
-            for (d = k.envelopeCount = c.readUi8(a, b), h = k.envelopes = [];d--;) {
+            for (d = g.envelopeCount = c.readUi8(a, b), h = g.envelopes = [];d--;) {
               var n = {}, t = a, q = b, p = n;
               p.pos44 = c.readUi32(t, q);
               p.volumeLeft = c.readUi16(t, q);
@@ -17532,17 +17569,17 @@ console.time("Load SWF Parser");
               h.push(n);
             }
           }
-          g.soundInfo = k;
+          k.soundInfo = g;
           return e;
         }
-        function q(a, b, e, k, g, h) {
+        function q(a, b, e, g, k, h) {
           e = e || {};
           e.id = c.readUi16(a, b);
-          k = e.format = c.readUi8(a, b);
+          g = e.format = c.readUi8(a, b);
           e.width = c.readUi16(a, b);
           e.height = c.readUi16(a, b);
-          e.hasAlpha = 36 === g;
-          3 === k && (e.colorTableSize = c.readUi8(a, b));
+          e.hasAlpha = 36 === k;
+          3 === g && (e.colorTableSize = c.readUi8(a, b));
           e.bmpData = a.subarray(b.pos, h);
           b.pos = h;
           return e;
