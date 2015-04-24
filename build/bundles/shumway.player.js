@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.9";
-Shumway$$inline_17.build = "638b6f9";
+Shumway$$inline_17.version = "0.11.12";
+Shumway$$inline_17.build = "6826207";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -9738,7 +9738,12 @@ __extends = this.__extends || function(f, d) {
         this.scopes && this.scopes.length > this.stack.length && this.scopes.length--;
       };
       a.prototype.topScope = function() {
-        this.scopes || (this.scopes = []);
+        if (!this.scopes) {
+          if (0 === this.stack.length) {
+            return this.parent;
+          }
+          this.scopes = [];
+        }
         for (var a = this.parent, b = 0;b < this.stack.length;b++) {
           var c = this.stack[b], q = this.isWith[b], p = this.scopes[b];
           p && p.parent === a && p.object === c && p.isWith === q || (p = this.scopes[b] = new d.Scope(a, c, q));
@@ -10271,7 +10276,7 @@ __extends = this.__extends || function(f, d) {
       };
       f.prototype.initializeRuntimeTraits = function(a, b, c) {
         var e = a.classInfo, k = e.instanceInfo, g;
-        g = a === this.AXClass ? k.traits.resolveRuntimeTraits(null, null, c) : e.traits.resolveRuntimeTraits(this.AXClass.classInfo.instanceInfo.runtimeTraits, null, c);
+        g = a === this.AXClass ? k.traits.resolveRuntimeTraits(null, null, c) : e.traits.resolveRuntimeTraits(this.AXClass.classInfo.instanceInfo.runtimeTraits, null, c.parent);
         e.runtimeTraits = g;
         E(a, g);
         b = b ? b.classInfo.instanceInfo.runtimeTraits : null;
