@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.31';
-    Shumway.build = 'fef164a';
+    Shumway.version = '0.11.33';
+    Shumway.build = '0066043';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -1198,7 +1198,7 @@ var Shumway;
             }
             function runSWF(file) {
                 microTaskQueue.clear();
-                if (deterministicOption) {
+                if (deterministicOption.value) {
                     Shumway.Random.reset();
                     Shumway.Shell.installTimeWarper();
                 }
