@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.27";
-Shumway$$inline_17.build = "e6116fb";
+Shumway$$inline_17.version = "0.11.29";
+Shumway$$inline_17.build = "64a8f7a";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -25784,6 +25784,7 @@ var RtmpJs;
             }, set:function(a) {
               if (this._mask !== a && a !== this) {
                 a && a._maskedObject && (a._maskedObject.mask = null);
+                this._mask && (this._mask._maskedObject = null);
                 if (this._mask = a) {
                   a._maskedObject = this;
                 }
@@ -28155,6 +28156,7 @@ var RtmpJs;
             c.prototype._removeAnimatedChild = function(a) {
               this.removeChild(a);
               a._name && this.axGetPublicProperty(a._name) === a && this.axSetPublicProperty(a._name, null);
+              a._maskedObject && (a._maskedObject.mask = null);
             };
             c.prototype._canHaveGraphics = function() {
               return !0;
@@ -47958,7 +47960,7 @@ __extends = this.__extends || function(f, d) {
       Object.defineProperty(a.prototype, "mask", {get:function() {
         return this._mask;
       }, set:function(a) {
-        this._mask && this._mask !== a && this._mask.removeFlags(4);
+        this._mask !== a && (this._node.invalidate(), this._mask && this._mask.removeFlags(4));
         (this._mask = a) && this._mask.setFlags(4);
       }, enumerable:!0, configurable:!0});
       a.prototype.toString = function() {

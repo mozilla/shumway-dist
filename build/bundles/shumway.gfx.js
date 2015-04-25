@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.27";
-Shumway$$inline_0.build = "e6116fb";
+Shumway$$inline_0.version = "0.11.29";
+Shumway$$inline_0.build = "64a8f7a";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -9048,7 +9048,7 @@ __extends = this.__extends || function(h, r) {
       Object.defineProperty(a.prototype, "mask", {get:function() {
         return this._mask;
       }, set:function(a) {
-        this._mask && this._mask !== a && this._mask.removeFlags(4);
+        this._mask !== a && (this._node.invalidate(), this._mask && this._mask.removeFlags(4));
         (this._mask = a) && this._mask.setFlags(4);
       }, enumerable:!0, configurable:!0});
       a.prototype.toString = function() {
@@ -12568,7 +12568,7 @@ __extends = this.__extends || function(h, r) {
           d & 8 && g.getTransform().setColorMatrix(this._readColorMatrix());
           if (d & 64) {
             var f = b.readInt();
-            0 <= f && (g.getLayer().mask = c._makeNode(f));
+            g.getLayer().mask = 0 <= f ? c._makeNode(f) : null;
           }
           d & 128 && (g.clip = b.readInt());
           d & 32 && (e = b.readInt() / 65535, f = b.readInt(), 1 !== f && (g.getLayer().blendMode = f), this._readFilters(g), g.toggleFlags(65536, b.readBoolean()), g.toggleFlags(131072, b.readBoolean()), g.toggleFlags(262144, !!b.readInt()), g.toggleFlags(524288, !!b.readInt()));
