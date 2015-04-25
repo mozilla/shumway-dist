@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.29";
-Shumway$$inline_0.build = "64a8f7a";
+Shumway$$inline_0.version = "0.11.31";
+Shumway$$inline_0.build = "fef164a";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -4085,8 +4085,8 @@ var __extends = this.__extends || function(h, r) {
         }
         var d = new l, g;
         e.onData = d.writeRawBytes.bind(d);
-        e.onError = function(a) {
-          return g = a;
+        e.onError = function(c) {
+          return g = c;
         };
         e.push(this._u8.subarray(0, this._length));
         g && this.sec.throwError("IOError", Errors.CompressedDataError);
@@ -9062,7 +9062,7 @@ __extends = this.__extends || function(h, r) {
         a.call(this);
         this._source = c;
         this._type = 3;
-        this.ratio = 0;
+        this._ratio = 0;
       }
       __extends(c, a);
       c.prototype.getBounds = function(a) {
@@ -9073,6 +9073,11 @@ __extends = this.__extends || function(h, r) {
       };
       Object.defineProperty(c.prototype, "source", {get:function() {
         return this._source;
+      }, enumerable:!0, configurable:!0});
+      Object.defineProperty(c.prototype, "ratio", {get:function() {
+        return this._ratio;
+      }, set:function(a) {
+        a !== this._ratio && (this.invalidate(), this._ratio = a);
       }, enumerable:!0, configurable:!0});
       c.prototype._propagateFlagsDown = function(a) {
         this.setFlags(a);

@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.29";
-Shumway$$inline_17.build = "64a8f7a";
+Shumway$$inline_17.version = "0.11.31";
+Shumway$$inline_17.build = "fef164a";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -47974,7 +47974,7 @@ __extends = this.__extends || function(f, d) {
         a.call(this);
         this._source = c;
         this._type = 3;
-        this.ratio = 0;
+        this._ratio = 0;
       }
       __extends(b, a);
       b.prototype.getBounds = function(a) {
@@ -47985,6 +47985,11 @@ __extends = this.__extends || function(f, d) {
       };
       Object.defineProperty(b.prototype, "source", {get:function() {
         return this._source;
+      }, enumerable:!0, configurable:!0});
+      Object.defineProperty(b.prototype, "ratio", {get:function() {
+        return this._ratio;
+      }, set:function(a) {
+        a !== this._ratio && (this.invalidate(), this._ratio = a);
       }, enumerable:!0, configurable:!0});
       b.prototype._propagateFlagsDown = function(a) {
         this.setFlags(a);
