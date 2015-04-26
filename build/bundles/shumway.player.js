@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.43";
-Shumway$$inline_17.build = "3db9bdf";
+Shumway$$inline_17.version = "0.11.46";
+Shumway$$inline_17.build = "3dabf5d";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -35012,12 +35012,12 @@ var RtmpJs;
               a.url = this._url;
               a.method = this._method;
               a.checkPolicyFile = this._checkPolicyFile;
-              if (this._data) {
-                if (a.mimeType = this._contentType, this.sec.flash.utils.ByteArray.axClass.axIsType(this._data)) {
-                  a.data = new Uint8Array(this._data._buffer, 0, this._data.length);
+              var b = this._data;
+              if (b) {
+                if (a.mimeType = this._contentType, this.sec.flash.utils.ByteArray.axClass.axIsType(b)) {
+                  a.data = new Uint8Array(b._buffer, 0, b.length);
                 } else {
-                  var b = this._data.axGetPublicProperty("toString").call(this._data);
-                  if ("GET" === this._method) {
+                  if (b = b.toString(), "GET" === this._method) {
                     var c = a.url.lastIndexOf("?");
                     a.url = (0 > c ? a.url : a.url.substring(0, c)) + "?" + b;
                   } else {
