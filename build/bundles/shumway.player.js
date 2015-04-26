@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.38";
-Shumway$$inline_17.build = "b830637";
+Shumway$$inline_17.version = "0.11.39";
+Shumway$$inline_17.build = "15e8a64";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -40587,7 +40587,7 @@ __extends = this.__extends || function(e, c) {
         function b(d) {
           a.call(this, d);
           this.alPrototype = d.builtins.Object.alGetPrototypeProperty();
-          c.alDefineObjectProperties(this, {constructor:{value:d.builtins.Date, writable:!0}, valueOf:{value:this._valueOf, writable:!0}, toString:{value:this._toString, writable:!0}, getTime:{value:this.getTime, writable:!0}});
+          c.alDefineObjectProperties(this, {constructor:{value:d.builtins.Date, writable:!0}, valueOf:{value:this._valueOf, writable:!0}, toString:{value:this._toString, writable:!0}, getDate:{value:this.getDate, writable:!0}, getFullYear:{value:this.getFullYear, writable:!0}, getHours:{value:this.getHours, writable:!0}, getMinutes:{value:this.getMinutes, writable:!0}, getMonth:{value:this.getMonth, writable:!0}, getSeconds:{value:this.getSeconds, writable:!0}, getTime:{value:this.getTime, writable:!0}});
         }
         __extends(b, a);
         b.prototype._valueOf = function() {
@@ -40596,8 +40596,26 @@ __extends = this.__extends || function(e, c) {
         b.prototype._toString = function() {
           return q(this, w).value.toString();
         };
+        b.prototype.getDate = function() {
+          return q(this, w).value.getDate();
+        };
+        b.prototype.getFullYear = function() {
+          return q(this, w).value.getFullYear();
+        };
+        b.prototype.getHours = function() {
+          return q(this, w).value.getHours();
+        };
+        b.prototype.getMinutes = function() {
+          return q(this, w).value.getMinutes();
+        };
+        b.prototype.getMonth = function() {
+          return q(this, w).value.getMonth();
+        };
+        b.prototype.getSeconds = function() {
+          return q(this, w).value.getSeconds();
+        };
         b.prototype.getTime = function() {
-          return q(this, w).value.valueOf();
+          return q(this, w).value.getTime();
         };
         return b;
       }(c.AVM1Object), D = function(a) {
