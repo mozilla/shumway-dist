@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.46";
-Shumway$$inline_17.build = "3dabf5d";
+Shumway$$inline_17.version = "0.11.50";
+Shumway$$inline_17.build = "bf486eb";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -1907,10 +1907,10 @@ var START_TIME = performance.now();
       if (255 === b) {
         return a;
       }
-      var k, g, u = b << 8, r = e;
-      g = r[u + (a >> 16 & 255)];
-      k = r[u + (a >> 8 & 255)];
-      a = r[u + (a >> 0 & 255)];
+      var k, g, r = b << 8, u = e;
+      g = u[r + (a >> 16 & 255)];
+      k = u[r + (a >> 8 & 255)];
+      a = u[r + (a >> 0 & 255)];
       return b << 24 | g << 16 | k << 8 | a;
     };
     a.blendPremultipliedBGRA = function(a, b) {
@@ -7697,10 +7697,10 @@ __extends = this.__extends || function(f, d) {
     }();
     d.Traits = h;
     var v = function() {
-      function b(a, e, c) {
+      function b(a, c, e) {
         this.abc = a;
-        this.kind = e;
-        this.name = c;
+        this.kind = c;
+        this.name = e;
         this.holder = this.metadata = null;
       }
       b.prototype.getMetadata = function() {
@@ -7753,10 +7753,10 @@ __extends = this.__extends || function(f, d) {
     }();
     d.TraitInfo = v;
     var p = function() {
-      function a(b, e, c, g) {
+      function a(b, c, e, g) {
         this.traits = b;
-        this.superTraits = e;
-        this.protectedNs = c;
+        this.superTraits = c;
+        this.protectedNs = e;
         this.protectedNsMappings = g;
         this.slots = [];
         this._nextSlotID = 1;
@@ -7767,12 +7767,12 @@ __extends = this.__extends || function(f, d) {
         this.slots[b] = a;
       };
       a.prototype.indexOf = function(a, b) {
-        for (var e = this.traits, c = 0;c < e.length;c++) {
-          var g = e[c].name;
+        for (var c = this.traits, e = 0;e < c.length;e++) {
+          var g = c[e].name;
           if (g.name === b) {
             for (var g = g.namespaces[0], l = g.uri, k = 0;k < a.length;k++) {
               if (l === a[k].uri && g.type === a[k].type) {
-                return c;
+                return e;
               }
             }
           }
@@ -7780,27 +7780,27 @@ __extends = this.__extends || function(f, d) {
         return -1;
       };
       a.prototype.getTrait = function(a, b) {
-        var c = this.protectedNsMappings[b];
-        if (c) {
-          for (var e = 0;e < a.length;e++) {
-            var g = a[e];
+        var e = this.protectedNsMappings[b];
+        if (e) {
+          for (var c = 0;c < a.length;c++) {
+            var g = a[c];
             if (1 === g.type) {
               for (var l = this;l;) {
                 if (l.protectedNs.uri === g.uri) {
-                  return c;
+                  return e;
                 }
                 l = l.superTraits;
               }
             }
           }
         }
-        e = this.indexOf(a, b);
-        return 0 <= e ? this.traits[e] : null;
+        c = this.indexOf(a, b);
+        return 0 <= c ? this.traits[c] : null;
       };
       a.prototype.getSlotPublicTraitNames = function() {
-        for (var a = this.slots, b = [], e = 1;e < a.length;e++) {
-          var c = a[e];
-          c.name.namespace.isPublic() && b.push(c.name.name);
+        for (var a = this.slots, b = [], c = 1;c < a.length;c++) {
+          var e = a[c];
+          e.name.namespace.isPublic() && b.push(e.name.name);
         }
         return b;
       };
@@ -7811,10 +7811,10 @@ __extends = this.__extends || function(f, d) {
     }();
     d.RuntimeTraits = p;
     var k = function() {
-      function a(b, e, c) {
+      function a(b, c, e) {
         this.name = b;
-        this.kind = e;
-        this.abc = c;
+        this.kind = c;
+        this.abc = e;
         this.configurable = !0;
         this._type = void 0;
         this.typeName = null;
@@ -7833,8 +7833,8 @@ __extends = this.__extends || function(f, d) {
     }();
     d.RuntimeTraitInfo = k;
     var r = {__proto__:null, $BgNumber:NaN, $Bgint:0, $Bguint:0, $BgBoolean:!1}, l = function(a) {
-      function b(e, c, g, l, k, h, r) {
-        a.call(this, e, c, g);
+      function b(c, e, g, l, k, h, r) {
+        a.call(this, c, e, g);
         this.slot = l;
         this.typeName = k;
         this.defaultValueKind = h;
@@ -7863,8 +7863,8 @@ __extends = this.__extends || function(f, d) {
     }(v);
     d.SlotTraitInfo = l;
     var u = function(a) {
-      function b(e, c, g, l) {
-        a.call(this, e, c, g);
+      function b(c, e, g, l) {
+        a.call(this, c, e, g);
         this.methodInfo = l;
         this.method = null;
       }
@@ -7880,8 +7880,8 @@ __extends = this.__extends || function(f, d) {
     }(v);
     d.MethodTraitInfo = u;
     var w = function(a) {
-      function b(e, c, g, l, k) {
-        a.call(this, e, c, g, l, 0, 0, -1);
+      function b(c, e, g, l, k) {
+        a.call(this, c, e, g, l, 0, 0, -1);
         this.classInfo = k;
       }
       __extends(b, a);
@@ -7889,10 +7889,10 @@ __extends = this.__extends || function(f, d) {
     }(l);
     d.ClassTraitInfo = w;
     var F = function() {
-      function a(b, e, c, g, l) {
+      function a(b, c, e, g, l) {
         this.abc = b;
-        this.type = e;
-        this.name = c;
+        this.type = c;
+        this.name = e;
         this.optionalValueKind = g;
         this.optionalValueIndex = l;
       }
@@ -7925,10 +7925,10 @@ __extends = this.__extends || function(f, d) {
     }();
     d.Info = v;
     var E = function(a) {
-      function b(e, c, g, l, k, h, r, d) {
+      function b(c, e, g, l, k, h, r, d) {
         a.call(this);
-        this.abc = e;
-        this.name = c;
+        this.abc = c;
+        this.name = e;
         this.superName = g;
         this.flags = l;
         this.protectedNs = k;
@@ -7960,13 +7960,13 @@ __extends = this.__extends || function(f, d) {
         }
         var b;
         (a = a.superClass) && (b = a.classInfo.instanceInfo.getInterfaces(a));
-        var e = this._interfaces = new Set(b);
+        var c = this._interfaces = new Set(b);
         for (b = 0;b < this.interfaceNameIndices.length;b++) {
-          a = this.abc.getMultiname(this.interfaceNameIndices[b]), a = this.abc.applicationDomain.getClass(a), e.add(a), a.classInfo.instanceInfo.getInterfaces(a).forEach(function(a) {
-            return e.add(a);
+          a = this.abc.getMultiname(this.interfaceNameIndices[b]), a = this.abc.applicationDomain.getClass(a), c.add(a), a.classInfo.instanceInfo.getInterfaces(a).forEach(function(a) {
+            return c.add(a);
           });
         }
-        return e;
+        return c;
       };
       b.prototype.toString = function() {
         return "InstanceInfo " + this.getName().name;
@@ -7993,10 +7993,10 @@ __extends = this.__extends || function(f, d) {
     }(v);
     d.InstanceInfo = E;
     var A = function(a) {
-      function b(e, c, g) {
+      function b(c, e, g) {
         a.call(this);
-        this.abc = e;
-        this.initializer = c;
+        this.abc = c;
+        this.initializer = e;
         this.traits = g;
         this.global = null;
         this.state = 0;
@@ -8014,10 +8014,10 @@ __extends = this.__extends || function(f, d) {
     }(v);
     d.ScriptInfo = A;
     var x = function(a) {
-      function b(e, c, g, l) {
+      function b(c, e, g, l) {
         a.call(this);
-        this.abc = e;
-        this.instanceInfo = c;
+        this.abc = c;
+        this.instanceInfo = e;
         this.initializer = g;
         this.traits = l;
         this.runtimeTraits = this.trait = null;
@@ -8053,10 +8053,10 @@ __extends = this.__extends || function(f, d) {
     }(v);
     d.ClassInfo = x;
     var C = function() {
-      function a(b, e, c, g, l, k) {
+      function a(b, c, e, g, l, k) {
         this.abc = b;
-        this.start = e;
-        this.end = c;
+        this.start = c;
+        this.end = e;
         this.target = g;
         this.type = l;
         this.varName = k;
@@ -8079,10 +8079,10 @@ __extends = this.__extends || function(f, d) {
     }();
     d.ExceptionInfo = C;
     var z = function(a) {
-      function b(e, c, g, l, k, h, r) {
+      function b(c, e, g, l, k, h, r) {
         a.call(this);
-        this.maxStack = e;
-        this.localCount = c;
+        this.maxStack = c;
+        this.localCount = e;
         this.initScopeDepth = g;
         this.maxScopeDepth = l;
         this.code = k;
@@ -8101,10 +8101,10 @@ __extends = this.__extends || function(f, d) {
     }(v);
     d.MethodBodyInfo = z;
     var D = function() {
-      function a(b, e, c, g, l, k, h) {
+      function a(b, c, e, g, l, k, h) {
         this.abc = b;
-        this._index = e;
-        this.name = c;
+        this._index = c;
+        this.name = e;
         this.returnTypeNameIndex = g;
         this.parameters = l;
         this.optionalCount = k;
@@ -8153,12 +8153,12 @@ __extends = this.__extends || function(f, d) {
         return a;
       };
       a.prototype.toFlashlogString = function() {
-        var a = this.trait, b = 2 === a.kind ? "get " : 3 === a.kind ? "set " : "", e = a.toFlashlogString(), a = a.holder, c;
-        a && a instanceof E && (c = a.toFlashlogString(), b = c + "/" + b);
-        a && a instanceof x && a.trait && (c = a.trait.toFlashlogString(), b = c + "$/" + b);
+        var a = this.trait, b = 2 === a.kind ? "get " : 3 === a.kind ? "set " : "", c = a.toFlashlogString(), a = a.holder, e;
+        a && a instanceof E && (e = a.toFlashlogString(), b = e + "/" + b);
+        a && a instanceof x && a.trait && (e = a.trait.toFlashlogString(), b = e + "$/" + b);
         var g;
-        c && 0 < (g = e.indexOf("::")) && 0 === c.indexOf(e.substring(0, g + 2)) && (e = e.substring(g + 2));
-        return "MTHD " + b + e + " ()";
+        e && 0 < (g = c.indexOf("::")) && 0 === e.indexOf(c.substring(0, g + 2)) && (c = c.substring(g + 2));
+        return "MTHD " + b + c + " ()";
       };
       a.prototype.isNative = function() {
         return !!(this.flags & 32);
@@ -8173,19 +8173,19 @@ __extends = this.__extends || function(f, d) {
     }();
     d.MethodInfo = D;
     var y = function() {
-      function a(b, e, c, g, l, k) {
+      function a(b, c, e, g, l, k) {
         void 0 === k && (k = null);
         this.abc = b;
-        this.index = e;
-        this.kind = c;
+        this.index = c;
+        this.kind = e;
         this.namespaces = g;
         this.name = l;
         this.parameterType = k;
         this.id = a._nextID++;
       }
-      a.FromFQNString = function(b, e) {
-        var c = b.lastIndexOf("."), g = -1 === c ? "" : b.substr(0, c), c = -1 === c ? b : b.substr(c + 1), g = new I(null, e, g);
-        return new a(null, 0, 15, [g], c);
+      a.FromFQNString = function(b, c) {
+        var e = b.lastIndexOf("."), g = -1 === e ? "" : b.substr(0, e), e = -1 === e ? b : b.substr(e + 1), g = new I(null, c, g);
+        return new a(null, 0, 15, [g], e);
       };
       a.prototype._nameToString = function() {
         return this.isAnyName() ? "*" : this.isRuntimeName() ? "[" + this.name + "]" : this.name;
@@ -8261,8 +8261,8 @@ __extends = this.__extends || function(f, d) {
         if (!b && this.name !== a.name) {
           return !1;
         }
-        for (var b = this.namespaces[0].uri, e = a.namespaces.length;e--;) {
-          if (a.namespaces[e].uri === b) {
+        for (var b = this.namespaces[0].uri, c = a.namespaces.length;c--;) {
+          if (a.namespaces[c].uri === b) {
             return !0;
           }
         }
@@ -8304,9 +8304,9 @@ __extends = this.__extends || function(f, d) {
       a.prototype.toString = function() {
         var a = b[this.kind] + " ", a = a + (this.isAttribute() ? "@" : "");
         if (this.isRuntimeNamespace()) {
-          var e = this.namespaces ? this.namespaces.map(function(a) {
+          var c = this.namespaces ? this.namespaces.map(function(a) {
             return String(a);
-          }).join(", ") : null, a = a + ("[" + e + "]::" + this._nameToString())
+          }).join(", ") : null, a = a + ("[" + c + "]::" + this._nameToString())
         } else {
           this.isQName() ? (a += this.namespaces[0] + "::", a += this._nameToString()) : (a += "{" + this.namespaces.map(function(a) {
             return String(a);
@@ -8325,11 +8325,11 @@ __extends = this.__extends || function(f, d) {
         }
       };
       a.FromSimpleName = function(b) {
-        var e = b.lastIndexOf(".");
-        0 >= e && (e = b.lastIndexOf(" "));
-        var c = "", g;
-        0 < e && e < b.length - 1 ? (g = b.substring(e + 1).trim(), c = b.substring(0, e).trim()) : g = b;
-        b = new I(null, 0, c);
+        var c = b.lastIndexOf(".");
+        0 >= c && (c = b.lastIndexOf(" "));
+        var e = "", g;
+        0 < c && c < b.length - 1 ? (g = b.substring(c + 1).trim(), e = b.substring(0, c).trim()) : g = b;
+        b = new I(null, 0, e);
         return new a(null, 0, 15, [b], g);
       };
       a._nextID = 1;
@@ -8337,29 +8337,29 @@ __extends = this.__extends || function(f, d) {
     }();
     d.Multiname = y;
     var B = new Int32Array(100), I = function() {
-      function a(b, e, c) {
+      function a(b, c, e) {
         this.abc = b;
-        this.type = e;
-        this.uri = c;
+        this.type = c;
+        this.uri = e;
         this.prefix = "";
         this._mangledName = null;
-        t(void 0 !== e);
+        t(void 0 !== c);
       }
       a.prototype.toString = function() {
         return e[this.type] + ("" !== this.uri ? ":" + this.uri : "");
       };
-      a._hashNamespace = function(b, e, c) {
-        var g = a._knownNames.indexOf(e);
+      a._hashNamespace = function(b, c, e) {
+        var g = a._knownNames.indexOf(c);
         if (0 <= g) {
           return b << 2 | g;
         }
-        var g = 1 + e.length + c.length, g = 101 > g ? B : new Int32Array(g), l = 0;
+        var g = 1 + c.length + e.length, g = 101 > g ? B : new Int32Array(g), l = 0;
         g[l++] = b;
-        for (b = 0;b < e.length;b++) {
-          g[l++] = e.charCodeAt(b);
-        }
         for (b = 0;b < c.length;b++) {
           g[l++] = c.charCodeAt(b);
+        }
+        for (b = 0;b < e.length;b++) {
+          g[l++] = e.charCodeAt(b);
         }
         return f.HashUtilities.hashBytesTo32BitsMD5(g, 0, l);
       };
@@ -8391,11 +8391,11 @@ __extends = this.__extends || function(f, d) {
     }();
     d.Namespace = I;
     var H = function() {
-      function a(b, e) {
-        this._buffer = e;
+      function a(b, c) {
+        this._buffer = c;
         this.env = b;
-        this._stream = new n(e);
-        this.hash = m(e, 0, e.length);
+        this._stream = new n(c);
+        this.hash = m(c, 0, c.length);
         this._checkMagic();
         this._parseConstantPool();
         this._parseNamespaces();
@@ -8415,53 +8415,53 @@ __extends = this.__extends || function(f, d) {
         this._parseStringConstants();
       };
       a.prototype._parseNumericConstants = function() {
-        var a = 0, b = this._stream, a = b.readU30(), e = new Int32Array(a);
-        e[0] = 0;
-        for (var c = 1;c < a;c++) {
-          e[c] = b.readS32();
+        var a = 0, b = this._stream, a = b.readU30(), c = new Int32Array(a);
+        c[0] = 0;
+        for (var e = 1;e < a;e++) {
+          c[e] = b.readS32();
         }
-        this.ints = e;
+        this.ints = c;
         a = b.readU30();
-        e = new Uint32Array(a);
-        e[0] = 0;
-        for (c = 1;c < a;c++) {
-          e[c] = b.readS32();
+        c = new Uint32Array(a);
+        c[0] = 0;
+        for (e = 1;e < a;e++) {
+          c[e] = b.readS32();
         }
-        this.uints = e;
+        this.uints = c;
         a = b.readU30();
-        e = new Float64Array(a);
-        e[0] = NaN;
-        for (c = 1;c < a;c++) {
-          e[c] = b.readDouble();
+        c = new Float64Array(a);
+        c[0] = NaN;
+        for (e = 1;e < a;e++) {
+          c[e] = b.readDouble();
         }
-        this.doubles = e;
+        this.doubles = c;
       };
       a.prototype._parseStringConstants = function() {
         var a = 0, b = this._stream, a = b.readU30();
         this._strings = Array(a);
         this._strings[0] = null;
-        var e = this._stringOffsets = new Uint32Array(a);
-        e[0] = -1;
-        for (var c = 1;c < a;c++) {
-          e[c] = b.position, b.advance(b.readU30());
+        var c = this._stringOffsets = new Uint32Array(a);
+        c[0] = -1;
+        for (var e = 1;e < a;e++) {
+          c[e] = b.position, b.advance(b.readU30());
         }
       };
       a.prototype._parseNamespaces = function() {
         var a = this._stream, b = a.readU30();
         this._namespaces = Array(b);
-        var e = this._namespaceOffsets = new Uint32Array(b);
-        e[0] = -1;
-        for (var c = 1;c < b;c++) {
-          e[c] = a.position, a.readU8(), a.readU30();
+        var c = this._namespaceOffsets = new Uint32Array(b);
+        c[0] = -1;
+        for (var e = 1;e < b;e++) {
+          c[e] = a.position, a.readU8(), a.readU30();
         }
       };
       a.prototype._parseNamespaceSets = function() {
         var a = this._stream, b = a.readU30();
         this._namespaceSets = Array(b);
-        var e = this._namespaceSetOffsets = new Uint32Array(b);
-        e[0] = -1;
-        for (var c = 1;c < b;c++) {
-          e[c] = a.position;
+        var c = this._namespaceSetOffsets = new Uint32Array(b);
+        c[0] = -1;
+        for (var e = 1;e < b;e++) {
+          c[e] = a.position;
           for (var g = a.readU30(), l = 0;l < g;l++) {
             a.readU30();
           }
@@ -8508,52 +8508,52 @@ __extends = this.__extends || function(f, d) {
       a.prototype._parseMultinames = function() {
         var a = this._stream, b = a.readU30();
         this._multinames = Array(b);
-        var e = this._multinameOffsets = new Uint32Array(b);
-        e[0] = -1;
-        for (var c = 1;c < b;c++) {
-          e[c] = a.position, this._consumeMultiname();
+        var c = this._multinameOffsets = new Uint32Array(b);
+        c[0] = -1;
+        for (var e = 1;e < b;e++) {
+          c[e] = a.position, this._consumeMultiname();
         }
       };
       a.prototype._parseMultiname = function(a) {
-        var b = this._stream, e = !1, c, g = !0, l = 0, k = b.readU8();
+        var b = this._stream, c = !1, e, g = !0, l = 0, k = b.readU8();
         switch(k) {
           case 7:
           ;
           case 13:
-            c = b.readU30();
+            e = b.readU30();
             g = !1;
             l = b.readU30();
             break;
           case 15:
           ;
           case 16:
-            e = !0;
+            c = !0;
             l = b.readU30();
             break;
           case 17:
           ;
           case 18:
-            e = !0;
+            c = !0;
             break;
           case 9:
           ;
           case 14:
             l = b.readU30();
-            c = b.readU30();
+            e = b.readU30();
             break;
           case 27:
           ;
           case 28:
-            c = b.readU30();
+            e = b.readU30();
             break;
           case 29:
-            return e = b.readU32(), b.readU32(), b = this.getMultiname(b.readU32()), e = this.getMultiname(e), new y(this, a, k, e.namespaces, e.name, b);
+            return c = b.readU32(), b.readU32(), b = this.getMultiname(b.readU32()), c = this.getMultiname(c), new y(this, a, k, c.namespaces, c.name, b);
           default:
             f.Debug.unexpected();
         }
         b = 0 === l ? null : this.getString(l);
-        e = e ? null : g ? this.getNamespaceSet(c) : [this.getNamespace(c)];
-        return new y(this, a, k, e, b);
+        c = c ? null : g ? this.getNamespaceSet(e) : [this.getNamespace(e)];
+        return new y(this, a, k, c, b);
       };
       a.prototype._checkMagic = function() {
         var a = this._stream.readWord();
@@ -8576,7 +8576,7 @@ __extends = this.__extends || function(f, d) {
         if (void 0 === b) {
           b = this._stream;
           b.seek(this._stringOffsets[a]);
-          var e = b.readU30(), b = this._strings[a] = b.readUTFString(e);
+          var c = b.readU30(), b = this._strings[a] = b.readUTFString(c);
         }
         return b;
       };
@@ -8598,35 +8598,35 @@ __extends = this.__extends || function(f, d) {
         if (void 0 !== b) {
           return b;
         }
-        var e = this._stream;
-        e.seek(this._namespaceOffsets[a]);
-        var b = e.readU8(), e = (e = e.readU30()) ? this.getString(e) : void 0, c;
+        var c = this._stream;
+        c.seek(this._namespaceOffsets[a]);
+        var b = c.readU8(), c = (c = c.readU30()) ? this.getString(c) : void 0, e;
         switch(b) {
           case 8:
           ;
           case 22:
-            c = 0;
+            e = 0;
             break;
           case 23:
-            c = 2;
+            e = 2;
             break;
           case 24:
-            c = 1;
+            e = 1;
             break;
           case 25:
-            c = 4;
+            e = 4;
             break;
           case 26:
-            c = 5;
+            e = 5;
             break;
           case 5:
-            c = 3;
+            e = 3;
             break;
           default:
             this.applicationDomain.sec.throwError("VerifierError", d.Errors.CpoolEntryWrongTypeError, a);
         }
-        e && 3 !== c || void 0 === e && (e = "");
-        return b = this._namespaces[a] = new I(this, c, e);
+        c && 3 !== e || void 0 === c && (c = "");
+        return b = this._namespaces[a] = new I(this, e, c);
       };
       a.prototype.getNamespaceSet = function(a) {
         (0 > a || a >= this._namespaceSets.length) && this.applicationDomain.sec.throwError("VerifierError", d.Errors.CpoolIndexRangeError, a, this._namespaceSets.length);
@@ -8635,12 +8635,12 @@ __extends = this.__extends || function(f, d) {
         }
         var b = this._namespaceSets[a];
         if (void 0 === b) {
-          var e = this._stream, c = this._namespaceSetOffsets[a];
-          e.seek(c);
-          var g = e.readU30(), b = this._namespaceSets[a] = Array(g), c = e.position;
+          var c = this._stream, e = this._namespaceSetOffsets[a];
+          c.seek(e);
+          var g = c.readU30(), b = this._namespaceSets[a] = Array(g), e = c.position;
           for (a = 0;a < g;a++) {
-            e.seek(c);
-            var l = e.readU30(), c = e.position;
+            c.seek(e);
+            var l = c.readU30(), e = c.position;
             b[a] = this.getNamespace(l);
           }
         }
@@ -8650,45 +8650,45 @@ __extends = this.__extends || function(f, d) {
         var a = this._stream, b = a.readU30();
         this._methods = Array(b);
         this._methodInfoOffsets = new Uint32Array(b);
-        for (var e = 0;e < b;++e) {
-          this._methodInfoOffsets[e] = a.position, this._consumeMethodInfo();
+        for (var c = 0;c < b;++c) {
+          this._methodInfoOffsets[c] = a.position, this._consumeMethodInfo();
         }
       };
       a.prototype._consumeMethodInfo = function() {
         var a = this._stream, b = a.readU30();
         a.readU30();
-        for (var e = 0;e < b;e++) {
+        for (var c = 0;c < b;c++) {
           a.readU30();
         }
         a.readU30();
-        var c = a.readU8();
-        if (c & 8) {
-          for (e = a.readU30(), e = b - e;e < b;e++) {
+        var e = a.readU8();
+        if (e & 8) {
+          for (c = a.readU30(), c = b - c;c < b;c++) {
             a.readU30(), a.readU8();
           }
         }
-        if (c & 128) {
-          for (e = 0;e < b;e++) {
+        if (e & 128) {
+          for (c = 0;c < b;c++) {
             a.readU30();
           }
         }
       };
       a.prototype._parseMethodInfo = function(a) {
-        for (var b = this._stream, e = b.readU30(), c = b.readU30(), g = Array(e), l = 0;l < e;l++) {
+        for (var b = this._stream, c = b.readU30(), e = b.readU30(), g = Array(c), l = 0;l < c;l++) {
           g[l] = new F(this, b.readU30(), 0, -1, -1);
         }
         var k = b.readU30(), h = b.readU8(), r = 0;
         if (h & 8) {
-          for (r = b.readU30(), l = e - r;l < e;l++) {
+          for (r = b.readU30(), l = c - r;l < c;l++) {
             g[l].optionalValueIndex = b.readU30(), g[l].optionalValueKind = b.readU8();
           }
         }
         if (h & 128) {
-          for (l = 0;l < e;l++) {
+          for (l = 0;l < c;l++) {
             g[l].name = b.readU30();
           }
         }
-        return new D(this, a, k, c, g, r, h);
+        return new D(this, a, k, e, g, r, h);
       };
       a.prototype.getMethodInfo = function(a) {
         var b = this._methods[a];
@@ -8701,8 +8701,8 @@ __extends = this.__extends || function(f, d) {
       a.prototype._parseMetaData = function() {
         var a = this._stream, b = a.readU30();
         this._metadata = Array(b);
-        for (var e = this._metadataInfoOffsets = new Uint32Array(b), c = 0;c < b;c++) {
-          e[c] = a.position;
+        for (var c = this._metadataInfoOffsets = new Uint32Array(b), e = 0;e < b;e++) {
+          c[e] = a.position;
           a.readU30();
           for (var g = a.readU30(), l = 0;l < g;l++) {
             a.readU30(), a.readU30();
@@ -8714,54 +8714,54 @@ __extends = this.__extends || function(f, d) {
         if (void 0 === b) {
           b = this._stream;
           b.seek(this._metadataInfoOffsets[a]);
-          for (var e = b.readU30(), c = b.readU30(), l = new Uint32Array(c), k = 0;k < c;k++) {
+          for (var c = b.readU30(), e = b.readU30(), l = new Uint32Array(e), k = 0;k < e;k++) {
             l[k] = b.readU30();
           }
-          for (var h = new Uint32Array(c), k = 0;k < c;k++) {
+          for (var h = new Uint32Array(e), k = 0;k < e;k++) {
             h[k] = b.readU30();
           }
-          b = this._metadata[a] = new g(this, e, l, h);
+          b = this._metadata[a] = new g(this, c, l, h);
         }
         return b;
       };
       a.prototype._parseInstanceAndClassInfos = function() {
-        for (var a = this._stream, b = a.readU30(), e = this.instances = Array(b), c = 0;c < b;c++) {
-          e[c] = this._parseInstanceInfo();
+        for (var a = this._stream, b = a.readU30(), c = this.instances = Array(b), e = 0;e < b;e++) {
+          c[e] = this._parseInstanceInfo();
         }
         this._parseClassInfos(b);
-        for (var g = a.position, c = 0;c < b;c++) {
-          e[c].classInfo = this.classes[c];
+        for (var g = a.position, e = 0;e < b;e++) {
+          c[e].classInfo = this.classes[e];
         }
         a.seek(g);
       };
       a.prototype._parseInstanceInfo = function() {
-        var a = this._stream, b = a.readU30(), e = a.readU30(), c = a.readU8(), g = 0;
-        c & 8 && (g = a.readU30());
+        var a = this._stream, b = a.readU30(), c = a.readU30(), e = a.readU8(), g = 0;
+        e & 8 && (g = a.readU30());
         for (var l = a.readU30(), k = [], h = 0;h < l;h++) {
           k[h] = a.readU30();
         }
         l = a.readU30();
         a = this._parseTraits();
-        b = new E(this, b, e, c, g, k, l, a);
+        b = new E(this, b, c, e, g, k, l, a);
         a.attachHolder(b);
         return b;
       };
       a.prototype._parseTraits = function() {
-        for (var a = this._stream.readU30(), b = [], e = 0;e < a;e++) {
+        for (var a = this._stream.readU30(), b = [], c = 0;c < a;c++) {
           b.push(this._parseTrait());
         }
         return new h(b);
       };
       a.prototype._parseTrait = function() {
-        var a = this._stream, b = a.readU30(), e = a.readU8(), c = e & 15, e = e >> 4 & 15, g;
-        switch(c) {
+        var a = this._stream, b = a.readU30(), c = a.readU8(), e = c & 15, c = c >> 4 & 15, g;
+        switch(e) {
           case 0:
           ;
           case 6:
             g = a.readU30();
             var k = a.readU30(), h = a.readU30(), r = -1;
             0 !== h && (r = a.readU8());
-            g = new l(this, c, b, g, k, r, h);
+            g = new l(this, e, b, g, k, r, h);
             break;
           case 1:
           ;
@@ -8772,41 +8772,41 @@ __extends = this.__extends || function(f, d) {
             g = a.readU30();
             k = a.position;
             g = this.getMethodInfo(g);
-            g = g.trait = new u(this, c, b, g);
+            g = g.trait = new u(this, e, b, g);
             a.seek(k);
             break;
           case 4:
             g = a.readU30();
             k = this.classes[a.readU30()];
-            g = k.trait = new w(this, c, b, g, k);
+            g = k.trait = new w(this, e, b, g, k);
             break;
           default:
-            this.applicationDomain.sec.throwError("VerifierError", d.Errors.UnsupportedTraitsKindError, c);
+            this.applicationDomain.sec.throwError("VerifierError", d.Errors.UnsupportedTraitsKindError, e);
         }
-        if (e & 4) {
+        if (c & 4) {
           b = a.readU30();
-          c = new Uint32Array(b);
-          for (e = 0;e < b;e++) {
-            c[e] = a.readU30();
+          e = new Uint32Array(b);
+          for (c = 0;c < b;c++) {
+            e[c] = a.readU30();
           }
-          g.metadata = c;
+          g.metadata = e;
         }
         return g;
       };
       a.prototype._parseClassInfos = function(a) {
-        for (var b = this.classes = Array(a), e = 0;e < a;e++) {
-          b[e] = this._parseClassInfo(e);
+        for (var b = this.classes = Array(a), c = 0;c < a;c++) {
+          b[c] = this._parseClassInfo(c);
         }
       };
       a.prototype._parseClassInfo = function(a) {
-        var b = this._stream.readU30(), e = this._parseTraits();
-        a = new x(this, this.instances[a], b, e);
-        e.attachHolder(a);
+        var b = this._stream.readU30(), c = this._parseTraits();
+        a = new x(this, this.instances[a], b, c);
+        c.attachHolder(a);
         return a;
       };
       a.prototype._parseScriptInfos = function() {
-        for (var a = this._stream.readU30(), b = this.scripts = Array(a), e = 0;e < a;e++) {
-          b[e] = this._parseScriptInfo();
+        for (var a = this._stream.readU30(), b = this.scripts = Array(a), c = 0;c < a;c++) {
+          b[c] = this._parseScriptInfo();
         }
       };
       a.prototype._parseScriptInfo = function() {
@@ -8815,7 +8815,7 @@ __extends = this.__extends || function(f, d) {
         return a;
       };
       a.prototype._parseMethodBodyInfos = function() {
-        for (var a = this._stream, b = this._methodBodies = Array(this._methods.length), e = a.readU30(), c = 0;c < e;c++) {
+        for (var a = this._stream, b = this._methodBodies = Array(this._methods.length), c = a.readU30(), e = 0;e < c;e++) {
           for (var g = a.readU30(), l = a.readU30(), k = a.readU30(), h = a.readU30(), r = a.readU30(), d = a.viewU8s(a.readU30()), u = a.readU30(), v = Array(u), p = 0;p < u;++p) {
             v[p] = this._parseException();
           }
@@ -8825,8 +8825,8 @@ __extends = this.__extends || function(f, d) {
         }
       };
       a.prototype._parseException = function() {
-        var a = this._stream, b = a.readU30(), e = a.readU30(), c = a.readU30(), g = a.readU30(), a = a.readU30();
-        return new C(this, b, e, c, g, a);
+        var a = this._stream, b = a.readU30(), c = a.readU30(), e = a.readU30(), g = a.readU30(), a = a.readU30();
+        return new C(this, b, c, e, g, a);
       };
       a.prototype.getConstant = function(a, b) {
         switch(a) {
@@ -8934,18 +8934,18 @@ __extends = this.__extends || function(f, d) {
     }();
     d.ABCFile = H;
     v = function() {
-      function a(b, e, c) {
+      function a(b, c, e) {
         this.app = b;
         this.map = f.ObjectUtilities.createMap();
-        this.abcs = e;
+        this.abcs = c;
         this.scripts = f.ObjectUtilities.createMap();
-        for (b = 0;b < c.length;b++) {
-          e = c[b];
-          this.scripts[e.name] = e;
-          for (var g = 0;g < e.defs.length;g++) {
-            var l = e.defs[g].split(":"), k = this.map[l[1]];
+        for (b = 0;b < e.length;b++) {
+          c = e[b];
+          this.scripts[c.name] = c;
+          for (var g = 0;g < c.defs.length;g++) {
+            var l = c.defs[g].split(":"), k = this.map[l[1]];
             k || (k = this.map[l[1]] = Object.create(null));
-            k[l[0]] = e.name;
+            k[l[0]] = c.name;
           }
         }
       }
@@ -8959,10 +8959,10 @@ __extends = this.__extends || function(f, d) {
           return null;
         }
         a = a.namespaces;
-        for (var e = 0;e < a.length;e++) {
-          var c = b[a[e].uri];
-          if (c) {
-            return this.getABCByScriptName(c);
+        for (var c = 0;c < a.length;c++) {
+          var e = b[a[c].uri];
+          if (e) {
+            return this.getABCByScriptName(e);
           }
         }
         return null;
@@ -8974,28 +8974,28 @@ __extends = this.__extends || function(f, d) {
 })(Shumway || (Shumway = {}));
 (function(f) {
   (function(d) {
-    function c(b, a, e) {
-      e.id = a.id;
-      e.kind = a.kind;
+    function c(b, a, c) {
+      c.id = a.id;
+      c.kind = a.kind;
       if (a.isRuntimeName()) {
-        var c = b.pop();
-        if (c && c.axClass && c.axClass === c.sec.AXQName) {
-          c = c.name;
-          e.kind = a.isAttribute() ? 18 : 17;
-          e.id = c.id;
-          e.name = c.name;
-          e.namespaces = c.namespaces;
+        var g = b.pop();
+        if (g && g.axClass && g.axClass === g.sec.AXQName) {
+          g = g.name;
+          c.kind = a.isAttribute() ? 18 : 17;
+          c.id = g.id;
+          c.name = g.name;
+          c.namespaces = g.namespaces;
           return;
         }
-        e.name = c;
-        e.id = -1;
+        c.name = g;
+        c.id = -1;
       } else {
-        e.name = a.name;
+        c.name = a.name;
       }
-      a.isRuntimeNamespace() ? (b = b.pop(), b._ns && (b = b._ns), e.namespaces = [b], e.id = -1) : e.namespaces = a.namespaces;
-      d.interpreterWriter && d.interpreterWriter.greenLn("Name: " + e.name);
+      a.isRuntimeNamespace() ? (b = b.pop(), b._ns && (b = b._ns), c.namespaces = [b], c.id = -1) : c.namespaces = a.namespaces;
+      d.interpreterWriter && d.interpreterWriter.greenLn("Name: " + c.name);
     }
-    function q(b, a, e, c, h, v, p, k, r) {
+    function q(b, a, c, g, h, v, p, k, r) {
       var l = a instanceof Error && "string" === typeof a.name && "string" === typeof a.message;
       if (l && "InternalError" === a.name) {
         var u = Object.create(b.AXError.tPrototype);
@@ -9008,9 +9008,9 @@ __extends = this.__extends || function(f, d) {
         }
       }
       r = !1;
-      switch(e) {
+      switch(c) {
         case 65:
-          if (!c || !c.axApply) {
+          if (!g || !g.axApply) {
             return b.createError("TypeError", d.Errors.CallOfNonFunctionError, "value");
           }
           break;
@@ -9119,13 +9119,13 @@ __extends = this.__extends || function(f, d) {
           }
         ;
       }
-      e = "Uncaught VM-internal exception during op " + d.Bytecode[e] + ": ";
+      c = "Uncaught VM-internal exception during op " + d.Bytecode[c] + ": ";
       try {
-        e += a.toString(), w = a.stack;
+        c += a.toString(), w = a.stack;
       } catch (n) {
-        e += "[Failed to stringify exception]";
+        c += "[Failed to stringify exception]";
       }
-      console.error(e, "\n", w);
+      console.error(c, "\n", w);
       return b.createError("Error", d.Errors.InternalErrorIV);
     }
     var t = f.ArrayUtilities.popManyInto, m = function() {
@@ -20975,19 +20975,19 @@ var RtmpJs;
     };
     c.prototype._parseChunkedData = function() {
       if (!(1 > this.bufferLength)) {
-        var c = this.buffer[0] >> 6 & 3, d = 1, f = this.buffer[0] & 63;
-        if (0 === f) {
+        var c = this.buffer[0] >> 6 & 3, d = 1, n = this.buffer[0] & 63;
+        if (0 === n) {
           if (2 > this.bufferLength) {
             return;
           }
-          f = this.buffer[1] + 64;
+          n = this.buffer[1] + 64;
           d = 2;
         } else {
-          if (1 === f) {
+          if (1 === n) {
             if (2 > this.bufferLength) {
               return;
             }
-            f = (this.buffer[1] << 8) + this.buffer[2] + 64;
+            n = (this.buffer[1] << 8) + this.buffer[2] + 64;
             d = 3;
           }
         }
@@ -20995,21 +20995,21 @@ var RtmpJs;
         if (!(this.bufferLength < d + b)) {
           var a = 3 !== c && 255 === this.buffer[d] && 255 === this.buffer[d + 1] && 255 === this.buffer[d + 2] ? 4 : 0, e = d + b + a;
           if (!(this.bufferLength < e)) {
-            var f = this._getChunkStream(f), g;
-            g = 3 === c ? f.lastTimestamp : this.buffer[d] << 16 | this.buffer[d + 1] << 8 | this.buffer[d + 2];
+            var n = this._getChunkStream(n), g;
+            g = 3 === c ? n.lastTimestamp : this.buffer[d] << 16 | this.buffer[d + 1] << 8 | this.buffer[d + 2];
             a && (g = d + b, g = this.buffer[g] << 24 | this.buffer[g + 1] << 16 | this.buffer[g + 2] << 8 | this.buffer[g + 3]);
             if (1 === c || 2 === c) {
-              g = f.lastTimestamp + g | 0;
+              g = n.lastTimestamp + g | 0;
             }
-            var b = f.lastLength, a = f.lastTypeId, h = f.lastStreamId;
+            var b = n.lastLength, a = n.lastTypeId, h = n.lastStreamId;
             if (0 === c || 1 === c) {
               b = this.buffer[d + 3] << 16 | this.buffer[d + 4] << 8 | this.buffer[d + 5], a = this.buffer[d + 6];
             }
             0 === c && (h = this.buffer[d + 10] << 24 | this.buffer[d + 9] << 16 | this.buffer[d + 8] << 8 | this.buffer[d + 7]);
             var v;
-            3 === c && f.waitingForBytes ? (v = !1, c = Math.min(f.waitingForBytes, this.peerChunkSize), d = f.waitingForBytes - c) : (v = !0, c = Math.min(b, this.peerChunkSize), d = b - c);
+            3 === c && n.waitingForBytes ? (v = !1, c = Math.min(n.waitingForBytes, this.peerChunkSize), d = n.waitingForBytes - c) : (v = !0, c = Math.min(b, this.peerChunkSize), d = b - c);
             if (!(this.bufferLength < e + c)) {
-              return f.lastTimestamp = g, f.lastLength = b, f.lastTypeId = a, f.lastStreamId = h, f.lastMessageComplete = !d, f.waitingForBytes = d, f._push(this.buffer.subarray(e, e + c), v, !d), e + c;
+              return n.lastTimestamp = g, n.lastLength = b, n.lastTypeId = a, n.lastStreamId = h, n.lastMessageComplete = !d, n.waitingForBytes = d, n._push(this.buffer.subarray(e, e + c), v, !d), e + c;
             }
           }
         }
@@ -26505,7 +26505,7 @@ var RtmpJs;
           (function(a) {
             a[a.DEFAULT = 0] = "DEFAULT";
             a[a.IGNORE_CASE = 1] = "IGNORE_CASE";
-            a[a.INCLUDE_NOT_INITIALIZED = 2] = "INCLUDE_NOT_INITIALIZED";
+            a[a.INCLUDE_NON_INITIALIZED = 2] = "INCLUDE_NON_INITIALIZED";
           })(t.LookupChildOptions || (t.LookupChildOptions = {}));
           var h = function(c) {
             function h() {
@@ -26711,7 +26711,7 @@ var RtmpJs;
               a |= 0;
               var b = this._children;
               (0 > a || a >= b.length) && this.sec.throwError("RangeError", d.Errors.ParamRangeError);
-              a = this._lookupChildByIndex(a);
+              a = this._lookupChildByIndex(a, 0);
               if (!a) {
                 return null;
               }
@@ -26748,8 +26748,9 @@ var RtmpJs;
               a = n(a);
               return (a = this._lookupChildByName(a, 0)) ? (a._addReference(), a) : null;
             };
-            h.prototype._lookupChildByIndex = function(a) {
-              return (a = this._children[a]) && a._hasFlags(256) ? a : null;
+            h.prototype._lookupChildByIndex = function(a, b) {
+              var c = this._children[a];
+              return c && (c._hasFlags(256) || b & 2) ? c : null;
             };
             h.prototype._lookupChildByName = function(a, b) {
               var c = this._children;
@@ -32597,7 +32598,7 @@ var RtmpJs;
             }, set:function(a) {
               this.alphaOffset = +a;
             }, enumerable:!0, configurable:!0});
-            b.prototype.ColorTransform = function(a, b, c, e, d, f, l, u) {
+            b.prototype.ColorTransform = function(a, b, c, e, d, f, l, n) {
               void 0 === a && (a = 1);
               void 0 === b && (b = 1);
               void 0 === c && (c = 1);
@@ -32605,7 +32606,7 @@ var RtmpJs;
               void 0 === d && (d = 0);
               void 0 === f && (f = 0);
               void 0 === l && (l = 0);
-              void 0 === u && (u = 0);
+              void 0 === n && (n = 0);
               this.redMultiplier = a;
               this.greenMultiplier = b;
               this.blueMultiplier = c;
@@ -32613,7 +32614,7 @@ var RtmpJs;
               this.redOffset = d;
               this.greenOffset = f;
               this.blueOffset = l;
-              this.alphaOffset = u;
+              this.alphaOffset = n;
             };
             Object.defineProperty(b.prototype, "color", {get:function() {
               return this.redOffset << 16 | this.greenOffset << 8 | this.blueOffset;
@@ -32663,7 +32664,7 @@ var RtmpJs;
               this.blueOffset = a.blueOffset;
               this.alphaOffset = a.alphaOffset;
             };
-            b.prototype.setTo = function(a, b, c, e, d, f, l, u) {
+            b.prototype.setTo = function(a, b, c, e, d, f, l, n) {
               this.redMultiplier = a;
               this.greenMultiplier = b;
               this.blueMultiplier = c;
@@ -32671,7 +32672,7 @@ var RtmpJs;
               this.redOffset = d;
               this.greenOffset = f;
               this.blueOffset = l;
-              this.alphaOffset = u;
+              this.alphaOffset = n;
             };
             b.prototype.clone = function() {
               return new this.sec.flash.geom.ColorTransform(this.redMultiplier, this.greenMultiplier, this.blueMultiplier, this.alphaMultiplier, this.redOffset, this.greenOffset, this.blueOffset, this.alphaOffset);
@@ -32777,7 +32778,7 @@ var RtmpJs;
             b.prototype.setLoopback = function(a) {
               m("public flash.media.Camera::setLoopback");
             };
-            b.prototype.setMode = function(a, b, c, e) {
+            b.prototype.setMode = function(a, b, c, d) {
               m("public flash.media.Camera::setMode");
             };
             b.prototype.setMotionLevel = function(a, b) {
@@ -33013,37 +33014,37 @@ var RtmpJs;
             g.prototype.loadCompressedDataFromByteArray = function(a, c) {
               b("public flash.media.Sound::loadCompressedDataFromByteArray");
             };
-            g.prototype.loadPCMFromByteArray = function(a, c, e, d, g) {
-              void 0 === e && (e = "float");
-              n(e);
+            g.prototype.loadPCMFromByteArray = function(a, c, d, e, g) {
+              void 0 === d && (d = "float");
+              n(d);
               b("public flash.media.Sound::loadPCMFromByteArray");
             };
-            g.prototype.play = function(a, b, e) {
+            g.prototype.play = function(a, b, d) {
               void 0 === a && (a = 0);
               void 0 === b && (b = 0);
-              void 0 === e && (e = null);
+              void 0 === d && (d = null);
               a = +a;
               b |= 0;
-              var d = new this.sec.flash.media.SoundChannel;
-              d._sound = this;
-              d._soundTransform = f.isNullOrUndefined(e) ? new this.sec.flash.media.SoundTransform : e;
-              this._playQueue.push({channel:d, startTime:a});
+              var e = new this.sec.flash.media.SoundChannel;
+              e._sound = this;
+              e._soundTransform = f.isNullOrUndefined(d) ? new this.sec.flash.media.SoundTransform : d;
+              this._playQueue.push({channel:e, startTime:a});
               if (c.disableAudioOption.value) {
-                return d;
+                return e;
               }
-              this._soundData && (c.webAudioOption.value || c.webAudioMP3Option.value ? this._soundData.pcm ? d._playSoundDataViaChannel(this._soundData, a, b) : "audio/mpeg" === this._soundData.mimeType && c.webAudioMP3Option.value ? f.SWF.MP3DecoderSession.processAll(new Uint8Array(this._soundData.data)).then(function(c) {
+              this._soundData && (c.webAudioOption.value || c.webAudioMP3Option.value ? this._soundData.pcm ? e._playSoundDataViaChannel(this._soundData, a, b) : "audio/mpeg" === this._soundData.mimeType && c.webAudioMP3Option.value ? f.SWF.MP3DecoderSession.processAll(new Uint8Array(this._soundData.data)).then(function(c) {
                 this._soundData.pcm = c.data;
                 this._soundData.end = c.data.length;
-                d._playSoundDataViaChannel(this._soundData, a, b);
+                e._playSoundDataViaChannel(this._soundData, a, b);
               }.bind(this), function(a) {
                 console.warn("Unable to decode MP3 data: " + a);
-              }) : console.warn("Unable to decode packaged sound data of type: " + this._soundData.mimeType) : d._playSoundDataViaAudio(this._soundData, a, b));
-              return d;
+              }) : console.warn("Unable to decode packaged sound data of type: " + this._soundData.mimeType) : e._playSoundDataViaAudio(this._soundData, a, b));
+              return e;
             };
             g.prototype.close = function() {
               a("public flash.media.Sound::close");
             };
-            g.prototype.extract = function(a, c, e) {
+            g.prototype.extract = function(a, c, d) {
               b("public flash.media.Sound::extract");
             };
             g.prototype.load = function(a, b) {
@@ -33087,17 +33088,17 @@ var RtmpJs;
           }(d.events.EventDispatcher);
           t.Sound = g;
           g = function(a) {
-            function b(c, e) {
-              a.call(this, c, e.flash.media.Sound.axClass);
+            function b(c, d) {
+              a.call(this, c, d.flash.media.Sound.axClass);
             }
             __extends(b, a);
             b.FromData = function(a, c) {
-              var e = new b(a, c.sec);
-              e.channels = a.channels;
-              e.sampleRate = a.sampleRate;
-              e.pcm = a.pcm;
-              e.packaged = a.packaged;
-              return e;
+              var d = new b(a, c.sec);
+              d.channels = a.channels;
+              d.sampleRate = a.sampleRate;
+              d.pcm = a.pcm;
+              d.packaged = a.packaged;
+              return d;
             };
             return b;
           }(f.Timeline.Symbol);
@@ -33120,27 +33121,27 @@ var RtmpJs;
               this._sourceOffset = 0;
             }
             a.prototype.getData = function(a, b) {
-              for (var c = this._sourceRate / this._targetRate, e = this._sourceOffset, d = Math.ceil((b - 1) * c + e) + 1, g = [], f = 0;f < a.length;f++) {
-                g.push(new Float32Array(d));
+              for (var c = this._sourceRate / this._targetRate, d = this._sourceOffset, e = Math.ceil((b - 1) * c + d) + 1, g = [], f = 0;f < a.length;f++) {
+                g.push(new Float32Array(e));
               }
-              this.ondatarequested({data:g, count:d});
+              this.ondatarequested({data:g, count:e});
               for (f = 0;f < a.length;f++) {
                 for (var n = a[f], m = g[f], q = 0;q < b;q++) {
-                  var t = q * c + e, x = t | 0, C = Math.ceil(t) | 0, z = 0 > x ? this._tail[f] : m[x];
+                  var t = q * c + d, x = t | 0, C = Math.ceil(t) | 0, z = 0 > x ? this._tail[f] : m[x];
                   x === C ? n[q] = z : (t -= x, n[q] = z * (1 - t) + m[C] * t);
                 }
-                this._tail[f] = m[d - 1];
+                this._tail[f] = m[e - 1];
               }
-              this._sourceOffset = (b - 1) * c + e - (d - 1);
+              this._sourceOffset = (b - 1) * c + d - (e - 1);
             };
             return a;
           }(), a = function() {
-            function a(c, e) {
-              var d = a._cachedContext;
-              d || (d = new AudioContext, a._cachedContext = d);
-              this._context = d;
-              this._contextSampleRate = d.sampleRate || 44100;
-              this._channels = e;
+            function a(c, d) {
+              var e = a._cachedContext;
+              e || (e = new AudioContext, a._cachedContext = e);
+              this._context = e;
+              this._contextSampleRate = e.sampleRate || 44100;
+              this._channels = d;
               this._sampleRate = c;
               this._contextSampleRate !== c && (this._resampler = new b(c, this._contextSampleRate), this._resampler.ondatarequested = function(a) {
                 this.requestData(a.data, a.count);
@@ -33151,8 +33152,8 @@ var RtmpJs;
             a.prototype.start = function() {
               var a = this._context.createScriptProcessor(2048, 0, this._channels), b = this;
               a.onaudioprocess = function(a) {
-                for (var c = [], e = 0;e < b._channels;e++) {
-                  c.push(a.outputBuffer.getChannelData(e));
+                for (var c = [], d = 0;d < b._channels;d++) {
+                  c.push(a.outputBuffer.getChannelData(d));
                 }
                 a = c[0].length;
                 b._resampler ? b._resampler.getData(c, a) : b.requestData(c, a);
@@ -33164,11 +33165,11 @@ var RtmpJs;
               this._source.disconnect(this._context.destination);
             };
             a.prototype.requestData = function(a, b) {
-              var c = this._channels, e = new Float32Array(b * c);
-              this.ondatarequested({data:e, count:e.length});
-              for (var d = 0, g = 0;d < b;d++) {
+              var c = this._channels, d = new Float32Array(b * c);
+              this.ondatarequested({data:d, count:d.length});
+              for (var e = 0, g = 0;e < b;e++) {
                 for (var f = 0;f < c;f++) {
-                  a[f][d] = e[g++];
+                  a[f][e] = d[g++];
                 }
               }
             };
@@ -33220,50 +33221,50 @@ var RtmpJs;
               if (a.mimeType) {
                 d.SoundMixer._registerSoundSource(this);
                 this._position = b;
-                var e = this, g = 0, f = document.createElement("audio");
-                f.canPlayType(a.mimeType) ? (f.preload = "metadata", f.loop = 0 < c, f.src = URL.createObjectURL(new Blob([a.data], {type:a.mimeType})), f.addEventListener("loadeddata", function() {
-                  f.currentTime = b / 1E3;
-                  f.play();
-                }), f.addEventListener("timeupdate", function() {
-                  var a = f.currentTime;
-                  c && g > a && (--c, c || (f.loop = !1), a < b / 1E3 && (f.currentTime = b / 1E3));
+                var e = this, g = 0, h = document.createElement("audio");
+                h.canPlayType(a.mimeType) ? (h.preload = "metadata", h.loop = 0 < c, h.src = URL.createObjectURL(new Blob([a.data], {type:a.mimeType})), h.addEventListener("loadeddata", function() {
+                  h.currentTime = b / 1E3;
+                  h.play();
+                }), h.addEventListener("timeupdate", function() {
+                  var a = h.currentTime;
+                  c && g > a && (--c, c || (h.loop = !1), a < b / 1E3 && (h.currentTime = b / 1E3));
                   e._position = 1E3 * (g = a);
-                }), f.addEventListener("ended", function() {
+                }), h.addEventListener("ended", function() {
                   d.SoundMixer._unregisterSoundSource(e);
                   e._element = null;
                   e._playing = !1;
                   e.dispatchEvent(new e.sec.flash.events.Event("soundComplete", !1, !1));
-                }), this._element = f, this._playing = !0, d.SoundMixer._updateSoundSource(this)) : console.error('ERROR: "' + a.mimeType + '" type playback is not supported by the browser');
+                }), this._element = h, this._playing = !0, d.SoundMixer._updateSoundSource(this)) : console.error('ERROR: "' + a.mimeType + '" type playback is not supported by the browser');
               }
             };
             c.prototype._playSoundDataViaChannel = function(b, c, e) {
               d.SoundMixer._registerSoundSource(this);
-              var g = this, l = Math.round(c / 1E3 * b.sampleRate) * b.channels, f = l;
+              var g = this, l = Math.round(c / 1E3 * b.sampleRate) * b.channels, h = l;
               this._position = c;
               a.isSupported ? c = new a(b.sampleRate, b.channels) : (n("PCM data playback is not supported by the browser"), c = void 0);
               this._audioChannel = c;
               this._audioChannel.ondatarequested = function(a) {
                 var c = b.end;
-                if (f >= c && b.completed) {
+                if (h >= c && b.completed) {
                   d.SoundMixer._unregisterSoundSource(this), g._audioChannel.stop(), g._playing = !1, g.dispatchEvent(new g.sec.flash.events.Event("soundComplete", !1, !1));
                 } else {
-                  var h = a.count;
+                  var f = a.count;
                   a = a.data;
-                  var p = b.pcm;
+                  var n = b.pcm;
                   do {
-                    for (var n = Math.min(c - f, h), m = 0;m < n;m++) {
-                      a[m] = p[f++];
+                    for (var p = Math.min(c - h, f), m = 0;m < p;m++) {
+                      a[m] = n[h++];
                     }
-                    h -= n;
-                    if (f >= c) {
+                    f -= p;
+                    if (h >= c) {
                       if (!e) {
                         break;
                       }
                       e--;
-                      f = l;
+                      h = l;
                     }
-                  } while (0 < h);
-                  g._position = f / b.sampleRate / b.channels * 1E3;
+                  } while (0 < f);
+                  g._position = h / b.sampleRate / b.channels * 1E3;
                 }
               };
               this._audioChannel.start();
@@ -33353,11 +33354,11 @@ var RtmpJs;
               });
               c._registeredSoundSources = [];
             };
-            c.computeSpectrum = function(a, c, e) {
+            c.computeSpectrum = function(a, c, d) {
               b("public flash.media.SoundMixer::static computeSpectrum");
               c = new Float32Array(1024);
-              for (e = 0;1024 > e;e++) {
-                c[e] = Math.random();
+              for (d = 0;1024 > d;d++) {
+                c[d] = Math.random();
               }
               a.writeRawBytes(c);
               a.position = 0;
@@ -34258,25 +34259,25 @@ var RtmpJs;
               }
               if (k || h) {
                 this.openInDataGenerationMode();
-                var p = new this.sec.flash.net.URLRequest(b);
-                p._checkPolicyFile = d;
-                var n = new this.sec.flash.net.URLStream;
-                n.addEventListener("httpStatus", function(a) {
+                var n = new this.sec.flash.net.URLRequest(b);
+                n._checkPolicyFile = d;
+                var p = new this.sec.flash.net.URLStream;
+                p.addEventListener("httpStatus", function(a) {
                   (a = a.axGetPublicProperty("responseHeaders").filter(function(a) {
                     return "Content-Type" === a.axGetPublicProperty("name");
                   })[0]) && a.axGetPublicProperty("value");
                 }.bind(this));
-                n.addEventListener("progress", function(a) {
-                  a = n.bytesAvailable;
-                  var b = new p.sec.flash.utils.ByteArray;
-                  n.readBytes(b, 0, a);
+                p.addEventListener("progress", function(a) {
+                  a = p.bytesAvailable;
+                  var b = new n.sec.flash.utils.ByteArray;
+                  p.readBytes(b, 0, a);
                   a = new Uint8Array(b._buffer, 0, b.length);
                   this.appendBytes(a);
                 }.bind(this));
-                n.addEventListener("complete", function(a) {
+                p.addEventListener("complete", function(a) {
                   this.appendBytesAction("endSequence");
                 }.bind(this));
-                n.load(p);
+                p.load(n);
               } else {
                 a("public flash.net.NetStream::play"), this._state = 1, this._url = g.instance.resolveUrl(b);
               }
@@ -43471,7 +43472,7 @@ __extends = this.__extends || function(f, d) {
         };
         b.prototype.getInstanceAtDepth = function(a) {
           for (var b = this.as3Object, d = 0, f = b.numChildren;d < f;d++) {
-            var n = b._lookupChildByIndex(d);
+            var n = b._lookupChildByIndex(d, 0);
             if (n && n._depth === a) {
               return this.context.sec.flash.display.Bitmap.axIsType(n) ? this : c.getAVM1Object(n, this.context);
             }
@@ -43480,7 +43481,7 @@ __extends = this.__extends || function(f, d) {
         };
         b.prototype.getNextHighestDepth = function() {
           for (var a = this.as3Object, b = 0, c = 0, d = a.numChildren;c < d;c++) {
-            var f = a._lookupChildByIndex(c);
+            var f = a._lookupChildByIndex(c, 2);
             f._depth > b && (b = f._depth);
           }
           return b + 1;
@@ -44241,10 +44242,10 @@ __extends = this.__extends || function(f, d) {
           return c.AVM1TextFormat.createFromNative(this.context, a);
         };
         m.prototype.getGridFitType = function() {
-          throw "Not implemented: get$gridFitType";
+          return this._as3Object.gridFitType;
         };
         m.prototype.setGridFitType = function(c) {
-          throw "Not implemented: get$gridFitType";
+          this._as3Object.gridFitType = c;
         };
         m.prototype.get_height = function() {
           return this._as3Object.height;
@@ -44303,7 +44304,7 @@ __extends = this.__extends || function(f, d) {
           this.as3Object._name = c;
         };
         m.prototype.get_parent = function() {
-          return this._as3Object.parent;
+          return c.getAVM1Object(this.as3Object.parent, this.context) || void 0;
         };
         m.prototype.set_parent = function(c) {
           throw "Not implemented: set$_parent";
