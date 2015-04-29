@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.50';
-    Shumway.build = 'bf486eb';
+    Shumway.version = '0.11.98';
+    Shumway.build = '99cd4ec';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -24,7 +24,12 @@ this.window = this;
 this.console = {
     _print: print,
     log: print,
-    info: print,
+    info: function () {
+        if (!Shumway.Shell.verbose) {
+            return;
+        }
+        print(Shumway.IndentingWriter.YELLOW + [].join.call(arguments, ', ') + Shumway.IndentingWriter.ENDC);
+    },
     warn: function () {
         print(Shumway.IndentingWriter.RED + [].join.call(arguments, ', ') + Shumway.IndentingWriter.ENDC);
     },
@@ -783,11 +788,11 @@ var Shumway;
                 this.readAll(null, function (data, err) {
                     if (data) {
                         ondata(data, { loaded: data.byteLength, total: data.byteLength });
+                        oncomplete();
                     }
                     else {
                         onerror(err);
                     }
-                    oncomplete();
                 });
             };
             return ShellBinaryFileReader;
@@ -980,7 +985,7 @@ var Shumway;
             };
             return ShellGFXServer;
         })();
-        var verbose = false;
+        Shell.verbose = false;
         var writer = new Shumway.IndentingWriter();
         var parseOption;
         var scanParseOption;
@@ -1069,8 +1074,8 @@ var Shumway;
             }
             profile = profileOption.value;
             release = releaseOption.value;
-            verbose = verboseOption.value;
-            if (!verbose) {
+            Shell.verbose = verboseOption.value;
+            if (!Shell.verbose) {
                 Shumway.IndentingWriter.logLevel = 1 /* Error */ | 2 /* Warn */;
             }
             if (fuzzMillOption.value) {
@@ -1100,7 +1105,7 @@ var Shumway;
                         buffers.push.apply(buffers, extractABCsFromSWF(buffer));
                     }
                 });
-                verbose && writer.writeLn("Loading " + buffers.length + " ABCs");
+                Shell.verbose && writer.writeLn("Loading " + buffers.length + " ABCs");
                 Shumway.Debug.notImplemented("Compile");
                 Shumway.AVM2.timelineBuffer.createSnapshot().trace(new Shumway.IndentingWriter());
             }
@@ -1113,7 +1118,7 @@ var Shumway;
                         parsingCounter.clear();
                         parseFile(file, symbolFilterOption.value.split(","));
                         var elapsed = Date.now() - start;
-                        if (verbose) {
+                        if (Shell.verbose) {
                             writer.writeLn("Total Parse Time: " + (elapsed).toFixed(2) + " ms.");
                             profile && Shumway.SWF.timelineBuffer.createSnapshot().trace(writer);
                         }
@@ -1193,7 +1198,7 @@ var Shumway;
             return true;
         }
         function executeSWFFile(file, runDuration, runCount, frameCount) {
-            if (verbose) {
+            if (Shell.verbose) {
                 writer.writeLn("executeSWF: " + file + ", runDuration: " + runDuration + ", runCount: " + runCount + ", frameCount: " + frameCount);
             }
             function runSWF(file) {
@@ -1229,21 +1234,22 @@ var Shumway;
             try {
                 var hash = 0;
                 var lastFramesPlayed = 0;
+                writer.writeLn("RUNNING:  " + file);
                 microTaskQueue.run(runDuration, runCount, true, function () {
                     if (!frameCount) {
                         return true;
                     }
                     if (lastFramesPlayed < player.framesPlayed) {
                         hash = Shumway.HashUtilities.mixHash(hash, player.stage.hashCode());
-                        writer.writeLn("Frame: " + player.framesPlayed + " HASHCODE: " + file + ": " + Shumway.IntegerUtilities.toHEX(hash));
                         // This dumps too much output and is not all that useful, unless you want to debug something.
+                        // writer.writeLn("Frame: " + player.framesPlayed + " HASHCODE: " + file + ": " + IntegerUtilities.toHEX(hash));
                         // player.stage.debugTrace(writer);
                         lastFramesPlayed = player.framesPlayed;
                     }
                     // Exit if we've executed enough frames.
                     return player.framesPlayed <= frameCount;
                 });
-                if (verbose) {
+                if (Shell.verbose) {
                     writer.writeLn("executeSWF PASS: " + file);
                 }
                 writer.writeLn("HASHCODE: " + file + ": " + Shumway.IntegerUtilities.toHEX(hash));
@@ -1254,7 +1260,7 @@ var Shumway;
             }
         }
         function executeJSONFile(file) {
-            if (verbose) {
+            if (Shell.verbose) {
                 writer.writeLn("executeJSON: " + file);
             }
             // Remove comments
@@ -1269,7 +1275,7 @@ var Shumway;
                     var buffer = new Uint8Array(read(file, "binary"));
                     var env = { url: file, app: sec.application };
                     var abc = new ABCFile(env, buffer);
-                    if (verbose) {
+                    if (Shell.verbose) {
                         writer.writeLn("executeABC: " + file);
                     }
                     sec.application.loadAndExecuteABC(abc);
@@ -1277,7 +1283,7 @@ var Shumway;
                 // Run files.
                 run[1].forEach(function (file) {
                     try {
-                        if (verbose) {
+                        if (Shell.verbose) {
                             writer.writeLn("executeABC: " + file);
                         }
                         var buffer = new Uint8Array(read(file, "binary"));
@@ -1312,7 +1318,6 @@ var Shumway;
         function resetSecurityDomain(sec) {
             // Only reset XML settings if AXXML has been initialized.
             if (sec.AXXML.resetSettings) {
-                sec.AXNamespace.defaultNamespace = new Shumway.AVMX.Namespace(null, 0 /* Public */, '');
                 sec.AXXML.resetSettings();
             }
         }
@@ -1334,12 +1339,12 @@ var Shumway;
                     var env = { url: file, app: sec.application };
                     var abc = new ABCFile(env, buffer);
                     sec.application.loadAndExecuteABC(abc);
-                    if (verbose) {
+                    if (Shell.verbose) {
                         writer.writeLn("executeABC PASS: " + file);
                     }
                 }
                 catch (x) {
-                    if (verbose) {
+                    if (Shell.verbose) {
                         writer.writeLn("executeABC FAIL: " + file);
                     }
                     try {
@@ -1370,7 +1375,7 @@ var Shumway;
                     repeat = test;
                     test = unitTests.shift();
                 }
-                if (verbose && test.name) {
+                if (Shell.verbose && test.name) {
                     writer.writeLn("Test: " + test.name);
                 }
                 testCount += repeat;
@@ -1495,7 +1500,7 @@ var Shumway;
                 }
                 catch (x) {
                     writer.redLn("Cannot parse: " + file + ", reason: " + x);
-                    if (verbose) {
+                    if (Shell.verbose) {
                         writer.redLns(x.stack);
                     }
                     errors++;
