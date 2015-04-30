@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.109";
-Shumway$$inline_18.build = "7605ed7";
+Shumway$$inline_18.version = "0.11.111";
+Shumway$$inline_18.build = "dd94425";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -45018,8 +45018,8 @@ __extends = this.__extends || function(e, c) {
           this.alPrototype = c.globals.alGet("flash").alGet("geom").alGet("Rectangle").alGetPrototypeProperty();
           this.alPut("x", d);
           this.alPut("y", e);
-          this.alPut("width", d);
-          this.alPut("height", e);
+          this.alPut("width", g);
+          this.alPut("height", h);
         }
         __extends(b, a);
         b.fromAS3Rectangle = function(a, c) {
@@ -45165,7 +45165,7 @@ __extends = this.__extends || function(e, c) {
           this.alPut("height", 0);
         };
         b.prototype._toString = function() {
-          return "(x=" + this.alGet("x") + ", y=" + this.alGet("y") + ", width=" + this.alGet("width") + ", height=" + this.alGet("height") + ")";
+          return "(x=" + this.alGet("x") + ", y=" + this.alGet("y") + ", w=" + this.alGet("width") + ", h=" + this.alGet("height") + ")";
         };
         b.prototype.union = function(a) {
           var b = n(this);
@@ -45416,7 +45416,7 @@ __extends = this.__extends || function(e, c) {
         l.loadBitmap = function(g, b) {
           b = c.alToString(g, b);
           var a = g.getAsset(b), d = a.symbolProps.symbolClass, f = g.sec.flash.display.BitmapData.axClass;
-          return a && f.dPrototype.isPrototypeOf(d.dPrototype) ? (a = e.AVMX.AS.constructClassFromSymbol(a, f), d = g.globals.alGet("flash").alGet("display").alGet("BitmapData"), f = new l(g), f.alPrototype = d.alGetPrototypeProperty(), f._as3Object = a, f) : null;
+          return a && (f === d || f.dPrototype.isPrototypeOf(d.dPrototype)) ? (a = e.AVMX.AS.constructClassFromSymbol(a.symbolProps, f), d = g.globals.alGet("flash").alGet("display").alGet("BitmapData"), f = new l(g), f.alPrototype = d.alGetPrototypeProperty(), f._as3Object = a, f) : null;
         };
         l.prototype.getHeight = function() {
           return this._as3Object.height;
