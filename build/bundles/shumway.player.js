@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.99";
-Shumway$$inline_17.build = "259c14e";
+Shumway$$inline_17.version = "0.11.101";
+Shumway$$inline_17.build = "51348e2";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -4453,6 +4453,7 @@ var __extends = this.__extends || function(e, c) {
         c[c.CODE_START_SOUND2 = 89] = "CODE_START_SOUND2";
         c[c.CODE_DEFINE_BITS_JPEG4 = 90] = "CODE_DEFINE_BITS_JPEG4";
         c[c.CODE_DEFINE_FONT4 = 91] = "CODE_DEFINE_FONT4";
+        c[c.CODE_OBFUSCATOR_SHENANIGANS = 253] = "CODE_OBFUSCATOR_SHENANIGANS";
       })(c.SwfTag || (c.SwfTag = {}));
       (function(c) {
         c[c.CODE_DEFINE_SHAPE = 2] = "CODE_DEFINE_SHAPE";
@@ -19943,6 +19944,12 @@ __extends = this.__extends || function(e, c) {
                       case 77:
                       ;
                       case 24:
+                      ;
+                      case 25:
+                      ;
+                      case 55:
+                      ;
+                      case 49:
                         this.jumpToNextTag(g);
                         break;
                       case 51:
@@ -19969,6 +19976,10 @@ __extends = this.__extends || function(e, c) {
                       ;
                       case 29:
                         console.info("Ignored tag (these shouldn't occur) " + v + ": " + a[v]);
+                        this.jumpToNextTag(g);
+                        break;
+                      case 253:
+                        e.Debug.warning("Encountered AVM1 obfuscator thingy. See http://ijs.mtasa.com/files/swfdecrypt.cpp.");
                         this.jumpToNextTag(g);
                         break;
                       default:
