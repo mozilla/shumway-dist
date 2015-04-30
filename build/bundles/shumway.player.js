@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.118";
-Shumway$$inline_18.build = "f0000a5";
+Shumway$$inline_18.version = "0.11.120";
+Shumway$$inline_18.build = "a29c99f";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -41795,7 +41795,7 @@ __extends = this.__extends || function(e, c) {
     }
     function vb(b, c) {
       var d = b.stack, f = b.scopeList.scope, e = c[1], g = new Ka(b.context, b, c[0], e, c[2], c[3], c[4], c[5]);
-      e ? (f.alPut(e, g), a(b.context, name)) : d.push(g);
+      e ? (f.alPut(e, g), a(b.context, e)) : d.push(g);
     }
     function wb(a) {
       var b = a.stack, d = a.context;
