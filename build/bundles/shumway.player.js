@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.123";
-Shumway$$inline_18.build = "d9de56a";
+Shumway$$inline_18.version = "0.11.125";
+Shumway$$inline_18.build = "31830cd";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -44372,8 +44372,9 @@ __extends = this.__extends || function(e, c) {
         l.prototype.initAVM1SymbolInstance = function(c, b) {
           n.prototype.initAVM1SymbolInstance.call(this, c, b);
           this._variable = "";
+          this._html = !1;
           this._exitFrameHandler = null;
-          b._symbol && this.setVariable(b._symbol.variableName || "");
+          b._symbol && (this.setVariable(b._symbol.variableName || ""), this._html = b._symbol.html);
           this._initEventsHandlers();
         };
         l.prototype.getAntiAliasType = function() {
@@ -44462,16 +44463,17 @@ __extends = this.__extends || function(e, c) {
           this._as3Object.scrollH = e;
         };
         l.prototype.getHtml = function() {
-          e.Debug.notImplemented("AVM1TextField.getHtml");
+          return this._html;
         };
         l.prototype.setHtml = function(c) {
-          e.Debug.notImplemented("AVM1TextField.setHtml");
+          this._html = !!c;
         };
         l.prototype.getHtmlText = function() {
-          return this._as3Object.htmlText;
+          return this._html ? this._as3Object.htmlText : this._as3Object.text;
         };
         l.prototype.setHtmlText = function(e) {
-          this._as3Object.htmlText = c.alCoerceString(this.context, e);
+          e = c.alCoerceString(this.context, e);
+          this._html ? this._as3Object.htmlText = e : this._as3Object.text = e;
         };
         l.prototype.getLength = function() {
           return this._as3Object.length;
