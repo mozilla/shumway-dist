@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.116";
-Shumway$$inline_18.build = "aa16d1e";
+Shumway$$inline_18.version = "0.11.118";
+Shumway$$inline_18.build = "f0000a5";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -126,6 +126,19 @@ var START_TIME = performance.now();
   e.isIndex = t;
   e.isNullOrUndefined = function(a) {
     return void 0 == a;
+  };
+  e.argumentsToString = function(a) {
+    for (var b = [], m = 0;m < a.length;m++) {
+      var u = a[m];
+      try {
+        var d;
+        "object" === typeof u && u ? "toString" in u ? d + u.toString() : d = Object.prototype.toString.call(u) : d = u + "";
+        b.push(d);
+      } catch (f) {
+        b.push("<unprintable value>");
+      }
+    }
+    return b.join(", ");
   };
   var l;
   (function(a) {
@@ -557,24 +570,24 @@ var START_TIME = performance.now();
     function b(a) {
       return "string" === typeof a ? '"' + a + '"' : "number" === typeof a || "boolean" === typeof a ? String(a) : a instanceof Array ? "[] " + a.length : typeof a;
     }
-    function m(a, h, b) {
+    function m(a, b, h) {
       f[0] = a;
-      f[1] = h;
-      f[2] = b;
+      f[1] = b;
+      f[2] = h;
       return f.join("");
     }
-    function d(a, h, b, m) {
+    function d(a, b, h, m) {
       k[0] = a;
-      k[1] = h;
-      k[2] = b;
+      k[1] = b;
+      k[2] = h;
       k[3] = m;
       return k.join("");
     }
-    a.repeatString = function(a, h) {
-      for (var b = "", m = 0;m < h;m++) {
-        b += a;
+    a.repeatString = function(a, b) {
+      for (var h = "", m = 0;m < b;m++) {
+        h += a;
       }
-      return b;
+      return h;
     };
     a.memorySizeToString = function(a) {
       a |= 0;
@@ -3623,9 +3636,9 @@ var __extends = this.__extends || function(e, c) {
           } else {
             this._decoder.decodeProperties(f.subarray(0, 5));
             for (var b = 0, h = !1, m = 0;8 > m;m++) {
-              var p = f[5 + m];
-              255 !== p && (h = !0);
-              b |= p << 8 * m;
+              var u = f[5 + m];
+              255 !== u && (h = !0);
+              b |= u << 8 * m;
             }
             this._decoder.markerIsMandatory = !h;
             this._decoder.unpackSize = h ? b : void 0;
@@ -3640,9 +3653,9 @@ var __extends = this.__extends || function(e, c) {
         }
         try {
           this._inStream.append(a);
-          var u = this._decoder.decode(!0);
+          var p = this._decoder.decode(!0);
           this._inStream.compact();
-          u !== v && this._checkError(u);
+          p !== v && this._checkError(p);
         } catch (q) {
           this._decoder.flushOutput(), this._decoder = null, this._error(q);
         }

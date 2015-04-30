@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.116';
-    Shumway.build = 'aa16d1e';
+    Shumway.version = '0.11.118';
+    Shumway.build = 'f0000a5';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -28,13 +28,13 @@ this.console = {
         if (!Shumway.Shell.verbose) {
             return;
         }
-        print(Shumway.IndentingWriter.YELLOW + [].join.call(arguments, ', ') + Shumway.IndentingWriter.ENDC);
+        print(Shumway.IndentingWriter.YELLOW + Shumway.argumentsToString(arguments) + Shumway.IndentingWriter.ENDC);
     },
     warn: function () {
-        print(Shumway.IndentingWriter.RED + [].join.call(arguments, ', ') + Shumway.IndentingWriter.ENDC);
+        print(Shumway.IndentingWriter.RED + Shumway.argumentsToString(arguments) + Shumway.IndentingWriter.ENDC);
     },
     error: function () {
-        print(Shumway.IndentingWriter.BOLD_RED + [].join.call(arguments, ', ') + Shumway.IndentingWriter.ENDC + '\nstack:\n' + (new Error().stack));
+        print(Shumway.IndentingWriter.BOLD_RED + Shumway.argumentsToString(arguments) + Shumway.IndentingWriter.ENDC + '\nstack:\n' + (new Error().stack));
     },
     time: function () {
     },
@@ -42,7 +42,7 @@ this.console = {
     }
 };
 this.dump = function (message) {
-    putstr(message);
+    putstr(Shumway.argumentsToString(arguments));
 };
 this.addEventListener = function (type) {
     // console.log('Add listener: ' + type);
