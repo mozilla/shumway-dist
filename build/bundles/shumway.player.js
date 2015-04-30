@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_17 = Shumway || (Shumway = {});
-Shumway$$inline_17.version = "0.11.103";
-Shumway$$inline_17.build = "fff36bb";
+Shumway$$inline_17.version = "0.11.105";
+Shumway$$inline_17.build = "2a78cae";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -4453,7 +4453,7 @@ var __extends = this.__extends || function(e, c) {
         c[c.CODE_START_SOUND2 = 89] = "CODE_START_SOUND2";
         c[c.CODE_DEFINE_BITS_JPEG4 = 90] = "CODE_DEFINE_BITS_JPEG4";
         c[c.CODE_DEFINE_FONT4 = 91] = "CODE_DEFINE_FONT4";
-        c[c.CODE_OBFUSCATOR_SHENANIGANS = 253] = "CODE_OBFUSCATOR_SHENANIGANS";
+        c[c.CODE_TELEMETRY = 93] = "CODE_TELEMETRY";
       })(c.SwfTag || (c.SwfTag = {}));
       (function(c) {
         c[c.CODE_DEFINE_SHAPE = 2] = "CODE_DEFINE_SHAPE";
@@ -19929,8 +19929,7 @@ __extends = this.__extends || function(e, c) {
                       case 65:
                       ;
                       case 66:
-                        this.jumpToNextTag(g);
-                        break;
+                      ;
                       case 58:
                       ;
                       case 64:
@@ -19939,6 +19938,8 @@ __extends = this.__extends || function(e, c) {
                       ;
                       case 88:
                       ;
+                      case 40:
+                      ;
                       case 41:
                       ;
                       case 77:
@@ -19946,6 +19947,8 @@ __extends = this.__extends || function(e, c) {
                       case 24:
                       ;
                       case 25:
+                      ;
+                      case 93:
                       ;
                       case 55:
                       ;
@@ -19978,12 +19981,8 @@ __extends = this.__extends || function(e, c) {
                         console.info("Ignored tag (these shouldn't occur) " + v + ": " + a[v]);
                         this.jumpToNextTag(g);
                         break;
-                      case 253:
-                        e.Debug.warning("Encountered AVM1 obfuscator thingy. See http://ijs.mtasa.com/files/swfdecrypt.cpp.");
-                        this.jumpToNextTag(g);
-                        break;
                       default:
-                        e.Debug.warning("Tag not handled by the parser: " + v + ": " + a[v]), this.jumpToNextTag(g);
+                        100 < v ? e.Debug.warning("Encountered undefined tag " + v + ", probably used for AVM1 obfuscation. See http://ijs.mtasa.com/files/swfdecrypt.cpp.") : e.Debug.warning("Tag not handled by the parser: " + v + ": " + a[v]), this.jumpToNextTag(g);
                     }
                   }
                 } else {

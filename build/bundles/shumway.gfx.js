@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.103";
-Shumway$$inline_0.build = "fff36bb";
+Shumway$$inline_0.version = "0.11.105";
+Shumway$$inline_0.build = "2a78cae";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -4446,7 +4446,7 @@ var __extends = this.__extends || function(k, r) {
         b[b.CODE_START_SOUND2 = 89] = "CODE_START_SOUND2";
         b[b.CODE_DEFINE_BITS_JPEG4 = 90] = "CODE_DEFINE_BITS_JPEG4";
         b[b.CODE_DEFINE_FONT4 = 91] = "CODE_DEFINE_FONT4";
-        b[b.CODE_OBFUSCATOR_SHENANIGANS = 253] = "CODE_OBFUSCATOR_SHENANIGANS";
+        b[b.CODE_TELEMETRY = 93] = "CODE_TELEMETRY";
       })(g.SwfTag || (g.SwfTag = {}));
       (function(b) {
         b[b.CODE_DEFINE_SHAPE = 2] = "CODE_DEFINE_SHAPE";
