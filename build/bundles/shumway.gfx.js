@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.125";
-Shumway$$inline_0.build = "31830cd";
+Shumway$$inline_0.version = "0.11.127";
+Shumway$$inline_0.build = "ec333a8";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -131,7 +131,7 @@ var START_TIME = performance.now();
       var d = c[f];
       try {
         var q;
-        "object" === typeof d && d ? "toString" in d ? q + d.toString() : q = Object.prototype.toString.call(d) : q = d + "";
+        q = "object" === typeof d && d ? "toString" in d ? d.toString() : Object.prototype.toString.call(d) : d + "";
         e.push(q);
       } catch (A) {
         e.push("<unprintable value>");
