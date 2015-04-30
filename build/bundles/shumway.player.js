@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.120";
-Shumway$$inline_18.build = "a29c99f";
+Shumway$$inline_18.version = "0.11.122";
+Shumway$$inline_18.build = "3b935ff";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -50322,7 +50322,7 @@ Shumway$$inline_570.playSymbolCountOption = Shumway$$inline_570.playerOptions.re
           console.log("tick");
           b._eventLoopTick();
         }), n.external.ExternalInterface._addCallback("__takeScreenshot__", function() {
-        }), this._eventLoopTick()) : (console.info("Time from init start to main event loop start: " + (Date.now() - this.initStartTime)), a());
+        }), this._eventLoopTick()) : (isNaN(this.initStartTime) || console.info("Time from init start to main event loop start: " + (Date.now() - this.initStartTime)), a());
       };
       a.prototype._leaveEventLoop = function() {
         clearTimeout(this._frameTimeout);
