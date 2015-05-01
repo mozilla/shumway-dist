@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.137";
-Shumway$$inline_18.build = "69304b7";
+Shumway$$inline_18.version = "0.11.140";
+Shumway$$inline_18.build = "33e59a4";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -46412,10 +46412,11 @@ console.timeEnd("Load AVM1 Dependencies");
 (function(e) {
   (function(c) {
     c.ScreenShot = function() {
-      return function(c, e, q) {
+      return function(c, e, q, l) {
         this.dataURL = c;
         this.w = e;
         this.h = q;
+        this.pixelRatio = l;
       };
     }();
   })(e.GFX || (e.GFX = {}));
@@ -48471,7 +48472,7 @@ __extends = this.__extends || function(e, c) {
       b.prototype.resize = function() {
         throw void 0;
       };
-      b.prototype.screenShot = function(a, b) {
+      b.prototype.screenShot = function(a, b, c) {
         throw void 0;
       };
       return b;
