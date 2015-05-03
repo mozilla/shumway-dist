@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.140";
-Shumway$$inline_18.build = "33e59a4";
+Shumway$$inline_18.version = "0.11.145";
+Shumway$$inline_18.build = "db62582";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -6805,14 +6805,14 @@ console.time("Load AVM2 Dependencies");
     message:"Cannot convert %1 to primitive."}, InvalidURIError:{code:1052, message:"Invalid URI passed to %1 function."}, WriteSealedError:{code:1056, message:"Cannot create property %1 on %2."}, WrongArgumentCountError:{code:1063, message:"Argument count mismatch on %1. Expected %2, got %3."}, UndefinedVarError:{code:1065, message:"Variable %1 is not defined."}, ReadSealedError:{code:1069, message:"Property %1 not found on %2 and there is no default value."}, ConstWriteError:{code:1074, message:"Illegal write to read-only property %1 on %2."}, 
     XMLPrefixNotBound:{code:1083, message:'The prefix "%1" for element "%2" is not bound.'}, XMLUnterminatedElementTag:{code:1085, message:'The element type "%1" must be terminated by the matching end-tag "</%2>".'}, XMLOnlyWorksWithOneItemLists:{code:1086, message:"The %1 method only works on lists containing one item."}, XMLAssignmentToIndexedXMLNotAllowed:{code:1087, message:"Assignment to indexed XML is not allowed."}, XMLMarkupMustBeWellFormed:{code:1088, message:"The markup in the document following the root element must be well-formed."}, 
     XMLAssigmentOneItemLists:{code:1089, message:"Assignment to lists with more than one item is not supported."}, XMLMalformedElement:{code:1090, message:"XML parser failure: element is malformed."}, XMLUnterminatedCData:{code:1091, message:"XML parser failure: Unterminated CDATA section."}, XMLUnterminatedXMLDecl:{code:1092, message:"XML parser failure: Unterminated XML declaration."}, XMLUnterminatedDocTypeDecl:{code:1093, message:"XML parser failure: Unterminated DOCTYPE declaration."}, XMLUnterminatedComment:{code:1094, 
-    message:"XML parser failure: Unterminated comment."}, XMLUnterminatedElement:{code:1096, message:"XML parser failure: Unterminated element."}, XMLNamespaceWithPrefixAndNoURI:{code:1098, message:"Illegal prefix %1 for no namespace."}, RegExpFlagsArgumentError:{code:1100, message:"Cannot supply flags when constructing one RegExp from another."}, XMLInvalidName:{code:1117, message:"Invalid XML name: %1."}, XMLIllegalCyclicalLoop:{code:1118, message:"Illegal cyclical loop between nodes."}, FilterError:{code:1123, 
-    message:"Filter operator not supported on type %1."}, OutOfRangeError:{code:1125, message:"The index %1 is out of range %2."}, VectorFixedError:{code:1126, message:"Cannot change the length of a fixed Vector."}, TypeAppOfNonParamType:{code:1127, message:"Type application attempted on a non-parameterized type."}, WrongTypeArgCountError:{code:1128, message:"Incorrect number of type parameters for %1. Expected %2, got %3."}, JSONCyclicStructure:{code:1129, message:"Cyclic structure cannot be converted to JSON string."}, 
-    JSONInvalidReplacer:{code:1131, message:"Replacer argument to JSON stringifier must be an array or a two parameter function."}, JSONInvalidParseInput:{code:1132, message:"Invalid JSON parse input."}, InvalidRangeError:{code:1506, message:"The specified range is invalid."}, NullArgumentError:{code:1507, message:"Argument %1 cannot be null."}, InvalidArgumentError:{code:1508, message:"The value specified for argument %1 is invalid."}, ArrayFilterNonNullObjectError:{code:1510, message:"When the callback argument is a method of a class, the optional this argument must be null."}, 
-    InvalidParamError:{code:2004, message:"One of the parameters is invalid."}, ParamRangeError:{code:2006, message:"The supplied index is out of bounds."}, NullPointerError:{code:2007, message:"Parameter %1 must be non-null."}, InvalidEnumError:{code:2008, message:"Parameter %1 must be one of the accepted values."}, CantInstantiateError:{code:2012, message:"%1 class cannot be instantiated."}, InvalidBitmapData:{code:2015, message:"Invalid BitmapData."}, EOFError:{code:2030, message:"End of file was encountered.", 
-    fqn:"flash.errors.EOFError"}, CompressedDataError:{code:2058, message:"There was an error decompressing the data.", fqn:"flash.errors.IOError"}, ProxyGetPropertyError:{code:2088, message:"The Proxy class does not implement getProperty. It must be overridden by a subclass."}, ProxySetPropertyError:{code:2089, message:"The Proxy class does not implement setProperty. It must be overridden by a subclass."}, ProxyCallPropertyError:{code:2090, message:"The Proxy class does not implement callProperty. It must be overridden by a subclass."}, 
-    ProxyHasPropertyError:{code:2091, message:"The Proxy class does not implement hasProperty. It must be overridden by a subclass."}, ProxyDeletePropertyError:{code:2092, message:"The Proxy class does not implement deleteProperty. It must be overridden by a subclass."}, ProxyGetDescendantsError:{code:2093, message:"The Proxy class does not implement getDescendants. It must be overridden by a subclass."}, ProxyNextNameIndexError:{code:2105, message:"The Proxy class does not implement nextNameIndex. It must be overridden by a subclass."}, 
-    ProxyNextNameError:{code:2106, message:"The Proxy class does not implement nextName. It must be overridden by a subclass."}, ProxyNextValueError:{code:2107, message:"The Proxy class does not implement nextValue. It must be overridden by a subclass."}, TooFewArgumentsError:{code:2001, message:"Too few arguments were specified; got %1, %2 expected."}, ParamTypeError:{code:2005, message:"Parameter %1 is of the incorrect type. Should be type %2."}, SocketConnectError:{code:2011, message:"Socket connection failed to %1:%2."}, 
-    CantAddSelfError:{code:2024, message:"An object cannot be added as a child of itself."}, NotAChildError:{code:2025, message:"The supplied DisplayObject must be a child of the caller."}, DelayRangeError:{code:2066, message:"The Timer delay specified is out of range."}, ExternalInterfaceNotAvailableError:{code:2067, message:"The ExternalInterface is not available in this container. ExternalInterface requires Internet Explorer ActiveX, Firefox, Mozilla 1.7.5 and greater, or other browsers that support NPRuntime."}, 
+    message:"XML parser failure: Unterminated comment."}, XMLUnterminatedElement:{code:1096, message:"XML parser failure: Unterminated element."}, XMLNamespaceWithPrefixAndNoURI:{code:1098, message:"Illegal prefix %1 for no namespace."}, RegExpFlagsArgumentError:{code:1100, message:"Cannot supply flags when constructing one RegExp from another."}, InvalidBaseClassError:{code:1108, message:"The OP_newclass opcode was used with the incorrect base class."}, XMLInvalidName:{code:1117, message:"Invalid XML name: %1."}, 
+    XMLIllegalCyclicalLoop:{code:1118, message:"Illegal cyclical loop between nodes."}, FilterError:{code:1123, message:"Filter operator not supported on type %1."}, OutOfRangeError:{code:1125, message:"The index %1 is out of range %2."}, VectorFixedError:{code:1126, message:"Cannot change the length of a fixed Vector."}, TypeAppOfNonParamType:{code:1127, message:"Type application attempted on a non-parameterized type."}, WrongTypeArgCountError:{code:1128, message:"Incorrect number of type parameters for %1. Expected %2, got %3."}, 
+    JSONCyclicStructure:{code:1129, message:"Cyclic structure cannot be converted to JSON string."}, JSONInvalidReplacer:{code:1131, message:"Replacer argument to JSON stringifier must be an array or a two parameter function."}, JSONInvalidParseInput:{code:1132, message:"Invalid JSON parse input."}, InvalidRangeError:{code:1506, message:"The specified range is invalid."}, NullArgumentError:{code:1507, message:"Argument %1 cannot be null."}, InvalidArgumentError:{code:1508, message:"The value specified for argument %1 is invalid."}, 
+    ArrayFilterNonNullObjectError:{code:1510, message:"When the callback argument is a method of a class, the optional this argument must be null."}, InvalidParamError:{code:2004, message:"One of the parameters is invalid."}, ParamRangeError:{code:2006, message:"The supplied index is out of bounds."}, NullPointerError:{code:2007, message:"Parameter %1 must be non-null."}, InvalidEnumError:{code:2008, message:"Parameter %1 must be one of the accepted values."}, CantInstantiateError:{code:2012, message:"%1 class cannot be instantiated."}, 
+    InvalidBitmapData:{code:2015, message:"Invalid BitmapData."}, EOFError:{code:2030, message:"End of file was encountered.", fqn:"flash.errors.EOFError"}, CompressedDataError:{code:2058, message:"There was an error decompressing the data.", fqn:"flash.errors.IOError"}, ProxyGetPropertyError:{code:2088, message:"The Proxy class does not implement getProperty. It must be overridden by a subclass."}, ProxySetPropertyError:{code:2089, message:"The Proxy class does not implement setProperty. It must be overridden by a subclass."}, 
+    ProxyCallPropertyError:{code:2090, message:"The Proxy class does not implement callProperty. It must be overridden by a subclass."}, ProxyHasPropertyError:{code:2091, message:"The Proxy class does not implement hasProperty. It must be overridden by a subclass."}, ProxyDeletePropertyError:{code:2092, message:"The Proxy class does not implement deleteProperty. It must be overridden by a subclass."}, ProxyGetDescendantsError:{code:2093, message:"The Proxy class does not implement getDescendants. It must be overridden by a subclass."}, 
+    ProxyNextNameIndexError:{code:2105, message:"The Proxy class does not implement nextNameIndex. It must be overridden by a subclass."}, ProxyNextNameError:{code:2106, message:"The Proxy class does not implement nextName. It must be overridden by a subclass."}, ProxyNextValueError:{code:2107, message:"The Proxy class does not implement nextValue. It must be overridden by a subclass."}, TooFewArgumentsError:{code:2001, message:"Too few arguments were specified; got %1, %2 expected."}, ParamTypeError:{code:2005, 
+    message:"Parameter %1 is of the incorrect type. Should be type %2."}, SocketConnectError:{code:2011, message:"Socket connection failed to %1:%2."}, CantAddSelfError:{code:2024, message:"An object cannot be added as a child of itself."}, NotAChildError:{code:2025, message:"The supplied DisplayObject must be a child of the caller."}, DelayRangeError:{code:2066, message:"The Timer delay specified is out of range."}, ExternalInterfaceNotAvailableError:{code:2067, message:"The ExternalInterface is not available in this container. ExternalInterface requires Internet Explorer ActiveX, Firefox, Mozilla 1.7.5 and greater, or other browsers that support NPRuntime."}, 
     InvalidLoaderMethodError:{code:2069, message:"The Loader class does not implement this method."}, InvalidStageMethodError:{code:2071, message:"The Stage class does not implement this property or method."}, LoadingObjectNotSWFError:{code:2098, message:"The loading object is not a .swf file, you cannot request SWF properties from it."}, LoadingObjectNotInitializedError:{code:2099, message:"The loading object is not sufficiently loaded to provide this information."}, DecodeParamError:{code:2101, 
     message:"The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs."}, SceneNotFoundError:{code:2108, message:"Scene %1 was not found."}, FrameLabelNotFoundError:{code:2109, message:"Frame label %1 not found in scene %2."}, InvalidLoaderInfoMethodError:{code:2118, message:"The LoaderInfo class does not implement this method."}, CantAddParentError:{code:2150, message:"An object cannot be added as a child to one of it's children (or children's children, etc.)."}, 
     ObjectWithStringsParamError:{code:2196, message:"Parameter %1 must be an Object with only String values."}, InternalErrorIV:{code:3343, message:"Internal Error."}};
@@ -9089,6 +9089,11 @@ __extends = this.__extends || function(e, c) {
             return a.createError("TypeError", c.Errors.ConstructOfNonFunctionError);
           }
           break;
+        case 88:
+          if (!k || !a.AXClass.axIsType(k)) {
+            return a.createError("VerifyError", c.Errors.InvalidBaseClassError);
+          }
+          break;
         case 78:
         ;
         case 73:
@@ -9509,7 +9514,8 @@ __extends = this.__extends || function(e, c) {
                   g.push(w.createActivation(h, u.topScope()));
                   break;
                 case 88:
-                  g[g.length - 1] = w.createClass(m.classes[r.u30()], g[g.length - 1], u.topScope());
+                  y = g[g.length - 1];
+                  g[g.length - 1] = w.createClass(m.classes[r.u30()], y, u.topScope());
                   break;
                 case 89:
                   f(g, m.getMultiname(r.u30()), l);
@@ -10174,11 +10180,12 @@ __extends = this.__extends || function(e, c) {
         return this.findScopeProperty(a, !0, !1).axGetProperty(a);
       };
       a.prototype.findScopeProperty = function(a, b, d) {
+        null === a.name && this.global.object.sec.throwError("ReferenceError", c.Errors.UndefinedVarError, "*");
         var g;
         if (!d && !a.isRuntime() && (g = this.cache[a.id])) {
           return g;
         }
-        if (this.object.axHasPropertyInternal(a)) {
+        if (this.object && this.isWith ? this.object.axHasPropertyInternal(a) : this.object.traits.getTrait(a.namespaces, a.name)) {
           return this.isWith || a.isRuntime() ? this.object : this.cache[a.id] = this.object;
         }
         if (this.parent) {
@@ -10192,7 +10199,7 @@ __extends = this.__extends || function(e, c) {
         if (g = d.applicationDomain.findProperty(a, b, !0)) {
           return g;
         }
-        b && (a.getPublicMangledName() in d || this.object.sec.throwError("ReferenceError", c.Errors.UndefinedVarError, a.name));
+        b && (a.getPublicMangledName() in d || this.global.object.sec.throwError("ReferenceError", c.Errors.UndefinedVarError, a.name));
         return d;
       };
       return a;
@@ -10390,7 +10397,9 @@ __extends = this.__extends || function(e, c) {
         "Object" !== h && "Class" !== h && this.initializeRuntimeTraits(n, b, k);
         N(n.dPrototype, "$Bgconstructor", n);
         c.AS.tryLinkNativeClass(n);
-        c.interpret(n, a.getInitializer(), k, [n], null);
+        a = a.getInitializer();
+        b = a.getBody().code;
+        208 === b[0] && 48 === b[1] && 71 === b[2] || c.interpret(n, a, k, [n], null);
         return n;
       };
       e.prototype.initializeRuntimeTraits = function(a, b, c) {
