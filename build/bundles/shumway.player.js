@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.156";
-Shumway$$inline_18.build = "a75592e";
+Shumway$$inline_18.version = "0.11.158";
+Shumway$$inline_18.build = "d31240a";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -10185,7 +10185,7 @@ __extends = this.__extends || function(f, c) {
         if (!d && !a.isRuntime() && (g = this.cache[a.id])) {
           return g;
         }
-        if (this.object && this.isWith ? this.object.axHasPropertyInternal(a) : this.object.traits.getTrait(a.namespaces, a.name)) {
+        if (this.object && (this.isWith ? this.object.axHasPropertyInternal(a) : this.object.traits.getTrait(a.namespaces, a.name))) {
           return this.isWith || a.isRuntime() ? this.object : this.cache[a.id] = this.object;
         }
         if (this.parent) {
