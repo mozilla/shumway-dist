@@ -1,6 +1,6 @@
 {
   "name": "shumway-dist",
-  "version": "0.11.160",
+  "version": "0.11.162",
   "description": "Generic build of Mozilla's Shumway library.",
   "keywords": [
     "Mozilla",
