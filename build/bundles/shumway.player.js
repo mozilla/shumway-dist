@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.166";
-Shumway$$inline_18.build = "a344585";
+Shumway$$inline_18.version = "0.11.168";
+Shumway$$inline_18.build = "ddac604";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -19238,7 +19238,7 @@ console.time("Load SWF Parser");
               m.decode = a;
               break;
             default:
-              return f.Debug.warning("Unsupported audio format: " + g.soundFormat), null;
+              return f.Debug.warning("Unsupported audio stream format: " + g.streamCompression), null;
           }
           return m;
         };
@@ -29023,6 +29023,7 @@ var RtmpJs;
               this._sounds.initSoundStream(a);
             };
             g.prototype._addSoundStreamBlock = function(a, c) {
+              null === this._sounds && (this._sounds = new d(this));
               this._sounds.addSoundStreamBlock(a, c);
             };
             g.prototype._syncSounds = function(a) {
@@ -29216,7 +29217,7 @@ var RtmpJs;
           }(g), d = function() {
             function d(k, p) {
               this.movieClip = p;
-              this.decode = k.decode;
+              this.decode = k.decode.bind(k);
               this.data = {sampleRate:k.sampleRate, channels:k.channels};
               this.seekIndex = [];
               this.position = 0;
@@ -29994,8 +29995,8 @@ var RtmpJs;
                 a = c.x;
                 for (var d = c.x + c.width, b = c.y, g = c.y + c.height, h = this._view, e = this._rect.width, c = new Int32Array(c.area), n = 0;b < g;b++) {
                   for (var m = b * e, f = a;f < d;f++) {
-                    var p = h[m + f], k = p & 255, p = 255 * (p >>> 8) / k << 8 | k;
-                    c[n++] = p;
+                    var k = h[m + f], p = k & 255, k = 255 * (k >>> 8) / p << 8 | p;
+                    c[n++] = k;
                   }
                 }
                 return c;
@@ -30004,10 +30005,10 @@ var RtmpJs;
             e.prototype._putPixelData = function(a, c) {
               var d = this._getTemporaryRectangleFrom(this._rect).intersectInPlace(a);
               if (!d.isEmpty()) {
-                for (var b = d.x, g = d.x + d.width, h = d.y + d.height, e = this._view, n = this._rect.width, m = a.width * a.height - d.height + (b - a.x), f = a.width - d.width, p = this._transparent ? 0 : 255, d = d.y;d < h;d++) {
-                  for (var k = d * n, r = b;r < g;r++) {
-                    var l = c[m++], v = l & p;
-                    e[k + r] = (((l >>> 8) * v + 254) / 255 & 16777215) << 8 | v;
+                for (var b = d.x, g = d.x + d.width, h = d.y + d.height, e = this._view, n = this._rect.width, m = a.width * a.height - d.height + (b - a.x), f = a.width - d.width, k = this._transparent ? 0 : 255, d = d.y;d < h;d++) {
+                  for (var p = d * n, r = b;r < g;r++) {
+                    var l = c[m++], v = l & k;
+                    e[p + r] = (((l >>> 8) * v + 254) / 255 & 16777215) << 8 | v;
                   }
                   m += f;
                 }
