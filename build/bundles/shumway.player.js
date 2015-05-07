@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.198";
-Shumway$$inline_18.build = "136fa16";
+Shumway$$inline_18.version = "0.11.200";
+Shumway$$inline_18.build = "b9f1204";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -1315,8 +1315,8 @@ var START_TIME = performance.now();
   }();
   f.CircularBuffer = q;
   (function(a) {
-    function h(c) {
-      return c + (a.BITS_PER_WORD - 1) >> a.ADDRESS_BITS_PER_WORD << a.ADDRESS_BITS_PER_WORD;
+    function h(h) {
+      return h + (a.BITS_PER_WORD - 1) >> a.ADDRESS_BITS_PER_WORD << a.ADDRESS_BITS_PER_WORD;
     }
     function c(a, h) {
       a = a || "1";
@@ -18656,7 +18656,11 @@ console.time("Load SWF Parser");
         }
         if (!(b >= d)) {
           do {
-            for (var m = b++, h = a[b++];b < d && (255 !== a[b] || b + 1 < d && (0 === a[b + 1] || 255 === a[b + 1]));) {
+            var m = b++, h = a[b++];
+            if (192 <= h && 199 >= h || 201 <= h && 207 >= h || 218 <= h && 239 >= h || 254 === h) {
+              b += a[b] << 8 | a[b + 1];
+            }
+            for (;b < d && (255 !== a[b] || b + 1 < d && (0 === a[b + 1] || 255 === a[b + 1]));) {
               ++b;
             }
             216 !== h && 217 !== h && c.push(a.subarray(m, b));
