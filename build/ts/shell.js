@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.210';
-    Shumway.build = '08ac660';
+    Shumway.version = '0.11.220';
+    Shumway.build = 'c4a898a';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -100,6 +100,7 @@ this.Image = function () {
 };
 this.Image.prototype = {};
 this.URL = function (url, baseURL) {
+    url = url + '';
     if (url.indexOf('://') >= 0 || baseURL === url) {
         this._setURL(url);
         return;
@@ -115,7 +116,7 @@ this.URL = function (url, baseURL) {
 };
 this.URL.prototype = {
     _setURL: function (url) {
-        this.href = url;
+        this.href = url + '';
         // Simple parsing to extract protocol, hostname and port.
         var m = /^(\w+:)\/\/([^:/]+)(:([0-9]+))?/.exec(url.toLowerCase());
         if (m) {
