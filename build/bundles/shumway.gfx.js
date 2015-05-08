@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.201";
-Shumway$$inline_0.build = "25c6da6";
+Shumway$$inline_0.version = "0.11.206";
+Shumway$$inline_0.build = "663b392";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -475,8 +475,8 @@ var START_TIME = performance.now();
       Object.defineProperty(c, n, {value:e, writable:!1, configurable:!0, enumerable:!1});
     };
     d.getOwnPropertyDescriptors = function(c) {
-      for (var e = d.createMap(), f = Object.getOwnPropertyNames(c), F = 0;F < f.length;F++) {
-        e[f[F]] = Object.getOwnPropertyDescriptor(c, f[F]);
+      for (var e = d.createMap(), f = Object.getOwnPropertyNames(c), G = 0;G < f.length;G++) {
+        e[f[G]] = Object.getOwnPropertyDescriptor(c, f[G]);
       }
       return e;
     };
@@ -525,12 +525,12 @@ var START_TIME = performance.now();
       }
       return f;
     };
-    d.defineNonEnumerableGetterOrSetter = function(c, e, f, F) {
-      var a = d.getLatestGetterOrSetterPropertyDescriptor(c, e);
-      a.configurable = !0;
-      a.enumerable = !1;
-      F ? a.get = f : a.set = f;
-      Object.defineProperty(c, e, a);
+    d.defineNonEnumerableGetterOrSetter = function(c, e, f, a) {
+      var l = d.getLatestGetterOrSetterPropertyDescriptor(c, e);
+      l.configurable = !0;
+      l.enumerable = !1;
+      a ? l.get = f : l.set = f;
+      Object.defineProperty(c, e, l);
     };
     d.defineNonEnumerableGetter = function(c, e, f) {
       Object.defineProperty(c, e, {get:f, configurable:!0, enumerable:!1});
@@ -627,28 +627,28 @@ var START_TIME = performance.now();
         if (127 >= f) {
           n += String.fromCharCode(f);
         } else {
-          var d = 192, x = 5;
+          var x = 192, d = 5;
           do {
-            if ((f & (d >> 1 | 128)) === d) {
+            if ((f & (x >> 1 | 128)) === x) {
               break;
             }
-            d = d >> 1 | 128;
-            --x;
-          } while (0 <= x);
-          if (0 >= x) {
+            x = x >> 1 | 128;
+            --d;
+          } while (0 <= d);
+          if (0 >= d) {
             n += String.fromCharCode(f);
           } else {
-            for (var f = f & (1 << x) - 1, d = !1, a = 5;a >= x;--a) {
-              var F = c[e++];
-              if (128 != (F & 192)) {
-                d = !0;
+            for (var f = f & (1 << d) - 1, x = !1, a = 5;a >= d;--a) {
+              var G = c[e++];
+              if (128 != (G & 192)) {
+                x = !0;
                 break;
               }
-              f = f << 6 | F & 63;
+              f = f << 6 | G & 63;
             }
-            if (d) {
-              for (x = e - (7 - a);x < e;++x) {
-                n += String.fromCharCode(c[x] & 255);
+            if (x) {
+              for (d = e - (7 - a);d < e;++d) {
+                n += String.fromCharCode(c[d] & 255);
               }
             } else {
               n = 65536 <= f ? n + String.fromCharCode(f - 65536 >> 10 & 1023 | 55296, f & 1023 | 56320) : n + String.fromCharCode(f);
@@ -661,8 +661,8 @@ var START_TIME = performance.now();
     d.base64ArrayBuffer = function(n) {
       var f = "";
       n = new Uint8Array(n);
-      for (var d = n.byteLength, x = d % 3, d = d - x, a, F, l, I, h = 0;h < d;h += 3) {
-        I = n[h] << 16 | n[h + 1] << 8 | n[h + 2], a = (I & 16515072) >> 18, F = (I & 258048) >> 12, l = (I & 4032) >> 6, I &= 63, f += c("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[a], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[F], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[l], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[I]);
+      for (var d = n.byteLength, x = d % 3, d = d - x, a, G, l, I, h = 0;h < d;h += 3) {
+        I = n[h] << 16 | n[h + 1] << 8 | n[h + 2], a = (I & 16515072) >> 18, G = (I & 258048) >> 12, l = (I & 4032) >> 6, I &= 63, f += c("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[a], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[G], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[l], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[I]);
       }
       1 == x ? (I = n[d], f += e("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(I & 252) >> 2], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(I & 3) << 4], "==")) : 2 == x && (I = n[d] << 8 | n[d + 1], f += c("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(I & 64512) >> 10], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(I & 1008) >> 4], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(I & 15) << 
       2], "="));
@@ -760,7 +760,7 @@ var START_TIME = performance.now();
       h[6] = a;
       return h.join("");
     };
-    d.concat8 = function(c, e, n, f, d, x, a, F) {
+    d.concat8 = function(c, e, n, f, d, x, a, G) {
       m[0] = c;
       m[1] = e;
       m[2] = n;
@@ -768,10 +768,10 @@ var START_TIME = performance.now();
       m[4] = d;
       m[5] = x;
       m[6] = a;
-      m[7] = F;
+      m[7] = G;
       return m.join("");
     };
-    d.concat9 = function(c, e, n, f, d, x, a, F, l) {
+    d.concat9 = function(c, e, n, f, d, x, a, G, l) {
       u[0] = c;
       u[1] = e;
       u[2] = n;
@@ -779,7 +779,7 @@ var START_TIME = performance.now();
       u[4] = d;
       u[5] = x;
       u[6] = a;
-      u[7] = F;
+      u[7] = G;
       u[8] = l;
       return u.join("");
     };
@@ -3525,7 +3525,7 @@ var __extends = this.__extends || function(k, p) {
         this.repLenDecoder = new t;
       };
       c.prototype.decode = function(c) {
-        for (var e = this.rangeDec, a = this.outWindow, l = this.pb, h = this.dictSize, b = this.markerIsMandatory, q = this.leftToUnpack, r = this.isMatch, t = this.isRep, v = this.isRepG0, g = this.isRepG1, k = this.isRepG2, p = this.isRep0Long, w = this.lenDecoder, z = this.repLenDecoder, A = this.reps[0], C = this.reps[1], y = this.reps[2], G = this.reps[3], B = this.state;;) {
+        for (var e = this.rangeDec, a = this.outWindow, l = this.pb, h = this.dictSize, b = this.markerIsMandatory, q = this.leftToUnpack, r = this.isMatch, t = this.isRep, v = this.isRepG0, g = this.isRepG1, k = this.isRepG2, p = this.isRep0Long, w = this.lenDecoder, z = this.repLenDecoder, A = this.reps[0], C = this.reps[1], y = this.reps[2], F = this.reps[3], B = this.state;;) {
           if (c && 48 > e.inStream.available) {
             this.outWindow.flush();
             break;
@@ -3555,14 +3555,14 @@ var __extends = this.__extends || function(k, p) {
                 }
               } else {
                 var H;
-                0 === e.decodeBit(g, B) ? H = C : (0 === e.decodeBit(k, B) ? H = y : (H = G, G = y), y = C);
+                0 === e.decodeBit(g, B) ? H = C : (0 === e.decodeBit(k, B) ? H = y : (H = F, F = y), y = C);
                 C = A;
                 A = H;
               }
               E = z.decode(e, E);
               B = 7 > B ? 8 : 11;
             } else {
-              G = y;
+              F = y;
               y = C;
               C = A;
               E = w.decode(e, E);
@@ -3589,7 +3589,7 @@ var __extends = this.__extends || function(k, p) {
         this.reps[0] = A;
         this.reps[1] = C;
         this.reps[2] = y;
-        this.reps[3] = G;
+        this.reps[3] = F;
         this.leftToUnpack = q;
         return f;
       };
@@ -6080,10 +6080,10 @@ __extends = this.__extends || function(k, p) {
               var n = null, x = 0;
               m.beginPath();
               m.moveTo(0, 0);
-              for (var F = 0;F < g;F++) {
-                x = h.startTime + F * r, x = (n = n ? n.queryNext(x) : c.query(x)) ? n.getDepth() - 1 : 0, m.lineTo(F, x);
+              for (var G = 0;G < g;G++) {
+                x = h.startTime + G * r, x = (n = n ? n.queryNext(x) : c.query(x)) ? n.getDepth() - 1 : 0, m.lineTo(G, x);
               }
-              m.lineTo(F, 0);
+              m.lineTo(G, 0);
               m.fillStyle = u;
               m.fill();
               1 == this._mode && m.translate(0, -b * a / d);
@@ -6641,7 +6641,7 @@ __extends = this.__extends || function(k, p) {
           this.context.font = this.fontSize + 'px Consolas, "Liberation Mono", Courier, monospace';
           this.context.setTransform(this.ratio, 0, 0, this.ratio, 0, 0);
           for (var m = this.canvas.width, k = this.lineHeight, d = 0;d < a;d++) {
-            var f = d * this.lineHeight, e = this.pageIndex + d, c = this.buffer.get(e), n = this.buffer.getFormat(e), x = this.buffer.getRepeat(e), F = 1 < e ? this.buffer.getTime(e) - this.buffer.getTime(0) : 0;
+            var f = d * this.lineHeight, e = this.pageIndex + d, c = this.buffer.get(e), n = this.buffer.getFormat(e), x = this.buffer.getRepeat(e), G = 1 < e ? this.buffer.getTime(e) - this.buffer.getTime(0) : 0;
             this.context.fillStyle = e % 2 ? this.lineColor : this.alternateLineColor;
             n && n.backgroundFillStyle && (this.context.fillStyle = n.backgroundFillStyle);
             this.context.fillRect(0, f, m, k);
@@ -6652,7 +6652,7 @@ __extends = this.__extends || function(k, p) {
             0 < this.columnIndex && (c = c.substring(this.columnIndex));
             f = (d + 1) * this.lineHeight - this.textMarginBottom;
             this.showLineNumbers && this.context.fillText(String(e), b, f);
-            this.showLineTime && this.context.fillText(F.toFixed(1).padLeft(" ", 6), h, f);
+            this.showLineTime && this.context.fillText(G.toFixed(1).padLeft(" ", 6), h, f);
             1 < x && this.context.fillText(String(x).padLeft(" ", 3), g, f);
             this.context.fillText(c, r, f);
           }
@@ -7069,7 +7069,7 @@ console.time("Load GFX Dependencies");
       }
     }();
     if ("undefined" !== typeof CanvasRenderingContext2D && void 0 === CanvasRenderingContext2D.prototype.globalColorMatrix) {
-      var x = CanvasRenderingContext2D.prototype.fill, F = CanvasRenderingContext2D.prototype.stroke, I = CanvasRenderingContext2D.prototype.fillText, V = CanvasRenderingContext2D.prototype.strokeText;
+      var x = CanvasRenderingContext2D.prototype.fill, G = CanvasRenderingContext2D.prototype.stroke, I = CanvasRenderingContext2D.prototype.fillText, W = CanvasRenderingContext2D.prototype.strokeText;
       Object.defineProperty(CanvasRenderingContext2D.prototype, "globalColorMatrix", {get:function() {
         return this._globalColorMatrix ? this._globalColorMatrix.clone() : null;
       }, set:function(c) {
@@ -7084,7 +7084,7 @@ console.time("Load GFX Dependencies");
       CanvasRenderingContext2D.prototype.stroke = function(c, e) {
         var a = null;
         this._globalColorMatrix && (a = this.strokeStyle, this.strokeStyle = g(this, this.strokeStyle, this._globalColorMatrix));
-        0 === arguments.length ? F.call(this) : 1 === arguments.length && F.call(this, c);
+        0 === arguments.length ? G.call(this) : 1 === arguments.length && G.call(this, c);
         a && (this.strokeStyle = a);
       };
       CanvasRenderingContext2D.prototype.fillText = function(c, e, a, f) {
@@ -7096,7 +7096,7 @@ console.time("Load GFX Dependencies");
       CanvasRenderingContext2D.prototype.strokeText = function(c, e, a, f) {
         var d = null;
         this._globalColorMatrix && (d = this.strokeStyle, this.strokeStyle = g(this, this.strokeStyle, this._globalColorMatrix));
-        3 === arguments.length ? V.call(this, c, e, a) : 4 === arguments.length ? V.call(this, c, e, a, f) : k.Debug.unexpected();
+        3 === arguments.length ? W.call(this, c, e, a) : 4 === arguments.length ? W.call(this, c, e, a, f) : k.Debug.unexpected();
         d && (this.strokeStyle = d);
       };
     }
@@ -8042,16 +8042,16 @@ GFX$$inline_40.cacheShapesThreshold = canvas2DOptions$$inline_47.register(new Op
           return new a([e, 0, 0, 0, 0, c, 0, 0, 0, 0, d, 0, 0, 0, 0, 1]);
         };
         a.createMultiply = function(e, c) {
-          var d = e._m, b = c._m, h = d[0], g = d[1], m = d[2], l = d[3], r = d[4], k = d[5], t = d[6], u = d[7], q = d[8], p = d[9], v = d[10], w = d[11], z = d[12], A = d[13], C = d[14], d = d[15], y = b[0], G = b[1], B = b[2], E = b[3], H = b[4], K = b[5], L = b[6], M = b[7], N = b[8], O = b[9], P = b[10], Q = b[11], R = b[12], S = b[13], T = b[14], b = b[15];
-          return new a([h * y + g * H + m * N + l * R, h * G + g * K + m * O + l * S, h * B + g * L + m * P + l * T, h * E + g * M + m * Q + l * b, r * y + k * H + t * N + u * R, r * G + k * K + t * O + u * S, r * B + k * L + t * P + u * T, r * E + k * M + t * Q + u * b, q * y + p * H + v * N + w * R, q * G + p * K + v * O + w * S, q * B + p * L + v * P + w * T, q * E + p * M + v * Q + w * b, z * y + A * H + C * N + d * R, z * G + A * K + C * O + d * S, z * B + A * L + C * P + d * T, z * E + A * 
+          var d = e._m, b = c._m, h = d[0], g = d[1], m = d[2], l = d[3], r = d[4], k = d[5], t = d[6], u = d[7], q = d[8], p = d[9], v = d[10], w = d[11], z = d[12], A = d[13], C = d[14], d = d[15], y = b[0], F = b[1], B = b[2], E = b[3], H = b[4], K = b[5], L = b[6], M = b[7], N = b[8], O = b[9], P = b[10], Q = b[11], R = b[12], S = b[13], T = b[14], b = b[15];
+          return new a([h * y + g * H + m * N + l * R, h * F + g * K + m * O + l * S, h * B + g * L + m * P + l * T, h * E + g * M + m * Q + l * b, r * y + k * H + t * N + u * R, r * F + k * K + t * O + u * S, r * B + k * L + t * P + u * T, r * E + k * M + t * Q + u * b, q * y + p * H + v * N + w * R, q * F + p * K + v * O + w * S, q * B + p * L + v * P + w * T, q * E + p * M + v * Q + w * b, z * y + A * H + C * N + d * R, z * F + A * K + C * O + d * S, z * B + A * L + C * P + d * T, z * E + A * 
           M + C * Q + d * b]);
         };
         a.createInverse = function(e) {
           var c = e._m;
           e = c[0];
-          var d = c[1], b = c[2], h = c[3], g = c[4], m = c[5], l = c[6], r = c[7], k = c[8], t = c[9], u = c[10], q = c[11], p = c[12], v = c[13], w = c[14], c = c[15], z = u * c, A = w * q, C = l * c, y = w * r, G = l * q, B = u * r, E = b * c, H = w * h, K = b * q, L = u * h, M = b * r, N = l * h, O = k * v, P = p * t, Q = g * v, R = p * m, S = g * t, T = k * m, Z = e * v, aa = p * d, ba = e * t, ca = k * d, da = e * m, ea = g * d, ga = z * m + y * t + G * v - (A * m + C * t + B * v), ha = A * 
-          d + E * t + L * v - (z * d + H * t + K * v), v = C * d + H * m + M * v - (y * d + E * m + N * v), d = B * d + K * m + N * t - (G * d + L * m + M * t), m = 1 / (e * ga + g * ha + k * v + p * d);
-          return new a([m * ga, m * ha, m * v, m * d, m * (A * g + C * k + B * p - (z * g + y * k + G * p)), m * (z * e + H * k + K * p - (A * e + E * k + L * p)), m * (y * e + E * g + N * p - (C * e + H * g + M * p)), m * (G * e + L * g + M * k - (B * e + K * g + N * k)), m * (O * r + R * q + S * c - (P * r + Q * q + T * c)), m * (P * h + Z * q + ca * c - (O * h + aa * q + ba * c)), m * (Q * h + aa * r + da * c - (R * h + Z * r + ea * c)), m * (T * h + ba * r + ea * q - (S * h + ca * r + da * q)), 
+          var d = c[1], b = c[2], h = c[3], g = c[4], m = c[5], l = c[6], r = c[7], k = c[8], t = c[9], u = c[10], q = c[11], p = c[12], v = c[13], w = c[14], c = c[15], z = u * c, A = w * q, C = l * c, y = w * r, F = l * q, B = u * r, E = b * c, H = w * h, K = b * q, L = u * h, M = b * r, N = l * h, O = k * v, P = p * t, Q = g * v, R = p * m, S = g * t, T = k * m, Z = e * v, aa = p * d, ba = e * t, ca = k * d, da = e * m, ea = g * d, ga = z * m + y * t + F * v - (A * m + C * t + B * v), ha = A * 
+          d + E * t + L * v - (z * d + H * t + K * v), v = C * d + H * m + M * v - (y * d + E * m + N * v), d = B * d + K * m + N * t - (F * d + L * m + M * t), m = 1 / (e * ga + g * ha + k * v + p * d);
+          return new a([m * ga, m * ha, m * v, m * d, m * (A * g + C * k + B * p - (z * g + y * k + F * p)), m * (z * e + H * k + K * p - (A * e + E * k + L * p)), m * (y * e + E * g + N * p - (C * e + H * g + M * p)), m * (F * e + L * g + M * k - (B * e + K * g + N * k)), m * (O * r + R * q + S * c - (P * r + Q * q + T * c)), m * (P * h + Z * q + ca * c - (O * h + aa * q + ba * c)), m * (Q * h + aa * r + da * c - (R * h + Z * r + ea * c)), m * (T * h + ba * r + ea * q - (S * h + ca * r + da * q)), 
           m * (Q * u + T * w + P * l - (S * w + O * l + R * u)), m * (ba * w + O * b + aa * u - (Z * u + ca * w + P * b)), m * (Z * l + ea * w + R * b - (da * w + Q * b + aa * l)), m * (da * u + S * b + ca * l - (ba * l + ea * u + T * b))]);
         };
         return a;
@@ -9829,8 +9829,8 @@ __extends = this.__extends || function(k, p) {
         A.position = 0;
         var y = C.position = 0;
         a = a.commandsPosition;
-        for (var G = 0;G < a;G++) {
-          switch(fa[G]) {
+        for (var F = 0;F < a;F++) {
+          switch(fa[F]) {
             case 9:
               v && h && (h.lineTo(w, X), l && l.lineTo(w, X));
               v = !0;
@@ -10045,15 +10045,15 @@ __extends = this.__extends || function(k, p) {
         var e = this._textRunData;
         if (e) {
           for (var f = this._bounds, b = f.w - 4, h = this._plainText, g = this.lines, m = new u, l = 0, r = 0, t = 0, q = 0, p = 0, v = -1;e.position < e.length;) {
-            var w = e.readInt(), z = e.readInt(), A = e.readInt(), C = e.readUTF(), y = e.readInt(), G = e.readInt(), B = e.readInt();
+            var w = e.readInt(), z = e.readInt(), A = e.readInt(), C = e.readUTF(), y = e.readInt(), F = e.readInt(), B = e.readInt();
             y > t && (t = y);
-            G > q && (q = G);
+            F > q && (q = F);
             B > p && (p = B);
             y = e.readBoolean();
-            G = "";
-            e.readBoolean() && (G += "italic ");
-            y && (G += "bold ");
-            A = G + A + "px " + C;
+            F = "";
+            e.readBoolean() && (F += "italic ");
+            y && (F += "bold ");
+            A = F + A + "px " + C;
             C = e.readInt();
             C = k.ColorUtilities.rgbToHex(C);
             y = e.readInt();
@@ -10064,8 +10064,8 @@ __extends = this.__extends || function(k, p) {
             e.readInt();
             e.readInt();
             e.readInt();
-            for (var y = e.readBoolean(), E = "", G = !1;!G;w++) {
-              G = w >= z - 1;
+            for (var y = e.readBoolean(), E = "", F = !1;!F;w++) {
+              F = w >= z - 1;
               B = h[w];
               if ("\r" !== B && "\n" !== B && (E += B, w < h.length - 1)) {
                 continue;
@@ -10094,7 +10094,7 @@ __extends = this.__extends || function(k, p) {
                 l += t + q + p;
               }
               E = "";
-              if (G) {
+              if (F) {
                 p = q = t = 0;
                 v = -1;
                 break;
@@ -10391,26 +10391,26 @@ __extends = this.__extends || function(k, p) {
         if (!(a._type & 1)) {
           var b = this._data, g = a._data;
           a = b[0];
-          var m = b[1], l = b[2], d = b[3], f = b[4], e = b[5], c = b[6], k = b[7], q = b[8], p = b[9], v = b[10], w = b[11], J = b[12], U = b[13], W = b[14], Y = b[15], ia = b[16], ja = b[17], X = b[18], fa = b[19], D = g[0], z = g[1], A = g[2], C = g[3], y = g[4], G = g[5], B = g[6], E = g[7], H = g[8], K = g[9], L = g[10], M = g[11], N = g[12], O = g[13], P = g[14], Q = g[15], R = g[16], S = g[17], T = g[18], g = g[19];
+          var m = b[1], l = b[2], d = b[3], f = b[4], e = b[5], c = b[6], k = b[7], q = b[8], p = b[9], v = b[10], w = b[11], J = b[12], U = b[13], V = b[14], Y = b[15], ia = b[16], ja = b[17], X = b[18], fa = b[19], D = g[0], z = g[1], A = g[2], C = g[3], y = g[4], F = g[5], B = g[6], E = g[7], H = g[8], K = g[9], L = g[10], M = g[11], N = g[12], O = g[13], P = g[14], Q = g[15], R = g[16], S = g[17], T = g[18], g = g[19];
           b[0] = a * D + f * z + q * A + J * C;
           b[1] = m * D + e * z + p * A + U * C;
-          b[2] = l * D + c * z + v * A + W * C;
+          b[2] = l * D + c * z + v * A + V * C;
           b[3] = d * D + k * z + w * A + Y * C;
-          b[4] = a * y + f * G + q * B + J * E;
-          b[5] = m * y + e * G + p * B + U * E;
-          b[6] = l * y + c * G + v * B + W * E;
-          b[7] = d * y + k * G + w * B + Y * E;
+          b[4] = a * y + f * F + q * B + J * E;
+          b[5] = m * y + e * F + p * B + U * E;
+          b[6] = l * y + c * F + v * B + V * E;
+          b[7] = d * y + k * F + w * B + Y * E;
           b[8] = a * H + f * K + q * L + J * M;
           b[9] = m * H + e * K + p * L + U * M;
-          b[10] = l * H + c * K + v * L + W * M;
+          b[10] = l * H + c * K + v * L + V * M;
           b[11] = d * H + k * K + w * L + Y * M;
           b[12] = a * N + f * O + q * P + J * Q;
           b[13] = m * N + e * O + p * P + U * Q;
-          b[14] = l * N + c * O + v * P + W * Q;
+          b[14] = l * N + c * O + v * P + V * Q;
           b[15] = d * N + k * O + w * P + Y * Q;
           b[16] = a * R + f * S + q * T + J * g + ia;
           b[17] = m * R + e * S + p * T + U * g + ja;
-          b[18] = l * R + c * S + v * T + W * g + X;
+          b[18] = l * R + c * S + v * T + V * g + X;
           b[19] = d * R + k * S + w * T + Y * g + fa;
           this._type = 0;
         }
@@ -11304,7 +11304,6 @@ __extends = this.__extends || function(k, p) {
           }
         };
         a._applyFilter = function(g, l, m) {
-          debugger;
           if (a._svgFiltersAreSupported) {
             if (a._prepareSVGFilters(), a._removeFilter(l), m instanceof p.BlurFilter) {
               var q = b(g, m.quality);
@@ -11352,8 +11351,8 @@ __extends = this.__extends || function(k, p) {
         };
         b.prototype.draw = function(g, l, k, q, d, f, e, c, n) {
           this.context.setTransform(1, 0, 0, 1, 0, 0);
-          var p, F, v = 0, V = 0;
-          g.context.canvas === this.context.canvas ? (b._ensureCopyCanvasSize(q, d), F = b._copyCanvasContext, F.clearRect(0, 0, q, d), F.drawImage(g.surface.canvas, g.region.x, g.region.y, q, d, 0, 0, q, d), p = F, V = v = 0) : (p = g.surface.context, v = g.region.x, V = g.region.y);
+          var p, G = 0, v = 0;
+          g.context.canvas === this.context.canvas ? (b._ensureCopyCanvasSize(q, d), p = b._copyCanvasContext, p.clearRect(0, 0, q, d), p.drawImage(g.surface.canvas, g.region.x, g.region.y, q, d, 0, 0, q, d), f = p, v = G = 0) : (f = g.surface.context, G = g.region.x, v = g.region.y);
           a: {
             switch(e) {
               case 11:
@@ -11364,21 +11363,20 @@ __extends = this.__extends || function(k, p) {
             }
           }
           g && (this.context.save(), this.context.beginPath(), this.context.rect(l, k, q, d), this.context.clip());
+          this.context.globalAlpha = 1;
           this.context.globalCompositeOperation = w(e);
-          a._applyColorMatrix(this.context, f);
           if (c) {
-            f = 0;
+            e = 0;
             if (1 < c.length) {
-              var J, U, W;
-              F ? (e = F, F = p, p = e) : (b._ensureCopyCanvasSize(q, d), F = b._copyCanvasContext, U = J = 0);
-              for (;f < c.length - 1;f++) {
-                F.clearRect(0, 0, q, d), a._applyFilter(n, F, c[f]), F.drawImage(p.canvas, v, V, q, d, J, U, q, d), a._removeFilter(F), e = F, U = v, W = V, F = p, p = e, V = v = J, J = U, U = W;
+              var W, J, U, V;
+              p ? (U = p, p = f, f = U) : (b._ensureCopyCanvasSize(q, d), p = b._copyCanvasContext, J = W = 0);
+              for (;e < c.length - 1;e++) {
+                p.clearRect(0, 0, q, d), a._applyFilter(n, p, c[e]), p.drawImage(f.canvas, G, v, q, d, W, J, q, d), a._removeFilter(p), U = p, J = G, V = v, p = f, f = U, v = G = W, W = J, J = V;
               }
             }
-            a._applyFilter(n, this.context, c[f]);
+            a._applyFilter(n, this.context, c[e]);
           }
-          this.context.drawImage(p.canvas, v, V, q, d, l, k, q, d);
-          a._removeFilter(this.context);
+          this.context.drawImage(f.canvas, G, v, q, d, l, k, q, d);
           this.context.globalCompositeOperation = w(1);
           g && this.context.restore();
         };
@@ -11852,7 +11850,7 @@ __extends = this.__extends || function(k, p) {
             this._renderWithMask(a, e, d.blendMode, !a.hasFlags(131072) || !e.hasFlags(131072), b);
           } else {
             var e = w.allocate(), f = this._renderToTemporarySurface(a, a.getLayerBounds(!!this._options.filters), b, e, b.target.surface);
-            f && (b.target.draw(f, e.x, e.y, e.w, e.h, b.colorMatrix, d.blendMode, this._options.filters ? d.filters : null, this._devicePixelRatio), f.free());
+            f && (b.target.draw(f, e.x, e.y, e.w, e.h, b.colorMatrix, this._options.blending ? d.blendMode : 1, this._options.filters ? d.filters : null, this._devicePixelRatio), f.free());
             e.free();
           }
         };
