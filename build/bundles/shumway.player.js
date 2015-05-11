@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.226";
-Shumway$$inline_18.build = "e81c243";
+Shumway$$inline_18.version = "0.11.230";
+Shumway$$inline_18.build = "f357f75";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -6573,6 +6573,9 @@ __extends = this.__extends || function(f, b) {
           d.addEventListener("keydown", function(b) {
             var d = 0;
             switch(b.keyCode) {
+              case f:
+                this.printHelp();
+                break;
               case g:
                 this.showLineNumbers = !this.showLineNumbers;
                 break;
@@ -6607,19 +6610,23 @@ __extends = this.__extends || function(f, b) {
                 b.preventDefault();
                 break;
               case m:
-                b.metaKey && (this.selection = {start:0, end:this.buffer.length}, b.preventDefault());
+                if (b.metaKey || b.ctrlKey) {
+                  this.selection = {start:0, end:this.buffer.length - 1}, b.preventDefault();
+                }
                 break;
               case v:
-                if (b.metaKey) {
-                  var f = "";
+              ;
+              case k:
+                if (b.metaKey || b.ctrlKey) {
+                  var q = "";
                   if (this.selection) {
-                    for (var k = this.selection.start;k <= this.selection.end;k++) {
-                      f += this.buffer.get(k) + "\n";
+                    for (var u = this.selection.start;u <= this.selection.end;u++) {
+                      q += this.buffer.get(u) + "\n";
                     }
                   } else {
-                    f = this.buffer.get(this.lineIndex);
+                    q = this.buffer.get(this.lineIndex);
                   }
-                  alert(f);
+                  b.keyCode === v ? alert(q) : window.open(URL.createObjectURL(new Blob([q], {type:"text/plain"})), "_blank");
                 }
               ;
             }
@@ -6634,8 +6641,14 @@ __extends = this.__extends || function(f, b) {
           d.addEventListener("blur", function(a) {
             this.hasFocus = !1;
           }.bind(this), !1);
-          var a = 33, c = 34, e = 36, l = 35, p = 38, t = 40, n = 37, h = 39, m = 65, v = 67, g = 78, r = 84;
+          var a = 33, c = 34, e = 36, l = 35, p = 38, t = 40, n = 37, h = 39, m = 65, v = 67, g = 78, r = 84, f = 72, k = 83;
         }
+        b.prototype.printHelp = function() {
+          var b = this;
+          "h - help;n - turn on/off line numbers;t - turn on/off line time;arrow_keys - navigation;cmd/ctrl+a - select all;cmd/ctrl+c - copy/alert selection;cmd/ctrl+s - open selection in new tab;shift+arrow_keys - selection".split(";").forEach(function(a) {
+            return b.buffer.append(a, "#002000");
+          });
+        };
         b.prototype.resize = function() {
           this._resizeHandler();
         };
@@ -36341,12 +36354,12 @@ var RtmpJs;
     (function(g) {
       (function(f) {
         (function(f) {
-          var k = function(f) {
+          var k = function(g) {
             function d() {
-              f.call(this);
+              g.call(this);
               this.sec.throwError("ArgumentError", b.Errors.CantInstantiateError, "SecurityDomain");
             }
-            __extends(d, f);
+            __extends(d, g);
             Object.defineProperty(d, "currentDomain", {get:function() {
               var a = b.getCurrentABC();
               return Object.create((a ? a.env.app.sec : this.sec).flash.system.SecurityDomain.axClass.tPrototype);
