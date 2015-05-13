@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.245";
-Shumway$$inline_0.build = "de73455";
+Shumway$$inline_0.version = "0.11.247";
+Shumway$$inline_0.build = "e85eece";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -11389,11 +11389,14 @@ __extends = this.__extends || function(m, p) {
               for (;e < c.length - 1;e++) {
                 p.clearRect(0, 0, m, f), a._applyFilter(n, p, c[e]), p.drawImage(d.canvas, v, u, m, f, V, X, m, f), a._removeFilter(p), T = p, X = v, U = u, p = d, d = T, u = v = V, V = X, X = U;
               }
+              a._removeFilter(d);
+              a._removeFilter(p);
             }
             a._applyFilter(n, this.context, c[e]);
           }
           this.context.drawImage(d.canvas, v, u, m, f, h, l, m, f);
           this.context.globalCompositeOperation = w(1);
+          a._removeFilter(this.context);
           g && this.context.restore();
         };
         Object.defineProperty(b.prototype, "context", {get:function() {
