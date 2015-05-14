@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.249";
-Shumway$$inline_18.build = "6172f78";
+Shumway$$inline_18.version = "0.11.253";
+Shumway$$inline_18.build = "a62980e";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -6653,7 +6653,7 @@ __extends = this.__extends || function(f, b) {
           this._resizeHandler();
         };
         b.prototype._resizeHandler = function() {
-          var b = this.canvas.parentElement, a = b.clientWidth, b = b.clientHeight - 1, c = window.devicePixelRatio || 1;
+          var b = this.canvas.parentElement, a = b.clientWidth, b = b.clientHeight && b.clientHeight - 1, c = window.devicePixelRatio || 1;
           1 !== c ? (this.ratio = c / 1, this.canvas.width = a * this.ratio, this.canvas.height = b * this.ratio, this.canvas.style.width = a + "px", this.canvas.style.height = b + "px") : (this.ratio = 1, this.canvas.width = a, this.canvas.height = b);
           this.pageLineCount = Math.floor(this.canvas.height / this.lineHeight);
         };
@@ -50663,7 +50663,7 @@ Shumway$$inline_570.dontSkipFramesOption = Shumway$$inline_570.playerOptions.reg
 Shumway$$inline_570.playAllSymbolsOption = Shumway$$inline_570.playerOptions.register(new Shumway$$inline_570.Options.Option("", "Play Symbols", "boolean", !1, "Plays all SWF symbols automatically."));
 Shumway$$inline_570.playSymbolOption = Shumway$$inline_570.playerOptions.register(new Shumway$$inline_570.Options.Option("", "Play Symbol Number", "number", 0, "Select symbol by Id.", {range:{min:0, max:2E4, step:1}}));
 Shumway$$inline_570.playSymbolFrameDurationOption = Shumway$$inline_570.playerOptions.register(new Shumway$$inline_570.Options.Option("", "Play Symbol Duration", "number", 0, "How many frames to play, 0 for all frames of the movie clip.", {range:{min:0, max:128, step:1}}));
-Shumway$$inline_570.playSymbolCountOption = Shumway$$inline_570.playerOptions.register(new Shumway$$inline_570.Options.Option("", "Play Symbol Count", "number", -1, "Select symbol count.", {range:{min:0, max:2E4, step:1}}));
+Shumway$$inline_570.playSymbolCountOption = Shumway$$inline_570.playerOptions.register(new Shumway$$inline_570.Options.Option("", "Play Symbol Count", "number", -1, "Select symbol count.", {range:{min:-1, max:2E4, step:1}}));
 (function(f) {
   var b = function() {
     function b() {

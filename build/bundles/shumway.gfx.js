@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.249";
-Shumway$$inline_0.build = "6172f78";
+Shumway$$inline_0.version = "0.11.253";
+Shumway$$inline_0.build = "a62980e";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -6636,7 +6636,7 @@ __extends = this.__extends || function(k, n) {
           this._resizeHandler();
         };
         a.prototype._resizeHandler = function() {
-          var a = this.canvas.parentElement, b = a.clientWidth, a = a.clientHeight - 1, h = window.devicePixelRatio || 1;
+          var a = this.canvas.parentElement, b = a.clientWidth, a = a.clientHeight && a.clientHeight - 1, h = window.devicePixelRatio || 1;
           1 !== h ? (this.ratio = h / 1, this.canvas.width = b * this.ratio, this.canvas.height = a * this.ratio, this.canvas.style.width = b + "px", this.canvas.style.height = a + "px") : (this.ratio = 1, this.canvas.width = b, this.canvas.height = a);
           this.pageLineCount = Math.floor(this.canvas.height / this.lineHeight);
         };
@@ -11408,8 +11408,8 @@ __extends = this.__extends || function(k, n) {
         b.prototype.reset = function() {
           var a = this.surface.context;
           a.setTransform(1, 0, 0, 1, 0, 0);
-          a.fillStyle = null;
-          a.strokeStyle = null;
+          a.fillStyle = "#000000";
+          a.strokeStyle = "#000000";
           a.globalAlpha = 1;
           a.globalColorMatrix = null;
           a.globalCompositeOperation = w(1);
