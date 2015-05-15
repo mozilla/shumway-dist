@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.253";
-Shumway$$inline_18.build = "a62980e";
+Shumway$$inline_18.version = "0.11.255";
+Shumway$$inline_18.build = "235524c";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -20707,16 +20707,11 @@ __extends = this.__extends || function(f, b) {
     };
     k.prototype.processNewData = function(r, d) {
       this._bytesLoaded += r.length;
-      if (8192 > this._bytesLoaded && this._bytesLoaded < d.bytesTotal) {
+      var a = d.bytesLoaded < d.bytesTotal;
+      if (8192 > this._bytesLoaded && a) {
         this._queuedInitialData || (this._queuedInitialData = new Uint8Array(Math.min(8192, d.bytesTotal))), this._queuedInitialData.set(r, this._bytesLoaded - r.length);
       } else {
-        if (this._queuedInitialData) {
-          var a = new Uint8Array(this._bytesLoaded);
-          a.set(this._queuedInitialData);
-          a.set(r, this._bytesLoaded - r.length);
-          r = a;
-          this._queuedInitialData = null;
-        }
+        this._queuedInitialData && (a = new Uint8Array(this._bytesLoaded), a.set(this._queuedInitialData), a.set(r, this._bytesLoaded - r.length), r = a, this._queuedInitialData = null);
         var c = this._file, e = a = 0;
         if (c) {
           c instanceof b && (a = c.eagerlyParsedSymbolsList.length, e = c.framesLoaded), c.appendLoadedData(r);
