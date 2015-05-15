@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.257";
-Shumway$$inline_18.build = "b585fd2";
+Shumway$$inline_18.version = "0.11.259";
+Shumway$$inline_18.build = "1b98732";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -9223,8 +9223,8 @@ __extends = this.__extends || function(f, b) {
           if (!c || "string" !== typeof c.message || "string" !== typeof c.stack || "string" !== typeof c.name) {
             break;
           }
-          var f = c.stack.split("\n");
-          n = 0 === f[0].indexOf("at ") ? f[0].substr(3) : f[0];
+          var r = c.stack.split("\n");
+          n = 0 === r[0].indexOf("at ") ? r[0].substr(3) : r[0];
           switch(c.name) {
             case "TypeError":
               if (0 === n.indexOf("AXBasePrototype_valueOf") || 0 === n.indexOf("AXBasePrototype_toString")) {
@@ -9236,11 +9236,11 @@ __extends = this.__extends || function(f, b) {
       }
       e = "Uncaught VM-internal exception during op " + b.Bytecode[e] + ": ";
       try {
-        e += c.toString(), f = c.stack;
-      } catch (r) {
+        e += c.toString(), r = c.stack;
+      } catch (f) {
         e += "[Failed to stringify exception]";
       }
-      console.error(e, "\n", f);
+      console.error(e, "\n", r);
       return a.createError("Error", b.Errors.InternalErrorIV);
     }
     var u = f.ArrayUtilities.popManyInto, k = f.ObjectUtilities.getPropertyDescriptor, r = function() {
@@ -37325,11 +37325,11 @@ var RtmpJs;
                 if (this._textHeight > e.height) {
                   c = b = 1;
                   a.position = 16;
-                  for (var f = d = 0;f < this._numLines;f++) {
+                  for (var g = d = 0;g < this._numLines;g++) {
                     a.position += 8;
-                    var g = a.readInt(), l = a.readInt(), n = a.readInt(), g = g + l + n;
+                    var f = a.readInt(), l = a.readInt(), n = a.readInt(), f = f + l + n;
                     d > e.height / 20 ? b++ : c++;
-                    d += g;
+                    d += f;
                   }
                   this._maxScrollV = b;
                   this._bottomScrollV = c;
@@ -37369,8 +37369,8 @@ var RtmpJs;
               var c = this._lineMetricsData;
               c.position = 16 + 20 * a;
               a = c.readInt() + this._lineBounds.xMin + 2;
-              var d = c.readInt(), e = c.readInt(), f = c.readInt(), c = c.readInt();
-              return new this.sec.flash.text.TextLineMetrics(a, d, e + f + c, e, f, c);
+              var d = c.readInt(), e = c.readInt(), g = c.readInt(), c = c.readInt();
+              return new this.sec.flash.text.TextLineMetrics(a, d, e + g + c, e, g, c);
             };
             g.prototype.getLineOffset = function(a) {
               a |= 0;
@@ -37398,9 +37398,9 @@ var RtmpJs;
               var d = this._textContent.plainText.length;
               0 > a ? (a = 0, 0 > c && (c = d)) : 0 > c && (c = a + 1);
               (c <= a || c > d) && this.sec.throwError("RangeError", b.Errors.ParamRangeError);
-              for (var e, d = this._textContent.textRuns, f = 0;f < d.length;f++) {
-                var g = d[f];
-                g.intersects(a, c) && (e ? e.intersect(g.textFormat) : e = g.textFormat.clone());
+              for (var e, d = this._textContent.textRuns, g = 0;g < d.length;g++) {
+                var f = d[g];
+                f.intersects(a, c) && (e ? e.intersect(f.textFormat) : e = f.textFormat.clone());
               }
               return e;
             };
@@ -37408,8 +37408,8 @@ var RtmpJs;
               void 0 === a && (a = 0);
               void 0 === b && (b = 2147483647);
               for (var c = this._textContent.textRuns, d = [], e = 0;e < c.length;e++) {
-                var f = c[e];
-                f.beginIndex >= a && f.endIndex <= b && d.push(f.clone());
+                var g = c[e];
+                g.beginIndex >= a && g.endIndex <= b && d.push(g.clone());
               }
               return this.sec.createArrayUnsafe(d);
             };
@@ -37433,9 +37433,9 @@ var RtmpJs;
               void 0 === d && (d = -1);
               c |= 0;
               d |= 0;
-              var e = this._textContent.plainText, f = e.length;
-              0 > c ? (c = 0, 0 > d && (d = f)) : 0 > d && (d = c + 1);
-              (c > f || d > f) && this.sec.throwError("RangeError", b.Errors.ParamRangeError);
+              var e = this._textContent.plainText, g = e.length;
+              0 > c ? (c = 0, 0 > d && (d = g)) : 0 > d && (d = c + 1);
+              (c > g || d > g) && this.sec.throwError("RangeError", b.Errors.ParamRangeError);
               d <= c || (e = e.substring(c, d), this._textContent.replaceText(c, d, e, a), this._invalidateContent(), this._ensureLineMetrics());
             };
             g.prototype.getImageReference = function(a) {
@@ -47189,21 +47189,22 @@ console.timeEnd("Load AVM1 Dependencies");
         if (c) {
           var d = this.currentTransform, e = new Path2D;
           e.addPath(a, d);
-          var g = this.lineWidth;
+          var f = this.lineWidth;
           this.setTransform(1, 0, 0, 1, 0, 0);
           switch(b) {
             case 1:
-              this.lineWidth = q(g * (f.getScaleX(d) + f.getScaleY(d)) / 2, 1, 1024);
+              var g = Math.sqrt((d.a + d.c) * (d.a + d.c) + (d.d + d.b) * (d.d + d.b)) * Math.SQRT1_2;
+              this.lineWidth = q(f * g, 1, 1024);
               break;
             case 2:
-              this.lineWidth = q(g * f.getScaleY(d), 1, 1024);
+              this.lineWidth = q(f * (d.d + d.b), 1, 1024);
               break;
             case 3:
-              this.lineWidth = q(g * f.getScaleX(d), 1, 1024);
+              this.lineWidth = q(f * (d.a + d.c), 1, 1024);
           }
           this.stroke(e);
           this.setTransform(d.a, d.b, d.c, d.d, d.e, d.f);
-          this.lineWidth = g;
+          this.lineWidth = f;
         } else {
           this.stroke(a);
         }
@@ -47316,12 +47317,6 @@ console.timeEnd("Load AVM1 Dependencies");
     return b;
   }();
   f.LRUList = b;
-  f.getScaleX = function(b) {
-    return b.a;
-  };
-  f.getScaleY = function(b) {
-    return b.d;
-  };
 })(Shumway || (Shumway = {}));
 var Shumway$$inline_676 = Shumway || (Shumway = {}), GFX$$inline_677 = Shumway$$inline_676.GFX || (Shumway$$inline_676.GFX = {}), Option$$inline_678 = Shumway$$inline_676.Options.Option, OptionSet$$inline_679 = Shumway$$inline_676.Options.OptionSet, shumwayOptions$$inline_680 = Shumway$$inline_676.Settings.shumwayOptions, rendererOptions$$inline_681 = shumwayOptions$$inline_680.register(new OptionSet$$inline_679("Renderer Options"));
 GFX$$inline_677.imageUpdateOption = rendererOptions$$inline_681.register(new Option$$inline_678("", "imageUpdate", "boolean", !0, "Enable image updating."));
