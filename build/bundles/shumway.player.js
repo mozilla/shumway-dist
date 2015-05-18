@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.261";
-Shumway$$inline_18.build = "6d03d1e";
+Shumway$$inline_18.version = "0.11.263";
+Shumway$$inline_18.build = "5500e70";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -6865,15 +6865,15 @@ console.time("Load AVM2 Dependencies");
   })(f.AVMX || (f.AVMX = {}));
 })(Shumway || (Shumway = {}));
 Errors = Shumway.AVMX.Errors;
-var Shumway$$inline_752 = Shumway || (Shumway = {}), AVM2$$inline_753 = Shumway$$inline_752.AVM2 || (Shumway$$inline_752.AVM2 = {}), Option$$inline_754 = Shumway$$inline_752.Options.Option, OptionSet$$inline_755 = Shumway$$inline_752.Options.OptionSet, avm2Options$$inline_756 = Shumway$$inline_752.Settings.shumwayOptions.register(new OptionSet$$inline_755("AVM2")), Runtime$$inline_757 = AVM2$$inline_753.Runtime || (AVM2$$inline_753.Runtime = {}), options$$inline_758 = avm2Options$$inline_756.register(new OptionSet$$inline_755("Runtime"));
-Runtime$$inline_757.traceRuntime = options$$inline_758.register(new Option$$inline_754("tr", "traceRuntime", "boolean", !1, "trace runtime"));
-Runtime$$inline_757.traceExecution = options$$inline_758.register(new Option$$inline_754("tx", "traceExecution", "boolean", !1, "trace execution"));
-Runtime$$inline_757.traceInterpreter = options$$inline_758.register(new Option$$inline_754("ti", "traceInterpreter", "boolean", !1, "trace interpreter"));
-Runtime$$inline_757.debuggerMode = options$$inline_758.register(new Option$$inline_754("db", "debuggerMode", "boolean", !0, "enable debugger mode"));
-var ExecutionMode$$inline_759 = Runtime$$inline_757.ExecutionMode || (Runtime$$inline_757.ExecutionMode = {});
-ExecutionMode$$inline_759[ExecutionMode$$inline_759.INTERPRET = 1] = "INTERPRET";
-ExecutionMode$$inline_759[ExecutionMode$$inline_759.COMPILE = 2] = "COMPILE";
-var ExecutionMode$$inline_760 = Runtime$$inline_757.ExecutionMode;
+var Shumway$$inline_748 = Shumway || (Shumway = {}), AVM2$$inline_749 = Shumway$$inline_748.AVM2 || (Shumway$$inline_748.AVM2 = {}), Option$$inline_750 = Shumway$$inline_748.Options.Option, OptionSet$$inline_751 = Shumway$$inline_748.Options.OptionSet, avm2Options$$inline_752 = Shumway$$inline_748.Settings.shumwayOptions.register(new OptionSet$$inline_751("AVM2")), Runtime$$inline_753 = AVM2$$inline_749.Runtime || (AVM2$$inline_749.Runtime = {}), options$$inline_754 = avm2Options$$inline_752.register(new OptionSet$$inline_751("Runtime"));
+Runtime$$inline_753.traceRuntime = options$$inline_754.register(new Option$$inline_750("tr", "traceRuntime", "boolean", !1, "trace runtime"));
+Runtime$$inline_753.traceExecution = options$$inline_754.register(new Option$$inline_750("tx", "traceExecution", "boolean", !1, "trace execution"));
+Runtime$$inline_753.traceInterpreter = options$$inline_754.register(new Option$$inline_750("ti", "traceInterpreter", "boolean", !1, "trace interpreter"));
+Runtime$$inline_753.debuggerMode = options$$inline_754.register(new Option$$inline_750("db", "debuggerMode", "boolean", !0, "enable debugger mode"));
+var ExecutionMode$$inline_755 = Runtime$$inline_753.ExecutionMode || (Runtime$$inline_753.ExecutionMode = {});
+ExecutionMode$$inline_755[ExecutionMode$$inline_755.INTERPRET = 1] = "INTERPRET";
+ExecutionMode$$inline_755[ExecutionMode$$inline_755.COMPILE = 2] = "COMPILE";
+var ExecutionMode$$inline_756 = Runtime$$inline_753.ExecutionMode;
 (function(f) {
   (function(b) {
     (function(b) {
@@ -19464,9 +19464,9 @@ console.time("Load SWF Parser");
     };
   })(f.SWF || (f.SWF = {}));
 })(Shumway || (Shumway = {}));
-var Shumway$$inline_639 = Shumway || (Shumway = {}), SWF$$inline_640 = Shumway$$inline_639.SWF || (Shumway$$inline_639.SWF = {}), Option$$inline_641 = Shumway$$inline_639.Options.Option;
-SWF$$inline_640.parserOptions = Shumway$$inline_639.Settings.shumwayOptions.register(new Shumway$$inline_639.Options.OptionSet("Parser Options"));
-SWF$$inline_640.traceLevel = SWF$$inline_640.parserOptions.register(new Option$$inline_641("parsertracelevel", "Parser Trace Level", "number", 0, "Parser Trace Level"));
+var Shumway$$inline_638 = Shumway || (Shumway = {}), SWF$$inline_639 = Shumway$$inline_638.SWF || (Shumway$$inline_638.SWF = {}), Option$$inline_640 = Shumway$$inline_638.Options.Option;
+SWF$$inline_639.parserOptions = Shumway$$inline_638.Settings.shumwayOptions.register(new Shumway$$inline_638.Options.OptionSet("Parser Options"));
+SWF$$inline_639.traceLevel = SWF$$inline_639.parserOptions.register(new Option$$inline_640("parsertracelevel", "Parser Trace Level", "number", 0, "Parser Trace Level"));
 (function(f) {
   (function(b) {
     function g(a, c) {
@@ -21153,16 +21153,16 @@ console.time("Load Flash TS Dependencies");
   }();
   f.TextContent = c;
 })(Shumway || (Shumway = {}));
-var Shumway$$inline_748 = Shumway || (Shumway = {}), AVMX$$inline_749 = Shumway$$inline_748.AVMX || (Shumway$$inline_748.AVMX = {}), AS$$inline_750 = AVMX$$inline_749.AS || (AVMX$$inline_749.AS = {});
-AS$$inline_750.flashOptions = Shumway$$inline_748.Settings.shumwayOptions.register(new Shumway$$inline_748.Options.OptionSet("Flash Options"));
-AS$$inline_750.traceEventsOption = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option("te", "Trace Events", "boolean", !1, "Trace dispatching of events."));
-AS$$inline_750.traceLoaderOption = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option("tp", "Trace Loader", "boolean", !1, "Trace loader execution."));
-AS$$inline_750.disableAudioOption = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option("da", "Disable Audio", "boolean", !1, "Disables audio."));
-AS$$inline_750.webAudioOption = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option(null, "Use WebAudio for Sound", "boolean", !1, "Enables WebAudio API for MovieClip sound stream. (MP3 format is an exception)"));
-AS$$inline_750.webAudioMP3Option = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option(null, "Use MP3 decoding to WebAudio", "boolean", !1, "Enables WebAudio API and software MP3 decoding and disables any AUDIO tag usage for MP3 format"));
-AS$$inline_750.mediaSourceOption = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option(null, "Use Media Source for Video", "boolean", !1, "Enables Media Source Extension API for NetStream."));
-AS$$inline_750.mediaSourceMP3Option = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option(null, "Use Media Source for MP3", "boolean", !0, "Enables Media Source Extension API for MP3 streams."));
-AS$$inline_750.flvOption = AS$$inline_750.flashOptions.register(new Shumway$$inline_748.Options.Option(null, "FLV support.", "string", "unsupported", "Defines how to deal with FLV streams."));
+var Shumway$$inline_744 = Shumway || (Shumway = {}), AVMX$$inline_745 = Shumway$$inline_744.AVMX || (Shumway$$inline_744.AVMX = {}), AS$$inline_746 = AVMX$$inline_745.AS || (AVMX$$inline_745.AS = {});
+AS$$inline_746.flashOptions = Shumway$$inline_744.Settings.shumwayOptions.register(new Shumway$$inline_744.Options.OptionSet("Flash Options"));
+AS$$inline_746.traceEventsOption = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option("te", "Trace Events", "boolean", !1, "Trace dispatching of events."));
+AS$$inline_746.traceLoaderOption = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option("tp", "Trace Loader", "boolean", !1, "Trace loader execution."));
+AS$$inline_746.disableAudioOption = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option("da", "Disable Audio", "boolean", !1, "Disables audio."));
+AS$$inline_746.webAudioOption = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option(null, "Use WebAudio for Sound", "boolean", !1, "Enables WebAudio API for MovieClip sound stream. (MP3 format is an exception)"));
+AS$$inline_746.webAudioMP3Option = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option(null, "Use MP3 decoding to WebAudio", "boolean", !1, "Enables WebAudio API and software MP3 decoding and disables any AUDIO tag usage for MP3 format"));
+AS$$inline_746.mediaSourceOption = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option(null, "Use Media Source for Video", "boolean", !1, "Enables Media Source Extension API for NetStream."));
+AS$$inline_746.mediaSourceMP3Option = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option(null, "Use Media Source for MP3", "boolean", !0, "Enables Media Source Extension API for MP3 streams."));
+AS$$inline_746.flvOption = AS$$inline_746.flashOptions.register(new Shumway$$inline_744.Options.Option(null, "FLV support.", "string", "unsupported", "Defines how to deal with FLV streams."));
 __extends = this.__extends || function(f, b) {
   function g() {
     this.constructor = f;
@@ -39538,13 +39538,13 @@ var flashPackage = Shumway.AVMX.AS.flash;
 })(Shumway || (Shumway = {}));
 console.timeEnd("Load Flash TS Dependencies");
 console.time("Load AVM1 Dependencies");
-var Shumway$$inline_656 = Shumway || (Shumway = {}), AVM1$$inline_657 = Shumway$$inline_656.AVM1 || (Shumway$$inline_656.AVM1 = {}), Option$$inline_658 = Shumway$$inline_656.Options.Option, avm1Options$$inline_659 = Shumway$$inline_656.Settings.shumwayOptions.register(new Shumway$$inline_656.Options.OptionSet("AVM1"));
-AVM1$$inline_657.avm1TraceEnabled = avm1Options$$inline_659.register(new Option$$inline_658("t1", "traceAvm1", "boolean", !1, "trace AVM1 execution"));
-AVM1$$inline_657.avm1ErrorsEnabled = avm1Options$$inline_659.register(new Option$$inline_658("e1", "errorsAvm1", "boolean", !1, "fail on AVM1 warnings and errors"));
-AVM1$$inline_657.avm1TimeoutDisabled = avm1Options$$inline_659.register(new Option$$inline_658("ha1", "nohangAvm1", "boolean", !1, "disable fail on AVM1 hang"));
-AVM1$$inline_657.avm1CompilerEnabled = avm1Options$$inline_659.register(new Option$$inline_658("ca1", "compileAvm1", "boolean", !0, "compiles AVM1 code"));
-AVM1$$inline_657.avm1DebuggerEnabled = avm1Options$$inline_659.register(new Option$$inline_658("da1", "debugAvm1", "boolean", !1, "allows AVM1 code debugging"));
-AVM1$$inline_657.avm1WellknownActionsCompilationsEnabled = avm1Options$$inline_659.register(new Option$$inline_658("cw1", "wellknownAvm1", "boolean", !0, "Replaces well-known actions patterns instead of compilation"));
+var Shumway$$inline_655 = Shumway || (Shumway = {}), AVM1$$inline_656 = Shumway$$inline_655.AVM1 || (Shumway$$inline_655.AVM1 = {}), Option$$inline_657 = Shumway$$inline_655.Options.Option, avm1Options$$inline_658 = Shumway$$inline_655.Settings.shumwayOptions.register(new Shumway$$inline_655.Options.OptionSet("AVM1"));
+AVM1$$inline_656.avm1TraceEnabled = avm1Options$$inline_658.register(new Option$$inline_657("t1", "traceAvm1", "boolean", !1, "trace AVM1 execution"));
+AVM1$$inline_656.avm1ErrorsEnabled = avm1Options$$inline_658.register(new Option$$inline_657("e1", "errorsAvm1", "boolean", !1, "fail on AVM1 warnings and errors"));
+AVM1$$inline_656.avm1TimeoutDisabled = avm1Options$$inline_658.register(new Option$$inline_657("ha1", "nohangAvm1", "boolean", !1, "disable fail on AVM1 hang"));
+AVM1$$inline_656.avm1CompilerEnabled = avm1Options$$inline_658.register(new Option$$inline_657("ca1", "compileAvm1", "boolean", !0, "compiles AVM1 code"));
+AVM1$$inline_656.avm1DebuggerEnabled = avm1Options$$inline_658.register(new Option$$inline_657("da1", "debugAvm1", "boolean", !1, "allows AVM1 code debugging"));
+AVM1$$inline_656.avm1WellknownActionsCompilationsEnabled = avm1Options$$inline_658.register(new Option$$inline_657("cw1", "wellknownAvm1", "boolean", !0, "Replaces well-known actions patterns instead of compilation"));
 (function(f) {
   (function(b) {
     var f = function() {
@@ -41492,7 +41492,18 @@ __extends = this.__extends || function(f, b) {
       f.Debug.warning.apply(console, arguments);
     }
     function q(a) {
-      return "object" === typeof a && a && a instanceof b.Lib.AVM1MovieClip;
+      if (null === a) {
+        return "null";
+      }
+      if ("object" === typeof a) {
+        if (a instanceof b.Lib.AVM1MovieClip) {
+          return "movieclip";
+        }
+        if (a instanceof b.AVM1Function) {
+          return "function";
+        }
+      }
+      return typeof a;
     }
     function v(a, c, d) {
       c = b.alToPrimitive(a, c);
@@ -42061,8 +42072,8 @@ __extends = this.__extends || function(f, b) {
     }
     function Xa(a) {
       a = a.stack;
-      var b = a.pop();
-      a.push(q(b) ? b._target : void 0);
+      var c = a.pop();
+      a.push("object" === typeof c && c && c instanceof b.Lib.AVM1MovieClip ? c._target : void 0);
     }
     function Ya(a, c) {
       var d = c[0];
@@ -42085,12 +42096,7 @@ __extends = this.__extends || function(f, b) {
     function ab(a) {
       a = a.stack;
       var b = a.pop();
-      if (null === b) {
-        b = "null";
-      } else {
-        var c = typeof b, b = "function" === c ? "object" : "object" === c && q(b) ? "movieclip" : c
-      }
-      a.push(b);
+      a.push(q(b));
     }
     function bb(a) {
       var c = a.stack, d;
@@ -47347,47 +47353,47 @@ console.timeEnd("Load AVM1 Dependencies");
   }();
   f.LRUList = b;
 })(Shumway || (Shumway = {}));
-var Shumway$$inline_676 = Shumway || (Shumway = {}), GFX$$inline_677 = Shumway$$inline_676.GFX || (Shumway$$inline_676.GFX = {}), Option$$inline_678 = Shumway$$inline_676.Options.Option, OptionSet$$inline_679 = Shumway$$inline_676.Options.OptionSet, shumwayOptions$$inline_680 = Shumway$$inline_676.Settings.shumwayOptions, rendererOptions$$inline_681 = shumwayOptions$$inline_680.register(new OptionSet$$inline_679("Renderer Options"));
-GFX$$inline_677.imageUpdateOption = rendererOptions$$inline_681.register(new Option$$inline_678("", "imageUpdate", "boolean", !0, "Enable image updating."));
-GFX$$inline_677.imageConvertOption = rendererOptions$$inline_681.register(new Option$$inline_678("", "imageConvert", "boolean", !0, "Enable image conversion."));
-GFX$$inline_677.stageOptions = shumwayOptions$$inline_680.register(new OptionSet$$inline_679("Stage Renderer Options"));
-GFX$$inline_677.forcePaint = GFX$$inline_677.stageOptions.register(new Option$$inline_678("", "forcePaint", "boolean", !1, "Force repainting."));
-GFX$$inline_677.ignoreViewport = GFX$$inline_677.stageOptions.register(new Option$$inline_678("", "ignoreViewport", "boolean", !1, "Cull elements outside of the viewport."));
-GFX$$inline_677.viewportLoupeDiameter = GFX$$inline_677.stageOptions.register(new Option$$inline_678("", "viewportLoupeDiameter", "number", 256, "Size of the viewport loupe.", {range:{min:1, max:1024, step:1}}));
-GFX$$inline_677.disableClipping = GFX$$inline_677.stageOptions.register(new Option$$inline_678("", "disableClipping", "boolean", !1, "Disable clipping."));
-GFX$$inline_677.debugClipping = GFX$$inline_677.stageOptions.register(new Option$$inline_678("", "debugClipping", "boolean", !1, "Disable clipping."));
-GFX$$inline_677.hud = GFX$$inline_677.stageOptions.register(new Option$$inline_678("", "hud", "boolean", !1, "Enable HUD."));
-var webGLOptions$$inline_682 = GFX$$inline_677.stageOptions.register(new OptionSet$$inline_679("WebGL Options"));
-GFX$$inline_677.perspectiveCamera = webGLOptions$$inline_682.register(new Option$$inline_678("", "pc", "boolean", !1, "Use perspective camera."));
-GFX$$inline_677.perspectiveCameraFOV = webGLOptions$$inline_682.register(new Option$$inline_678("", "pcFOV", "number", 60, "Perspective Camera FOV."));
-GFX$$inline_677.perspectiveCameraDistance = webGLOptions$$inline_682.register(new Option$$inline_678("", "pcDistance", "number", 2, "Perspective Camera Distance."));
-GFX$$inline_677.perspectiveCameraAngle = webGLOptions$$inline_682.register(new Option$$inline_678("", "pcAngle", "number", 0, "Perspective Camera Angle."));
-GFX$$inline_677.perspectiveCameraAngleRotate = webGLOptions$$inline_682.register(new Option$$inline_678("", "pcRotate", "boolean", !1, "Rotate Use perspective camera."));
-GFX$$inline_677.perspectiveCameraSpacing = webGLOptions$$inline_682.register(new Option$$inline_678("", "pcSpacing", "number", .01, "Element Spacing."));
-GFX$$inline_677.perspectiveCameraSpacingInflate = webGLOptions$$inline_682.register(new Option$$inline_678("", "pcInflate", "boolean", !1, "Rotate Use perspective camera."));
-GFX$$inline_677.drawTiles = webGLOptions$$inline_682.register(new Option$$inline_678("", "drawTiles", "boolean", !1, "Draw WebGL Tiles"));
-GFX$$inline_677.drawSurfaces = webGLOptions$$inline_682.register(new Option$$inline_678("", "drawSurfaces", "boolean", !1, "Draw WebGL Surfaces."));
-GFX$$inline_677.drawSurface = webGLOptions$$inline_682.register(new Option$$inline_678("", "drawSurface", "number", -1, "Draw WebGL Surface #"));
-GFX$$inline_677.drawElements = webGLOptions$$inline_682.register(new Option$$inline_678("", "drawElements", "boolean", !0, "Actually call gl.drawElements. This is useful to test if the GPU is the bottleneck."));
-GFX$$inline_677.disableSurfaceUploads = webGLOptions$$inline_682.register(new Option$$inline_678("", "disableSurfaceUploads", "boolean", !1, "Disable surface uploads."));
-GFX$$inline_677.premultipliedAlpha = webGLOptions$$inline_682.register(new Option$$inline_678("", "premultipliedAlpha", "boolean", !1, "Set the premultipliedAlpha flag on getContext()."));
-GFX$$inline_677.unpackPremultiplyAlpha = webGLOptions$$inline_682.register(new Option$$inline_678("", "unpackPremultiplyAlpha", "boolean", !0, "Use UNPACK_PREMULTIPLY_ALPHA_WEBGL in pixelStorei."));
-var factorChoices$$inline_683 = {ZERO:0, ONE:1, SRC_COLOR:768, ONE_MINUS_SRC_COLOR:769, DST_COLOR:774, ONE_MINUS_DST_COLOR:775, SRC_ALPHA:770, ONE_MINUS_SRC_ALPHA:771, DST_ALPHA:772, ONE_MINUS_DST_ALPHA:773, SRC_ALPHA_SATURATE:776, CONSTANT_COLOR:32769, ONE_MINUS_CONSTANT_COLOR:32770, CONSTANT_ALPHA:32771, ONE_MINUS_CONSTANT_ALPHA:32772};
-GFX$$inline_677.sourceBlendFactor = webGLOptions$$inline_682.register(new Option$$inline_678("", "sourceBlendFactor", "number", factorChoices$$inline_683.ONE, "", {choices:factorChoices$$inline_683}));
-GFX$$inline_677.destinationBlendFactor = webGLOptions$$inline_682.register(new Option$$inline_678("", "destinationBlendFactor", "number", factorChoices$$inline_683.ONE_MINUS_SRC_ALPHA, "", {choices:factorChoices$$inline_683}));
-var canvas2DOptions$$inline_684 = GFX$$inline_677.stageOptions.register(new OptionSet$$inline_679("Canvas2D Options"));
-GFX$$inline_677.clipDirtyRegions = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "clipDirtyRegions", "boolean", !1, "Clip dirty regions."));
-GFX$$inline_677.clipCanvas = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "clipCanvas", "boolean", !1, "Clip Regions."));
-GFX$$inline_677.cull = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "cull", "boolean", !1, "Enable culling."));
-GFX$$inline_677.snapToDevicePixels = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "snapToDevicePixels", "boolean", !1, ""));
-GFX$$inline_677.imageSmoothing = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "imageSmoothing", "boolean", !1, ""));
-GFX$$inline_677.masking = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "masking", "boolean", !0, "Composite Mask."));
-GFX$$inline_677.blending = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "blending", "boolean", !0, ""));
-GFX$$inline_677.debugLayers = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "debugLayers", "boolean", !1, ""));
-GFX$$inline_677.filters = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "filters", "boolean", !0, ""));
-GFX$$inline_677.cacheShapes = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "cacheShapes", "boolean", !0, ""));
-GFX$$inline_677.cacheShapesMaxSize = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "cacheShapesMaxSize", "number", 256, "", {range:{min:1, max:1024, step:1}}));
-GFX$$inline_677.cacheShapesThreshold = canvas2DOptions$$inline_684.register(new Option$$inline_678("", "cacheShapesThreshold", "number", 256, "", {range:{min:1, max:1024, step:1}}));
+var Shumway$$inline_672 = Shumway || (Shumway = {}), GFX$$inline_673 = Shumway$$inline_672.GFX || (Shumway$$inline_672.GFX = {}), Option$$inline_674 = Shumway$$inline_672.Options.Option, OptionSet$$inline_675 = Shumway$$inline_672.Options.OptionSet, shumwayOptions$$inline_676 = Shumway$$inline_672.Settings.shumwayOptions, rendererOptions$$inline_677 = shumwayOptions$$inline_676.register(new OptionSet$$inline_675("Renderer Options"));
+GFX$$inline_673.imageUpdateOption = rendererOptions$$inline_677.register(new Option$$inline_674("", "imageUpdate", "boolean", !0, "Enable image updating."));
+GFX$$inline_673.imageConvertOption = rendererOptions$$inline_677.register(new Option$$inline_674("", "imageConvert", "boolean", !0, "Enable image conversion."));
+GFX$$inline_673.stageOptions = shumwayOptions$$inline_676.register(new OptionSet$$inline_675("Stage Renderer Options"));
+GFX$$inline_673.forcePaint = GFX$$inline_673.stageOptions.register(new Option$$inline_674("", "forcePaint", "boolean", !1, "Force repainting."));
+GFX$$inline_673.ignoreViewport = GFX$$inline_673.stageOptions.register(new Option$$inline_674("", "ignoreViewport", "boolean", !1, "Cull elements outside of the viewport."));
+GFX$$inline_673.viewportLoupeDiameter = GFX$$inline_673.stageOptions.register(new Option$$inline_674("", "viewportLoupeDiameter", "number", 256, "Size of the viewport loupe.", {range:{min:1, max:1024, step:1}}));
+GFX$$inline_673.disableClipping = GFX$$inline_673.stageOptions.register(new Option$$inline_674("", "disableClipping", "boolean", !1, "Disable clipping."));
+GFX$$inline_673.debugClipping = GFX$$inline_673.stageOptions.register(new Option$$inline_674("", "debugClipping", "boolean", !1, "Disable clipping."));
+GFX$$inline_673.hud = GFX$$inline_673.stageOptions.register(new Option$$inline_674("", "hud", "boolean", !1, "Enable HUD."));
+var webGLOptions$$inline_678 = GFX$$inline_673.stageOptions.register(new OptionSet$$inline_675("WebGL Options"));
+GFX$$inline_673.perspectiveCamera = webGLOptions$$inline_678.register(new Option$$inline_674("", "pc", "boolean", !1, "Use perspective camera."));
+GFX$$inline_673.perspectiveCameraFOV = webGLOptions$$inline_678.register(new Option$$inline_674("", "pcFOV", "number", 60, "Perspective Camera FOV."));
+GFX$$inline_673.perspectiveCameraDistance = webGLOptions$$inline_678.register(new Option$$inline_674("", "pcDistance", "number", 2, "Perspective Camera Distance."));
+GFX$$inline_673.perspectiveCameraAngle = webGLOptions$$inline_678.register(new Option$$inline_674("", "pcAngle", "number", 0, "Perspective Camera Angle."));
+GFX$$inline_673.perspectiveCameraAngleRotate = webGLOptions$$inline_678.register(new Option$$inline_674("", "pcRotate", "boolean", !1, "Rotate Use perspective camera."));
+GFX$$inline_673.perspectiveCameraSpacing = webGLOptions$$inline_678.register(new Option$$inline_674("", "pcSpacing", "number", .01, "Element Spacing."));
+GFX$$inline_673.perspectiveCameraSpacingInflate = webGLOptions$$inline_678.register(new Option$$inline_674("", "pcInflate", "boolean", !1, "Rotate Use perspective camera."));
+GFX$$inline_673.drawTiles = webGLOptions$$inline_678.register(new Option$$inline_674("", "drawTiles", "boolean", !1, "Draw WebGL Tiles"));
+GFX$$inline_673.drawSurfaces = webGLOptions$$inline_678.register(new Option$$inline_674("", "drawSurfaces", "boolean", !1, "Draw WebGL Surfaces."));
+GFX$$inline_673.drawSurface = webGLOptions$$inline_678.register(new Option$$inline_674("", "drawSurface", "number", -1, "Draw WebGL Surface #"));
+GFX$$inline_673.drawElements = webGLOptions$$inline_678.register(new Option$$inline_674("", "drawElements", "boolean", !0, "Actually call gl.drawElements. This is useful to test if the GPU is the bottleneck."));
+GFX$$inline_673.disableSurfaceUploads = webGLOptions$$inline_678.register(new Option$$inline_674("", "disableSurfaceUploads", "boolean", !1, "Disable surface uploads."));
+GFX$$inline_673.premultipliedAlpha = webGLOptions$$inline_678.register(new Option$$inline_674("", "premultipliedAlpha", "boolean", !1, "Set the premultipliedAlpha flag on getContext()."));
+GFX$$inline_673.unpackPremultiplyAlpha = webGLOptions$$inline_678.register(new Option$$inline_674("", "unpackPremultiplyAlpha", "boolean", !0, "Use UNPACK_PREMULTIPLY_ALPHA_WEBGL in pixelStorei."));
+var factorChoices$$inline_679 = {ZERO:0, ONE:1, SRC_COLOR:768, ONE_MINUS_SRC_COLOR:769, DST_COLOR:774, ONE_MINUS_DST_COLOR:775, SRC_ALPHA:770, ONE_MINUS_SRC_ALPHA:771, DST_ALPHA:772, ONE_MINUS_DST_ALPHA:773, SRC_ALPHA_SATURATE:776, CONSTANT_COLOR:32769, ONE_MINUS_CONSTANT_COLOR:32770, CONSTANT_ALPHA:32771, ONE_MINUS_CONSTANT_ALPHA:32772};
+GFX$$inline_673.sourceBlendFactor = webGLOptions$$inline_678.register(new Option$$inline_674("", "sourceBlendFactor", "number", factorChoices$$inline_679.ONE, "", {choices:factorChoices$$inline_679}));
+GFX$$inline_673.destinationBlendFactor = webGLOptions$$inline_678.register(new Option$$inline_674("", "destinationBlendFactor", "number", factorChoices$$inline_679.ONE_MINUS_SRC_ALPHA, "", {choices:factorChoices$$inline_679}));
+var canvas2DOptions$$inline_680 = GFX$$inline_673.stageOptions.register(new OptionSet$$inline_675("Canvas2D Options"));
+GFX$$inline_673.clipDirtyRegions = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "clipDirtyRegions", "boolean", !1, "Clip dirty regions."));
+GFX$$inline_673.clipCanvas = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "clipCanvas", "boolean", !1, "Clip Regions."));
+GFX$$inline_673.cull = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "cull", "boolean", !1, "Enable culling."));
+GFX$$inline_673.snapToDevicePixels = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "snapToDevicePixels", "boolean", !1, ""));
+GFX$$inline_673.imageSmoothing = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "imageSmoothing", "boolean", !1, ""));
+GFX$$inline_673.masking = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "masking", "boolean", !0, "Composite Mask."));
+GFX$$inline_673.blending = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "blending", "boolean", !0, ""));
+GFX$$inline_673.debugLayers = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "debugLayers", "boolean", !1, ""));
+GFX$$inline_673.filters = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "filters", "boolean", !0, ""));
+GFX$$inline_673.cacheShapes = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "cacheShapes", "boolean", !0, ""));
+GFX$$inline_673.cacheShapesMaxSize = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "cacheShapesMaxSize", "number", 256, "", {range:{min:1, max:1024, step:1}}));
+GFX$$inline_673.cacheShapesThreshold = canvas2DOptions$$inline_680.register(new Option$$inline_674("", "cacheShapesThreshold", "number", 256, "", {range:{min:1, max:1024, step:1}}));
 (function(f) {
   (function(b) {
     (function(g) {
