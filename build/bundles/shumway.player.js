@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.269";
-Shumway$$inline_18.build = "aedf470";
+Shumway$$inline_18.version = "0.11.271";
+Shumway$$inline_18.build = "3b6ba78";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -350,18 +350,18 @@ var START_TIME = performance.now();
         this._f32[e + 3] = m;
         this._offset += 16;
       };
-      a.prototype.write6Floats = function(a, h, c, m, e, q) {
+      a.prototype.write6Floats = function(a, h, c, m, e, d) {
         this.ensureCapacity(this._offset + 24);
-        this.write6FloatsUnsafe(a, h, c, m, e, q);
+        this.write6FloatsUnsafe(a, h, c, m, e, d);
       };
-      a.prototype.write6FloatsUnsafe = function(a, h, c, m, e, q) {
-        var d = this._offset >> 2;
-        this._f32[d + 0] = a;
-        this._f32[d + 1] = h;
-        this._f32[d + 2] = c;
-        this._f32[d + 3] = m;
-        this._f32[d + 4] = e;
-        this._f32[d + 5] = q;
+      a.prototype.write6FloatsUnsafe = function(a, h, c, m, e, d) {
+        var q = this._offset >> 2;
+        this._f32[q + 0] = a;
+        this._f32[q + 1] = h;
+        this._f32[q + 2] = c;
+        this._f32[q + 3] = m;
+        this._f32[q + 4] = e;
+        this._f32[q + 5] = d;
         this._offset += 24;
       };
       a.prototype.subF32View = function() {
@@ -4621,9 +4621,12 @@ var __extends = this.__extends || function(f, b) {
       c.onprogress = function(a) {
         v || (l = a.loaded, p = a.total, b(new Uint8Array(c.response), {loaded:l, total:p}));
       };
-      c.onreadystatechange = function(q) {
+      c.onreadystatechange = function(d) {
         2 === c.readyState && a && a(e, c.status, c.getAllResponseHeaders());
-        4 === c.readyState && (200 !== c.status && 0 !== c.status || null === c.response && (0 === p || l !== p) ? g(c.statusText) : (v && (q = c.response, b(new Uint8Array(q), {loaded:q.byteLength, total:q.byteLength})), d && d()));
+        4 === c.readyState && (200 !== c.status && 0 !== c.status || null === c.response && (0 === p || l !== p) ? g(c.statusText) : v && (d = c.response, b(new Uint8Array(d), {loaded:d.byteLength, total:d.byteLength})));
+      };
+      c.onload = function() {
+        d && d();
       };
       this.mimeType && c.setRequestHeader("Content-Type", this.mimeType);
       c.send(this.data || null);
@@ -6831,7 +6834,7 @@ console.time("Load AVM2 Dependencies");
     ProxyNextNameIndexError:{code:2105, message:"The Proxy class does not implement nextNameIndex. It must be overridden by a subclass."}, ProxyNextNameError:{code:2106, message:"The Proxy class does not implement nextName. It must be overridden by a subclass."}, ProxyNextValueError:{code:2107, message:"The Proxy class does not implement nextValue. It must be overridden by a subclass."}, TooFewArgumentsError:{code:2001, message:"Too few arguments were specified; got %1, %2 expected."}, ParamTypeError:{code:2005, 
     message:"Parameter %1 is of the incorrect type. Should be type %2."}, SocketConnectError:{code:2011, message:"Socket connection failed to %1:%2."}, CantAddSelfError:{code:2024, message:"An object cannot be added as a child of itself."}, NotAChildError:{code:2025, message:"The supplied DisplayObject must be a child of the caller."}, DelayRangeError:{code:2066, message:"The Timer delay specified is out of range."}, ExternalInterfaceNotAvailableError:{code:2067, message:"The ExternalInterface is not available in this container. ExternalInterface requires Internet Explorer ActiveX, Firefox, Mozilla 1.7.5 and greater, or other browsers that support NPRuntime."}, 
     InvalidLoaderMethodError:{code:2069, message:"The Loader class does not implement this method."}, InvalidStageMethodError:{code:2071, message:"The Stage class does not implement this property or method."}, LoadingObjectNotSWFError:{code:2098, message:"The loading object is not a .swf file, you cannot request SWF properties from it."}, LoadingObjectNotInitializedError:{code:2099, message:"The loading object is not sufficiently loaded to provide this information."}, DecodeParamError:{code:2101, 
-    message:"The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs."}, SceneNotFoundError:{code:2108, message:"Scene %1 was not found."}, FrameLabelNotFoundError:{code:2109, message:"Frame label %1 not found in scene %2."}, InvalidLoaderInfoMethodError:{code:2118, message:"The LoaderInfo class does not implement this method."}, CantAddParentError:{code:2150, message:"An object cannot be added as a child to one of it's children (or children's children, etc.)."}, 
+    message:"The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs."}, SceneNotFoundError:{code:2108, message:"Scene %1 was not found."}, FrameLabelNotFoundError:{code:2109, message:"Frame label %1 not found in scene %2."}, InvalidLoaderInfoMethodError:{code:2118, message:"The LoaderInfo class does not implement this method."}, UnknownFileTypeError:{code:2124, message:"Loaded file is an unknown type."}, CantAddParentError:{code:2150, message:"An object cannot be added as a child to one of it's children (or children's children, etc.)."}, 
     ObjectWithStringsParamError:{code:2196, message:"Parameter %1 must be an Object with only String values."}, InternalErrorIV:{code:3343, message:"Internal Error."}};
     for (var r in b.Errors) {
       var t = b.Errors[r];
@@ -20221,8 +20224,9 @@ __extends = this.__extends || function(f, b) {
           c instanceof b && (a = c.eagerlyParsedSymbolsList.length, e = c.framesLoaded), c.appendLoadedData(n);
         } else {
           var c = n, l = d.bytesTotal, p = this._env, v = c[0] << 16 | c[1] << 8 | c[2], c = 22355 === (v & 65535) ? new b(c, l, p) : 16767231 === v || 8998990 === v || 4671814 === v ? new f.ImageFile(c, l, p) : null;
-          c = this._file = c;
-          this._listener.onLoadOpen(c);
+          if (c = this._file = c) {
+            this._listener.onLoadOpen(c);
+          }
         }
         if (c instanceof b) {
           this.processSWFFileUpdate(c, a, e);
@@ -20238,12 +20242,16 @@ __extends = this.__extends || function(f, b) {
     };
     k.prototype.processLoadClose = function() {
       var g = this._file;
-      if (g instanceof b) {
-        var d = g.eagerlyParsedSymbolsList.length, a = g.framesLoaded;
-        g.finishLoading();
-        this.processSWFFileUpdate(g, d, a);
+      if (g) {
+        if (g instanceof b) {
+          var d = g.eagerlyParsedSymbolsList.length, a = g.framesLoaded;
+          g.finishLoading();
+          this.processSWFFileUpdate(g, d, a);
+        }
+        g.bytesLoaded !== g.bytesTotal ? (f.Debug.warning("Shouldn't have reached this: aborting a load should prevent this from being called."), f.Debug.warning(Error().stack)) : f.SWF.leaveTimeline();
+      } else {
+        this._listener.onLoadOpen(null);
       }
-      g && g.bytesLoaded === g.bytesTotal ? f.SWF.leaveTimeline() : (f.Debug.warning("Shouldn't have reached this: aborting a load should prevent this from being called."), f.Debug.warning(Error().stack));
     };
     k.prototype.processSWFFileUpdate = function(b, d, a) {
       var c;
@@ -30400,7 +30408,7 @@ var RtmpJs;
               this._contentLoaderInfo._parameters = b;
             };
             h.prototype.onLoadOpen = function(a) {
-              this._contentLoaderInfo.setFile(a);
+              a ? this._contentLoaderInfo.setFile(a) : this._contentLoaderInfo.dispatchEvent(new this.sec.flash.events.IOErrorEvent(d.IOErrorEvent.IO_ERROR, !1, !1, b.Errors.UnknownFileTypeError.message, b.Errors.UnknownFileTypeError.code));
             };
             h.prototype.onLoadProgress = function(a) {
               this._queuedLoadUpdate = a;

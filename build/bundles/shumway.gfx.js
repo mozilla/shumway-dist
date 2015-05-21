@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.269";
-Shumway$$inline_0.build = "aedf470";
+Shumway$$inline_0.version = "0.11.271";
+Shumway$$inline_0.build = "3b6ba78";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -4616,7 +4616,10 @@ var __extends = this.__extends || function(l, n) {
       };
       h.onreadystatechange = function(a) {
         2 === h.readyState && u && u(r, h.status, h.getAllResponseHeaders());
-        4 === h.readyState && (200 !== h.status && 0 !== h.status || null === h.response && (0 === q || p !== q) ? g(h.statusText) : (v && (a = h.response, b(new Uint8Array(a), {loaded:a.byteLength, total:a.byteLength})), k && k()));
+        4 === h.readyState && (200 !== h.status && 0 !== h.status || null === h.response && (0 === q || p !== q) ? g(h.statusText) : v && (a = h.response, b(new Uint8Array(a), {loaded:a.byteLength, total:a.byteLength})));
+      };
+      h.onload = function() {
+        k && k();
       };
       this.mimeType && h.setRequestHeader("Content-Type", this.mimeType);
       h.send(this.data || null);
