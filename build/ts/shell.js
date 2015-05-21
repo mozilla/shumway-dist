@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.267';
-    Shumway.build = '9f841db';
+    Shumway.version = '0.11.269';
+    Shumway.build = 'aedf470';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -974,7 +974,7 @@ var Shumway;
                 // console.log('registerFont');
                 return Promise.resolve(undefined);
             };
-            ShellGFXServer.prototype.registerImage = function (syncId, symbolId, data) {
+            ShellGFXServer.prototype.registerImage = function (syncId, symbolId, data, alphaData) {
                 // console.log('registerImage');
                 return Promise.resolve({ width: 100, height: 50 });
             };

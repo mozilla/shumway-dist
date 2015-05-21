@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.267";
-Shumway$$inline_0.build = "9f841db";
+Shumway$$inline_0.version = "0.11.269";
+Shumway$$inline_0.build = "aedf470";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -9616,6 +9616,13 @@ __extends = this.__extends || function(l, n) {
         f = this.getBounds();
         (new d.Canvas2DRenderer(this._canvas, null)).renderNode(a, b || f, e);
       };
+      e.prototype.mask = function(a) {
+        for (var e = this.imageData, d = new Uint32Array(e.data.buffer), f = 0;f < a.length;f++) {
+          var b = d[f], h = b >>> 0 & 255, g = b >>> 8 & 255, b = b >>> 16 & 255, k = a[f], p = 255 / k, h = Math.min(h, k) * p, g = Math.min(g, k) * p, b = Math.min(b, k) * p;
+          d[f] = k << 24 | b << 16 | g << 8 | h;
+        }
+        this._context.putImageData(e, 0, 0);
+      };
       e.prototype._initializeSourceCanvas = function(a) {
         this._canvas = a;
         this._context = this._canvas.getContext("2d");
@@ -9909,8 +9916,8 @@ __extends = this.__extends || function(l, n) {
         t && h && (h.lineTo(w, X), k && k.lineTo(w, X));
         return f;
       };
-      e.prototype._createMorphPath = function(a, d, e, f, b, h, g) {
-        a = new r(a, e, f, b);
+      e.prototype._createMorphPath = function(a, d, e, b, f, h, g) {
+        a = new r(a, e, b, f);
         this._morphPaths[d].push(a);
         a.path.moveTo(h, g);
         return a.path;
@@ -12513,24 +12520,25 @@ __extends = this.__extends || function(l, n) {
           l.registerCSSFont(a, b, !inFirefox);
           inFirefox ? c(null) : window.setTimeout(c, 400);
         };
-        a.prototype.registerImage = function(a, b, c, d, e) {
-          this._registerAsset(a, b, this._decodeImage(c, d, e));
+        a.prototype.registerImage = function(a, b, c, d, e, f) {
+          this._registerAsset(a, b, this._decodeImage(c, d, e, f));
         };
         a.prototype.registerVideo = function(a) {
           this._registerAsset(a, 0, new r(a, this));
         };
-        a.prototype._decodeImage = function(a, b, d) {
-          var e = new Image, f = h.FromImage(e);
-          e.src = URL.createObjectURL(new Blob([b], {type:l.getMIMETypeForImageType(a)}));
-          e.onload = function() {
-            f.setBounds(new c(0, 0, e.width, e.height));
-            f.invalidate();
-            d({width:e.width, height:e.height});
+        a.prototype._decodeImage = function(a, b, d, e) {
+          var f = new Image, g = h.FromImage(f);
+          f.src = URL.createObjectURL(new Blob([b], {type:l.getMIMETypeForImageType(a)}));
+          f.onload = function() {
+            g.setBounds(new c(0, 0, f.width, f.height));
+            d && g.mask(d);
+            g.invalidate();
+            e({width:f.width, height:f.height});
           };
-          e.onerror = function() {
-            d(null);
+          f.onerror = function() {
+            e(null);
           };
-          return f;
+          return g;
         };
         a.prototype.sendVideoPlaybackEvent = function(a, b, c) {
           this._easelHost.sendVideoPlaybackEvent(a, b, c);
@@ -12858,8 +12866,8 @@ __extends = this.__extends || function(l, n) {
       t.prototype.processRegisterFont = function(a, b, g) {
         this._context.registerFont(a, b, g);
       };
-      t.prototype.processRegisterImage = function(a, b, g, h, l) {
-        this._context.registerImage(a, b, g, h, l);
+      t.prototype.processRegisterImage = function(a, b, g, h, l, n) {
+        this._context.registerImage(a, b, g, h, l, n);
       };
       t.prototype.processFSCommand = function(a, b) {
         arguments.length;
@@ -12928,8 +12936,8 @@ __extends = this.__extends || function(l, n) {
                 a.result = l.toPlainObject();
               }
             } else {
-              "frame" === a.type ? this.processFrame() : "videoControl" === a.type ? a.result = this.processVideoControl(a.id, a.eventType, a.data) : "registerFont" === a.type ? this.processRegisterFont(a.syncId, a.data, this._sendRegisterFontResponse.bind(this, a.requestId)) : "registerImage" === a.type ? this.processRegisterImage(a.syncId, a.symbolId, a.imageType, a.data, this._sendRegisterImageResponse.bind(this, a.requestId)) : "fscommand" === a.type && this.processFSCommand(a.command, a.args)
-              ;
+              "frame" === a.type ? this.processFrame() : "videoControl" === a.type ? a.result = this.processVideoControl(a.id, a.eventType, a.data) : "registerFont" === a.type ? this.processRegisterFont(a.syncId, a.data, this._sendRegisterFontResponse.bind(this, a.requestId)) : "registerImage" === a.type ? this.processRegisterImage(a.syncId, a.symbolId, a.imageType, a.data, a.alphaData, this._sendRegisterImageResponse.bind(this, a.requestId)) : "fscommand" === a.type && this.processFSCommand(a.command, 
+              a.args);
             }
           }
         };
@@ -13122,13 +13130,14 @@ __extends = this.__extends || function(l, n) {
           b(c, a(e));
           this._createRecord(4, c);
         };
-        d.prototype.recordImage = function(d, e, c, g) {
-          var h = new r;
-          h.writeInt(d);
-          h.writeInt(e);
-          h.writeInt(c);
-          b(h, a(g));
-          this._createRecord(5, h);
+        d.prototype.recordImage = function(d, e, c, g, h) {
+          var k = new r;
+          k.writeInt(d);
+          k.writeInt(e);
+          k.writeInt(c);
+          b(k, a(g));
+          b(k, a(h));
+          this._createRecord(5, k);
         };
         d.prototype.recordFSCommand = function(a, b) {
           var c = new r;
@@ -13264,7 +13273,7 @@ __extends = this.__extends || function(l, n) {
               break;
             case 5:
               a = this._parser.parseImage();
-              this.processRegisterImage(a.syncId, a.symbolId, a.imageType, a.data, function() {
+              this.processRegisterImage(a.syncId, a.symbolId, a.imageType, a.data, a.alphaData, function() {
               });
               break;
             case 6:
@@ -13317,7 +13326,7 @@ __extends = this.__extends || function(l, n) {
                 this._recorder.recordFont(a.syncId, a.data);
                 break;
               case "registerImage":
-                this._recorder.recordImage(a.syncId, a.symbolId, a.imageType, a.data);
+                this._recorder.recordImage(a.syncId, a.symbolId, a.imageType, a.data, a.alphaData);
                 break;
               case "fscommand":
                 this._recorder.recordFSCommand(a.command, a.args);
