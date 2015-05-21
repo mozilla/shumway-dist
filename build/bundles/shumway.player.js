@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.271";
-Shumway$$inline_18.build = "3b6ba78";
+Shumway$$inline_18.version = "0.11.273";
+Shumway$$inline_18.build = "81b4515";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -62,19 +62,19 @@ var START_TIME = performance.now();
     if (c > f.UINT32_CHAR_BUFFER_LENGTH) {
       return !1;
     }
-    var e = 0, h = a.charCodeAt(e++) - 48;
+    var u = 0, h = a.charCodeAt(u++) - 48;
     if (1 > h || 9 < h) {
       return !1;
     }
-    for (var d = 0, l = 0;e < c;) {
-      l = a.charCodeAt(e++) - 48;
-      if (0 > l || 9 < l) {
+    for (var e = 0, d = 0;u < c;) {
+      d = a.charCodeAt(u++) - 48;
+      if (0 > d || 9 < d) {
         return !1;
       }
-      d = h;
-      h = 10 * h + l;
+      e = h;
+      h = 10 * h + d;
     }
-    return d < f.UINT32_MAX_DIV_10 || d === f.UINT32_MAX_DIV_10 && l <= f.UINT32_MAX_MOD_10 ? !0 : !1;
+    return e < f.UINT32_MAX_DIV_10 || e === f.UINT32_MAX_DIV_10 && d <= f.UINT32_MAX_MOD_10 ? !0 : !1;
   }
   (function(a) {
     a[a._0 = 48] = "_0";
@@ -663,8 +663,8 @@ var START_TIME = performance.now();
     a.base64ArrayBuffer = function(a) {
       var h = "";
       a = new Uint8Array(a);
-      for (var d = a.byteLength, q = d % 3, d = d - q, l, p, v, b, w = 0;w < d;w += 3) {
-        b = a[w] << 16 | a[w + 1] << 8 | a[w + 2], l = (b & 16515072) >> 18, p = (b & 258048) >> 12, v = (b & 4032) >> 6, b &= 63, h += e("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[l], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[p], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[v], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[b]);
+      for (var d = a.byteLength, q = d % 3, d = d - q, l, p, v, b, g = 0;g < d;g += 3) {
+        b = a[g] << 16 | a[g + 1] << 8 | a[g + 2], l = (b & 16515072) >> 18, p = (b & 258048) >> 12, v = (b & 4032) >> 6, b &= 63, h += e("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[l], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[p], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[v], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[b]);
       }
       1 == q ? (b = a[d], h += c("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(b & 252) >> 2], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(b & 3) << 4], "==")) : 2 == q && (b = a[d] << 8 | a[d + 1], h += e("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(b & 64512) >> 10], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(b & 1008) >> 4], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(b & 15) << 
       2], "="));
@@ -1879,6 +1879,16 @@ var START_TIME = performance.now();
       a = (Math.imul(a >> 0 & 255, d) + 127) / 255 | 0;
       return d << 24 | e << 16 | h << 8 | a;
     }
+    function d() {
+      if (!u) {
+        u = new Uint8Array(65536);
+        for (var a = 0;256 > a;a++) {
+          for (var c = 0;256 > c;c++) {
+            u[(c << 8) + a] = Math.imul(255, a) / c;
+          }
+        }
+      }
+    }
     a.RGBAToARGB = function(a) {
       return a >> 8 & 16777215 | (a & 255) << 24;
     };
@@ -1920,16 +1930,11 @@ var START_TIME = performance.now();
       return e << 24 | h << 16 | c << 8 | a;
     };
     a.premultiplyARGB = c;
-    var d;
-    a.ensureUnpremultiplyTable = function() {
-      if (!d) {
-        d = new Uint8Array(65536);
-        for (var a = 0;256 > a;a++) {
-          for (var c = 0;256 > c;c++) {
-            d[(c << 8) + a] = Math.imul(255, a) / c;
-          }
-        }
-      }
+    var u;
+    a.ensureUnpremultiplyTable = d;
+    a.getUnpremultiplyTable = function() {
+      d();
+      return u;
     };
     a.tableLookupUnpremultiplyARGB = function(a) {
       a |= 0;
@@ -1940,10 +1945,10 @@ var START_TIME = performance.now();
       if (255 === c) {
         return a;
       }
-      var h, e, q = c << 8, u = d;
-      e = u[q + (a >> 16 & 255)];
-      h = u[q + (a >> 8 & 255)];
-      a = u[q + (a >> 0 & 255)];
+      var h, e, d = c << 8, m = u;
+      e = m[d + (a >> 16 & 255)];
+      h = m[d + (a >> 8 & 255)];
+      a = m[d + (a >> 0 & 255)];
       return c << 24 | e << 16 | h << 8 | a;
     };
     a.blendPremultipliedBGRA = function(a, c) {
@@ -1953,44 +1958,44 @@ var START_TIME = performance.now();
       e = Math.imul(a >> 8 & 16711935, e) >> 8;
       return ((c >> 8 & 16711935) + e & 16711935) << 8 | (c & 16711935) + h & 16711935;
     };
-    var u = e.swap32;
-    a.convertImage = function(a, e, q, l) {
-      var p = q.length;
+    var l = e.swap32;
+    a.convertImage = function(a, e, d, m) {
+      var q = d.length;
       if (a === e) {
-        if (q !== l) {
-          for (a = 0;a < p;a++) {
-            l[a] = q[a];
+        if (d !== m) {
+          for (a = 0;a < q;a++) {
+            m[a] = d[a];
           }
         }
       } else {
         if (1 === a && 3 === e) {
-          for (f.ColorUtilities.ensureUnpremultiplyTable(), a = 0;a < p;a++) {
-            var b = q[a];
-            e = b & 255;
+          for (f.ColorUtilities.ensureUnpremultiplyTable(), a = 0;a < q;a++) {
+            var p = d[a];
+            e = p & 255;
             if (0 === e) {
-              l[a] = 0;
+              m[a] = 0;
             } else {
               if (255 === e) {
-                l[a] = 4278190080 | b >> 8 & 16777215;
+                m[a] = 4278190080 | p >> 8 & 16777215;
               } else {
-                var g = b >> 24 & 255, n = b >> 16 & 255, b = b >> 8 & 255, r = e << 8, t = d, b = t[r + b], n = t[r + n], g = t[r + g];
-                l[a] = e << 24 | g << 16 | n << 8 | b;
+                var b = p >> 24 & 255, g = p >> 16 & 255, p = p >> 8 & 255, n = e << 8, r = u, p = r[n + p], g = r[n + g], b = r[n + b];
+                m[a] = e << 24 | b << 16 | g << 8 | p;
               }
             }
           }
         } else {
           if (2 === a && 3 === e) {
-            for (a = 0;a < p;a++) {
-              l[a] = u(q[a]);
+            for (a = 0;a < q;a++) {
+              m[a] = l(d[a]);
             }
           } else {
             if (3 === a && 1 === e) {
-              for (a = 0;a < p;a++) {
-                e = q[a], l[a] = u(c(e & 4278255360 | e >> 16 & 255 | (e & 255) << 16));
+              for (a = 0;a < q;a++) {
+                e = d[a], m[a] = l(c(e & 4278255360 | e >> 16 & 255 | (e & 255) << 16));
               }
             } else {
-              for (k.somewhatImplemented("Image Format Conversion: " + v[a] + " -> " + v[e]), a = 0;a < p;a++) {
-                l[a] = q[a];
+              for (k.somewhatImplemented("Image Format Conversion: " + v[a] + " -> " + v[e]), a = 0;a < q;a++) {
+                m[a] = d[a];
               }
             }
           }
@@ -14461,20 +14466,20 @@ function as3ToLowerCase(f) {
             var q = h[u], p = q.name;
             "xmlns:" === p.substring(0, 6) ? (p = p.substring(6), q = q.value, this.lookupNs(p) !== q && (m.lookup[p] = a(q), q = b.internPrefixedNamespace(0, q, p), m.namespaces.push(q)), h[u] = null) : "xmlns" === p ? (q = q.value, this.lookupDefaultNs() !== q && (m.xmlns = a(q), q = b.internNamespace(0, q), m.namespaces.push(q)), h[u] = null) : "xml:" === p.substring(0, 4) && (p = p.substring(4), m[p] = a(q.value));
           }
-          var l = [];
+          var g = [];
           m.namespaces.forEach(function(a) {
-            a.prefix && m.lookup[a.prefix] !== a.uri || l.push(a);
+            a.prefix && m.lookup[a.prefix] !== a.uri || g.push(a);
           });
           d[d.length - 1].inScopes.forEach(function(a) {
-            (!a.prefix || a.prefix in m.lookup) && (a.prefix || "xmlns" in m) || l.push(a);
+            (!a.prefix || a.prefix in m.lookup) && (a.prefix || "xmlns" in m) || g.push(a);
           });
-          m.inScopes = l;
+          m.inScopes = g;
           d.push(m);
           p = [];
           for (u = 0;u < h.length;++u) {
             (q = h[u]) && p.push({name:this.getName(q.name, !1), value:q.value});
           }
-          this.beginElement(this.getName(c, !0), p, l, e);
+          this.beginElement(this.getName(c, !0), p, g, e);
           e && d.pop();
         };
         h.prototype.onEndElement = function(a) {
@@ -18218,10 +18223,10 @@ console.time("Load SWF Parser");
           var m = b.readUb(a, c, 5);
           e = b.readSb(a, c, m);
           d = b.readSb(a, c, m);
-          var q = b.readSb(a, c, m), m = b.readSb(a, c, m);
+          var u = b.readSb(a, c, m), m = b.readSb(a, c, m);
           h.xMin = e;
           h.xMax = d;
-          h.yMin = q;
+          h.yMin = u;
           h.yMax = m;
           b.align(a, c);
         }
@@ -18250,12 +18255,12 @@ console.time("Load SWF Parser");
         }
         function H(a, c, h, e) {
           b.align(a, c);
-          var d = b.readUb(a, c, 1), m = b.readUb(a, c, 1), q = b.readUb(a, c, 4);
-          m ? (h.redMultiplier = b.readSb(a, c, q), h.greenMultiplier = b.readSb(a, c, q), h.blueMultiplier = b.readSb(a, c, q), h.alphaMultiplier = 4 < e ? b.readSb(a, c, q) : 256) : (h.redMultiplier = 256, h.greenMultiplier = 256, h.blueMultiplier = 256, h.alphaMultiplier = 256);
-          d ? (h.redOffset = b.readSb(a, c, q), h.greenOffset = b.readSb(a, c, q), h.blueOffset = b.readSb(a, c, q), h.alphaOffset = 4 < e ? b.readSb(a, c, q) : 0) : (h.redOffset = 0, h.greenOffset = 0, h.blueOffset = 0, h.alphaOffset = 0);
+          var d = b.readUb(a, c, 1), m = b.readUb(a, c, 1), u = b.readUb(a, c, 4);
+          m ? (h.redMultiplier = b.readSb(a, c, u), h.greenMultiplier = b.readSb(a, c, u), h.blueMultiplier = b.readSb(a, c, u), h.alphaMultiplier = 4 < e ? b.readSb(a, c, u) : 256) : (h.redMultiplier = 256, h.greenMultiplier = 256, h.blueMultiplier = 256, h.alphaMultiplier = 256);
+          d ? (h.redOffset = b.readSb(a, c, u), h.greenOffset = b.readSb(a, c, u), h.blueOffset = b.readSb(a, c, u), h.alphaOffset = 4 < e ? b.readSb(a, c, u) : 0) : (h.redOffset = 0, h.greenOffset = 0, h.blueOffset = 0, h.alphaOffset = 0);
           b.align(a, c);
         }
-        function C(a, c, h, e, d, m, q, u, p, l) {
+        function C(a, c, h, e, d, m, u, q, p, l) {
           var v, f = h.type = b.readUb(a, c, 1), w = b.readUb(a, c, 5);
           v = h.eos = !(f || w);
           if (f) {
@@ -18265,13 +18270,13 @@ console.time("Load SWF Parser");
             if (h.move = w & 1) {
               l = b.readUb(a, c, 5), h.moveX = b.readSb(a, c, l), h.moveY = b.readSb(a, c, l);
             }
-            r && (h.fillStyle0 = b.readUb(a, c, q));
-            x && (h.fillStyle1 = b.readUb(a, c, q));
-            k && (h.lineStyle = b.readUb(a, c, u));
-            n && (a = G(a, c, h, e, d, m, p), u = a.lineBits, q = a.fillBits);
+            r && (h.fillStyle0 = b.readUb(a, c, u));
+            x && (h.fillStyle1 = b.readUb(a, c, u));
+            k && (h.lineStyle = b.readUb(a, c, q));
+            n && (a = G(a, c, h, e, d, m, p), q = a.lineBits, u = a.fillBits);
             a = l;
           }
-          return {type:f, flags:w, eos:v, fillBits:q, lineBits:u, bits:a};
+          return {type:f, flags:w, eos:v, fillBits:u, lineBits:q, bits:a};
         }
         function G(a, c, h, e, d, m, q) {
           var p, l = b.readUi8(a, c);
@@ -18361,7 +18366,7 @@ console.time("Load SWF Parser");
             case 7:
               var d;
               d = 4 === e || 7 === e ? b.readUi8(a, c) : 3 === e ? 2 : 1;
-              for (var m = h.colors = [], q = d;q--;) {
+              for (var m = h.colors = [], u = d;u--;) {
                 m.push(w(a, c));
               }
               if (4 === e || 7 === e) {
@@ -18408,13 +18413,13 @@ console.time("Load SWF Parser");
         function z(a, b, c, h, e) {
           var d, m;
           m = A(a, b);
-          var q = m.fillBits, u = m.lineBits, p = c.records = [];
+          var u = m.fillBits, q = m.lineBits, p = c.records = [];
           do {
             var l = {};
-            m = C(a, b, l, h, e, !1, q, u, !1, d);
+            m = C(a, b, l, h, e, !1, u, q, !1, d);
             c = m.eos;
-            q = m.fillBits;
-            u = m.lineBits;
+            u = m.fillBits;
+            q = m.lineBits;
             d = m.bits;
             p.push(l);
           } while (!c);
@@ -18454,15 +18459,15 @@ console.time("Load SWF Parser");
         }, 15:l, 17:void 0, 18:void 0, 19:void 0, 20:p, 21:d, 22:t, 23:void 0, 24:void 0, 26:k, 28:n, 32:t, 33:e, 34:a, 35:d, 36:p, 37:function(a, c, h, e, d) {
           h || (h = {});
           h.id = b.readUi16(a, c);
-          var q = h.bbox = {};
-          m(a, c, q, e, d);
+          var u = h.bbox = {};
+          m(a, c, u, e, d);
           e = b.readUi16(a, c);
           d = h.hasText = e >> 7 & 1;
           h.wordWrap = e >> 6 & 1;
           h.multiline = e >> 5 & 1;
           h.password = e >> 4 & 1;
           h.readonly = e >> 3 & 1;
-          var q = h.hasColor = e >> 2 & 1, u = h.hasMaxLength = e >> 1 & 1, p = h.hasFont = e & 1, l = h.hasFontClass = e >> 15 & 1;
+          var u = h.hasColor = e >> 2 & 1, q = h.hasMaxLength = e >> 1 & 1, p = h.hasFont = e & 1, l = h.hasFontClass = e >> 15 & 1;
           h.autoSize = e >> 14 & 1;
           var v = h.hasLayout = e >> 13 & 1;
           h.noSelect = e >> 12 & 1;
@@ -18473,8 +18478,8 @@ console.time("Load SWF Parser");
           p && (h.fontId = b.readUi16(a, c));
           l && (h.fontClass = b.readString(a, c, -1));
           p && (h.fontHeight = b.readUi16(a, c));
-          q && (h.color = w(a, c));
-          u && (h.maxLength = b.readUi16(a, c));
+          u && (h.color = w(a, c));
+          q && (h.maxLength = b.readUi16(a, c));
           v && (h.align = b.readUi8(a, c), h.leftMargin = b.readUi16(a, c), h.rightMargin = b.readUi16(a, c), h.indent = b.readSi16(a, c), h.leading = b.readSi16(a, c));
           h.variableName = b.readString(a, c, -1);
           d && (h.initialText = b.readString(a, c, -1));
@@ -18482,8 +18487,8 @@ console.time("Load SWF Parser");
         }, 39:void 0, 43:void 0, 45:void 0, 46:t, 48:v, 56:void 0, 57:void 0, 58:void 0, 59:void 0, 60:void 0, 61:void 0, 62:void 0, 64:void 0, 65:void 0, 66:void 0, 69:void 0, 70:k, 71:void 0, 72:void 0, 73:void 0, 74:void 0, 75:v, 76:void 0, 77:void 0, 78:function(a, c, h, e, d) {
           h || (h = {});
           h.symbolId = b.readUi16(a, c);
-          var q = h.splitter = {};
-          m(a, c, q, e, d);
+          var u = h.splitter = {};
+          m(a, c, u, e, d);
           return h;
         }, 82:void 0, 83:t, 84:t, 86:h, 87:function(a, c, h, e, d, m) {
           h || (h = {});
@@ -18496,8 +18501,8 @@ console.time("Load SWF Parser");
         r.readHeader = function(a, c) {
           var h = b.readUb(a, c, 5), e = b.readSb(a, c, h), d = b.readSb(a, c, h), m = b.readSb(a, c, h), h = b.readSb(a, c, h);
           b.align(a, c);
-          var q = b.readUi8(a, c), q = b.readUi8(a, c) + q / 256, u = b.readUi16(a, c);
-          return {frameRate:q, frameCount:u, bounds:new f.Bounds(e, m, d, h)};
+          var u = b.readUi8(a, c), u = b.readUi8(a, c) + u / 256, q = b.readUi16(a, c);
+          return {frameRate:u, frameCount:q, bounds:new f.Bounds(e, m, d, h)};
         };
       })(b.LowLevel || (b.LowLevel = {}));
     })(b.Parser || (b.Parser = {}));
@@ -18972,9 +18977,9 @@ console.time("Load SWF Parser");
             b = e.colors = [];
             c = e.ratios = [];
             for (var m = 0;m < d.length;m++) {
-              var q = d[m];
-              b.push(q.colorMorph);
-              c.push(q.ratioMorph);
+              var u = d[m];
+              b.push(u.colorMorph);
+              c.push(u.ratioMorph);
             }
             d = 819.2;
             break;
@@ -19105,9 +19110,9 @@ console.time("Load SWF Parser");
           this.commands.writeUnsignedByte(11);
           this.data.write4Ints(a, b, c, h);
         };
-        a.prototype.morphCurveTo = function(a, b, c, h, e, d, m, q) {
+        a.prototype.morphCurveTo = function(a, b, c, h, e, d, m, u) {
           this.curveTo(a, b, c, h);
-          this.morphData.write4Ints(e, d, m, q);
+          this.morphData.write4Ints(e, d, m, u);
         };
         a.prototype.toReversed = function() {
           return new a(this.commands, this.data, this.morphData, null, null, !0);
@@ -19137,8 +19142,8 @@ console.time("Load SWF Parser");
           } else {
             var c = this.commands.bytes, h = this.data.length >> 2, e = this.morphData ? this.morphData.ints : null, d = this.data.ints, m = 0;
             d[0] === b.x && d[1] === b.y && m++;
-            for (var q = this.commands.length, u = 2 * m;m < q;m++) {
-              u = this._writeCommand(c[m], u, d, e, a);
+            for (var u = this.commands.length, q = 2 * m;m < u;m++) {
+              q = this._writeCommand(c[m], q, d, e, a);
             }
             b.x = d[h - 2];
             b.y = d[h - 1];
@@ -19149,10 +19154,10 @@ console.time("Load SWF Parser");
           d[h] === b.x && d[h + 1] === b.y || this._writeCommand(9, h, d, m, a);
           if (1 !== c) {
             for (;1 < c--;) {
-              var h = h - 2, q = e[c];
-              a.writeCommandAndCoordinates(q, d[h], d[h + 1]);
+              var h = h - 2, u = e[c];
+              a.writeCommandAndCoordinates(u, d[h], d[h + 1]);
               m && a.writeMorphCoordinates(m[h], m[h + 1]);
-              11 === q && (h -= 2, a.writeCoordinates(d[h], d[h + 1]), m && a.writeMorphCoordinates(m[h], m[h + 1]));
+              11 === u && (h -= 2, a.writeCoordinates(d[h], d[h + 1]), m && a.writeMorphCoordinates(m[h], m[h + 1]));
             }
           }
           b.x = d[0];
@@ -19197,22 +19202,22 @@ console.time("Load SWF Parser");
             for (;h;) {
               h.storeStartAndEnd(), h = h.prev;
             }
-            for (var e = this.head(), m = e, q = h = null, u = e.prev;e;) {
-              for (;u;) {
-                u.startConnectsTo(e) && u.flipDirection(), u.connectsTo(e) ? (u.next !== e && (this.removeSegment(u), this.insertSegment(u, e)), e = u, u = e.prev) : (u.startConnectsTo(m) && u.flipDirection(), m.connectsTo(u) ? (this.removeSegment(u), m.next = u, u = u.prev, m.next.prev = m, m.next.next = null, m = m.next) : u = u.prev);
+            for (var e = this.head(), m = e, u = h = null, q = e.prev;e;) {
+              for (;q;) {
+                q.startConnectsTo(e) && q.flipDirection(), q.connectsTo(e) ? (q.next !== e && (this.removeSegment(q), this.insertSegment(q, e)), e = q, q = e.prev) : (q.startConnectsTo(m) && q.flipDirection(), m.connectsTo(q) ? (this.removeSegment(q), m.next = q, q = q.prev, m.next.prev = m, m.next.next = null, m = m.next) : q = q.prev);
               }
-              u = e.prev;
-              h ? (q.next = e, e.prev = q, q = m, q.next = null) : (h = e, q = m);
-              if (!u) {
+              q = e.prev;
+              h ? (u.next = e, e.prev = u, u = m, u.next = null) : (h = e, u = m);
+              if (!q) {
                 break;
               }
-              e = m = u;
-              u = e.prev;
+              e = m = q;
+              q = e.prev;
             }
             if (this.fillStyle) {
-              switch(u = this.fillStyle, e = u.morph, u.type) {
+              switch(q = this.fillStyle, e = q.morph, q.type) {
                 case 0:
-                  b.beginFill(u.color);
+                  b.beginFill(q.color);
                   e && b.writeMorphFill(e.color);
                   break;
                 case 16:
@@ -19220,7 +19225,7 @@ console.time("Load SWF Parser");
                 case 18:
                 ;
                 case 19:
-                  c(2, u, b);
+                  c(2, q, b);
                   e && b.writeMorphGradient(e.colors, e.ratios, e.transform);
                   break;
                 case 65:
@@ -19230,12 +19235,12 @@ console.time("Load SWF Parser");
                 case 67:
                 ;
                 case 66:
-                  b.beginBitmap(3, u.bitmapIndex, u.transform, u.repeat, u.smooth), e && b.writeMorphBitmap(e.transform);
+                  b.beginBitmap(3, q.bitmapIndex, q.transform, q.repeat, q.smooth), e && b.writeMorphBitmap(e.transform);
               }
             } else {
-              switch(u = this.lineStyle, e = u.morph, u.type) {
+              switch(q = this.lineStyle, e = q.morph, q.type) {
                 case 0:
-                  d(u, b);
+                  d(q, b);
                   e && a(e, b);
                   break;
                 case 16:
@@ -19243,8 +19248,8 @@ console.time("Load SWF Parser");
                 case 18:
                 ;
                 case 19:
-                  d(u, b);
-                  c(6, u, b);
+                  d(q, b);
+                  c(6, q, b);
                   e && (a(e, b), b.writeMorphGradient(e.colors, e.ratios, e.transform));
                   break;
                 case 65:
@@ -19254,12 +19259,12 @@ console.time("Load SWF Parser");
                 case 67:
                 ;
                 case 66:
-                  d(u, b), b.beginBitmap(7, u.bitmapIndex, u.transform, u.repeat, u.smooth), e && (a(e, b), b.writeMorphBitmap(e.transform));
+                  d(q, b), b.beginBitmap(7, q.bitmapIndex, q.transform, q.repeat, q.smooth), e && (a(e, b), b.writeMorphBitmap(e.transform));
               }
             }
             e = {x:0, y:0};
-            for (u = h;u;) {
-              u.serialize(b, e), u = u.next;
+            for (q = h;q;) {
+              q.serialize(b, e), q = q.next;
             }
             this.fillStyle ? b.endFill() : b.endLine();
             return b;
@@ -19563,7 +19568,7 @@ SWF$$inline_620.traceLevel = SWF$$inline_620.parserOptions.register(new Option$$
       };
       b.processAll = function(d) {
         var a = 8E3, c = new Float32Array(a), e = 0, l = [], p = !1, g = new f.PromiseWrapper, q = new b;
-        q.onframedata = function(b, d, q, l) {
+        q.onframedata = function(b, d, q, p) {
           d = b.length + e;
           if (d > a) {
             do {
@@ -19974,7 +19979,7 @@ __extends = this.__extends || function(f, b) {
       };
       v.prototype.parseSpriteTimeline = function(a) {
         b.enterTimeline("parseSpriteTimeline");
-        var c = this.data, h = this._dataStream, e = this._dataView, d = {id:a.id, type:"sprite", frames:[], actionBlocksPrecedence:a.byteOffset}, m = a.byteOffset + a.byteLength, l = d.frames, p = null, g = [], v = null, n = null, w = null, k = null;
+        var c = this.data, h = this._dataStream, e = this._dataView, d = {id:a.id, type:"sprite", frames:[], actionBlocksPrecedence:a.byteOffset}, m = a.byteOffset + a.byteLength, p = d.frames, l = null, g = [], v = null, n = null, w = null, k = null;
         h.pos = a.byteOffset + 2;
         d.frameCount = e.getUint16(h.pos, !0);
         h.pos += 2;
@@ -20003,13 +20008,13 @@ __extends = this.__extends || function(f, b) {
                 break;
               case 43:
                 r = h.pos + r;
-                p = t.readString(c, h, -1);
+                l = t.readString(c, h, -1);
                 h.pos = r;
                 r = 0;
                 break;
               case 1:
-                l.push(new q(g, p, v, n, w, k, null));
-                p = null;
+                p.push(new q(g, l, v, n, w, k, null));
+                l = null;
                 g = [];
                 k = w = n = v = null;
                 break;
@@ -21290,17 +21295,17 @@ var RtmpJs;
         if (!e) {
           throw Error("Your browser does not support socket communication.\nCurrenly only Firefox with enabled mozTCPSocket is allowed (see README.md).");
         }
-        var l = this._initChannel(d, a), p = [], g = !1, q = "undefined" !== typeof b.ShumwayComRtmpSocket && b.ShumwayComRtmpSocket.isAvailable ? new b.ShumwayComRtmpSocket(this.host, this.port, {useSecureTransport:this.ssl, binaryType:"arraybuffer"}) : e.open(this.host, this.port, {useSecureTransport:this.ssl, binaryType:"arraybuffer"});
+        var g = this._initChannel(d, a), p = [], v = !1, q = "undefined" !== typeof b.ShumwayComRtmpSocket && b.ShumwayComRtmpSocket.isAvailable ? new b.ShumwayComRtmpSocket(this.host, this.port, {useSecureTransport:this.ssl, binaryType:"arraybuffer"}) : e.open(this.host, this.port, {useSecureTransport:this.ssl, binaryType:"arraybuffer"});
         q.onopen = function(a) {
-          l.ondata = function(a) {
+          g.ondata = function(a) {
             a = new Uint8Array(a);
             p.push(a);
             1 < p.length || c(a) && p.shift();
           };
-          l.onclose = function() {
+          g.onclose = function() {
             q.close();
           };
-          l.start();
+          g.start();
         };
         q.ondrain = function(a) {
           for (p.shift();0 < p.length && c(p[0]);) {
@@ -21308,14 +21313,14 @@ var RtmpJs;
           }
         };
         q.onclose = function(a) {
-          l.stop(g);
+          g.stop(v);
         };
         q.onerror = function(a) {
-          g = !0;
+          v = !0;
           console.error("socket error: " + a.data);
         };
         q.ondata = function(a) {
-          l.push(new Uint8Array(a.data));
+          g.push(new Uint8Array(a.data));
         };
       };
       return f;
@@ -27562,7 +27567,7 @@ var RtmpJs;
             return c;
           }
           function l(a, b, c) {
-            var d, e, h, g, m, l, f = a;
+            var d, e, h, g, m, f, l = a;
             e = c(a);
             if (0 === e) {
               return a;
@@ -27586,19 +27591,19 @@ var RtmpJs;
               }
               0 < h * e && (a = b, b = e, e = g, g = b);
               b = h - e;
-              l = g - h;
+              f = g - h;
               m = g - e;
               if (g * m < 2 * h * b) {
                 b = d, g = h;
               } else {
                 g = (d - a) / b;
-                b = (b - l) / (l * m);
+                b = (b - f) / (f * m);
                 b = a - g * e * (1 - b * h);
                 g = c(b);
-                if (0 === g || 1E-6 > Math.abs(b - f)) {
+                if (0 === g || 1E-6 > Math.abs(b - l)) {
                   return b;
                 }
-                f = b;
+                l = b;
                 0 > g * e || (a = b, e = g, b = d, g = h);
               }
             }
@@ -44709,9 +44714,9 @@ __extends = this.__extends || function(f, b) {
   (function(b) {
     (function(f) {
       function r(a) {
-        var c = a.context, d, f, g, k, n, h;
-        a instanceof b.AVM1Object && (d = b.alCoerceNumber(c, a.alGet("a")), f = b.alCoerceNumber(c, a.alGet("b")), g = b.alCoerceNumber(c, a.alGet("c")), k = b.alCoerceNumber(c, a.alGet("d")), n = b.alCoerceNumber(c, a.alGet("tx")), h = b.alCoerceNumber(c, a.alGet("ty")));
-        return new c.sec.flash.geom.Matrix(d, f, g, k, n, h);
+        var c = a.context, d, f, g, k, q, h;
+        a instanceof b.AVM1Object && (d = b.alCoerceNumber(c, a.alGet("a")), f = b.alCoerceNumber(c, a.alGet("b")), g = b.alCoerceNumber(c, a.alGet("c")), k = b.alCoerceNumber(c, a.alGet("d")), q = b.alCoerceNumber(c, a.alGet("tx")), h = b.alCoerceNumber(c, a.alGet("ty")));
+        return new c.sec.flash.geom.Matrix(d, f, g, k, q, h);
       }
       function t(a, b) {
         b.alPut("a", a.a);
@@ -48011,22 +48016,22 @@ GFX$$inline_644.cacheShapesThreshold = canvas2DOptions$$inline_651.register(new 
           c = 5 + e;
           e = this._cacheLevels[c];
           if (!e) {
-            var e = this._source.getBounds().getAbsoluteBounds().clone().scale(d, d), f, h;
-            this._source.hasFlags(1048576) || !this._source.hasFlags(4194304) || Math.max(e.w, e.h) <= this._minUntiledSize ? (f = e.w, h = e.h) : f = h = this._tileSize;
-            e = this._cacheLevels[c] = new q(e.w, e.h, f, h, d);
+            var e = this._source.getBounds().getAbsoluteBounds().clone().scale(d, d), f, g;
+            this._source.hasFlags(1048576) || !this._source.hasFlags(4194304) || Math.max(e.w, e.h) <= this._minUntiledSize ? (f = e.w, g = e.h) : f = g = this._tileSize;
+            e = this._cacheLevels[c] = new q(e.w, e.h, f, g, d);
           }
           return e.getTiles(a, b.scaleClone(d, d));
         };
         a.prototype.fetchTiles = function(a, b, c, d) {
           var f = new e(0, 0, c.canvas.width, c.canvas.height);
           a = this._getTilesAtScale(a, b, f);
-          var h;
+          var g;
           b = this._source;
-          for (var g = 0;g < a.length;g++) {
-            var k = a[g];
-            k.cachedSurfaceRegion && k.cachedSurfaceRegion.surface && !b.hasFlags(1048592) || (h || (h = []), h.push(k));
+          for (var h = 0;h < a.length;h++) {
+            var k = a[h];
+            k.cachedSurfaceRegion && k.cachedSurfaceRegion.surface && !b.hasFlags(1048592) || (g || (g = []), g.push(k));
           }
-          h && this._cacheTiles(c, h, d, f);
+          g && this._cacheTiles(c, g, d, f);
           b.removeFlags(16);
           return a;
         };
@@ -48038,25 +48043,25 @@ GFX$$inline_644.cacheShapesThreshold = canvas2DOptions$$inline_651.register(new 
         };
         a.prototype._cacheTiles = function(a, c, d, e, f) {
           void 0 === f && (f = 4);
-          var h = this._getTileBounds(c);
+          var g = this._getTileBounds(c);
           a.save();
           a.setTransform(1, 0, 0, 1, 0, 0);
           a.clearRect(0, 0, e.w, e.h);
-          a.translate(-h.x, -h.y);
-          a.scale(c[0].scale, c[0].scale);
-          var g = this._source.getBounds();
           a.translate(-g.x, -g.y);
-          2 <= b.traceLevel && b.writer && b.writer.writeLn("Rendering Tiles: " + h);
+          a.scale(c[0].scale, c[0].scale);
+          var h = this._source.getBounds();
+          a.translate(-h.x, -h.y);
+          2 <= b.traceLevel && b.writer && b.writer.writeLn("Rendering Tiles: " + g);
           this._source.render(a, 0);
           a.restore();
-          for (var g = null, k = 0;k < c.length;k++) {
+          for (var h = null, k = 0;k < c.length;k++) {
             var l = c[k], p = l.bounds.clone();
-            p.x -= h.x;
-            p.y -= h.y;
-            e.contains(p) || (g || (g = []), g.push(l));
+            p.x -= g.x;
+            p.y -= g.y;
+            e.contains(p) || (h || (h = []), h.push(l));
             l.cachedSurfaceRegion = d(l.cachedSurfaceRegion, a, p);
           }
-          g && (2 <= g.length ? (c = g.slice(0, g.length / 2 | 0), h = g.slice(c.length), this._cacheTiles(a, c, d, e, f - 1), this._cacheTiles(a, h, d, e, f - 1)) : this._cacheTiles(a, g, d, e, f - 1));
+          h && (2 <= h.length ? (c = h.slice(0, h.length / 2 | 0), g = h.slice(c.length), this._cacheTiles(a, c, d, e, f - 1), this._cacheTiles(a, g, d, e, f - 1)) : this._cacheTiles(a, h, d, e, f - 1));
         };
         return a;
       }();
@@ -49322,9 +49327,16 @@ __extends = this.__extends || function(f, b) {
         b.leaveTimeline("RenderableBitmap.drawFrame");
       };
       c.prototype.mask = function(a) {
-        for (var b = this.imageData, c = new Uint32Array(b.data.buffer), d = 0;d < a.length;d++) {
-          var e = c[d], f = e >>> 0 & 255, g = e >>> 8 & 255, e = e >>> 16 & 255, h = a[d], k = 255 / h, f = Math.min(f, h) * k, g = Math.min(g, h) * k, e = Math.min(e, h) * k;
-          c[d] = h << 24 | e << 16 | g << 8 | f;
+        for (var b = this.imageData, c = new Int32Array(b.data.buffer), d = f.ColorUtilities.getUnpremultiplyTable(), e = 0;e < a.length;e++) {
+          var g = a[e];
+          if (0 === g) {
+            c[e] = 0;
+          } else {
+            if (255 !== g) {
+              var h = c[e], k = h >> 0 & 255, l = h >> 8 & 255, h = h >> 16 & 255, p = g << 8, k = d[p + Math.min(k, g)], l = d[p + Math.min(l, g)], h = d[p + Math.min(h, g)];
+              c[e] = g << 24 | h << 16 | l << 8 | k;
+            }
+          }
         }
         this._context.putImageData(b, 0, 0);
       };
