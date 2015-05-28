@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.273";
-Shumway$$inline_0.build = "81b4515";
+Shumway$$inline_0.version = "0.11.276";
+Shumway$$inline_0.build = "ffd3b49";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -2055,6 +2055,14 @@ var START_TIME = performance.now();
       f[f.AVM1_ERROR = 1] = "AVM1_ERROR";
       f[f.AVM2_ERROR = 2] = "AVM2_ERROR";
     })(d.ErrorTypes || (d.ErrorTypes = {}));
+    (function(f) {
+      f[f.LoadSource = 0] = "LoadSource";
+      f[f.LoadWhitelistAllowed = 1] = "LoadWhitelistAllowed";
+      f[f.LoadWhitelistDenied = 2] = "LoadWhitelistDenied";
+      f[f.StreamAllowed = 3] = "StreamAllowed";
+      f[f.StreamDenied = 4] = "StreamDenied";
+      f[f.StreamCrossdomain = 5] = "StreamCrossdomain";
+    })(d.LoadResource || (d.LoadResource = {}));
     d.instance;
   })(l.Telemetry || (l.Telemetry = {}));
   (function(d) {
@@ -8183,12 +8191,12 @@ GFX$$inline_40.cacheShapesThreshold = canvas2DOptions$$inline_47.register(new Op
         a.Cell = e;
       })(p = g.DirtyRegion || (g.DirtyRegion = {}));
       var v = function() {
-        function a(e, c, d, f, b, h) {
+        function a(e, c, f, d, b, h) {
           this.index = e;
           this.x = c;
-          this.y = d;
+          this.y = f;
           this.scale = h;
-          this.bounds = new r(c * f, d * b, f, b);
+          this.bounds = new r(c * d, f * b, d, b);
         }
         a.prototype.getOBB = function() {
           if (this._obb) {
@@ -10060,23 +10068,23 @@ __extends = this.__extends || function(l, n) {
         this._textBounds.set(a);
         this.textRect.setElements(a.x + 2, a.y + 2, a.w - 2, a.h - 2);
       };
-      e.prototype.setContent = function(a, e, d, b) {
+      e.prototype.setContent = function(a, e, d, f) {
         this._textRunData = e;
         this._plainText = a;
         this._matrix.set(d);
-        this._coords = b;
+        this._coords = f;
         this.lines = [];
       };
-      e.prototype.setStyle = function(a, e, d, b) {
+      e.prototype.setStyle = function(a, e, d, f) {
         this._backgroundColor = a;
         this._borderColor = e;
         this._scrollV = d;
-        this._scrollH = b;
+        this._scrollH = f;
       };
       e.prototype.reflow = function(a, e) {
         var d = this._textRunData;
         if (d) {
-          for (var b = this._bounds, f = b.w - 4, h = this._plainText, g = this.lines, k = new v, q = 0, p = 0, r = 0, u = 0, n = 0, t = -1;d.position < d.length;) {
+          for (var f = this._bounds, b = f.w - 4, h = this._plainText, g = this.lines, k = new v, q = 0, p = 0, r = 0, u = 0, n = 0, t = -1;d.position < d.length;) {
             var w = d.readInt(), z = d.readInt(), A = d.readInt(), D = d.readUTF(), y = d.readInt(), G = d.readInt(), C = d.readInt();
             y > r && (r = y);
             G > u && (u = G);
@@ -10112,8 +10120,8 @@ __extends = this.__extends || function(l, n) {
                 k.descent = u;
                 k.leading = n;
                 k.align = t;
-                if (e && k.width > f) {
-                  for (k = k.wrap(f), F = 0;F < k.length;F++) {
+                if (e && k.width > b) {
+                  for (k = k.wrap(b), F = 0;F < k.length;F++) {
                     var H = k[F], q = H.y + H.descent + H.leading;
                     g.push(H);
                     H.width > p && (p = H.width);
@@ -10142,31 +10150,31 @@ __extends = this.__extends || function(l, n) {
           d.h = q;
           if (a) {
             if (!e) {
-              f = p;
-              p = b.w;
+              b = p;
+              p = f.w;
               switch(a) {
                 case 1:
-                  d.x = p - (f + 4) >> 1;
+                  d.x = p - (b + 4) >> 1;
                   break;
                 case 3:
-                  d.x = p - (f + 4);
+                  d.x = p - (b + 4);
               }
               this._textBounds.setElements(d.x - 2, d.y - 2, d.w + 4, d.h + 4);
-              b.w = f + 4;
+              f.w = b + 4;
             }
-            b.x = d.x - 2;
-            b.h = q + 4;
+            f.x = d.x - 2;
+            f.h = q + 4;
           } else {
-            this._textBounds = b;
+            this._textBounds = f;
           }
           for (w = 0;w < g.length;w++) {
-            if (b = g[w], b.width < f) {
-              switch(b.align) {
+            if (f = g[w], f.width < b) {
+              switch(f.align) {
                 case 1:
-                  b.x = f - b.width | 0;
+                  f.x = b - f.width | 0;
                   break;
                 case 2:
-                  b.x = (f - b.width) / 2 | 0;
+                  f.x = (b - f.width) / 2 | 0;
               }
             }
           }
@@ -10188,17 +10196,17 @@ __extends = this.__extends || function(l, n) {
           c.strokeStyle = l.ColorUtilities.rgbaToCSSStyle(this._borderColor);
           c.lineCap = "square";
           c.lineWidth = 1;
-          var b = e.absoluteBoundPoints, f = c.currentTransform;
-          f ? (d = d.clone(), (new a(f.a, f.b, f.c, f.d, f.e, f.f)).transformRectangle(d, b), c.setTransform(1, 0, 0, 1, 0, 0)) : (b[0].x = d.x, b[0].y = d.y, b[1].x = d.x + d.w, b[1].y = d.y, b[2].x = d.x + d.w, b[2].y = d.y + d.h, b[3].x = d.x, b[3].y = d.y + d.h);
-          e.roundBoundPoints(b);
+          var f = e.absoluteBoundPoints, b = c.currentTransform;
+          b ? (d = d.clone(), (new a(b.a, b.b, b.c, b.d, b.e, b.f)).transformRectangle(d, f), c.setTransform(1, 0, 0, 1, 0, 0)) : (f[0].x = d.x, f[0].y = d.y, f[1].x = d.x + d.w, f[1].y = d.y, f[2].x = d.x + d.w, f[2].y = d.y + d.h, f[3].x = d.x, f[3].y = d.y + d.h);
+          e.roundBoundPoints(f);
           d = new Path2D;
-          d.moveTo(b[0].x, b[0].y);
-          d.lineTo(b[1].x, b[1].y);
-          d.lineTo(b[2].x, b[2].y);
-          d.lineTo(b[3].x, b[3].y);
-          d.lineTo(b[0].x, b[0].y);
+          d.moveTo(f[0].x, f[0].y);
+          d.lineTo(f[1].x, f[1].y);
+          d.lineTo(f[2].x, f[2].y);
+          d.lineTo(f[3].x, f[3].y);
+          d.lineTo(f[0].x, f[0].y);
           c.stroke(d);
-          f && c.setTransform(f.a, f.b, f.c, f.d, f.e, f.f);
+          b && c.setTransform(b.a, b.b, b.c, b.d, b.e, b.f);
         }
         this._coords ? this._renderChars(c) : this._renderLines(c);
         c.restore();
@@ -10208,9 +10216,9 @@ __extends = this.__extends || function(l, n) {
           var e = this._matrix;
           a.transform(e.a, e.b, e.c, e.d, e.tx, e.ty);
         }
-        for (var e = this.lines, d = this._coords, b = d.position = 0;b < e.length;b++) {
-          for (var f = e[b].runs, h = 0;h < f.length;h++) {
-            var g = f[h];
+        for (var e = this.lines, d = this._coords, f = d.position = 0;f < e.length;f++) {
+          for (var b = e[f].runs, h = 0;h < b.length;h++) {
+            var g = b[h];
             a.font = g.font;
             a.fillStyle = g.fillStyle;
             for (var g = g.text, k = 0;k < g.length;k++) {
@@ -10226,13 +10234,13 @@ __extends = this.__extends || function(l, n) {
         a.rect(e.x + 2, e.y + 2, e.w - 4, e.h - 4);
         a.clip();
         a.translate(e.x - this._scrollH + 2, e.y + 2);
-        for (var d = this.lines, b = this._scrollV, f = 0, h = 0;h < d.length;h++) {
+        for (var d = this.lines, f = this._scrollV, b = 0, h = 0;h < d.length;h++) {
           var g = d[h], k = g.x, q = g.y;
-          if (h + 1 < b) {
-            f = q + g.descent + g.leading;
+          if (h + 1 < f) {
+            b = q + g.descent + g.leading;
           } else {
-            q -= f;
-            if (h + 1 - b && q > e.h) {
+            q -= b;
+            if (h + 1 - f && q > e.h) {
               break;
             }
             for (var p = g.runs, l = 0;l < p.length;l++) {
