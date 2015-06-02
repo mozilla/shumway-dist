@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.281";
-Shumway$$inline_0.build = "9656519";
+Shumway$$inline_0.version = "0.11.286";
+Shumway$$inline_0.build = "5157438";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -3762,10 +3762,11 @@ var __extends = this.__extends || function(g, n) {
       };
       h.prototype._ensureCapacity = function(a) {
         var d = this._buffer;
-        if (d.byteLength < a) {
+        if (!(d.byteLength >= a)) {
           for (var f = Math.max(d.byteLength, 1);f < a;) {
             f *= 2;
           }
+          4294967295 < f && this.sec.throwError("RangeError", Errors.ParamRangeError);
           f = h._arrayBufferPool.acquire(f);
           a = this._u8;
           this._buffer = f;
@@ -3792,12 +3793,10 @@ var __extends = this.__extends || function(g, n) {
         return this._u8[this._position++];
       };
       h.prototype.readBytes = function(a, d) {
-        var f = 0;
-        void 0 === f && (f = 0);
-        void 0 === d && (d = 0);
-        var e = this._position;
-        f || (f = 0);
-        d || (d = this._length - e);
+        var f, e = this._position;
+        f = 0;
+        d >>>= 0;
+        0 === d && (d = this._length - e);
         e + d > this._length && this.sec.throwError("flash.errors.EOFError", Errors.EOFError);
         a.length < f + d && (a._ensureCapacity(f + d), a.length = f + d);
         a._u8.set(new Uint8Array(this._buffer, e, d), f);

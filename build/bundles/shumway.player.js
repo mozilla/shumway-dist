@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.281";
-Shumway$$inline_18.build = "9656519";
+Shumway$$inline_18.version = "0.11.286";
+Shumway$$inline_18.build = "5157438";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -629,28 +629,28 @@ var START_TIME = performance.now();
         if (127 >= n) {
           c += String.fromCharCode(n);
         } else {
-          var m = 192, d = 5;
+          var d = 192, m = 5;
           do {
-            if ((n & (m >> 1 | 128)) === m) {
+            if ((n & (d >> 1 | 128)) === d) {
               break;
             }
-            m = m >> 1 | 128;
-            --d;
-          } while (0 <= d);
-          if (0 >= d) {
+            d = d >> 1 | 128;
+            --m;
+          } while (0 <= m);
+          if (0 >= m) {
             c += String.fromCharCode(n);
           } else {
-            for (var n = n & (1 << d) - 1, m = !1, g = 5;g >= d;--g) {
+            for (var n = n & (1 << m) - 1, d = !1, g = 5;g >= m;--g) {
               var v = a[f++];
               if (128 != (v & 192)) {
-                m = !0;
+                d = !0;
                 break;
               }
               n = n << 6 | v & 63;
             }
-            if (m) {
-              for (d = f - (7 - g);d < f;++d) {
-                c += String.fromCharCode(a[d] & 255);
+            if (d) {
+              for (m = f - (7 - g);m < f;++m) {
+                c += String.fromCharCode(a[m] & 255);
               }
             } else {
               c = 65536 <= n ? c + String.fromCharCode(n - 65536 >> 10 & 1023 | 55296, n & 1023 | 56320) : c + String.fromCharCode(n);
@@ -3770,10 +3770,11 @@ var __extends = this.__extends || function(e, b) {
       };
       c.prototype._ensureCapacity = function(a) {
         var d = this._buffer;
-        if (d.byteLength < a) {
+        if (!(d.byteLength >= a)) {
           for (var f = Math.max(d.byteLength, 1);f < a;) {
             f *= 2;
           }
+          4294967295 < f && this.sec.throwError("RangeError", Errors.ParamRangeError);
           f = c._arrayBufferPool.acquire(f);
           a = this._u8;
           this._buffer = f;
@@ -3800,11 +3801,10 @@ var __extends = this.__extends || function(e, b) {
         return this._u8[this._position++];
       };
       c.prototype.readBytes = function(a, c, f) {
-        void 0 === c && (c = 0);
-        void 0 === f && (f = 0);
         var d = this._position;
-        c || (c = 0);
-        f || (f = this._length - d);
+        c >>>= 0;
+        f >>>= 0;
+        0 === f && (f = this._length - d);
         d + f > this._length && this.sec.throwError("flash.errors.EOFError", Errors.EOFError);
         a.length < c + f && (a._ensureCapacity(c + f), a.length = c + f);
         a._u8.set(new Uint8Array(this._buffer, d, f), c);
@@ -6890,13 +6890,13 @@ console.time("Load AVM2 Dependencies");
     XMLIllegalCyclicalLoop:{code:1118, message:"Illegal cyclical loop between nodes."}, FilterError:{code:1123, message:"Filter operator not supported on type %1."}, OutOfRangeError:{code:1125, message:"The index %1 is out of range %2."}, VectorFixedError:{code:1126, message:"Cannot change the length of a fixed Vector."}, TypeAppOfNonParamType:{code:1127, message:"Type application attempted on a non-parameterized type."}, WrongTypeArgCountError:{code:1128, message:"Incorrect number of type parameters for %1. Expected %2, got %3."}, 
     JSONCyclicStructure:{code:1129, message:"Cyclic structure cannot be converted to JSON string."}, JSONInvalidReplacer:{code:1131, message:"Replacer argument to JSON stringifier must be an array or a two parameter function."}, JSONInvalidParseInput:{code:1132, message:"Invalid JSON parse input."}, InvalidRangeError:{code:1506, message:"The specified range is invalid."}, NullArgumentError:{code:1507, message:"Argument %1 cannot be null."}, InvalidArgumentError:{code:1508, message:"The value specified for argument %1 is invalid."}, 
     ArrayFilterNonNullObjectError:{code:1510, message:"When the callback argument is a method of a class, the optional this argument must be null."}, InvalidParamError:{code:2004, message:"One of the parameters is invalid."}, ParamRangeError:{code:2006, message:"The supplied index is out of bounds."}, NullPointerError:{code:2007, message:"Parameter %1 must be non-null."}, InvalidEnumError:{code:2008, message:"Parameter %1 must be one of the accepted values."}, CantInstantiateError:{code:2012, message:"%1 class cannot be instantiated."}, 
-    InvalidBitmapData:{code:2015, message:"Invalid BitmapData."}, EOFError:{code:2030, message:"End of file was encountered.", fqn:"flash.errors.EOFError"}, CompressedDataError:{code:2058, message:"There was an error decompressing the data.", fqn:"flash.errors.IOError"}, ProxyGetPropertyError:{code:2088, message:"The Proxy class does not implement getProperty. It must be overridden by a subclass."}, ProxySetPropertyError:{code:2089, message:"The Proxy class does not implement setProperty. It must be overridden by a subclass."}, 
-    ProxyCallPropertyError:{code:2090, message:"The Proxy class does not implement callProperty. It must be overridden by a subclass."}, ProxyHasPropertyError:{code:2091, message:"The Proxy class does not implement hasProperty. It must be overridden by a subclass."}, ProxyDeletePropertyError:{code:2092, message:"The Proxy class does not implement deleteProperty. It must be overridden by a subclass."}, ProxyGetDescendantsError:{code:2093, message:"The Proxy class does not implement getDescendants. It must be overridden by a subclass."}, 
-    ProxyNextNameIndexError:{code:2105, message:"The Proxy class does not implement nextNameIndex. It must be overridden by a subclass."}, ProxyNextNameError:{code:2106, message:"The Proxy class does not implement nextName. It must be overridden by a subclass."}, ProxyNextValueError:{code:2107, message:"The Proxy class does not implement nextValue. It must be overridden by a subclass."}, TooFewArgumentsError:{code:2001, message:"Too few arguments were specified; got %1, %2 expected."}, ParamTypeError:{code:2005, 
-    message:"Parameter %1 is of the incorrect type. Should be type %2."}, SocketConnectError:{code:2011, message:"Socket connection failed to %1:%2."}, CantAddSelfError:{code:2024, message:"An object cannot be added as a child of itself."}, NotAChildError:{code:2025, message:"The supplied DisplayObject must be a child of the caller."}, DelayRangeError:{code:2066, message:"The Timer delay specified is out of range."}, ExternalInterfaceNotAvailableError:{code:2067, message:"The ExternalInterface is not available in this container. ExternalInterface requires Internet Explorer ActiveX, Firefox, Mozilla 1.7.5 and greater, or other browsers that support NPRuntime."}, 
-    InvalidLoaderMethodError:{code:2069, message:"The Loader class does not implement this method."}, InvalidStageMethodError:{code:2071, message:"The Stage class does not implement this property or method."}, LoadingObjectNotSWFError:{code:2098, message:"The loading object is not a .swf file, you cannot request SWF properties from it."}, LoadingObjectNotInitializedError:{code:2099, message:"The loading object is not sufficiently loaded to provide this information."}, DecodeParamError:{code:2101, 
-    message:"The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs."}, SceneNotFoundError:{code:2108, message:"Scene %1 was not found."}, FrameLabelNotFoundError:{code:2109, message:"Frame label %1 not found in scene %2."}, InvalidLoaderInfoMethodError:{code:2118, message:"The LoaderInfo class does not implement this method."}, UnknownFileTypeError:{code:2124, message:"Loaded file is an unknown type."}, CantAddParentError:{code:2150, message:"An object cannot be added as a child to one of it's children (or children's children, etc.)."}, 
-    ObjectWithStringsParamError:{code:2196, message:"Parameter %1 must be an Object with only String values."}, InternalErrorIV:{code:3343, message:"Internal Error."}};
+    InvalidBitmapData:{code:2015, message:"Invalid BitmapData."}, EOFError:{code:2030, message:"End of file was encountered.", fqn:"flash.errors.EOFError"}, CompressedDataError:{code:2058, message:"There was an error decompressing the data.", fqn:"flash.errors.IOError"}, ProxyGetPropertyError:{code:2088, message:"The Proxy class does not implement getProperty."}, ProxySetPropertyError:{code:2089, message:"The Proxy class does not implement setProperty."}, ProxyCallPropertyError:{code:2090, message:"The Proxy class does not implement callProperty."}, 
+    ProxyHasPropertyError:{code:2091, message:"The Proxy class does not implement hasProperty."}, ProxyDeletePropertyError:{code:2092, message:"The Proxy class does not implement deleteProperty."}, ProxyGetDescendantsError:{code:2093, message:"The Proxy class does not implement getDescendants."}, ProxyNextNameIndexError:{code:2105, message:"The Proxy class does not implement nextNameIndex."}, ProxyNextNameError:{code:2106, message:"The Proxy class does not implement nextName."}, ProxyNextValueError:{code:2107, 
+    message:"The Proxy class does not implement nextValue."}, TooFewArgumentsError:{code:2001, message:"Too few arguments were specified; got %1, %2 expected."}, ParamTypeError:{code:2005, message:"Parameter %1 is of the incorrect type. Should be type %2."}, SocketConnectError:{code:2011, message:"Socket connection failed to %1:%2."}, CantAddSelfError:{code:2024, message:"An object cannot be added as a child of itself."}, NotAChildError:{code:2025, message:"The supplied DisplayObject must be a child of the caller."}, 
+    DelayRangeError:{code:2066, message:"The Timer delay specified is out of range."}, ExternalInterfaceNotAvailableError:{code:2067, message:"The ExternalInterface is not available in this container. ExternalInterface requires Internet Explorer ActiveX, Firefox, Mozilla 1.7.5 and greater, or other browsers that support NPRuntime."}, InvalidLoaderMethodError:{code:2069, message:"The Loader class does not implement this method."}, InvalidStageMethodError:{code:2071, message:"The Stage class does not implement this property or method."}, 
+    LoadingObjectNotSWFError:{code:2098, message:"The loading object is not a .swf file, you cannot request SWF properties from it."}, LoadingObjectNotInitializedError:{code:2099, message:"The loading object is not sufficiently loaded to provide this information."}, DecodeParamError:{code:2101, message:"The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs."}, SceneNotFoundError:{code:2108, message:"Scene %1 was not found."}, FrameLabelNotFoundError:{code:2109, 
+    message:"Frame label %1 not found in scene %2."}, InvalidLoaderInfoMethodError:{code:2118, message:"The LoaderInfo class does not implement this method."}, UnknownFileTypeError:{code:2124, message:"Loaded file is an unknown type."}, CantAddParentError:{code:2150, message:"An object cannot be added as a child to one of it's children (or children's children, etc.)."}, ObjectWithStringsParamError:{code:2196, message:"Parameter %1 must be an Object with only String values."}, InternalErrorIV:{code:3343, 
+    message:"Internal Error."}};
     for (var r in b.Errors) {
       var t = b.Errors[r];
       t.typeName = r;
@@ -12099,7 +12099,11 @@ function as3ToLowerCase(e) {
               f = this._parse(g);
             }
           }
-          this.value = new RegExp(f, d);
+          try {
+            this.value = new RegExp(f, d);
+          } catch (v) {
+            this.value = new RegExp(c.UNMATCHABLE_PATTERN, d);
+          }
           this._source = g;
         }
         __extends(c, a);
@@ -16693,7 +16697,7 @@ function as3ToLowerCase(e) {
             }
             __extends(g, a);
             g.classInitializer = function() {
-              var a = this.tPrototype, b = g.prototype;
+              var a = this.dPrototype, b = g.prototype;
               r(a, d + "getProperty", b.native_getProperty);
               r(a, d + "setProperty", b.native_setProperty);
               r(a, d + "callProperty", b.native_callProperty);
@@ -16705,31 +16709,31 @@ function as3ToLowerCase(e) {
               r(a, d + "nextValue", b.native_nextValue);
             };
             g.prototype.native_getProperty = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyGetPropertyError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyGetPropertyError);
             };
             g.prototype.native_setProperty = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxySetPropertyError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxySetPropertyError);
             };
             g.prototype.native_callProperty = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyCallPropertyError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyCallPropertyError);
             };
             g.prototype.native_hasProperty = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyHasPropertyError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyHasPropertyError);
             };
             g.prototype.native_deleteProperty = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyDeletePropertyError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyDeletePropertyError);
             };
             g.prototype.native_getDescendants = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyGetDescendantsError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyGetDescendantsError);
             };
             g.prototype.native_nextNameIndex = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyNextNameIndexError);
+              this !== this.axClass.dPrototype && this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyNextNameIndexError);
             };
             g.prototype.native_nextName = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyNextNameError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyNextNameError);
             };
             g.prototype.native_nextValue = function() {
-              this.sec.throwError("IllegalOperationError", b.Errors.ProxyNextValueError);
+              this.sec.throwError("flash.errors.IllegalOperationError", b.Errors.ProxyNextValueError);
             };
             g.prototype.axGetProperty = function(a) {
               var b = "string" === typeof a.name ? this.traits.getTrait(a.namespaces, a.name) : null;
