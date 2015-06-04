@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.286";
-Shumway$$inline_18.build = "5157438";
+Shumway$$inline_18.version = "0.11.289";
+Shumway$$inline_18.build = "e5d9454";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -35432,8 +35432,8 @@ var RtmpJs;
               for (var d = 0;d < a.length;d++) {
                 var e = a[d], h = e.indexOf("=");
                 0 > h && (this._ignoreDecodingErrors ? h = e.length : this.sec.throwError("Error", b.Errors.DecodeParamError));
-                var u = unescape(e.substring(0, h).split("+").join(" ")), e = unescape(e.substring(h + 1).split("+").join(" ")), h = this.axGetPublicProperty(u);
-                "undefined" === typeof h ? this.axSetPublicProperty(u, e) : Array.isArray(h) ? h.push(e) : this.axSetPublicProperty(u, [h, e]);
+                var p = unescape(e.substring(0, h).split("+").join(" ")), e = unescape(e.substring(h + 1).split("+").join(" ")), h = this.axGetPublicProperty(p);
+                "undefined" === typeof h ? this.axSetPublicProperty(p, e) : Array.isArray(h) ? h.push(e) : this.axSetPublicProperty(p, [h, e]);
               }
             };
             a.prototype.toString = function() {
@@ -44498,7 +44498,7 @@ __extends = this.__extends || function(e, b) {
           return this._html ? this._as3Object.htmlText : this._as3Object.text;
         };
         l.prototype.setHtmlText = function(e) {
-          e = b.alCoerceString(this.context, e);
+          e = void 0 === e ? "undefined" : b.alToString(this.context, e);
           this._html ? this._as3Object.htmlText = e : this._as3Object.text = e;
         };
         l.prototype.getLength = function() {
@@ -44573,7 +44573,7 @@ __extends = this.__extends || function(e, b) {
           return this._as3Object.text;
         };
         l.prototype.setText = function(e) {
-          e = b.alCoerceString(this.context, e);
+          e = void 0 === e ? "undefined" : b.alToString(this.context, e);
           this._as3Object.text = e;
         };
         l.prototype.getTextColor = function() {
