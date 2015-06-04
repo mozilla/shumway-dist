@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.293";
-Shumway$$inline_18.build = "b85b816";
+Shumway$$inline_18.version = "0.11.295";
+Shumway$$inline_18.build = "52f521c";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -52,22 +52,22 @@ var START_TIME = performance.now();
     if ("string" !== typeof a) {
       return !1;
     }
-    var c = a.length;
-    if (0 === c) {
+    var n = a.length;
+    if (0 === n) {
       return !1;
     }
     if ("0" === a) {
       return !0;
     }
-    if (c > e.UINT32_CHAR_BUFFER_LENGTH) {
+    if (n > e.UINT32_CHAR_BUFFER_LENGTH) {
       return !1;
     }
-    var v = 0, f = a.charCodeAt(v++) - 48;
+    var c = 0, f = a.charCodeAt(c++) - 48;
     if (1 > f || 9 < f) {
       return !1;
     }
-    for (var d = 0, g = 0;v < c;) {
-      g = a.charCodeAt(v++) - 48;
+    for (var d = 0, g = 0;c < n;) {
+      g = a.charCodeAt(c++) - 48;
       if (0 > g || 9 < g) {
         return !1;
       }
@@ -1043,12 +1043,12 @@ var START_TIME = performance.now();
     });
   })(g = e.IntegerUtilities || (e.IntegerUtilities = {}));
   (function(a) {
-    function f(a, f, c, d, g, m) {
-      return (c - a) * (m - f) - (d - f) * (g - a);
+    function f(a, f, c, d, m, g) {
+      return (c - a) * (g - f) - (d - f) * (m - a);
     }
     a.pointInPolygon = function(a, f, c) {
-      for (var d = 0, g = c.length - 2, m = 0;m < g;m += 2) {
-        var k = c[m + 0], u = c[m + 1], q = c[m + 2], b = c[m + 3];
+      for (var d = 0, m = c.length - 2, g = 0;g < m;g += 2) {
+        var k = c[g + 0], u = c[g + 1], q = c[g + 2], b = c[g + 3];
         (u <= f && b > f || u > f && b <= f) && a < k + (f - u) / (b - u) * (q - k) && d++;
       }
       return 1 === (d & 1);
@@ -6874,8 +6874,8 @@ console.time("Load AVM2 Dependencies");
         h[d - 1] = arguments[d];
       }
       var a = b.message;
-      h.forEach(function(c, b) {
-        a = a.replace("%" + (b + 1), c);
+      h.forEach(function(b, d) {
+        a = a.replace("%" + (d + 1), b);
       });
       return "Error #" + b.code + ": " + a;
     }
@@ -25395,6 +25395,7 @@ var RtmpJs;
             a[a.ContainsFrameScriptPendingChildren = 16384] = "ContainsFrameScriptPendingChildren";
             a[a.ContainsMorph = 32768] = "ContainsMorph";
             a[a.CacheAsBitmap = 65536] = "CacheAsBitmap";
+            a[a.HasPlaceObjectInitPending = 131072] = "HasPlaceObjectInitPending";
             a[a.DirtyMatrix = 1048576] = "DirtyMatrix";
             a[a.DirtyChildren = 2097152] = "DirtyChildren";
             a[a.DirtyGraphics = 4194304] = "DirtyGraphics";
@@ -26669,7 +26670,9 @@ var RtmpJs;
                   c._name && this.axSetPublicProperty(c._name, c);
                   c._setFlags(256);
                   var d = this.sec.flash.events.Event.axClass;
-                  if (c._symbol && c._symbol.isAVM1Object) {
+                  if (c._hasFlags(131072)) {
+                    c._removeFlags(131072);
+                    e.AVM1.Lib.initializeAVM1Object(c, c._symbol.avm1Context, c._placeObjectTag);
                     try {
                       c.dispatchEvent(d.getInstance(g.Event.AVM1_INIT));
                     } catch (k) {
@@ -28291,7 +28294,7 @@ var RtmpJs;
                     if (l && (r = c.getSymbolById(h.symbolId), !r)) {
                       break;
                     }
-                    f ? (r && !r.dynamic && f._setStaticContentFromSymbol(r), f._hasFlags(4096) && f._animate(g)) : (f = this.createAnimatedDisplayObject(r, h, !1), this.addTimelineObjectAtDepth(f, p), r.isAVM1Object && e.AVM1.Lib.initializeAVM1Object(f, r.avm1Context, h));
+                    f ? (r && !r.dynamic && f._setStaticContentFromSymbol(r), f._hasFlags(4096) && f._animate(g)) : (f = this.createAnimatedDisplayObject(r, h, !1), this.addTimelineObjectAtDepth(f, p), r.isAVM1Object && (f._placeObjectTag = h, f._setFlags(131072)));
                 }
               }
             };
@@ -28397,7 +28400,6 @@ var RtmpJs;
               this.numFrames = 1;
               this.frames = [];
               this.labels = [];
-              this.frameScripts = [];
               this.loaderInfo = g;
             }
             __extends(b, a);
@@ -28405,14 +28407,8 @@ var RtmpJs;
               var d = new b(a, c);
               d.numFrames = a.frameCount;
               c.actionScriptVersion === h.ActionScriptVersion.ACTIONSCRIPT2 && (d.isAVM1Object = !0, d.avm1Context = c._avm1Context);
-              d.frameScripts = [];
               for (var e = a.frames, f = c.app.sec.flash.display.FrameLabel, n = 0;n < e.length;n++) {
-                var v = c.getFrame(a, n), p = v.actionBlocks;
-                if (p) {
-                  for (var l = 0;l < p.length;l++) {
-                    d.frameScripts.push(n), d.frameScripts.push(p[l]);
-                  }
-                }
+                var v = c.getFrame(a, n);
                 v.labelName && d.labels.push(new f(v.labelName, n + 1));
                 d.frames.push(v);
               }
@@ -28536,13 +28532,49 @@ var RtmpJs;
               this._currentFrame = 1;
               a.isRoot || this.addScene("", a.labels, 0, a.numFrames);
               this._frames = a.frames;
-              if (a.isAVM1Object) {
-                if (a.frameScripts) {
-                  for (var b = e.AVM1.Lib.getAVM1Object(this, a.avm1Context), c = a.frameScripts, g = 0;g < c.length;g += 2) {
-                    b.addFrameScript(c[g], c[g + 1]);
-                  }
+              a.isAVM1Object && a.avm1Name && (this.name = a.avm1Name);
+            };
+            g.prototype._initAvm1Data = function() {
+              for (var a = this._symbol.frames, b = 0;b < a.length;b++) {
+                this._initAvm1FrameData(b, a[b]);
+              }
+            };
+            g.prototype._initAvm1FrameData = function(a, b) {
+              var c = this._symbol.avm1Context;
+              if (b.exports) {
+                for (var d = b.exports, g = 0;g < d.length;g++) {
+                  var k = d[g];
+                  c.addAsset(k.className, k.symbolId);
                 }
-                a.avm1Name && (this.name = a.avm1Name);
+              }
+              (c = b.initActionBlocks) && this._addAvm1InitActionBlocks(a, c);
+              (c = b.actionBlocks) && this._addAvm1FrameScripts(a, c);
+            };
+            g.prototype._addAvm1FrameScripts = function(a, b) {
+              for (var c = 0;c < b.length;c++) {
+                var d = b[c], g = this._symbol, k = g.avm1Context, g = k.actionsDataFactory.createActionsData(d.actionsData, "s" + g.id + "f" + a + "i" + c), g = function(a) {
+                  var b = e.AVM1.Lib.getAVM1Object(this, k);
+                  k.executeActions(a, b);
+                }.bind(this, g);
+                g.precedence = d.precedence;
+                this.addFrameScript(a, g);
+              }
+            };
+            g.prototype._addAvm1InitActionBlocks = function(a, b) {
+              function c() {
+                for (var f = d._symbol, g = f.avm1Context, k = e.AVM1.Lib.getAVM1Object(d, g), h = 0;h < b.length;h++) {
+                  var q = g.actionsDataFactory.createActionsData(b[h].actionsData, "s" + f.id + "f" + a + "i" + h);
+                  g.executeActions(q, k);
+                }
+              }
+              var d = this;
+              if (this.currentFrame === a + 1) {
+                c();
+              } else {
+                var g = function() {
+                  this.currentFrame === a + 1 && (d.removeEventListener("enterFrame", g), c());
+                };
+                this.addEventListener("enterFrame", g);
               }
             };
             g.prototype._initializeFields = function() {
@@ -28569,13 +28601,7 @@ var RtmpJs;
               a.labelName && this.addFrameLabel(a.labelName, c.length);
               a.soundStreamHead && this._initSoundStream(a.soundStreamHead);
               a.soundStreamBlock && this._addSoundStreamBlock(c.length, a.soundStreamBlock);
-              if (b.isAVM1Object && (b = b.avm1Context, e.AVM1.Lib.getAVM1Object(this, b).addFrameActionBlocks(c.length - 1, a), a.exports)) {
-                a = a.exports;
-                for (var d = 0;d < a.length;d++) {
-                  var g = a[d];
-                  b.addAsset(g.className, g.symbolId);
-                }
-              }
+              b.isAVM1Object && this._hasFlags(256) && this._initAvm1FrameData(c.length - 1, a);
               1 === c.length && this._initializeChildren(c[0]);
             };
             g.prototype._initFrame = function(a) {
@@ -28590,6 +28616,7 @@ var RtmpJs;
                 1 < this._totalFrames && !this._stopped && this._hasFlags(256) && this._nextFrame++;
               }
               this._advanceFrame();
+              this._symbol && this._symbol.isAVM1Object && !this._hasFlags(256) && this._initAvm1Data();
             };
             g.prototype._constructFrame = function() {
               this._constructChildren();
@@ -28811,9 +28838,6 @@ var RtmpJs;
                 }
               }
             };
-            Object.defineProperty(g.prototype, "_avm1SymbolClass", {get:function() {
-              return this._symbol && this._symbol.avm1SymbolClass || null;
-            }, enumerable:!0, configurable:!0});
             Object.defineProperty(g.prototype, "_isFullyLoaded", {get:function() {
               return this.framesLoaded >= this.totalFrames;
             }, enumerable:!0, configurable:!0});
@@ -31478,21 +31502,21 @@ var RtmpJs;
                   if (null == d) {
                     var k = this.convertToXML(a), g = (g = k.attribute("returntype")) && "javascript" == g._value;
                     d = [];
-                    for (var e = 0;e < k._children.length;e++) {
-                      d.push(this.convertFromXML(k._children[e]));
+                    for (var h = 0;h < k._children.length;h++) {
+                      d.push(this.convertFromXML(k._children[h]));
                     }
                   }
-                  var h;
+                  var e;
                   try {
-                    h = b.axApply(null, d);
+                    e = b.axApply(null, d);
                   } catch (p) {
                     if (this.$BgmarshallExceptions) {
-                      h = p;
+                      e = p;
                     } else {
                       throw p;
                     }
                   }
-                  return g ? c.convertToJSString(h) : c.convertToXMLString(h);
+                  return g ? c.convertToJSString(e) : c.convertToXMLString(e);
                 });
               } else {
                 this._removeCallback(a);
@@ -31796,12 +31820,12 @@ var RtmpJs;
       (function(h) {
         (function(t) {
           var l = e.AVMX.axCoerceString, p = function(d) {
-            function a(a, b, k, e, h, m, f, n, v, p, l, r) {
+            function a(a, b, k, h, e, m, f, n, v, p, l, r) {
               void 0 === a && (a = 4);
               void 0 === b && (b = 45);
               void 0 === k && (k = 16777215);
-              void 0 === e && (e = 1);
-              void 0 === h && (h = 0);
+              void 0 === h && (h = 1);
+              void 0 === e && (e = 0);
               void 0 === m && (m = 1);
               void 0 === f && (f = 4);
               void 0 === n && (n = 4);
@@ -31813,8 +31837,8 @@ var RtmpJs;
               this.distance = a;
               this.angle = b;
               this.highlightColor = k;
-              this.highlightAlpha = e;
-              this.shadowColor = h;
+              this.highlightAlpha = h;
+              this.shadowColor = e;
               this.shadowAlpha = m;
               this.blurX = f;
               this.blurY = n;
@@ -41028,6 +41052,9 @@ __extends = this.__extends || function(e, b) {
         var a = this.assets[e.toLowerCase()];
         void 0 === a ? this.utils.warn("Cannot register " + e + " class for symbol") : this.assetsClasses[a] = d;
       };
+      h.prototype.getSymbolClass = function(b) {
+        return this.assetsClasses[b] || null;
+      };
       h.prototype.getAsset = function(h) {
         h = b.alCoerceString(this, h);
         if (null !== h && (h = this.assets[h.toLowerCase()], void 0 !== h)) {
@@ -41040,7 +41067,7 @@ __extends = this.__extends || function(e, b) {
             }
             this.assetsSymbols[h] = d;
           }
-          return {symbolId:h, symbolProps:d, theClass:this.assetsClasses[h]};
+          return {symbolId:h, symbolProps:d};
         }
       };
       h.prototype.setStage = function(e) {
@@ -42786,7 +42813,7 @@ __extends = this.__extends || function(e, b) {
           return a._as2Object;
         }
         var c = b.sec;
-        return c.flash.display.MovieClip.axClass.axIsType(a) ? a._avm1SymbolClass ? p(a._avm1SymbolClass, a, b) : p(b.globals.MovieClip, a, b) : c.flash.display.SimpleButton.axClass.axIsType(a) ? p(b.globals.Button, a, b) : c.flash.text.TextField.axClass.axIsType(a) ? p(b.globals.TextField, a, b) : c.flash.display.BitmapData.axClass.axIsType(a) ? new a : null;
+        return c.flash.display.MovieClip.axClass.axIsType(a) ? (c = a._symbol && b.getSymbolClass(a._symbol.data.id)) ? p(c, a, b) : p(b.globals.MovieClip, a, b) : c.flash.display.SimpleButton.axClass.axIsType(a) ? p(b.globals.Button, a, b) : c.flash.text.TextField.axClass.axIsType(a) ? p(b.globals.TextField, a, b) : c.flash.display.BitmapData.axClass.axIsType(a) ? new a : null;
       }
       function a(a, c, d, f, g) {
         function h(c) {
@@ -43871,10 +43898,7 @@ __extends = this.__extends || function(e, b) {
           d = b.alCoerceString(this.context, d);
           var h = this.context.getAsset(a);
           if (h) {
-            var l = Object.create(h.symbolProps);
-            l.avm1Name = d;
-            l.avm1SymbolClass = h.theClass;
-            return e.AVMX.AS.constructClassFromSymbol(l, this.context.sec.flash.display.MovieClip.axClass);
+            return h = Object.create(h.symbolProps), h.avm1Name = d, e.AVMX.AS.constructClassFromSymbol(h, this.context.sec.flash.display.MovieClip.axClass);
           }
         };
         a.prototype.get$version = function() {
@@ -44206,34 +44230,6 @@ __extends = this.__extends || function(e, b) {
             e[b._children[h].name] = !0;
           }
           return Object.getOwnPropertyNames(e);
-        };
-        a.prototype.addFrameActionBlocks = function(a, b) {
-          var d = b.initActionBlocks, e = b.actionBlocks;
-          d && this._addInitActionBlocks(a, d);
-          if (e) {
-            for (d = 0;d < e.length;d++) {
-              this.addFrameScript(a, e[d]);
-            }
-          }
-        };
-        a.prototype.addFrameScript = function(a, b) {
-          var d = this.context.actionsDataFactory.createActionsData(b.actionsData, "s" + this.as3Object._symbol.id + "f" + a), d = this.context.executeActions.bind(this.context, d, this);
-          d.precedence = b.precedence;
-          this.as3Object.addFrameScript(a, d);
-        };
-        a.prototype._addInitActionBlocks = function(a, b) {
-          function d(l) {
-            if (e.currentFrame === a + 1) {
-              e.removeEventListener("enterFrame", d);
-              l = h.context;
-              for (var f = 0;f < b.length;f++) {
-                var n = l.actionsDataFactory.createActionsData(b[f].actionsData, "s" + e._symbol.id + "f" + a + "i" + f);
-                l.executeActions(n, h);
-              }
-            }
-          }
-          var e = this.as3Object, h = this;
-          e.addEventListener("enterFrame", d);
         };
         a.prototype._init = function(a) {
           var d = this;
