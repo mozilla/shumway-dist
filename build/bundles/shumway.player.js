@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.291";
-Shumway$$inline_18.build = "bce0dfe";
+Shumway$$inline_18.version = "0.11.293";
+Shumway$$inline_18.build = "b85b816";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -629,28 +629,28 @@ var START_TIME = performance.now();
         if (127 >= n) {
           c += String.fromCharCode(n);
         } else {
-          var d = 192, m = 5;
+          var m = 192, d = 5;
           do {
-            if ((n & (d >> 1 | 128)) === d) {
+            if ((n & (m >> 1 | 128)) === m) {
               break;
             }
-            d = d >> 1 | 128;
-            --m;
-          } while (0 <= m);
-          if (0 >= m) {
+            m = m >> 1 | 128;
+            --d;
+          } while (0 <= d);
+          if (0 >= d) {
             c += String.fromCharCode(n);
           } else {
-            for (var n = n & (1 << m) - 1, d = !1, g = 5;g >= m;--g) {
+            for (var n = n & (1 << d) - 1, m = !1, g = 5;g >= d;--g) {
               var v = a[f++];
               if (128 != (v & 192)) {
-                d = !0;
+                m = !0;
                 break;
               }
               n = n << 6 | v & 63;
             }
-            if (d) {
-              for (m = f - (7 - g);m < f;++m) {
-                c += String.fromCharCode(a[m] & 255);
+            if (m) {
+              for (d = f - (7 - g);d < f;++d) {
+                c += String.fromCharCode(a[d] & 255);
               }
             } else {
               c = 65536 <= n ? c + String.fromCharCode(n - 65536 >> 10 & 1023 | 55296, n & 1023 | 56320) : c + String.fromCharCode(n);
@@ -4632,7 +4632,7 @@ var __extends = this.__extends || function(e, b) {
       var u = "moz-chunked-arraybuffer" !== c.responseType;
       u && (c.responseType = "arraybuffer");
       c.onprogress = function(a) {
-        u || (k = a.loaded, q = a.total, b(new Uint8Array(c.response), {loaded:k, total:q}));
+        u || (k = a.loaded, q = a.total, a = new Uint8Array(c.response), k = Math.max(k, a.byteLength), q = Math.max(q, a.byteLength), b(a, {loaded:k, total:q}));
       };
       c.onreadystatechange = function(d) {
         2 === c.readyState && a && a(g, c.status, c.getAllResponseHeaders());
