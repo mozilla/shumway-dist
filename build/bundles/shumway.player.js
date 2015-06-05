@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.297";
-Shumway$$inline_18.build = "443901d";
+Shumway$$inline_18.version = "0.11.301";
+Shumway$$inline_18.build = "fa99f02";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -20130,7 +20130,7 @@ __extends = this.__extends || function(e, b) {
       u.prototype.registerEmbeddedFont = function(a) {
         if (inFirefox) {
           var b = this._dataStream, c = b.getUint16(b.pos, !0), d, f;
-          10 === a.tagCode ? (f = "__autofont__" + a.byteOffset, d = "regular") : (d = this.data[b.pos + 2], d = h(!!(d & 2), !!(d & 1)), f = this.data[b.pos + 4], b.pos += 5, f = t.readString(this.data, b, f));
+          10 === a.tagCode ? (f = "__autofont__" + a.byteOffset, d = "regular") : (d = this.data[b.pos + 2], d = h(!!(d & 1), !!(d & 2)), f = this.data[b.pos + 4], b.pos += 5, f = t.readString(this.data, b, f));
           this.fonts.push({name:f, id:c, style:d});
           b.pos = a.byteOffset + a.byteLength;
         } else {
@@ -36201,8 +36201,10 @@ var RtmpJs;
               var g = b.metrics;
               g && (this.ascent = g.ascent, this.descent = g.descent, this.leading = g.leading, this.advances = g.advances);
               this._fontType = g ? a.EMBEDDED : a.DEVICE;
-              g = Object.getOwnPropertyDescriptor(c._fontsBySymbolId, b.syncId + "");
-              g && g.value || (g = {value:this, configurable:!0}, Object.defineProperty(c._fontsBySymbolId, b.id + "", g), Object.defineProperty(c._fontsByName, b.name.toLowerCase() + this._fontStyle, g), this._fontType === a.EMBEDDED && Object.defineProperty(c._fontsByName, "swffont" + b.syncId + this._fontStyle, g));
+              g = {value:this, configurable:!0};
+              Object.defineProperty(c._fontsBySymbolId, b.id + "", g);
+              Object.defineProperty(c._fontsByName, b.name.toLowerCase() + this._fontStyle, g);
+              this._fontType === a.EMBEDDED && Object.defineProperty(c._fontsByName, "swffont" + b.syncId + this._fontStyle, g);
             };
             c.getBySymbolId = function(a) {
               return this._fontsBySymbolId[a];
@@ -36229,7 +36231,7 @@ var RtmpJs;
               var c = this.sec.flash.display.DisplayObject.axClass.getNextSyncID(), d = a.name.toLowerCase() + a.style, g = {get:this.resolveFontSymbol.bind(this, b, a.id, c, d), configurable:!0};
               Object.defineProperty(this._fontsByName, d, g);
               Object.defineProperty(this._fontsByName, "swffont" + c + a.style, g);
-              Object.defineProperty(this._fontsBySymbolId, c + "", g);
+              Object.defineProperty(this._fontsBySymbolId, a.id + "", g);
             };
             c.resolveFontSymbol = function(a, b, c, d) {
               a.getSymbolById(b).syncId = c;
@@ -50002,14 +50004,16 @@ __extends = this.__extends || function(e, b) {
           var b = this._matrix;
           a.transform(b.a, b.b, b.c, b.d, b.tx, b.ty);
         }
-        for (var b = this.lines, c = this._coords, d = c.position = 0;d < b.length;d++) {
-          for (var e = b[d].runs, f = 0;f < e.length;f++) {
-            var g = e[f];
-            a.font = g.font;
-            a.fillStyle = g.fillStyle;
-            for (var g = g.text, h = 0;h < g.length;h++) {
-              var k = c.readInt() / 20, l = c.readInt() / 20;
-              a.fillText(g[h], k, l);
+        var b = this.lines, c = this._coords;
+        c.position = 0;
+        for (var d = "", e = "", f = 0;f < b.length;f++) {
+          for (var g = b[f].runs, h = 0;h < g.length;h++) {
+            var k = g[h];
+            k.font !== d && (a.font = d = k.font);
+            k.fillStyle !== e && (a.fillStyle = e = k.fillStyle);
+            for (var k = k.text, l = 0;l < k.length;l++) {
+              var m = c.readInt() / 20, n = c.readInt() / 20;
+              a.fillText(k[l], m, n);
             }
           }
         }
@@ -50020,24 +50024,25 @@ __extends = this.__extends || function(e, b) {
         a.rect(b.x + 2, b.y + 2, b.w - 4, b.h - 4);
         a.clip();
         a.translate(b.x - this._scrollH + 2, b.y + 2);
-        for (var c = this.lines, d = this._scrollV, e = 0, f = 0;f < c.length;f++) {
-          var g = c[f], h = g.x, k = g.y;
-          if (f + 1 < d) {
-            e = k + g.descent + g.leading;
+        var c = this.lines, d = this._scrollV, e = 0, f = "", g = "";
+        a.textAlign = "left";
+        a.textBaseline = "alphabetic";
+        for (var h = 0;h < c.length;h++) {
+          var k = c[h], l = k.x, m = k.y;
+          if (h + 1 < d) {
+            e = m + k.descent + k.leading;
           } else {
-            k -= e;
-            if (f + 1 - d && k > b.h) {
+            m -= e;
+            if (h + 1 - d && m > b.h) {
               break;
             }
-            for (var l = g.runs, m = 0;m < l.length;m++) {
-              var n = l[m];
-              a.font = n.font;
-              a.fillStyle = n.fillStyle;
-              n.underline && a.fillRect(h, k + g.descent / 2 | 0, n.width, 1);
-              a.textAlign = "left";
-              a.textBaseline = "alphabetic";
-              a.fillText(n.text, h, k);
-              h += n.width;
+            for (var n = k.runs, q = 0;q < n.length;q++) {
+              var p = n[q];
+              p.font !== f && (a.font = f = p.font);
+              p.fillStyle !== g && (a.fillStyle = g = p.fillStyle);
+              p.underline && a.fillRect(l, m + k.descent / 2 | 0, p.width, 1);
+              a.fillText(p.text, l, m);
+              l += p.width;
             }
           }
         }
