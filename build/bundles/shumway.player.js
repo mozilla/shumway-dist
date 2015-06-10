@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.303";
-Shumway$$inline_18.build = "7f76166";
+Shumway$$inline_18.version = "0.11.305";
+Shumway$$inline_18.build = "6474efb";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -128,11 +128,11 @@ var START_TIME = performance.now();
     return void 0 == a;
   };
   e.argumentsToString = function(a) {
-    for (var f = [], c = 0;c < a.length;c++) {
-      var v = a[c];
+    for (var f = [], p = 0;p < a.length;p++) {
+      var c = a[p];
       try {
         var d;
-        d = "object" === typeof v && v ? "toString" in v ? v.toString() : Object.prototype.toString.call(v) : v + "";
+        d = "object" === typeof c && c ? "toString" in c ? c.toString() : Object.prototype.toString.call(c) : c + "";
         f.push(d);
       } catch (g) {
         f.push("<unprintable value>");
@@ -888,22 +888,30 @@ var START_TIME = performance.now();
   })();
   q = function() {
     function a() {
-      "undefined" !== typeof ShumwayCom && ShumwayCom.getWeakMapKeys ? this._map = new WeakMap : this._list = [];
+      "undefined" !== typeof ShumwayCom && ShumwayCom.getWeakMapKeys ? (this._map = new WeakMap, this._newAdditions = []) : this._list = [];
     }
     a.prototype.clear = function() {
       this._map ? this._map.clear() : this._list.length = 0;
     };
     a.prototype.push = function(a) {
-      this._map ? this._map.set(a, null) : this._list.push(a);
+      this._map ? (this._map.set(a, null), this._newAdditions.forEach(function(c) {
+        c.push(a);
+      })) : this._list.push(a);
     };
     a.prototype.remove = function(a) {
       this._map ? this._map.delete(a) : this._list[this._list.indexOf(a)] = null;
     };
     a.prototype.forEach = function(a) {
       if (this._map) {
+        var c = [];
+        this._newAdditions.push(c);
         ShumwayCom.getWeakMapKeys(this._map).forEach(function(c) {
           0 !== c._referenceCount && a(c);
         });
+        c.forEach(function(c) {
+          0 !== c._referenceCount && a(c);
+        });
+        this._newAdditions.splice(this._newAdditions.indexOf(c), 1);
       } else {
         for (var c = this._list, d = 0, m = 0;m < c.length;m++) {
           var g = c[m];
