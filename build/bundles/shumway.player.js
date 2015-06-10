@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.305";
-Shumway$$inline_18.build = "6474efb";
+Shumway$$inline_18.version = "0.11.307";
+Shumway$$inline_18.build = "42f9566";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -31508,24 +31508,28 @@ var RtmpJs;
                 var c = this;
                 this._addCallback(a, function(a, d) {
                   var g = !0;
-                  if (null == d) {
-                    var k = this.convertToXML(a), g = (g = k.attribute("returntype")) && "javascript" == g._value;
-                    d = [];
-                    for (var h = 0;h < k._children.length;h++) {
+                  if (d) {
+                    for (var k = [], h = 0;h < d.length;h++) {
+                      var e = d[h];
+                      "object" === typeof e && e ? k.push(c.sec.createObjectFromJS(e, !0)) : k.push(e);
+                    }
+                    d = k;
+                  } else {
+                    for (k = this.convertToXML(a), g = (g = k.attribute("returntype")) && "javascript" == g._value, d = [], h = 0;h < k._children.length;h++) {
                       d.push(this.convertFromXML(k._children[h]));
                     }
                   }
-                  var e;
+                  var q;
                   try {
-                    e = b.axApply(null, d);
-                  } catch (q) {
+                    q = b.axApply(null, d);
+                  } catch (l) {
                     if (this.$BgmarshallExceptions) {
-                      e = q;
+                      q = l;
                     } else {
-                      throw q;
+                      throw l;
                     }
                   }
-                  return g ? c.convertToJSString(e) : c.convertToXMLString(e);
+                  return g ? c.convertToJSString(q) : c.convertToXMLString(q);
                 });
               } else {
                 this._removeCallback(a);
@@ -32753,11 +32757,11 @@ var RtmpJs;
       (function(l) {
         (function(l) {
           var n = e.IntegerUtilities.toS16, q = e.IntegerUtilities.clampS8U8, d = function(a) {
-            function b(c, d, e, h, m, f, p, v) {
+            function b(c, d, h, e, m, f, p, v) {
               void 0 === c && (c = 1);
               void 0 === d && (d = 1);
-              void 0 === e && (e = 1);
               void 0 === h && (h = 1);
+              void 0 === e && (e = 1);
               void 0 === m && (m = 0);
               void 0 === f && (f = 0);
               void 0 === p && (p = 0);
@@ -32765,8 +32769,8 @@ var RtmpJs;
               a.call(this);
               this.redMultiplier = +c;
               this.greenMultiplier = +d;
-              this.blueMultiplier = +e;
-              this.alphaMultiplier = +h;
+              this.blueMultiplier = +h;
+              this.alphaMultiplier = +e;
               this.redOffset = +m;
               this.greenOffset = +f;
               this.blueOffset = +p;
@@ -32817,22 +32821,22 @@ var RtmpJs;
             }, set:function(a) {
               this.alphaOffset = +a;
             }, enumerable:!0, configurable:!0});
-            b.prototype.ColorTransform = function(a, b, c, d, e, f, h, v) {
+            b.prototype.ColorTransform = function(a, b, c, d, h, f, e, v) {
               void 0 === a && (a = 1);
               void 0 === b && (b = 1);
               void 0 === c && (c = 1);
               void 0 === d && (d = 1);
-              void 0 === e && (e = 0);
-              void 0 === f && (f = 0);
               void 0 === h && (h = 0);
+              void 0 === f && (f = 0);
+              void 0 === e && (e = 0);
               void 0 === v && (v = 0);
               this.redMultiplier = a;
               this.greenMultiplier = b;
               this.blueMultiplier = c;
               this.alphaMultiplier = d;
-              this.redOffset = e;
+              this.redOffset = h;
               this.greenOffset = f;
-              this.blueOffset = h;
+              this.blueOffset = e;
               this.alphaOffset = v;
             };
             Object.defineProperty(b.prototype, "color", {get:function() {
@@ -32883,14 +32887,14 @@ var RtmpJs;
               this.blueOffset = a.blueOffset;
               this.alphaOffset = a.alphaOffset;
             };
-            b.prototype.setTo = function(a, b, c, d, e, f, h, v) {
+            b.prototype.setTo = function(a, b, c, d, h, f, e, v) {
               this.redMultiplier = a;
               this.greenMultiplier = b;
               this.blueMultiplier = c;
               this.alphaMultiplier = d;
-              this.redOffset = e;
+              this.redOffset = h;
               this.greenOffset = f;
-              this.blueOffset = h;
+              this.blueOffset = e;
               this.alphaOffset = v;
             };
             b.prototype.clone = function() {
@@ -45835,14 +45839,14 @@ __extends = this.__extends || function(e, b) {
           a = b.alToInt32(this.context, a);
           this._as3Object.setPixel32(e, d, a);
         };
-        n.prototype.threshold = function(e, d, a, c, g, k, r, l) {
+        n.prototype.threshold = function(e, d, a, c, g, k, l, n) {
           var m = e.as3BitmapData, f = h.toAS3Rectangle(d), p = h.toAS3Point(a);
           c = b.alCoerceString(this.context, c);
           g = b.alToInt32(this.context, g);
           k = 6 > arguments.length ? 0 : b.alToInt32(this.context, k);
-          r = 7 > arguments.length ? 4294967295 : b.alToInt32(this.context, r);
-          l = 8 > arguments.length ? !1 : b.alToBoolean(this.context, l);
-          return this._as3Object.threshold(m, f, p, c, g, k, r, l);
+          l = 7 > arguments.length ? 4294967295 : b.alToInt32(this.context, l);
+          n = 8 > arguments.length ? !1 : b.alToBoolean(this.context, n);
+          return this._as3Object.threshold(m, f, p, c, g, k, l, n);
         };
         return n;
       }(b.AVM1Object);
