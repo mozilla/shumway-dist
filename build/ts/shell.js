@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.327';
-    Shumway.build = 'b3878f6';
+    Shumway.version = '0.11.340';
+    Shumway.build = '8c17b06';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -100,7 +100,9 @@ this.Image = function () {
 };
 this.Image.prototype = {};
 this.URL = function (url, baseURL) {
+    if (baseURL === void 0) { baseURL = ''; }
     url = url + '';
+    baseURL = baseURL + '';
     if (url.indexOf('://') >= 0 || baseURL === url) {
         this._setURL(url);
         return;
@@ -777,7 +779,9 @@ var Shumway;
             ShellBinaryFileReader.prototype.readAll = function (progress, complete) {
                 setTimeout(function () {
                     try {
-                        complete(read(this.url, 'binary'));
+                        var url = this.url + '';
+                        var strippedUrl = url.indexOf('file://') === 0 ? url.substr(7) : url;
+                        complete(read(strippedUrl, 'binary'));
                     }
                     catch (e) {
                         complete(null, 'Can\'t read ' + this.url);
@@ -838,6 +842,7 @@ var Shumway;
             Shumway.BinaryFileReader = ShellBinaryFileReader;
             Shumway.Telemetry.instance = shellTelemetry;
             Shumway.FileLoadingService.instance = shellFileLoadingService;
+            Shumway.LocalConnectionService.instance = new Shumway.Player.PlayerInternalLocalConnectionService();
         }
         Shell.initializePlayerServices = initializePlayerServices;
     })(Shell = Shumway.Shell || (Shumway.Shell = {}));
@@ -1224,12 +1229,12 @@ var Shumway;
             }
             var player = null;
             var asyncLoading = true;
+            // TODO: resolve absolute file path for the base URL.
+            Shumway.FileLoadingService.instance.setBaseUrl('file://' + file);
             if (asyncLoading) {
-                Shumway.FileLoadingService.instance.setBaseUrl(file);
                 player = runSWF(file);
             }
             else {
-                Shumway.FileLoadingService.instance.setBaseUrl(file);
                 player = runSWF(read(file, 'binary'));
             }
             try {
