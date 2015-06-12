@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.340";
-Shumway$$inline_18.build = "8c17b06";
+Shumway$$inline_18.version = "0.11.346";
+Shumway$$inline_18.build = "b756580";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -2012,21 +2012,21 @@ var START_TIME = performance.now();
     };
   })(p = e.ColorUtilities || (e.ColorUtilities = {}));
   n = function() {
-    function a(c) {
-      void 0 === c && (c = 32);
+    function a(f) {
+      void 0 === f && (f = 32);
       this._list = [];
-      this._maxSize = c;
+      this._maxSize = f;
     }
-    a.prototype.acquire = function(c) {
+    a.prototype.acquire = function(f) {
       if (a._enabled) {
-        for (var d = this._list, g = 0;g < d.length;g++) {
-          var k = d[g];
-          if (k.byteLength >= c) {
-            return d.splice(g, 1), k;
+        for (var c = this._list, d = 0;d < c.length;d++) {
+          var g = c[d];
+          if (g.byteLength >= f) {
+            return c.splice(d, 1), g;
           }
         }
       }
-      return new ArrayBuffer(c);
+      return new ArrayBuffer(f);
     };
     a.prototype.release = function(c) {
       if (a._enabled) {
@@ -2393,7 +2393,7 @@ var START_TIME = performance.now();
   var f = Function("return this")();
   if (f.Promise) {
     "function" !== typeof f.Promise.all && (f.Promise.all = function(a) {
-      var c = 0, d = [], g, r, k = new f.Promise(function(a, c) {
+      var c = 0, d = [], g, r, q = new f.Promise(function(a, c) {
         g = a;
         r = c;
       });
@@ -2406,7 +2406,7 @@ var START_TIME = performance.now();
         }, r);
       });
       0 === c && g(d);
-      return k;
+      return q;
     }), "function" !== typeof f.Promise.resolve && (f.Promise.resolve = function(a) {
       return new f.Promise(function(c) {
         c(a);
@@ -2448,14 +2448,14 @@ var START_TIME = performance.now();
       if (!h(this)) {
         throw new TypeError("this is not a Promises");
       }
-      var g = e(this.promiseConstructor), r = "function" === typeof f ? f : d, k = {deferred:g, handler:p(this, "function" === typeof c ? c : a, r)}, r = {deferred:g, handler:r};
+      var g = e(this.promiseConstructor), r = "function" === typeof f ? f : d, q = {deferred:g, handler:p(this, "function" === typeof c ? c : a, r)}, r = {deferred:g, handler:r};
       switch(this.promiseStatus) {
         case "unresolved":
-          this.resolveReactions.push(k);
+          this.resolveReactions.push(q);
           this.rejectReactions.push(r);
           break;
         case "has-resolution":
-          l({reaction:k, argument:this.result});
+          l({reaction:q, argument:this.result});
           break;
         case "has-rejection":
           l({reaction:r, argument:this.result});
@@ -2839,19 +2839,19 @@ var __extends = this.__extends || function(e, b) {
 (function(e) {
   (function(b) {
     function h(a) {
-      for (var c = Math.max.apply(null, a), f = a.length, d = 1 << c, g = new Uint32Array(d), k = c << 16 | 65535, q = 0;q < d;q++) {
-        g[q] = k;
+      for (var c = Math.max.apply(null, a), f = a.length, d = 1 << c, g = new Uint32Array(d), q = c << 16 | 65535, k = 0;k < d;k++) {
+        g[k] = q;
       }
-      for (var k = 0, q = 1, b = 2;q <= c;k <<= 1, ++q, b <<= 1) {
+      for (var q = 0, k = 1, b = 2;k <= c;q <<= 1, ++k, b <<= 1) {
         for (var t = 0;t < f;++t) {
-          if (a[t] === q) {
-            for (var p = 0, n = 0;n < q;++n) {
-              p = 2 * p + (k >> n & 1);
+          if (a[t] === k) {
+            for (var p = 0, n = 0;n < k;++n) {
+              p = 2 * p + (q >> n & 1);
             }
             for (n = p;n < d;n += b) {
-              g[n] = q << 16 | t;
+              g[n] = k << 16 | t;
             }
-            ++k;
+            ++q;
           }
         }
       }
@@ -2894,12 +2894,12 @@ var __extends = this.__extends || function(e, b) {
         return 2;
       };
       a.inflate = function(c, f, d) {
-        var g = new Uint8Array(f), k = 0;
+        var g = new Uint8Array(f), q = 0;
         f = a.create(d);
         f.onData = function(a) {
-          var c = Math.min(a.length, g.length - k);
-          c && b.memCopy(g, a, k, 0, c);
-          k += c;
+          var c = Math.min(a.length, g.length - q);
+          c && b.memCopy(g, a, q, 0, c);
+          q += c;
         };
         f.onError = function(a) {
           throw Error(a);
@@ -28695,7 +28695,7 @@ var RtmpJs;
                 c();
               } else {
                 var g = function() {
-                  this.currentFrame === a + 1 && (d.removeEventListener("enterFrame", g), c());
+                  d.currentFrame === a + 1 && (d.removeEventListener("enterFrame", g), c());
                 };
                 this.addEventListener("enterFrame", g);
               }
@@ -40990,7 +40990,10 @@ __extends = this.__extends || function(e, b) {
         }
         __extends(c, a);
         c.prototype.alConstruct = function(a) {
-          if (a && "number" === typeof a[0]) {
+          if (!a) {
+            return new w(this.context, []);
+          }
+          if (1 === a.length && "number" === typeof a[0]) {
             a = a[0];
             if (a >>> 0 !== a) {
               throw Error("Range error");
@@ -41897,8 +41900,9 @@ __extends = this.__extends || function(e, b) {
       c.push(d ? a : a ? 1 : 0);
     }
     function ea(a) {
-      var b = a.stack;
-      b.push(a.actions.int(b.pop()));
+      var c = a.stack;
+      a = b.alToInt32(a.context, c.pop());
+      c.push(a);
     }
     function da(a) {
       var b = a.stack, c = b.pop();
@@ -42058,8 +42062,7 @@ __extends = this.__extends || function(e, b) {
     }
     function Na(b) {
       var c = b.stack, f = c.pop(), g = c.pop();
-      c.push(d(b.context, g, f));
-      a(b.context, f);
+      e.isNullOrUndefined(g) ? h("AVM1 warning: cannot delete member '" + f + "' on undefined object") : (c.push(d(b.context, g, f)), a(b.context, f));
     }
     function Oa(b) {
       var c = b.stack, f = c.pop(), g = w(b, f, xa.DELETE);
@@ -43520,7 +43523,7 @@ __extends = this.__extends || function(e, b) {
           return b;
         };
         c.prototype.getTransform = function() {
-          return this.context.globals.alGet("flash").alGet("geom").alGet("Transform").alConstruct([this]);
+          return this.context.globals.Transform.alConstruct([this]);
         };
         c.prototype.setTransform = function(a) {
           a instanceof h.AVM1Transform && (this.as3Object.transform = a.as3Transform);
@@ -43606,6 +43609,9 @@ __extends = this.__extends || function(e, b) {
         };
         a.resolveLevel = function(a, b) {
           return a.resolveLevel(+b);
+        };
+        a.resolveLevelOrTarget = function(a, b) {
+          return "number" === typeof b ? a.resolveLevel(b) : a.resolveTarget(b);
         };
         return a;
       }();
@@ -43814,6 +43820,12 @@ __extends = this.__extends || function(e, b) {
           this.TextFormat = h.AVM1TextFormat.createAVM1Class(a);
           this.XMLNode = new h.AVM1XMLNodeFunction(a);
           this.XML = new h.AVM1XMLFunction(a, this.XMLNode);
+          this.BitmapData = h.AVM1BitmapData.createAVM1Class(a);
+          this.Matrix = new h.AVM1MatrixFunction(a);
+          this.Point = new h.AVM1PointFunction(a);
+          this.Rectangle = new h.AVM1RectangleFunction(a);
+          this.Transform = h.AVM1Transform.createAVM1Class(a);
+          this.ColorTransform = new h.AVM1ColorTransformFunction(a);
           h.AVM1Broadcaster.initialize(a, this.Stage);
           h.AVM1Broadcaster.initialize(a, this.Key);
           h.AVM1Broadcaster.initialize(a, this.Mouse);
@@ -43821,19 +43833,20 @@ __extends = this.__extends || function(e, b) {
         c.prototype._initializeFlashObject = function(a) {
           this.flash = b.alNewObject(a);
           var c = b.alNewObject(a);
-          c.alPut("BitmapData", h.AVM1BitmapData.createAVM1Class(a));
+          c.alPut("BitmapData", this.BitmapData);
           this.flash.alPut("display", c);
           c = b.alNewObject(a);
           c.alPut("ExternalInterface", h.AVM1ExternalInterface.createAVM1Class(a));
           this.flash.alPut("external", c);
           c = h.createFiltersClasses(a);
           this.flash.alPut("filters", c);
+          this.filters = c;
           c = b.alNewObject(a);
-          c.alPut("ColorTransform", new h.AVM1ColorTransformFunction(a));
-          c.alPut("Matrix", new h.AVM1MatrixFunction(a));
-          c.alPut("Point", new h.AVM1PointFunction(a));
-          c.alPut("Rectangle", new h.AVM1RectangleFunction(a));
-          c.alPut("Transform", h.AVM1Transform.createAVM1Class(a));
+          c.alPut("ColorTransform", this.ColorTransform);
+          c.alPut("Matrix", this.Matrix);
+          c.alPut("Point", this.Point);
+          c.alPut("Rectangle", this.Rectangle);
+          c.alPut("Transform", this.Transform);
           this.flash.alPut("geom", c);
           a = b.alNewObject(a);
           this.flash.alPut("text", a);
@@ -43884,9 +43897,6 @@ __extends = this.__extends || function(e, b) {
         a.prototype.ifFrameLoaded = function(a, b) {
           var d = h.AVM1Utils.resolveTarget(this.context), e = 2 > arguments.length ? arguments[0] : arguments[1], n = d.alGet("_framesloaded"), d = d.alGet("_totalframes");
           return Math.min(e + 1, d) <= n;
-        };
-        a.prototype.int = function(a) {
-          return a | 0;
         };
         a.prototype.length_ = function(a) {
           return ("" + a).length;
@@ -44523,9 +44533,8 @@ __extends = this.__extends || function(e, b) {
           return this.as3Object.stopDrag();
         };
         a.prototype.swapDepths = function(a) {
-          var b = this.as3Object;
-          a = "number" === typeof a ? h.AVM1Utils.resolveLevel(this.context, Number(a)).as3Object : h.AVM1Utils.resolveTarget(this.context, a).as3Object;
-          b.parent === a.parent && b.parent.swapChildren(b, a);
+          var b = h.AVM1Utils.resolveLevelOrTarget(this.context, a);
+          b && (a = this.as3Object, b = b.as3Object, a.parent === b.parent && a.parent.swapChildren(a, b));
         };
         a.prototype.getTabChildren = function() {
           return this.as3ObjectOrTemplate.tabChildren;
@@ -45117,7 +45126,7 @@ __extends = this.__extends || function(e, b) {
           void 0 === l && (l = 0);
           void 0 === m && (m = 0);
           a.call(this, d);
-          this.alPrototype = d.globals.alGet("flash").alGet("geom").alGet("ColorTransform").alGetPrototypeProperty();
+          this.alPrototype = d.globals.ColorTransform.alGetPrototypeProperty();
           this.alPut("redMultiplier", e);
           this.alPut("greenMultiplier", g);
           this.alPut("blueMultiplier", h);
@@ -45205,7 +45214,7 @@ __extends = this.__extends || function(e, b) {
           void 0 === f && (f = 0);
           void 0 === r && (r = 0);
           a.call(this, c);
-          this.alPrototype = c.globals.alGet("flash").alGet("geom").alGet("Matrix").alGetPrototypeProperty();
+          this.alPrototype = c.globals.Matrix.alGetPrototypeProperty();
           this.alPut("a", d);
           this.alPut("b", e);
           this.alPut("c", h);
@@ -45346,7 +45355,7 @@ __extends = this.__extends || function(e, b) {
       var l = function(a) {
         function b(c, d, e) {
           a.call(this, c);
-          this.alPrototype = c.globals.alGet("flash").alGet("geom").alGet("Point").alGetPrototypeProperty();
+          this.alPrototype = c.globals.Point.alGetPrototypeProperty();
           this.alPut("x", d);
           this.alPut("y", e);
         }
@@ -45447,7 +45456,7 @@ __extends = this.__extends || function(e, b) {
       var l = function(a) {
         function b(c, d, e, h, n) {
           a.call(this, c);
-          this.alPrototype = c.globals.alGet("flash").alGet("geom").alGet("Rectangle").alGetPrototypeProperty();
+          this.alPrototype = c.globals.Rectangle.alGetPrototypeProperty();
           this.alPut("x", d);
           this.alPut("y", e);
           this.alPut("width", h);
@@ -45850,14 +45859,14 @@ __extends = this.__extends || function(e, b) {
         };
         l.fromAS3BitmapData = function(b, d) {
           var a = new l(b);
-          a.alPrototype = b.globals.alGet("flash").alGet("display").alGet("BitmapData").alGetPrototypeProperty();
+          a.alPrototype = b.globals.BitmapData.alGetPrototypeProperty();
           a._as3Object = d;
           return a;
         };
         l.loadBitmap = function(h, d) {
           d = b.alToString(h, d);
           var a = h.getAsset(d), c = a.symbolProps.symbolClass, g = h.sec.flash.display.BitmapData.axClass;
-          return a && (g === c || g.dPrototype.isPrototypeOf(c.dPrototype)) ? (a = e.AVMX.AS.constructClassFromSymbol(a.symbolProps, g), c = h.globals.alGet("flash").alGet("display").alGet("BitmapData"), g = new l(h), g.alPrototype = c.alGetPrototypeProperty(), g._as3Object = a, g) : null;
+          return a && (g === c || g.dPrototype.isPrototypeOf(c.dPrototype)) ? (a = e.AVMX.AS.constructClassFromSymbol(a.symbolProps, g), c = new l(h), c.alPrototype = h.globals.BitmapData.alGetPrototypeProperty(), c._as3Object = a, c) : null;
         };
         l.prototype.getHeight = function() {
           return this._as3Object.height;
@@ -45881,8 +45890,8 @@ __extends = this.__extends || function(e, b) {
           return 0;
         };
         l.prototype.clone = function() {
-          var b = new l(this.context), d = this.context.globals.alGet("flash").alGet("display").alGet("BitmapData");
-          b.alPrototype = d.alGetPrototypeProperty();
+          var b = new l(this.context);
+          b.alPrototype = this.context.globals.BitmapData.alGetPrototypeProperty();
           b._as3Object = this._as3Object.clone();
           return b;
         };
@@ -46296,7 +46305,10 @@ __extends = this.__extends || function(e, b) {
           h.AVM1Broadcaster.initialize(this.context, this);
         };
         e.prototype.loadClip = function(b, a) {
-          this._target = "number" === typeof a ? h.AVM1Utils.resolveLevel(this.context, a) : h.AVM1Utils.resolveTarget(this.context, a);
+          this._target = h.AVM1Utils.resolveLevelOrTarget(this.context, a);
+          if (!this._target) {
+            return !1;
+          }
           this._target.as3Object.addChild(this._loader);
           this._loader.contentLoaderInfo.addEventListener(m.events.Event.OPEN, this.openHandler.bind(this));
           this._loader.contentLoaderInfo.addEventListener(m.events.ProgressEvent.PROGRESS, this.progressHandler.bind(this));
@@ -46307,7 +46319,11 @@ __extends = this.__extends || function(e, b) {
           return !0;
         };
         e.prototype.unloadClip = function(b) {
-          ("number" === typeof b ? h.AVM1Utils.resolveLevel(this.context, b) : h.AVM1Utils.resolveTarget(this.context, b)).as3Object.removeChild(this._loader);
+          b = h.AVM1Utils.resolveLevelOrTarget(this.context, b);
+          if (!b) {
+            return !1;
+          }
+          b.as3Object.removeChild(this._loader);
           return !0;
         };
         e.prototype.getProgress = function(b) {
@@ -46496,7 +46512,7 @@ __extends = this.__extends || function(e, b) {
       e.convertFromAS3Filters = function(a, d) {
         var e = [];
         if (d) {
-          for (var h = a.globals.alGet("flash").alGet("filters"), l = 0, f = d.axGetPublicProperty("length");l < f;l++) {
+          for (var h = a.globals.filters, l = 0, f = d.axGetPublicProperty("length");l < f;l++) {
             var r = d.axGetPublicProperty(l);
             c.forEach(function(a) {
               a = h.alGet(a).alGetPrototypeProperty();
@@ -46519,11 +46535,11 @@ __extends = this.__extends || function(e, b) {
         k && (a.data = k);
         var l = new b.sec.flash.net.URLLoader(a);
         l.dataFormat = "text";
-        var m = b.sec.boxFunction(function(a) {
-          l.removeEventListener(u.events.Event.COMPLETE, m);
+        var q = b.sec.boxFunction(function(a) {
+          l.removeEventListener(u.events.Event.COMPLETE, q);
           h.avm1BroadcastEvent(b, p, "onData", [l.data]);
         });
-        l.addEventListener(u.events.Event.COMPLETE, m);
+        l.addEventListener(u.events.Event.COMPLETE, q);
         p._as3Loader = l;
       }
       var u = e.AVMX.AS.flash;
