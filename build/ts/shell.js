@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.348';
-    Shumway.build = '8363406';
+    Shumway.version = '0.11.353';
+    Shumway.build = '8f0f506';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -649,6 +649,9 @@ var Shumway;
             // Make date now deterministic.
             jsGlobal.Date.now = function () {
                 return fakeTime += 10; // Advance time.
+            };
+            jsGlobal.Date.UTC = function () {
+                return RealDate.UTC.apply(RealDate, arguments);
             };
         }
         Shell.installTimeWarper = installTimeWarper;
