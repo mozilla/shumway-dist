@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.353";
-Shumway$$inline_18.build = "8f0f506";
+Shumway$$inline_18.version = "0.11.357";
+Shumway$$inline_18.build = "6669f8a";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -1880,19 +1880,19 @@ var START_TIME = performance.now();
   e.Color = p;
   var n;
   (function(a) {
-    function f(a) {
-      var f, c, d = a >> 24 & 255;
-      c = (Math.imul(a >> 16 & 255, d) + 127) / 255 | 0;
-      f = (Math.imul(a >> 8 & 255, d) + 127) / 255 | 0;
-      a = (Math.imul(a >> 0 & 255, d) + 127) / 255 | 0;
-      return d << 24 | c << 16 | f << 8 | a;
+    function c(a) {
+      var f, d, g = a >> 24 & 255;
+      d = (Math.imul(a >> 16 & 255, g) + 127) / 255 | 0;
+      f = (Math.imul(a >> 8 & 255, g) + 127) / 255 | 0;
+      a = (Math.imul(a >> 0 & 255, g) + 127) / 255 | 0;
+      return g << 24 | d << 16 | f << 8 | a;
     }
-    function c() {
-      if (!d) {
-        d = new Uint8Array(65536);
+    function d() {
+      if (!k) {
+        k = new Uint8Array(65536);
         for (var a = 0;256 > a;a++) {
-          for (var f = 0;256 > f;f++) {
-            d[(f << 8) + a] = Math.imul(255, a) / f;
+          for (var c = 0;256 > c;c++) {
+            k[(c << 8) + a] = Math.imul(255, a) / c;
           }
         }
       }
@@ -1931,78 +1931,78 @@ var START_TIME = performance.now();
       return Math.max(0, Math.min(255, a));
     };
     a.unpremultiplyARGB = function(a) {
-      var f, c, d = a >> 24 & 255;
-      c = Math.imul(255, a >> 16 & 255) / d & 255;
-      f = Math.imul(255, a >> 8 & 255) / d & 255;
+      var c, f, d = a >> 24 & 255;
+      f = Math.imul(255, a >> 16 & 255) / d & 255;
+      c = Math.imul(255, a >> 8 & 255) / d & 255;
       a = Math.imul(255, a >> 0 & 255) / d & 255;
-      return d << 24 | c << 16 | f << 8 | a;
+      return d << 24 | f << 16 | c << 8 | a;
     };
-    a.premultiplyARGB = f;
-    var d;
-    a.ensureUnpremultiplyTable = c;
+    a.premultiplyARGB = c;
+    var k;
+    a.ensureUnpremultiplyTable = d;
     a.getUnpremultiplyTable = function() {
-      c();
-      return d;
+      d();
+      return k;
     };
     a.tableLookupUnpremultiplyARGB = function(a) {
       a |= 0;
-      var f = a >> 24 & 255;
-      if (0 === f) {
+      var c = a >> 24 & 255;
+      if (0 === c) {
         return 0;
       }
-      if (255 === f) {
+      if (255 === c) {
         return a;
       }
-      var c, g, q = f << 8, r = d;
-      g = r[q + (a >> 16 & 255)];
-      c = r[q + (a >> 8 & 255)];
-      a = r[q + (a >> 0 & 255)];
-      return f << 24 | g << 16 | c << 8 | a;
+      var f, d, g = c << 8, q = k;
+      d = q[g + (a >> 16 & 255)];
+      f = q[g + (a >> 8 & 255)];
+      a = q[g + (a >> 0 & 255)];
+      return c << 24 | d << 16 | f << 8 | a;
     };
-    a.blendPremultipliedBGRA = function(a, f) {
-      var c, d;
-      d = 256 - (f & 255);
-      c = Math.imul(a & 16711935, d) >> 8;
+    a.blendPremultipliedBGRA = function(a, c) {
+      var f, d;
+      d = 256 - (c & 255);
+      f = Math.imul(a & 16711935, d) >> 8;
       d = Math.imul(a >> 8 & 16711935, d) >> 8;
-      return ((f >> 8 & 16711935) + d & 16711935) << 8 | (f & 16711935) + c & 16711935;
+      return ((c >> 8 & 16711935) + d & 16711935) << 8 | (c & 16711935) + f & 16711935;
     };
-    var k = g.swap32;
-    a.convertImage = function(a, c, g, q) {
+    var b = g.swap32;
+    a.convertImage = function(a, d, g, q) {
       var r = g.length;
-      if (a === c) {
+      if (a === d) {
         if (g !== q) {
           for (a = 0;a < r;a++) {
             q[a] = g[a];
           }
         }
       } else {
-        if (1 === a && 3 === c) {
+        if (1 === a && 3 === d) {
           for (e.ColorUtilities.ensureUnpremultiplyTable(), a = 0;a < r;a++) {
-            var b = g[a];
-            c = b & 255;
-            if (0 === c) {
+            var n = g[a];
+            d = n & 255;
+            if (0 === d) {
               q[a] = 0;
             } else {
-              if (255 === c) {
-                q[a] = 4278190080 | b >> 8 & 16777215;
+              if (255 === d) {
+                q[a] = 4278190080 | n >> 8 & 16777215;
               } else {
-                var n = b >> 24 & 255, p = b >> 16 & 255, b = b >> 8 & 255, h = c << 8, m = d, b = m[h + b], p = m[h + p], n = m[h + n];
-                q[a] = c << 24 | n << 16 | p << 8 | b;
+                var p = n >> 24 & 255, h = n >> 16 & 255, n = n >> 8 & 255, m = d << 8, u = k, n = u[m + n], h = u[m + h], p = u[m + p];
+                q[a] = d << 24 | p << 16 | h << 8 | n;
               }
             }
           }
         } else {
-          if (2 === a && 3 === c) {
+          if (2 === a && 3 === d) {
             for (a = 0;a < r;a++) {
-              q[a] = k(g[a]);
+              q[a] = b(g[a]);
             }
           } else {
-            if (3 === a && 1 === c) {
+            if (3 === a && 1 === d) {
               for (a = 0;a < r;a++) {
-                c = g[a], q[a] = k(f(c & 4278255360 | c >> 16 & 255 | (c & 255) << 16));
+                d = g[a], q[a] = b(c(d & 4278255360 | d >> 16 & 255 | (d & 255) << 16));
               }
             } else {
-              for (l.somewhatImplemented("Image Format Conversion: " + t[a] + " -> " + t[c]), a = 0;a < r;a++) {
+              for (l.somewhatImplemented("Image Format Conversion: " + t[a] + " -> " + t[d]), a = 0;a < r;a++) {
                 q[a] = g[a];
               }
             }
@@ -3062,12 +3062,12 @@ var __extends = this.__extends || function(e, b) {
         }
       };
       r.prototype._decodeBlock0 = function() {
-        var a = this._bufferPosition, c = this._windowPosition, f = this._block0Read, d = 65794 - c, g = this._bufferSize - a, q = g < f, r = Math.min(d, g, f);
-        this._window.set(this._buffer.subarray(a, a + r), c);
-        this._windowPosition = c + r;
-        this._bufferPosition = a + r;
-        this._block0Read = f - r;
-        return f === r ? (this._state = 0, !1) : q && d < g;
+        var a = this._bufferPosition, c = this._windowPosition, f = this._block0Read, d = 65794 - c, g = this._bufferSize - a, q = g < f, k = Math.min(d, g, f);
+        this._window.set(this._buffer.subarray(a, a + k), c);
+        this._windowPosition = c + k;
+        this._bufferPosition = a + k;
+        this._block0Read = f - k;
+        return f === k ? (this._state = 0, !1) : q && d < g;
       };
       r.prototype._readBits = function(a) {
         var c = this._bitBuffer, f = this._bitLength;
@@ -3109,50 +3109,50 @@ var __extends = this.__extends || function(e, b) {
         return a & 65535;
       };
       r.prototype._decodeBlock2Pre = function() {
-        var a = this._block2State, c = a.numLiteralCodes + a.numDistanceCodes, f = a.bitLengths, d = a.codesRead, g = 0 < d ? f[d - 1] : 0, q = a.codeLengthTable, r;
+        var a = this._block2State, c = a.numLiteralCodes + a.numDistanceCodes, f = a.bitLengths, d = a.codesRead, g = 0 < d ? f[d - 1] : 0, q = a.codeLengthTable, k;
         if (0 < a.dupBits) {
-          r = this._readBits(a.dupBits);
-          if (0 > r) {
+          k = this._readBits(a.dupBits);
+          if (0 > k) {
             return !0;
           }
-          for (;r--;) {
+          for (;k--;) {
             f[d++] = g;
           }
           a.dupBits = 0;
         }
         for (;d < c;) {
-          var k = this._readCode(q);
-          if (0 > k) {
+          var r = this._readCode(q);
+          if (0 > r) {
             return a.codesRead = d, !0;
           }
-          if (16 > k) {
-            f[d++] = g = k;
+          if (16 > r) {
+            f[d++] = g = r;
           } else {
             var b;
-            switch(k) {
+            switch(r) {
               case 16:
                 b = 2;
-                r = 3;
-                k = g;
+                k = 3;
+                r = g;
                 break;
               case 17:
-                r = b = 3;
-                k = 0;
+                k = b = 3;
+                r = 0;
                 break;
               case 18:
-                b = 7, r = 11, k = 0;
+                b = 7, k = 11, r = 0;
             }
-            for (;r--;) {
-              f[d++] = k;
+            for (;k--;) {
+              f[d++] = r;
             }
-            r = this._readBits(b);
-            if (0 > r) {
+            k = this._readBits(b);
+            if (0 > k) {
               return a.codesRead = d, a.dupBits = b, !0;
             }
-            for (;r--;) {
-              f[d++] = k;
+            for (;k--;) {
+              f[d++] = r;
             }
-            g = k;
+            g = r;
           }
         }
         this._literalTable = h(f.subarray(0, a.numLiteralCodes));
@@ -3162,35 +3162,35 @@ var __extends = this.__extends || function(e, b) {
         return !1;
       };
       r.prototype._decodeBlock = function() {
-        var a = this._literalTable, f = this._distanceTable, q = this._window, r = this._windowPosition, k = this._copyState, b, t, n, v;
-        if (0 !== k.state) {
-          switch(k.state) {
+        var a = this._literalTable, f = this._distanceTable, q = this._window, k = this._windowPosition, r = this._copyState, b, t, n, v;
+        if (0 !== r.state) {
+          switch(r.state) {
             case 1:
-              if (0 > (b = this._readBits(k.lenBits))) {
+              if (0 > (b = this._readBits(r.lenBits))) {
                 return !0;
               }
-              k.len += b;
-              k.state = 2;
+              r.len += b;
+              r.state = 2;
             case 2:
               if (0 > (b = this._readCode(f))) {
                 return !0;
               }
-              k.distBits = d[b];
-              k.dist = p[b];
-              k.state = 3;
+              r.distBits = d[b];
+              r.dist = p[b];
+              r.state = 3;
             case 3:
               b = 0;
-              if (0 < k.distBits && 0 > (b = this._readBits(k.distBits))) {
+              if (0 < r.distBits && 0 > (b = this._readBits(r.distBits))) {
                 return !0;
               }
-              v = k.dist + b;
-              t = k.len;
-              for (b = r - v;t--;) {
-                q[r++] = q[b++];
+              v = r.dist + b;
+              t = r.len;
+              for (b = k - v;t--;) {
+                q[k++] = q[b++];
               }
-              k.state = 0;
-              if (65536 <= r) {
-                return this._windowPosition = r, !1;
+              r.state = 0;
+              if (65536 <= k) {
+                return this._windowPosition = k, !1;
               }
               break;
           }
@@ -3198,42 +3198,42 @@ var __extends = this.__extends || function(e, b) {
         do {
           b = this._readCode(a);
           if (0 > b) {
-            return this._windowPosition = r, !0;
+            return this._windowPosition = k, !0;
           }
           if (256 > b) {
-            q[r++] = b;
+            q[k++] = b;
           } else {
             if (256 < b) {
-              this._windowPosition = r;
+              this._windowPosition = k;
               b -= 257;
               n = g[b];
               t = c[b];
               b = 0 === n ? 0 : this._readBits(n);
               if (0 > b) {
-                return k.state = 1, k.len = t, k.lenBits = n, !0;
+                return r.state = 1, r.len = t, r.lenBits = n, !0;
               }
               t += b;
               b = this._readCode(f);
               if (0 > b) {
-                return k.state = 2, k.len = t, !0;
+                return r.state = 2, r.len = t, !0;
               }
               n = d[b];
               v = p[b];
               b = 0 === n ? 0 : this._readBits(n);
               if (0 > b) {
-                return k.state = 3, k.len = t, k.dist = v, k.distBits = n, !0;
+                return r.state = 3, r.len = t, r.dist = v, r.distBits = n, !0;
               }
               v += b;
-              for (b = r - v;t--;) {
-                q[r++] = q[b++];
+              for (b = k - v;t--;) {
+                q[k++] = q[b++];
               }
             } else {
               this._state = 0;
               break;
             }
           }
-        } while (65536 > r);
-        this._windowPosition = r;
+        } while (65536 > k);
+        this._windowPosition = k;
         return !1;
       };
       return r;
@@ -10165,7 +10165,7 @@ __extends = this.__extends || function(e, b) {
       f < d.minArgs && a.throwError("ArgumentError", b.Errors.WrongArgumentCountError, c.classInfo.instanceInfo.getName().name, d.minArgs, f);
     };
     b.checkNullParameter = function(a, c, f) {
-      a || f.throwError("TypeError", b.Errors.NullPointerError, c);
+      void 0 == a && f.throwError("TypeError", b.Errors.NullPointerError, c);
     };
     b.checkParameterType = function(a, c, f, d) {
       if (null == a) {
@@ -43631,43 +43631,43 @@ __extends = this.__extends || function(e, b) {
       h.AVM1Utils = g;
       h.getAVM1Object = d;
       h.wrapAVM1NativeMembers = a;
-      h.wrapAVM1NativeClass = function(c, d, f, g, e, h, k) {
-        var n = d ? new b.AVM1NativeFunction(c, h || function() {
+      h.wrapAVM1NativeClass = function(c, d, g, e, h, k, n) {
+        var p = d ? new b.AVM1NativeFunction(c, k || function() {
         }, function() {
-          var a = new f(c);
-          a.alPrototype = p;
-          a.alSetOwnConstructorProperty(n);
-          k && k.apply(a, arguments);
+          var a = new g(c);
+          a.alPrototype = l;
+          a.alSetOwnConstructorProperty(p);
+          n && n.apply(a, arguments);
           return a;
         }) : new b.AVM1Object(c);
-        a(c, n, f, g, !0);
-        var p = new f(c);
-        p.alPrototype = c.builtins.Object.alGetPrototypeProperty();
-        a(c, p, f.prototype, e, !1);
-        b.alDefineObjectProperties(n, {prototype:{value:p}});
-        b.alDefineObjectProperties(p, {constructor:{value:n, writable:!0}});
-        return n;
+        a(c, p, g, e, !0);
+        var l = new g(c);
+        l.alPrototype = c.builtins.Object.alGetPrototypeProperty();
+        a(c, l, g.prototype, h, !1);
+        b.alDefineObjectProperties(p, {prototype:{value:l}});
+        b.alDefineObjectProperties(l, {constructor:{value:p, writable:!0}});
+        return p;
       };
-      h.initializeAVM1Object = function(a, b, f) {
-        var g = d(a, b);
-        f.variableName && g.alPut("variable", f.variableName);
-        var h = f.events;
-        if (h) {
-          for (var p = [], l = b.globals.Stage._as3Stage, m = 0;m < h.length;m++) {
-            var u = h[m], F;
-            u.actionsBlock ? (F = b.actionsDataFactory.createActionsData(u.actionsBlock, "s" + f.symbolId + "d" + f.depth + "e" + m), u.actionsBlock = null, u.compiled = F) : F = u.compiled;
-            F = c.bind(null, F, g);
-            var u = u.flags, x;
+      h.initializeAVM1Object = function(a, b, g) {
+        var h = d(a, b);
+        g.variableName && h.alPut("variable", g.variableName);
+        var p = g.events;
+        if (p) {
+          for (var l = [], m = b.globals.Stage._as3Stage, u = 0;u < p.length;u++) {
+            var A = p[u], F;
+            A.actionsBlock ? (F = b.actionsDataFactory.createActionsData(A.actionsBlock, "s" + g.symbolId + "d" + g.depth + "e" + u), A.actionsBlock = null, A.compiled = F) : F = A.compiled;
+            F = c.bind(null, F, h);
+            var A = A.flags, x;
             for (x in n) {
-              if (x |= 0, u & (x | 0)) {
+              if (x |= 0, A & (x | 0)) {
                 var y = n[x], C = y.name;
-                C ? (y.isButtonEvent && (a.buttonMode = !0), y.isStageEvent ? (p.push({eventName:C, handler:F}), l.addEventListener(C, F)) : a.addEventListener(C, F)) : e.Debug.warning(k[x] + " ClipEvent not implemented");
+                C ? (y.isButtonEvent && (a.buttonMode = !0), y.isStageEvent ? (l.push({eventName:C, handler:F}), m.addEventListener(C, F)) : a.addEventListener(C, F)) : e.Debug.warning(k[x] + " ClipEvent not implemented");
               }
             }
           }
-          0 < p.length && a.addEventListener("removedFromStage", function() {
-            for (var a = 0;a < p.length;a++) {
-              l.removeEventListener(p[a].eventName, p[a].fn, !1);
+          0 < l.length && a.addEventListener("removedFromStage", function() {
+            for (var a = 0;a < l.length;a++) {
+              m.removeEventListener(l[a].eventName, l[a].fn, !1);
             }
           }, !1);
         }
@@ -44282,7 +44282,7 @@ __extends = this.__extends || function(e, b) {
           this._initEventsHandlers();
         };
         a.prototype._lookupChildByName = function(a) {
-          a = b.alCoerceString(this.context, a);
+          a = b.alToString(this.context, a);
           var d = 2;
           this.context.isPropertyCaseSensitive || (d |= 1);
           a = this.as3Object._lookupChildByName(a, d);
@@ -44304,8 +44304,8 @@ __extends = this.__extends || function(e, b) {
           this._insertChildAtDepth(a, d);
         };
         a.prototype._constructMovieClipSymbol = function(a, d) {
-          a = b.alCoerceString(this.context, a);
-          d = b.alCoerceString(this.context, d);
+          a = b.alToString(this.context, a);
+          d = b.alToString(this.context, d);
           var h = this.context.getAsset(a);
           if (h) {
             return h = Object.create(h.symbolProps), h.avm1Name = d, e.AVMX.AS.constructClassFromSymbol(h, this.context.sec.flash.display.MovieClip.axClass);
@@ -44365,19 +44365,21 @@ __extends = this.__extends || function(e, b) {
           this.as3Object.addTimelineObjectAtDepth(a, e);
           return this.context.sec.flash.display.Bitmap.axIsType(a) ? null : h.getAVM1Object(a, this.context);
         };
-        a.prototype.createEmptyMovieClip = function(a, b) {
-          var d = new this.context.sec.flash.display.MovieClip;
-          d.name = a;
-          return this._insertChildAtDepth(d, b);
+        a.prototype.createEmptyMovieClip = function(a, d) {
+          a = b.alToString(this.context, a);
+          var e = new this.context.sec.flash.display.MovieClip;
+          e.name = a;
+          return this._insertChildAtDepth(e, d);
         };
-        a.prototype.createTextField = function(a, b, d, e, h, p) {
+        a.prototype.createTextField = function(a, d, e, h, p, l) {
+          a = b.alToString(this.context, a);
           var f = new this.context.sec.flash.text.TextField;
           f.name = a;
-          f.x = d;
-          f.y = e;
-          f.width = h;
-          f.height = p;
-          return this._insertChildAtDepth(f, b);
+          f.x = e;
+          f.y = h;
+          f.width = p;
+          f.height = l;
+          return this._insertChildAtDepth(f, d);
         };
         a.prototype.get_currentframe = function() {
           return this.as3Object.currentFrame;
@@ -44393,9 +44395,10 @@ __extends = this.__extends || function(e, b) {
           return this.as3Object.dropTarget;
         };
         a.prototype.duplicateMovieClip = function(a, d, h) {
+          a = b.alToString(this.context, a);
           var n = this.context.resolveTarget(null), p = this.as3Object, l;
           l = p._symbol ? e.AVMX.AS.constructClassFromSymbol(p._symbol, p.axClass) : new this.context.sec.flash.display.MovieClip;
-          l.name = b.alCoerceString(this.context, a);
+          l.name = a;
           l.x = p.x;
           l.scaleX = p.scaleX;
           l.y = p.y;
@@ -44658,6 +44661,7 @@ __extends = this.__extends || function(e, b) {
           }
         };
         a.prototype._resolveLevelNProperty = function(a) {
+          a = b.alToString(this.context, a);
           this.context.isPropertyCaseSensitive || (a = a.toLowerCase());
           if ("_level0" === a) {
             return this.context.resolveLevel(0);
@@ -44667,9 +44671,9 @@ __extends = this.__extends || function(e, b) {
           }
           if (0 === a.indexOf("_level")) {
             a = a.substring(6);
-            var b = a | 0;
-            if (0 < b && a == b) {
-              return this.context.resolveLevel(b);
+            var d = a | 0;
+            if (0 < d && a == d) {
+              return this.context.resolveLevel(d);
             }
           }
           return null;
@@ -44679,14 +44683,14 @@ __extends = this.__extends || function(e, b) {
           return this._cachedPropertyResult;
         };
         a.prototype.alGetOwnProperty = function(a) {
-          var e = d.prototype.alGetOwnProperty.call(this, a);
-          if (e) {
-            return e;
+          var g = d.prototype.alGetOwnProperty.call(this, a);
+          if (g) {
+            return g;
           }
           a = b.alToString(this.context, a);
           if ("_" === a[0]) {
-            if (e = this._resolveLevelNProperty(a)) {
-              return this._getCachedPropertyResult(e);
+            if (g = this._resolveLevelNProperty(a)) {
+              return this._getCachedPropertyResult(g);
             }
             if (0 <= b.PropertiesIndexMap.indexOf(a.toLowerCase())) {
               return d.prototype.alGetOwnProperty.call(this, a.toLowerCase());
