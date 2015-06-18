@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.357";
-Shumway$$inline_18.build = "6669f8a";
+Shumway$$inline_18.version = "0.11.359";
+Shumway$$inline_18.build = "3b39400";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -29962,7 +29962,7 @@ var RtmpJs;
               }
             };
             q.prototype._getTemporaryRectangleFrom = function(a) {
-              var b = this.axClass._temporaryRectangle;
+              var b = this.sec.flash.display.BitmapData.axClass._temporaryRectangle;
               b.copyFrom(a);
               return b;
             };
@@ -30011,9 +30011,14 @@ var RtmpJs;
               return this._transparent;
             }, enumerable:!0, configurable:!0});
             q.prototype.clone = function() {
-              p("public flash.display.BitmapData::clone");
-              var a = new this.sec.flash.display.BitmapData(this._rect.width, this._rect.height, this._transparent, this._solidFillColorPBGRA);
-              a._view.set(this._view);
+              var a = Object.create(this.sec.flash.display.BitmapData.axClass.tPrototype);
+              a._rect = this._rect.clone();
+              a._transparent = this._transparent;
+              a._solidFillColorPBGRA = this._solidFillColorPBGRA;
+              a._bitmapReferrers = [];
+              this._ensureBitmapData();
+              a._id = m.display.DisplayObject.getNextSyncID();
+              a._setData(new Uint8Array(this._data), this._type);
               return a;
             };
             q.prototype.getPixel = function(a, b) {
@@ -30075,7 +30080,7 @@ var RtmpJs;
                 p("public flash.display.BitmapData::copyPixels - Alpha");
               } else {
                 var k;
-                k = b ? this._getTemporaryRectangleFrom(b).roundInPlace() : this.axClass._temporaryRectangle.setEmpty();
+                k = b ? this._getTemporaryRectangleFrom(b).roundInPlace() : this.sec.flash.display.BitmapData.axClass._temporaryRectangle.setEmpty();
                 b = this._rect;
                 g = a._rect;
                 var h = Math.max(k.x, 0);
