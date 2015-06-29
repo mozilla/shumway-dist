@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_18 = Shumway || (Shumway = {});
-Shumway$$inline_18.version = "0.11.376";
-Shumway$$inline_18.build = "61da732";
+Shumway$$inline_18.version = "0.11.378";
+Shumway$$inline_18.build = "f1b73ca";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -33446,20 +33446,20 @@ var RtmpJs;
             };
             t.prototype.load = function(a, c) {
               if (a) {
-                var d = this, k = this._stream = new this.sec.flash.net.URLStream, e = new this.sec.flash.utils.ByteArray, n = 0, t = b.webAudioOption.value, p = null, m = new g;
+                var d = this, k = this._stream = new this.sec.flash.net.URLStream, e = new this.sec.flash.utils.ByteArray, n = 0, p = b.webAudioOption.value, t = null, m = new g;
                 m.completed = !1;
                 k.addEventListener("progress", function(a) {
                   d._bytesLoaded = a.axGetPublicProperty("bytesLoaded");
                   d._bytesTotal = a.axGetPublicProperty("bytesTotal");
-                  t && !p && (p = decodeMP3(m, function(a, b) {
+                  p && !t && (t = decodeMP3(m, function(a, b) {
                     0 === d._length && (d._soundData = m, d._playQueue.forEach(function(a) {
                       a.channel._playSoundDataViaChannel(m, a.startTime);
                     }));
-                    d._length = b ? 1E3 * a : 1E3 * Math.max(a, p.estimateDuration(d._bytesTotal));
+                    d._length = b ? 1E3 * a : 1E3 * Math.max(a, t.estimateDuration(d._bytesTotal));
                   }));
                   var b = k.bytesAvailable;
                   k.readBytes(e, n, b);
-                  p && p.pushData(new Uint8Array(e._buffer, n, b));
+                  t && t.pushData(new Uint8Array(e._buffer, n, b));
                   n += b;
                   d.dispatchEvent(a);
                 });
@@ -33468,12 +33468,12 @@ var RtmpJs;
                   m.data = e._buffer;
                   m.mimeType = "audio/mpeg";
                   m.completed = !0;
-                  t || (d._soundData = m, l(m, function(a) {
+                  p || (d._soundData = m, l(m, function(a) {
                     d._length = a.duration;
                   }), d._playQueue.forEach(function(a) {
                     a.channel._playSoundDataViaAudio(m, a.startTime);
                   }));
-                  p && p.close();
+                  t && t.close();
                 });
                 k.load(a);
               }
@@ -46003,7 +46003,8 @@ __extends = this.__extends || function(e, b) {
           return b;
         };
         l.prototype.colorTransform = function(b, d) {
-          e.Debug.notImplemented("AVM1BitmapData.colorTransform");
+          var a = h.toAS3Rectangle(b), c = h.toAS3ColorTransform(d);
+          this._as3Object.colorTransform(a, c);
         };
         l.prototype.compare = function(b) {
           return b instanceof l ? this._as3Object.compare(b._as3Object) : !1;
