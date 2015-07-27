@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.394';
-    Shumway.build = 'ff439e7';
+    Shumway.version = '0.11.398';
+    Shumway.build = 'f03481b';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -900,7 +900,7 @@ var Shumway;
         var WriterFlags = Shumway.AVMX.WriterFlags;
         var Option = Shumway.Options.Option;
         var ArgumentParser = Shumway.Options.ArgumentParser;
-        var SwfTag = Shumway.SWF.Parser.SwfTag;
+        var SwfTagCode = Shumway.SWF.Parser.SwfTagCode;
         var DataBuffer = Shumway.ArrayUtilities.DataBuffer;
         var ShellGFXServer = (function () {
             function ShellGFXServer() {
@@ -1360,7 +1360,7 @@ var Shumway;
                 return false;
             }
             for (var i = 0; i < symbolFilters.length; i++) {
-                var filterCode = SwfTag[symbolFilters[i]];
+                var filterCode = SwfTagCode[symbolFilters[i]];
                 if (filterCode !== undefined && filterCode === code) {
                     return false;
                 }
