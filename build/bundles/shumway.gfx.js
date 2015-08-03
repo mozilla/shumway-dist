@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.415";
-Shumway$$inline_0.build = "7459c1a";
+Shumway$$inline_0.version = "0.11.417";
+Shumway$$inline_0.build = "ca1386d";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -4576,6 +4576,7 @@ var __extends = this.__extends || function(k, p) {
         a[a.CODE_DEFINE_SPRITE = 39] = "CODE_DEFINE_SPRITE";
         a[a.CODE_DEFINE_MORPH_SHAPE = 46] = "CODE_DEFINE_MORPH_SHAPE";
         a[a.CODE_DEFINE_FONT2 = 48] = "CODE_DEFINE_FONT2";
+        a[a.CODE_DEFINE_VIDEO_STREAM = 60] = "CODE_DEFINE_VIDEO_STREAM";
         a[a.CODE_DEFINE_FONT3 = 75] = "CODE_DEFINE_FONT3";
         a[a.CODE_DEFINE_SHAPE4 = 83] = "CODE_DEFINE_SHAPE4";
         a[a.CODE_DEFINE_MORPH_SHAPE2 = 84] = "CODE_DEFINE_MORPH_SHAPE2";
@@ -4603,6 +4604,7 @@ var __extends = this.__extends || function(k, p) {
         a[a.CODE_REMOVE_OBJECT2 = 28] = "CODE_REMOVE_OBJECT2";
         a[a.CODE_START_SOUND = 15] = "CODE_START_SOUND";
         a[a.CODE_START_SOUND2 = 89] = "CODE_START_SOUND2";
+        a[a.CODE_VIDEO_FRAME = 61] = "CODE_VIDEO_FRAME";
       })(k.ControlTags || (k.ControlTags = {}));
       (function(a) {
         a[a.Move = 1] = "Move";
@@ -7605,22 +7607,22 @@ GFX$$inline_40.cacheShapesThreshold = canvas2DOptions$$inline_47.register(new Op
           this.w = f;
           this.h = b;
         };
-        a.prototype.set = function(d) {
-          this.x = d.x;
-          this.y = d.y;
-          this.w = d.w;
-          this.h = d.h;
+        a.prototype.set = function(a) {
+          this.x = a.x;
+          this.y = a.y;
+          this.w = a.w;
+          this.h = a.h;
         };
-        a.prototype.contains = function(d) {
-          var a = d.x + d.w, f = d.y + d.h, b = this.x + this.w, g = this.y + this.h;
-          return d.x >= this.x && d.x < b && d.y >= this.y && d.y < g && a > this.x && a <= b && f > this.y && f <= g;
+        a.prototype.contains = function(a) {
+          var c = a.x + a.w, f = a.y + a.h, b = this.x + this.w, g = this.y + this.h;
+          return a.x >= this.x && a.x < b && a.y >= this.y && a.y < g && c > this.x && c <= b && f > this.y && f <= g;
         };
-        a.prototype.containsPoint = function(d) {
-          return d.x >= this.x && d.x < this.x + this.w && d.y >= this.y && d.y < this.y + this.h;
+        a.prototype.containsPoint = function(a) {
+          return a.x >= this.x && a.x < this.x + this.w && a.y >= this.y && a.y < this.y + this.h;
         };
-        a.prototype.isContained = function(d) {
-          for (var a = 0;a < d.length;a++) {
-            if (d[a].contains(this)) {
+        a.prototype.isContained = function(a) {
+          for (var c = 0;c < a.length;c++) {
+            if (a[c].contains(this)) {
               return !0;
             }
           }
@@ -9897,15 +9899,15 @@ __extends = this.__extends || function(k, p) {
     }();
     p.StrokeProperties = n;
     var v = function(a) {
-      function b(f, c, e, g) {
+      function b(c, e, g, h) {
         a.call(this);
         this._flags = 6291472;
         this.properties = {};
-        this.setBounds(g);
-        this._id = f;
-        this._pathData = c;
-        this._textures = e;
-        e.length && this.setFlags(1048576);
+        this.setBounds(h);
+        this._id = c;
+        this._pathData = e;
+        this._textures = g;
+        g.length && this.setFlags(1048576);
       }
       __extends(b, a);
       b.prototype.update = function(a, b, c) {
