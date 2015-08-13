@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.426";
-Shumway$$inline_14.build = "f31136b";
+Shumway$$inline_14.version = "0.11.428";
+Shumway$$inline_14.build = "16b0858";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -39548,6 +39548,7 @@ console.time("Load AVM1 Dependencies");
 var Shumway$$inline_403 = Shumway || (Shumway = {}), AVM1$$inline_404 = Shumway$$inline_403.AVM1 || (Shumway$$inline_403.AVM1 = {}), Option$$inline_405 = Shumway$$inline_403.Options.Option, avm1Options$$inline_406 = Shumway$$inline_403.Settings.shumwayOptions.register(new Shumway$$inline_403.Options.OptionSet("AVM1"));
 AVM1$$inline_404.avm1TraceEnabled = avm1Options$$inline_406.register(new Option$$inline_405("t1", "traceAvm1", "boolean", !1, "trace AVM1 execution"));
 AVM1$$inline_404.avm1ErrorsEnabled = avm1Options$$inline_406.register(new Option$$inline_405("e1", "errorsAvm1", "boolean", !1, "fail on AVM1 warnings and errors"));
+AVM1$$inline_404.avm1WarningsEnabled = avm1Options$$inline_406.register(new Option$$inline_405("w1", "warningsAvm1", "boolean", !1, "Emit messages for AVM1 warnings and errors"));
 AVM1$$inline_404.avm1TimeoutDisabled = avm1Options$$inline_406.register(new Option$$inline_405("ha1", "nohangAvm1", "boolean", !1, "disable fail on AVM1 hang"));
 AVM1$$inline_404.avm1CompilerEnabled = avm1Options$$inline_406.register(new Option$$inline_405("ca1", "compileAvm1", "boolean", !0, "compiles AVM1 code"));
 AVM1$$inline_404.avm1DebuggerEnabled = avm1Options$$inline_406.register(new Option$$inline_405("da1", "debugAvm1", "boolean", !1, "allows AVM1 code debugging"));
@@ -41696,7 +41697,7 @@ __extends = this.__extends || function(e, b) {
         } catch (k) {
         }
       }
-      e.Debug.warning.apply(console, arguments);
+      b.avm1WarningsEnabled.value && e.Debug.warning.apply(console, arguments);
     }
     function n(a) {
       if (null === a) {
