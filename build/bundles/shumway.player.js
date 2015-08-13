@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.428";
-Shumway$$inline_14.build = "16b0858";
+Shumway$$inline_14.version = "0.11.430";
+Shumway$$inline_14.build = "c707b92";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -46679,7 +46679,7 @@ __extends = this.__extends || function(e, b) {
         }
       }
       function l(a, b) {
-        for (var c = b.alPrototype;c && !c.asFilterConverter;) {
+        for (var c = b ? b.alPrototype : null;c && !c.asFilterConverter;) {
           c = c.alPrototype;
         }
         if (c) {
@@ -46735,7 +46735,7 @@ __extends = this.__extends || function(e, b) {
             g && c.push(g);
           }
         }
-        return a.sec.createArray(c);
+        return a.sec.createArrayUnsafe(c);
       };
       e.convertFromAS3Filters = function(a, d) {
         var e = [];
