@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.432";
-Shumway$$inline_14.build = "131e937";
+Shumway$$inline_14.version = "0.11.434";
+Shumway$$inline_14.build = "ef6716c";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -46485,23 +46485,19 @@ __extends = this.__extends || function(e, b) {
         function d(a, c) {
           h.call(this, a);
           this.alPrototype = a.builtins.Object.alGetPrototypeProperty();
-          b.alDefineObjectProperties(this, {constructor:{value:c, writable:!0}, rgb:{get:this.getData, set:this.setData}, clear:{value:this.clear, writable:!0}, flush:{value:this.flush, writable:!0}});
+          b.alDefineObjectProperties(this, {constructor:{value:c, writable:!0}, data:{get:this.getData}, clear:{value:this.clear, writable:!0}, flush:{value:this.flush, writable:!0}});
         }
         __extends(d, h);
         d.prototype.getData = function() {
           e.Debug.somewhatImplemented("AVM1SharedObject.getData");
           return this.__data || (this.__data = b.alNewObject(this.context));
         };
-        d.prototype.setData = function(a) {
-          e.Debug.somewhatImplemented("AVM1SharedObject.setData");
-          this.__data = a;
-        };
         d.prototype.clear = function() {
           this._as3SharedObject.clear();
         };
         d.prototype.flush = function(a) {
           a = b.alCoerceNumber(this.context, a);
-          this._as3SharedObject.flush(b.alCoerceNumber(this.context, a));
+          this._as3SharedObject.flush(a);
           e.Debug.somewhatImplemented("AVM1SharedObject.flush");
           return !1;
         };
