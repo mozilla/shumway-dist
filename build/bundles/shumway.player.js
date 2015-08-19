@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.436";
-Shumway$$inline_14.build = "91d0585";
+Shumway$$inline_14.version = "0.11.438";
+Shumway$$inline_14.build = "4bb8271";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -42223,9 +42223,9 @@ __extends = this.__extends || function(e, b) {
       var b = a.stack, c = b.pop();
       b.push(null);
       a = B(a, c, 33);
-      e.isNullOrUndefined(a) ? h("AVM1 warning: cannot look up variable '" + c + "'") : r(a.value, function(a) {
+      e.isNullOrUndefined(a) ? h("AVM1 warning: cannot look up variable '" + c + "'") : (c = a.value, e.isNullOrUndefined(c) ? h("AVM1 warning: cannot iterate over undefined object") : r(c, function(a) {
         b.push(a);
-      }, null);
+      }, null));
     }
     function Ra(a) {
       var b = a.stack, c = b.pop(), d = b.pop();
