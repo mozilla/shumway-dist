@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.438';
-    Shumway.build = '4bb8271';
+    Shumway.version = '0.11.440';
+    Shumway.build = 'ef15852';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
