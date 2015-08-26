@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.444";
-Shumway$$inline_0.build = "d532664";
+Shumway$$inline_0.version = "0.11.449";
+Shumway$$inline_0.build = "63e74ba";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -8521,7 +8521,7 @@ GFX$$inline_40.cacheShapesThreshold = canvas2DOptions$$inline_47.register(new Op
           var f = Math.max(c.getAbsoluteScaleX(), c.getAbsoluteScaleY()), k = 0;
           1 !== f && (k = n(Math.round(Math.log(1 / f) / Math.LN2), -5, 3));
           f = b(k);
-          if (this._source.hasFlags(1048576)) {
+          if (this._source.hasFlags(256)) {
             for (;;) {
               f = b(k);
               if (e.contains(this._source.getBounds().getAbsoluteBounds().clone().scale(f, f))) {
@@ -8530,13 +8530,13 @@ GFX$$inline_40.cacheShapesThreshold = canvas2DOptions$$inline_47.register(new Op
               k--;
             }
           }
-          this._source.hasFlags(2097152) || (k = n(k, -5, 0));
+          this._source.hasFlags(512) || (k = n(k, -5, 0));
           f = b(k);
           e = 5 + k;
           k = this._cacheLevels[e];
           if (!k) {
             var k = this._source.getBounds().getAbsoluteBounds().clone().scale(f, f), h, m;
-            this._source.hasFlags(1048576) || !this._source.hasFlags(4194304) || Math.max(k.w, k.h) <= this._minUntiledSize ? (h = k.w, m = k.h) : h = m = this._tileSize;
+            this._source.hasFlags(256) || !this._source.hasFlags(1024) || Math.max(k.w, k.h) <= this._minUntiledSize ? (h = k.w, m = k.h) : h = m = this._tileSize;
             k = this._cacheLevels[e] = new d(k.w, k.h, h, m, f);
           }
           return k.getTiles(a, c.scaleClone(f, f));
@@ -8548,10 +8548,10 @@ GFX$$inline_40.cacheShapesThreshold = canvas2DOptions$$inline_47.register(new Op
           c = this._source;
           for (var k = 0;k < a.length;k++) {
             var h = a[k];
-            h.cachedSurfaceRegion && h.cachedSurfaceRegion.surface && !c.hasFlags(1048592) || (f || (f = []), f.push(h));
+            h.cachedSurfaceRegion && h.cachedSurfaceRegion.surface && !c.hasFlags(4352) || (f || (f = []), f.push(h));
           }
           f && this._cacheTiles(e, f, b, d);
-          c.removeFlags(16);
+          c.removeFlags(4096);
           return a;
         };
         a.prototype._getTileBounds = function(a) {
@@ -8807,29 +8807,29 @@ __extends = this.__extends || function(h, p) {
     var n = p.BlendMode;
     (function(a) {
       a[a.None = 0] = "None";
-      a[a.BoundsAutoCompute = 2] = "BoundsAutoCompute";
+      a[a.Visible = 1] = "Visible";
+      a[a.Transparent = 2] = "Transparent";
       a[a.IsMask = 4] = "IsMask";
-      a[a.Dirty = 16] = "Dirty";
-      a[a.InvalidBounds = 256] = "InvalidBounds";
-      a[a.InvalidConcatenatedMatrix = 512] = "InvalidConcatenatedMatrix";
-      a[a.InvalidInvertedConcatenatedMatrix = 1024] = "InvalidInvertedConcatenatedMatrix";
-      a[a.InvalidConcatenatedColorMatrix = 2048] = "InvalidConcatenatedColorMatrix";
+      a[a.CacheAsBitmap = 16] = "CacheAsBitmap";
+      a[a.PixelSnapping = 32] = "PixelSnapping";
+      a[a.ImageSmoothing = 64] = "ImageSmoothing";
+      a[a.Dynamic = 256] = "Dynamic";
+      a[a.Scalable = 512] = "Scalable";
+      a[a.Tileable = 1024] = "Tileable";
+      a[a.BoundsAutoCompute = 2048] = "BoundsAutoCompute";
+      a[a.Dirty = 4096] = "Dirty";
+      a[a.InvalidBounds = 8192] = "InvalidBounds";
+      a[a.InvalidConcatenatedMatrix = 16384] = "InvalidConcatenatedMatrix";
+      a[a.InvalidInvertedConcatenatedMatrix = 32768] = "InvalidInvertedConcatenatedMatrix";
+      a[a.InvalidConcatenatedColorMatrix = 65536] = "InvalidConcatenatedColorMatrix";
       a[a.UpOnAddedOrRemoved = a.InvalidBounds | a.Dirty] = "UpOnAddedOrRemoved";
-      a[a.UpOnMoved = a.InvalidBounds | a.Dirty] = "UpOnMoved";
       a[a.DownOnAddedOrRemoved = a.InvalidConcatenatedMatrix | a.InvalidInvertedConcatenatedMatrix | a.InvalidConcatenatedColorMatrix] = "DownOnAddedOrRemoved";
-      a[a.DownOnMoved = a.InvalidConcatenatedMatrix | a.InvalidInvertedConcatenatedMatrix | a.InvalidConcatenatedColorMatrix] = "DownOnMoved";
+      a[a.UpOnMoved = a.InvalidBounds | a.Dirty] = "UpOnMoved";
+      a[a.DownOnMoved = a.InvalidConcatenatedMatrix | a.InvalidInvertedConcatenatedMatrix] = "DownOnMoved";
       a[a.UpOnColorMatrixChanged = a.Dirty] = "UpOnColorMatrixChanged";
       a[a.DownOnColorMatrixChanged = a.InvalidConcatenatedColorMatrix] = "DownOnColorMatrixChanged";
-      a[a.Visible = 65536] = "Visible";
       a[a.UpOnInvalidate = a.InvalidBounds | a.Dirty] = "UpOnInvalidate";
       a[a.Default = a.BoundsAutoCompute | a.InvalidBounds | a.InvalidConcatenatedMatrix | a.InvalidInvertedConcatenatedMatrix | a.Visible] = "Default";
-      a[a.CacheAsBitmap = 131072] = "CacheAsBitmap";
-      a[a.PixelSnapping = 262144] = "PixelSnapping";
-      a[a.ImageSmoothing = 524288] = "ImageSmoothing";
-      a[a.Dynamic = 1048576] = "Dynamic";
-      a[a.Scalable = 2097152] = "Scalable";
-      a[a.Tileable = 4194304] = "Tileable";
-      a[a.Transparent = 32768] = "Transparent";
     })(p.NodeFlags || (p.NodeFlags = {}));
     var b = p.NodeFlags;
     (function(a) {
@@ -8928,8 +8928,8 @@ __extends = this.__extends || function(h, p) {
         }
       };
       c.prototype.visitNode = function(a, c) {
-        a.hasFlags(16) && (this.isDirty = !0);
-        a.toggleFlags(16, !1);
+        a.hasFlags(4096) && (this.isDirty = !0);
+        a.toggleFlags(4096, !1);
         a.depth = c.depth++;
       };
       return c;
@@ -9047,7 +9047,7 @@ __extends = this.__extends || function(h, p) {
       };
       a.prototype.setBounds = function(a) {
         (this._bounds || (this._bounds = q.createEmpty())).set(a);
-        this.removeFlags(256);
+        this.removeFlags(8192);
       };
       a.prototype.clone = function() {
         throw void 0;
@@ -9069,7 +9069,7 @@ __extends = this.__extends || function(h, p) {
       };
       a.prototype._propagateFlagsUp = function(a) {
         if (0 !== a && !this.hasFlags(a)) {
-          this.hasFlags(2) || (a &= -257);
+          this.hasFlags(2048) || (a &= -8193);
           this.setFlags(a);
           var e = this._parent;
           e && e._propagateFlagsUp(a);
@@ -9231,7 +9231,7 @@ __extends = this.__extends || function(h, p) {
       c.prototype.getBounds = function(a) {
         void 0 === a && (a = !1);
         var c = this._bounds || (this._bounds = q.createEmpty());
-        if (this.hasFlags(256)) {
+        if (this.hasFlags(8192)) {
           c.setEmpty();
           for (var b = this._children, d = q.allocate(), f = 0;f < b.length;f++) {
             var g = b[f];
@@ -9240,7 +9240,7 @@ __extends = this.__extends || function(h, p) {
             c.union(d);
           }
           d.free();
-          this.removeFlags(256);
+          this.removeFlags(8192);
         }
         return a ? c.clone() : c;
       };
@@ -9292,19 +9292,19 @@ __extends = this.__extends || function(h, p) {
       };
       d.prototype.getConcatenatedMatrix = function(c) {
         void 0 === c && (c = !1);
-        if (this._node.hasFlags(512)) {
-          for (var e = this._node._findClosestAncestor(512, !1), b = m._getAncestors(this._node, e), d = e ? e.getTransform()._concatenatedMatrix.clone() : a.createIdentity(), f = b.length - 1;0 <= f;f--) {
+        if (this._node.hasFlags(16384)) {
+          for (var e = this._node._findClosestAncestor(16384, !1), b = m._getAncestors(this._node, e), d = e ? e.getTransform()._concatenatedMatrix.clone() : a.createIdentity(), f = b.length - 1;0 <= f;f--) {
             var e = b[f], g = e.getTransform();
             d.preMultiply(g._matrix);
             g._concatenatedMatrix.set(d);
-            e.removeFlags(512);
+            e.removeFlags(16384);
           }
         }
         return c ? this._concatenatedMatrix.clone() : this._concatenatedMatrix;
       };
       d.prototype.getInvertedConcatenatedMatrix = function(a) {
         void 0 === a && (a = !1);
-        this._node.hasFlags(1024) && (this.getConcatenatedMatrix().inverse(this._invertedConcatenatedMatrix), this._node.removeFlags(1024));
+        this._node.hasFlags(32768) && (this.getConcatenatedMatrix().inverse(this._invertedConcatenatedMatrix), this._node.removeFlags(32768));
         return a ? this._invertedConcatenatedMatrix.clone() : this._invertedConcatenatedMatrix;
       };
       d.prototype.toString = function() {
@@ -9361,7 +9361,7 @@ __extends = this.__extends || function(h, p) {
       c.prototype.getBounds = function(a) {
         void 0 === a && (a = !1);
         var c = this._bounds || (this._bounds = q.createEmpty());
-        this.hasFlags(256) && (c.set(this._source.getBounds()), this.removeFlags(256));
+        this.hasFlags(8192) && (c.set(this._source.getBounds()), this.removeFlags(8192));
         return a ? c.clone() : c;
       };
       Object.defineProperty(c.prototype, "source", {get:function() {
@@ -9427,14 +9427,14 @@ __extends = this.__extends || function(h, p) {
         void 0 === f && (f = !1);
         b.call(this);
         this._preVisitor = new r;
-        this._flags &= -3;
+        this._flags &= -2049;
         this._type = 13;
         this._scaleMode = c.DEFAULT_SCALE;
         this._align = c.DEFAULT_ALIGN;
         this._content = new v;
-        this._content._flags &= -3;
+        this._content._flags &= -2049;
         this.addChild(this._content);
-        this.setFlags(16);
+        this.setFlags(4096);
         this.setBounds(new q(0, 0, a, d));
         f ? (this._dirtyRegion = new w(a, d), this._dirtyRegion.addDirtyRectangle(new q(0, 0, a, d))) : this._dirtyRegion = null;
         this._updateContentMatrix();
@@ -9518,7 +9518,7 @@ __extends = this.__extends || function(h, p) {
         this._parents = [];
         this._renderableParents = [];
         this._invalidateEventListeners = null;
-        this._flags &= -3;
+        this._flags &= -2049;
         this._type = 33;
       }
       __extends(c, a);
@@ -9535,7 +9535,7 @@ __extends = this.__extends || function(h, p) {
             if (b.isType(13)) {
               return !0;
             }
-            if (!b.hasFlags(65536)) {
+            if (!b.hasFlags(1)) {
               break;
             }
             b = b._parent;
@@ -9557,7 +9557,7 @@ __extends = this.__extends || function(h, p) {
         return a;
       };
       c.prototype.invalidate = function() {
-        this.setFlags(16);
+        this.setFlags(4096);
         for (var a = this._parents, c = 0;c < a.length;c++) {
           a[c].invalidate();
         }
@@ -9614,7 +9614,7 @@ __extends = this.__extends || function(h, p) {
     u = function(a) {
       function c(e, d) {
         a.call(this);
-        this._flags = 1048592;
+        this._flags = 4352;
         this._lastPausedTime = this._lastTimeInvalidated = 0;
         this._pauseHappening = this._seekHappening = !1;
         this._isDOMElement = !0;
@@ -9785,7 +9785,7 @@ __extends = this.__extends || function(h, p) {
     u = function(a) {
       function c(c, b) {
         a.call(this);
-        this._flags = 1048592;
+        this._flags = 4352;
         this.properties = {};
         this.setBounds(b);
         c instanceof HTMLCanvasElement ? this._initializeSourceCanvas(c) : this._sourceImage = c;
@@ -9900,13 +9900,13 @@ __extends = this.__extends || function(h, p) {
     var v = function(a) {
       function c(c, b, d, f) {
         a.call(this);
-        this._flags = 6291472;
+        this._flags = 5632;
         this.properties = {};
         this.setBounds(f);
         this._id = c;
         this._pathData = b;
         this._textures = d;
-        d.length && this.setFlags(1048576);
+        d.length && this.setFlags(256);
       }
       __extends(c, a);
       c.prototype.update = function(a, c, b) {
@@ -9914,7 +9914,7 @@ __extends = this.__extends || function(h, p) {
         this._pathData = a;
         this._paths = null;
         this._textures = c;
-        this.setFlags(1048576);
+        this.setFlags(256);
         this.invalidate();
       };
       c.prototype.render = function(a, c, b, d, f) {
@@ -10059,7 +10059,7 @@ __extends = this.__extends || function(h, p) {
     u = function(b) {
       function c() {
         b.apply(this, arguments);
-        this._flags = 7340048;
+        this._flags = 5888;
         this._morphPaths = Object.create(null);
       }
       __extends(c, b);
@@ -10252,7 +10252,7 @@ __extends = this.__extends || function(h, p) {
     u = function(a) {
       function c(c) {
         a.call(this);
-        this._flags = 1048592;
+        this._flags = 4352;
         this.properties = {};
         this._textBounds = c.clone();
         this._textRunData = null;
@@ -10477,7 +10477,7 @@ __extends = this.__extends || function(h, p) {
     k = function(a) {
       function c(c, d) {
         a.call(this);
-        this._flags = 3145728;
+        this._flags = 768;
         this.properties = {};
         this.setBounds(new b(0, 0, c, d));
       }
@@ -11714,7 +11714,7 @@ __extends = this.__extends || function(h, p) {
           a = Math.max(a.getAbsoluteScaleX(), a.getAbsoluteScaleY());
           var b = 0;
           1 !== a && (b = l(Math.round(Math.log(a) / Math.LN2), -5, 3));
-          this._node.hasFlags(2097152) || (b = l(b, -5, 0));
+          this._node.hasFlags(512) || (b = l(b, -5, 0));
           a = t(b);
           var e = 5 + b, b = this._levels[e];
           if (!b) {
@@ -11961,7 +11961,7 @@ __extends = this.__extends || function(h, p) {
           }
           var h = this._options.cacheShapesMaxSize, k = Math.max(d.getAbsoluteScaleX(), d.getAbsoluteScaleY()), l = !!(b.flags & 16), m = !!(b.flags & 8);
           if (b.hasFlags(256)) {
-            if (m || l || !b.colorMatrix.isIdentity() || a.hasFlags(1048576) || 100 < this._options.cacheShapesThreshold || f.w * k > h || f.h * k > h) {
+            if (m || l || !b.colorMatrix.isIdentity() || a.hasFlags(256) || 100 < this._options.cacheShapesThreshold || f.w * k > h || f.h * k > h) {
               return !1;
             }
             (k = a.properties.mipMap) || (k = a.properties.mipMap = new u(this, a, g._shapeCache, h));
@@ -11990,7 +11990,7 @@ __extends = this.__extends || function(h, p) {
         g.prototype.visitGroup = function(a, b) {
           this._frameInfo.groups++;
           a.getBounds();
-          if ((!a.hasFlags(4) || b.flags & 4) && a.hasFlags(65536)) {
+          if ((!a.hasFlags(4) || b.flags & 4) && a.hasFlags(1)) {
             var d = b.flags & 1;
             if (!d && ((1 !== a.getLayer().blendMode || a.getLayer().mask) && this._options.blending || a.getLayer().filters && this._options.filters)) {
               b = b.clone(), b.flags |= 1, this._renderLayer(a, b), b.free();
@@ -11998,7 +11998,7 @@ __extends = this.__extends || function(h, p) {
               if (d && b.removeFlags(1), this._intersectsClipList(a, b)) {
                 for (var d = null, f = a.getChildren(), g = 0;g < f.length;g++) {
                   var h = f[g], k = h.getTransform(), l = b.transform(k);
-                  l.toggleFlags(4096, h.hasFlags(524288));
+                  l.toggleFlags(4096, h.hasFlags(64));
                   if (0 <= h.clip) {
                     d = d || new Uint8Array(f.length);
                     d[h.clip + g]++;
@@ -12053,7 +12053,7 @@ __extends = this.__extends || function(h, p) {
           b.target.reset();
           b = b.clone();
           this._options.clear && b.target.clear(b.clip);
-          a.hasFlags(32768) || !a.color || b.flags & 32 || (this._container.style.backgroundColor = a.color.toCSSStyle());
+          a.hasFlags(2) || !a.color || b.flags & 32 || (this._container.style.backgroundColor = a.color.toCSSStyle());
           this.visitGroup(a, b);
           a.dirtyRegion && (d.restore(), b.target.reset(), d.globalAlpha = .4, b.hasFlags(2048) && a.dirtyRegion.render(b.target.context), a.dirtyRegion.clear());
           b.free();
@@ -12110,7 +12110,7 @@ __extends = this.__extends || function(h, p) {
         g.prototype._renderLayer = function(a, b) {
           var d = a.getLayer(), f = d.mask;
           if (f) {
-            var g = !a.hasFlags(131072) || !f.hasFlags(131072);
+            var g = !a.hasFlags(16) || !f.hasFlags(16);
             this._renderWithMask(a, f, d.blendMode, g, b);
           } else {
             f = w.allocate();
@@ -12656,7 +12656,7 @@ __extends = this.__extends || function(h, p) {
       b.prototype._renderNodeSimple = function(a, b, h) {
         function n(b) {
           var c = b.getChildren();
-          b.hasFlags(16) ? a.fillStyle = "red" : a.fillStyle = "white";
+          b.hasFlags(4096) ? a.fillStyle = "red" : a.fillStyle = "white";
           var e = String(b.id);
           b instanceof p.RenderableText ? e = "T" + e : b instanceof p.RenderableShape ? e = "S" + e : b instanceof p.RenderableBitmap ? e = "B" + e : b instanceof p.RenderableVideo && (e = "V" + e);
           b instanceof p.Renderable && (e = e + " [" + b._parents.length + "]");
@@ -12732,7 +12732,7 @@ __extends = this.__extends || function(h, p) {
           e(b.stage);
           b.stage.addEventListener(1, e);
           b.content = g.content;
-          d && this.stage.setFlags(32768);
+          d && this.stage.setFlags(2);
           c.addChild(this.stage);
           this._nodes = [];
           this._assets = [];
@@ -12972,7 +12972,7 @@ __extends = this.__extends || function(h, p) {
             f.getLayer().mask = 0 <= g ? c._makeNode(g) : null;
           }
           d & 128 && (f.clip = a.readInt());
-          d & 32 && (e = a.readInt() / 65535, g = a.readInt(), 1 !== g && (f.getLayer().blendMode = g), this._readFilters(f), f.toggleFlags(65536, a.readBoolean()), f.toggleFlags(131072, a.readBoolean()), f.toggleFlags(262144, !!a.readInt()), f.toggleFlags(524288, !!a.readInt()));
+          d & 32 && (e = a.readInt() / 65535, f.getLayer().blendMode = a.readInt(), this._readFilters(f), f.toggleFlags(1, a.readBoolean()), f.toggleFlags(16, a.readBoolean()), f.toggleFlags(32, !!a.readInt()), f.toggleFlags(64, !!a.readInt()));
           if (d & 4) {
             d = a.readInt();
             g = f;
