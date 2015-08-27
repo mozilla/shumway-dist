@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.456";
-Shumway$$inline_14.build = "81ca2d8";
+Shumway$$inline_14.version = "0.11.463";
+Shumway$$inline_14.build = "f17b3c5";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -50798,7 +50798,8 @@ __extends = this.__extends || function(e, b) {
       }
       __extends(a, b);
       a.prototype.expandBounds = function(a) {
-        if (!this.inner && (h(a, this.quality, this.blurX, this.blurY, !1), this.distance)) {
+        h(a, this.quality, this.blurX, this.blurY, !1);
+        if (this.distance) {
           var b = this.angle * Math.PI / 180, d = Math.cos(b) * this.distance, e = Math.sin(b) * this.distance, b = a.x + (0 <= d ? 0 : Math.floor(d)), d = a.x + a.w + Math.ceil(Math.abs(d)), l = a.y + (0 <= e ? 0 : Math.floor(e)), e = a.y + a.h + Math.ceil(Math.abs(e));
           a.x = b;
           a.w = d - b;
