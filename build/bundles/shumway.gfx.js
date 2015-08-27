@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.463";
-Shumway$$inline_0.build = "f17b3c5";
+Shumway$$inline_0.version = "0.11.465";
+Shumway$$inline_0.build = "25cba6c";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -3821,6 +3821,14 @@ var __extends = this.__extends || function(h, p) {
       k.prototype.toPlainObject = function() {
         return new l(this._buffer, this._length, this._littleEndian);
       };
+      k.prototype.clone = function() {
+        var b = k.FromArrayBuffer((new Uint8Array(this._u8)).buffer, this._length);
+        b._position = this._position;
+        b._littleEndian = this._littleEndian;
+        b._bitBuffer = this._bitBuffer;
+        b._bitLength = this._bitLength;
+        return b;
+      };
       k.prototype._resetViews = function() {
         this._u8 = new Uint8Array(this._buffer);
         this._f32 = this._i32 = null;
@@ -4740,18 +4748,18 @@ var __extends = this.__extends || function(h, p) {
         this.readAsync(n, b, l, u, k);
       } else {
         var t = 0, q = new Uint8Array(a), m = 0, h;
-        this.readAsync(function(d, f) {
+        this.readAsync(function(b, f) {
           h = f.total;
-          for (var g = d.length, c = 0;t + g >= a;) {
+          for (var g = b.length, c = 0;t + g >= a;) {
             var e = a - t;
-            q.set(d.subarray(c, c + e), t);
+            q.set(b.subarray(c, c + e), t);
             c += e;
             g -= e;
             m += a;
             n(q, {loaded:m, total:h});
             t = 0;
           }
-          q.set(d.subarray(c), t);
+          q.set(b.subarray(c), t);
           t += g;
         }, b, l, function() {
           0 < t && (m += t, n(q.subarray(0, t), {loaded:m, total:h}), t = 0);
@@ -4765,12 +4773,12 @@ var __extends = this.__extends || function(h, p) {
       k.responseType = "moz-chunked-arraybuffer";
       var h = "moz-chunked-arraybuffer" !== k.responseType;
       h && (k.responseType = "arraybuffer");
-      k.onprogress = function(d) {
-        h || (q = d.loaded, m = d.total, d = new Uint8Array(k.response), q = Math.max(q, d.byteLength), m = Math.max(m, d.byteLength), a(d, {loaded:q, total:m}));
+      k.onprogress = function(b) {
+        h || (q = b.loaded, m = b.total, b = new Uint8Array(k.response), q = Math.max(q, b.byteLength), m = Math.max(m, b.byteLength), a(b, {loaded:q, total:m}));
       };
-      k.onreadystatechange = function(d) {
+      k.onreadystatechange = function(b) {
         2 === k.readyState && u && u(t, k.status, k.getAllResponseHeaders());
-        4 === k.readyState && (200 !== k.status && 0 !== k.status || null === k.response && (0 === m || q !== m) ? n(k.statusText) : h && (d = k.response, a(new Uint8Array(d), {loaded:d.byteLength, total:d.byteLength})));
+        4 === k.readyState && (200 !== k.status && 0 !== k.status || null === k.response && (0 === m || q !== m) ? n(k.statusText) : h && (b = k.response, a(new Uint8Array(b), {loaded:b.byteLength, total:b.byteLength})));
       };
       k.onload = function() {
         l && l();
@@ -10386,10 +10394,10 @@ __extends = this.__extends || function(h, p) {
         }
       };
       c.roundBoundPoints = function(a) {
-        for (var c = 0;c < a.length;c++) {
-          var b = a[c];
-          b.x = Math.floor(b.x + .1) + .5;
-          b.y = Math.floor(b.y + .1) + .5;
+        for (var b = 0;b < a.length;b++) {
+          var c = a[b];
+          c.x = Math.floor(c.x + .1) + .5;
+          c.y = Math.floor(c.y + .1) + .5;
         }
       };
       c.prototype.render = function(a) {

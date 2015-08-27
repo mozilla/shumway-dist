@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.463";
-Shumway$$inline_14.build = "f17b3c5";
+Shumway$$inline_14.version = "0.11.465";
+Shumway$$inline_14.build = "25cba6c";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -3822,6 +3822,14 @@ var __extends = this.__extends || function(e, b) {
       };
       c.prototype.toPlainObject = function() {
         return new d(this._buffer, this._length, this._littleEndian);
+      };
+      c.prototype.clone = function() {
+        var a = c.FromArrayBuffer((new Uint8Array(this._u8)).buffer, this._length);
+        a._position = this._position;
+        a._littleEndian = this._littleEndian;
+        a._bitBuffer = this._bitBuffer;
+        a._bitLength = this._bitLength;
+        return a;
       };
       c.prototype._resetViews = function() {
         this._u8 = new Uint8Array(this._buffer);
@@ -51521,7 +51529,7 @@ Shumway$$inline_370.playSymbolCountOption = Shumway$$inline_370.playerOptions.re
         d.writeEOF();
         b.enterTimeline("remoting assets");
         var h;
-        c ? this._gfxService.update(d.output, d.outputAssets) : h = this._gfxService.updateAndGet(d.output, d.outputAssets);
+        c ? this._gfxService.update(d.output, d.outputAssets) : h = this._gfxService.updateAndGet(d.output, d.outputAssets).clone();
         b.leaveTimeline("remoting assets");
         return h;
       };
@@ -51529,7 +51537,7 @@ Shumway$$inline_370.playSymbolCountOption = Shumway$$inline_370.playerOptions.re
         var b = new e.Remoting.Player.PlayerChannelSerializer;
         b.writeRequestBitmapData(a);
         b.writeEOF();
-        return this._gfxService.updateAndGet(b.output, b.outputAssets);
+        return this._gfxService.updateAndGet(b.output, b.outputAssets).clone();
       };
       c.prototype.drawToBitmap = function(a, c, d, h, l, g, m) {
         void 0 === d && (d = null);
