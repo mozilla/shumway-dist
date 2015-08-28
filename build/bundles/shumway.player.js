@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.477";
-Shumway$$inline_14.build = "23a3d09";
+Shumway$$inline_14.version = "0.11.481";
+Shumway$$inline_14.build = "a8304f8";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -1922,11 +1922,11 @@ var START_TIME = performance.now();
       return f << 24 | a << 16 | d << 8 | h;
     }
     function d() {
-      if (!v) {
-        v = new Uint8Array(65536);
+      if (!k) {
+        k = new Uint8Array(65536);
         for (var a = 0;256 > a;a++) {
           for (var c = 0;256 > c;c++) {
-            v[(c << 8) + a] = Math.imul(255, a) / c;
+            k[(c << 8) + a] = Math.imul(255, a) / c;
           }
         }
       }
@@ -1975,11 +1975,11 @@ var START_TIME = performance.now();
       return d << 24 | a << 16 | h << 8 | c;
     };
     a.premultiplyARGB = c;
-    var v;
+    var k;
     a.ensureUnpremultiplyTable = d;
     a.getUnpremultiplyTable = function() {
       d();
-      return v;
+      return k;
     };
     a.tableLookupUnpremultiplyARGB = function(a) {
       a |= 0;
@@ -1990,7 +1990,7 @@ var START_TIME = performance.now();
       if (255 === c) {
         return a;
       }
-      var h, d, f = c << 8, p = v;
+      var h, d, f = c << 8, p = k;
       d = p[f + (a >> 16 & 255)];
       h = p[f + (a >> 8 & 255)];
       a = p[f + (a >> 0 & 255)];
@@ -2002,7 +2002,7 @@ var START_TIME = performance.now();
       p = Math.imul(p, q) >> 8;
       return (d + p & 16711935) << 8 | h + f & 16711935;
     };
-    var k = f.swap32;
+    var b = f.swap32;
     a.convertImage = function(a, d, f, p) {
       var q = f.length;
       if (a === d) {
@@ -2014,28 +2014,28 @@ var START_TIME = performance.now();
       } else {
         if (1 === a && 3 === d) {
           for (e.ColorUtilities.ensureUnpremultiplyTable(), a = 0;a < q;a++) {
-            var b = f[a];
-            d = b & 255;
+            var l = f[a];
+            d = l & 255;
             if (0 === d) {
               p[a] = 0;
             } else {
               if (255 === d) {
-                p[a] = 4278190080 | b >> 8 & 16777215;
+                p[a] = 4278190080 | l >> 8 & 16777215;
               } else {
-                var l = b >> 24 & 255, u = b >> 16 & 255, b = b >> 8 & 255, m = d << 8, g = v, b = g[m + b], u = g[m + u], l = g[m + l];
-                p[a] = d << 24 | l << 16 | u << 8 | b;
+                var u = l >> 24 & 255, m = l >> 16 & 255, l = l >> 8 & 255, g = d << 8, t = k, l = t[g + l], m = t[g + m], u = t[g + u];
+                p[a] = d << 24 | u << 16 | m << 8 | l;
               }
             }
           }
         } else {
           if (2 === a && 3 === d) {
             for (a = 0;a < q;a++) {
-              p[a] = k(f[a]);
+              p[a] = b(f[a]);
             }
           } else {
             if (3 === a && 1 === d) {
               for (a = 0;a < q;a++) {
-                d = f[a], p[a] = k(c(d & 4278255360 | d >> 16 & 255 | (d & 255) << 16));
+                d = f[a], p[a] = b(c(d & 4278255360 | d >> 16 & 255 | (d & 255) << 16));
               }
             } else {
               for (n.somewhatImplemented("Image Format Conversion: " + r[a] + " -> " + r[d]), a = 0;a < q;a++) {
@@ -4608,6 +4608,7 @@ var __extends = this.__extends || function(e, b) {
       b[b.UpdateStage = 104] = "UpdateStage";
       b[b.UpdateNetStream = 105] = "UpdateNetStream";
       b[b.RequestBitmapData = 106] = "RequestBitmapData";
+      b[b.UpdateCurrentMouseTarget = 107] = "UpdateCurrentMouseTarget";
       b[b.DrawToBitmap = 200] = "DrawToBitmap";
       b[b.MouseEvent = 300] = "MouseEvent";
       b[b.KeyboardEvent = 301] = "KeyboardEvent";
@@ -22670,29 +22671,29 @@ var RtmpJs;
             b.prototype.concat = function(a) {
               var b = this._data;
               a = a._data;
-              var c = b[0] * a[0], d = 0, f = 0, k = b[3] * a[3], r = b[4] * a[0] + a[4], g = b[5] * a[3] + a[5];
+              var c = b[0] * a[0], d = 0, f = 0, k = b[3] * a[3], r = b[4] * a[0] + a[4], u = b[5] * a[3] + a[5];
               if (0 !== b[1] || 0 !== b[2] || 0 !== a[1] || 0 !== a[2]) {
-                c += b[1] * a[2], k += b[2] * a[1], d += b[0] * a[1] + b[1] * a[3], f += b[2] * a[0] + b[3] * a[2], r += b[5] * a[2], g += b[4] * a[1];
+                c += b[1] * a[2], k += b[2] * a[1], d += b[0] * a[1] + b[1] * a[3], f += b[2] * a[0] + b[3] * a[2], r += b[5] * a[2], u += b[4] * a[1];
               }
               b[0] = c;
               b[1] = d;
               b[2] = f;
               b[3] = k;
               b[4] = r;
-              b[5] = g;
+              b[5] = u;
             };
             b.prototype.preMultiply = function(a) {
               this.preMultiplyInto(a, this);
             };
             b.prototype.preMultiplyInto = function(a, b) {
-              var c = this._data, d = a._data, f = b._data, k = d[0] * c[0], r = 0, g = 0, u = d[3] * c[3], l = d[4] * c[0] + c[4], e = d[5] * c[3] + c[5];
+              var c = this._data, d = a._data, f = b._data, k = d[0] * c[0], r = 0, u = 0, g = d[3] * c[3], l = d[4] * c[0] + c[4], e = d[5] * c[3] + c[5];
               if (0 !== d[1] || 0 !== d[2] || 0 !== c[1] || 0 !== c[2]) {
-                k += d[1] * c[2], u += d[2] * c[1], r += d[0] * c[1] + d[1] * c[3], g += d[2] * c[0] + d[3] * c[2], l += d[5] * c[2], e += d[4] * c[1];
+                k += d[1] * c[2], g += d[2] * c[1], r += d[0] * c[1] + d[1] * c[3], u += d[2] * c[0] + d[3] * c[2], l += d[5] * c[2], e += d[4] * c[1];
               }
               f[0] = k;
               f[1] = r;
-              f[2] = g;
-              f[3] = u;
+              f[2] = u;
+              f[3] = g;
               f[4] = l;
               f[5] = e;
             };
@@ -22702,13 +22703,13 @@ var RtmpJs;
             b.prototype.invertInto = function(a) {
               var b = this._data, c = a._data, d = b[1], f = b[2], k = b[4], r = b[5];
               if (0 === d && 0 === f) {
-                var g = c[0] = 1 / b[0], b = c[3] = 1 / b[3];
+                var u = c[0] = 1 / b[0], b = c[3] = 1 / b[3];
                 c[1] = c[2] = 0;
-                c[4] = -g * k;
+                c[4] = -u * k;
                 c[5] = -b * r;
               } else {
-                var g = b[0], b = b[3], u = g * b - d * f;
-                0 === u ? a.identity() : (u = 1 / u, a = 0, a = c[0] = b * u, d = c[1] = -d * u, f = c[2] = -f * u, b = c[3] = g * u, c[4] = -(a * k + f * r), c[5] = -(d * k + b * r));
+                var u = b[0], b = b[3], g = u * b - d * f;
+                0 === g ? a.identity() : (g = 1 / g, a = 0, a = c[0] = b * g, d = c[1] = -d * g, f = c[2] = -f * g, b = c[3] = u * g, c[4] = -(a * k + f * r), c[5] = -(d * k + b * r));
               }
             };
             b.prototype.identity = function() {
@@ -22745,13 +22746,13 @@ var RtmpJs;
               if (0 !== a) {
                 var b = this._data, c = m(a);
                 a = l(a);
-                var d = b[0], f = b[1], k = b[2], r = b[3], g = b[4], u = b[5];
+                var d = b[0], f = b[1], k = b[2], r = b[3], u = b[4], g = b[5];
                 b[0] = d * c - f * a;
                 b[1] = d * a + f * c;
                 b[2] = k * c - r * a;
                 b[3] = k * a + r * c;
-                b[4] = g * c - u * a;
-                b[5] = g * a + u * c;
+                b[4] = u * c - g * a;
+                b[5] = u * a + g * c;
               }
             };
             b.prototype.translate = function(a, b) {
@@ -22785,7 +22786,7 @@ var RtmpJs;
               return a;
             };
             b.prototype.transformBounds = function(a) {
-              var b = this._data, c = b[0], d = b[1], f = b[2], k = b[3], r = b[4], g = b[5], u = a.xMin, l = a.yMin, e = a.width, m = a.height, b = Math.round(c * u + f * l + r), n = Math.round(d * u + k * l + g), t = Math.round(c * (u + e) + f * l + r), H = Math.round(d * (u + e) + k * l + g), I = Math.round(c * (u + e) + f * (l + m) + r), e = Math.round(d * (u + e) + k * (l + m) + g), c = Math.round(c * u + f * (l + m) + r), d = Math.round(d * u + k * (l + m) + g), k = 0;
+              var b = this._data, c = b[0], d = b[1], f = b[2], k = b[3], r = b[4], u = b[5], g = a.xMin, l = a.yMin, e = a.width, m = a.height, b = Math.round(c * g + f * l + r), n = Math.round(d * g + k * l + u), t = Math.round(c * (g + e) + f * l + r), H = Math.round(d * (g + e) + k * l + u), I = Math.round(c * (g + e) + f * (l + m) + r), e = Math.round(d * (g + e) + k * (l + m) + u), c = Math.round(c * g + f * (l + m) + r), d = Math.round(d * g + k * (l + m) + u), k = 0;
               b > t && (k = b, b = t, t = k);
               I > c && (k = I, I = c, c = k);
               a.xMin = b < I ? b : I;
@@ -22898,9 +22899,9 @@ var RtmpJs;
             b.prototype.updateScaleAndRotation = function(a, b, c, d) {
               var k = this._data;
               if (0 !== c && c !== f || 0 !== d && d !== f) {
-                var r = m(c), u = l(c);
-                c === d ? (k[0] = r * a, k[1] = u * a) : (k[0] = m(d) * a, k[1] = l(d) * a);
-                k[2] = -u * b;
+                var r = m(c), g = l(c);
+                c === d ? (k[0] = r * a, k[1] = g * a) : (k[0] = m(d) * a, k[1] = l(d) * a);
+                k[2] = -g * b;
                 k[3] = r * b;
               } else {
                 k[0] = a, k[1] = k[2] = 0, k[3] = b;
@@ -24835,7 +24836,7 @@ var RtmpJs;
       (function(b) {
         (function(g) {
           var n = e.Debug.notImplemented, l = function(b) {
-            function a(a, f, k, g, r, q, h, p, v, e, l) {
+            function a(a, f, k, g, r, q, h, p, v, l, e) {
               void 0 === f && (f = !0);
               void 0 === k && (k = !1);
               void 0 === g && (g = void 0);
@@ -24844,8 +24845,8 @@ var RtmpJs;
               void 0 === h && (h = !1);
               void 0 === p && (p = !1);
               void 0 === v && (v = !1);
-              void 0 === e && (e = !1);
-              void 0 === l && (l = 0);
+              void 0 === l && (l = !1);
+              void 0 === e && (e = 0);
               b.call(this, a, f, k);
               this._localX = g;
               this._localY = r;
@@ -24853,8 +24854,8 @@ var RtmpJs;
               this._ctrlKey = h;
               this._altKey = p;
               this._shiftKey = v;
-              this._buttonDown = e;
-              this._delta = l;
+              this._buttonDown = l;
+              this._delta = e;
             }
             __extends(a, b);
             a.typeFromDOMType = function(b) {
@@ -27573,24 +27574,24 @@ var RtmpJs;
             function q(a) {
               return a * (u + a * (n + a * A)) + b - e;
             }
-            function r(b) {
+            function l(b) {
               0 > b ? b = 0 : 1 < b && (b = 1);
               return a + b * (v + b * (m + b * z));
             }
-            function l(a, b, c, d) {
+            function r(a, b, c, d) {
               if (!(Math.abs(c - b) <= d)) {
                 var f = .5 * (b + c);
-                0 >= a(b) * a(c) ? (t = b, K = c) : (l(a, b, f, d), l(a, f, c, d));
+                0 >= a(b) * a(c) ? (t = b, K = c) : (r(a, b, f, d), r(a, f, c, d));
               }
             }
             var v = 3 * (c - a), u = 3 * (d - b), m = 3 * (f - c) - v, n = 3 * (h - d) - u, z = p - a - v - m, A = g - b - u - n, t = 0, K = 1;
-            l(q, 0, 1, .05);
+            r(q, 0, 1, .05);
             h = k(t, K, q, 50, 1E-6);
             if (1E-5 < Math.abs(q(h))) {
               return [];
             }
             c = [];
-            1 >= h && c.push(r(h));
+            1 >= h && c.push(l(h));
             d = A;
             f = h * d + n;
             p = f * f - 4 * d * (h * f + u);
@@ -27601,12 +27602,12 @@ var RtmpJs;
             d = 1 / (d + d);
             h = (p - f) * d;
             d *= -f - p;
-            0 <= h && 1 >= h && c.push(r(h));
-            0 <= d && 1 >= d && c.push(r(d));
+            0 <= h && 1 >= h && c.push(l(h));
+            0 <= d && 1 >= d && c.push(l(d));
             return c;
           }
           function k(a, b, c, d, f) {
-            var h, k, p, g, e, q, r = a;
+            var h, k, p, g, e, q, l = a;
             k = c(a);
             if (0 === k) {
               return a;
@@ -27618,8 +27619,8 @@ var RtmpJs;
             if (0 < g * k) {
               return a;
             }
-            for (var l = 0, v = 0;v < d;++v) {
-              l++;
+            for (var r = 0, v = 0;v < d;++v) {
+              r++;
               h = .5 * (b + a);
               p = c(h);
               if (0 === p) {
@@ -27639,10 +27640,10 @@ var RtmpJs;
                 b = (b - q) / (q * e);
                 b = a - g * k * (1 - b * p);
                 g = c(b);
-                if (0 === g || Math.abs(b - r) < f) {
+                if (0 === g || Math.abs(b - l) < f) {
                   return b;
                 }
-                r = b;
+                l = b;
                 0 > g * k || (a = b, k = g, b = h, g = p);
               }
             }
@@ -27829,8 +27830,8 @@ var RtmpJs;
               var f = a + c, h = b;
               this.moveTo(f, h);
               for (var k = 0, p = 1, g = 0, e = 0;4 > e;e++) {
-                var q = k + Math.PI / 2, k = 4 / 3 * Math.tan((q - k) / 4), r = f - g * k * c, l = h + p * k * d, p = Math.cos(q), g = Math.sin(q), f = a + p * c, h = b + g * d;
-                this.cubicCurveTo(r, l, f + g * k * c, h - p * k * d, f, h);
+                var q = k + Math.PI / 2, k = 4 / 3 * Math.tan((q - k) / 4), l = f - g * k * c, r = h + p * k * d, p = Math.cos(q), g = Math.sin(q), f = a + p * c, h = b + g * d;
+                this.cubicCurveTo(l, r, f + g * k * c, h - p * k * d, f, h);
                 k = q;
               }
             };
@@ -29166,14 +29167,15 @@ var RtmpJs;
             }, set:function(a) {
               a = d(a);
               0 > g.display.StageScaleMode.toNumber(a) && this.sec.throwError("ArgumentError", b.Errors.InvalidEnumError, "scaleMode");
-              this._scaleMode = a;
+              this._scaleMode !== a && (this._isDirty = !0, this._scaleMode = a);
             }, enumerable:!0, configurable:!0});
             Object.defineProperty(f.prototype, "align", {get:function() {
               return this._align;
             }, set:function(a) {
               a = d(a);
               a = g.display.StageAlign.toNumber(a);
-              this._align = g.display.StageAlign.fromNumber(a);
+              a = g.display.StageAlign.fromNumber(a);
+              this._align !== a && (this._isDirty = !0, this._align = a);
             }, enumerable:!0, configurable:!0});
             Object.defineProperty(f.prototype, "stageWidth", {get:function() {
               return this.scaleMode !== t.StageScaleMode.NO_SCALE ? this._stageWidth / 20 | 0 : this._stageContainerWidth;
@@ -29183,17 +29185,19 @@ var RtmpJs;
               this._name = null;
             };
             f.prototype.setStageWidth = function(a) {
-              this._stageWidth = 20 * a | 0;
+              a = 20 * a | 0;
+              this._stageWidth !== a && (this._isDirty = !0, this._stageWidth = a);
             };
             Object.defineProperty(f.prototype, "stageHeight", {get:function() {
               return this.scaleMode !== t.StageScaleMode.NO_SCALE ? this._stageHeight / 20 | 0 : this._stageContainerHeight;
             }, set:function(a) {
             }, enumerable:!0, configurable:!0});
             f.prototype.setStageHeight = function(a) {
-              this._stageHeight = 20 * a | 0;
+              a = 20 * a | 0;
+              this._stageHeight !== a && (this._isDirty = !0, this._stageHeight = a);
             };
             f.prototype.setStageColor = function(a) {
-              this._colorARGB = a;
+              this._colorARGB !== a && (this._isDirty = !0, this._colorARGB = a);
             };
             f.prototype.setStageContainerSize = function(a, b, c) {
               this._contentsScaleFactor = c;
@@ -29236,7 +29240,7 @@ var RtmpJs;
             }, set:function(a) {
               a = d(a);
               0 > g.display.StageDisplayState.toNumber(a) && (a = g.display.StageDisplayState.NORMAL);
-              this._displayState = a;
+              this._displayState !== a && (this._isDirty = !0, this._displayState = a);
             }, enumerable:!0, configurable:!0});
             Object.defineProperty(f.prototype, "fullScreenSourceRect", {get:function() {
               return this._fullScreenSourceRect;
@@ -29260,7 +29264,8 @@ var RtmpJs;
             Object.defineProperty(f.prototype, "color", {get:function() {
               return this._colorARGB;
             }, set:function(a) {
-              this._colorARGB = a | 4278190080;
+              a |= 4278190080;
+              this._colorARGB !== a && (this._isDirty = !0, this._colorARGB = a);
             }, enumerable:!0, configurable:!0});
             Object.defineProperty(f.prototype, "alpha", {get:function() {
               return this._colorTransform.alphaMultiplier;
@@ -29787,7 +29792,7 @@ var RtmpJs;
       (function(m) {
         (function(t) {
           var n = e.Debug.notImplemented, l = e.Debug.somewhatImplemented, d = e.ArrayUtilities.DataBuffer, a = e.AVMX.axCoerceString, c = e.IntegerUtilities.swap32, f = e.ColorUtilities.premultiplyARGB, k = e.ColorUtilities.unpremultiplyARGB, u = e.ColorUtilities.RGBAToARGB, r = e.ArrayUtilities.indexOf, q = function(h) {
-            function p(a, c, d, f) {
+            function g(a, c, d, f) {
               void 0 === d && (d = !0);
               void 0 === f && (f = 4294967295);
               a |= 0;
@@ -29795,14 +29800,14 @@ var RtmpJs;
               d = !!d;
               f |= 0;
               h.call(this);
-              this._symbol ? this.applySymbol() : ((a > p.MAXIMUM_WIDTH || 0 >= a || c > p.MAXIMUM_HEIGHT || 0 >= c || a * c > p.MAXIMUM_DIMENSION) && this.sec.throwError("ArgumentError", b.Errors.InvalidBitmapData), this._rect = new this.sec.flash.geom.Rectangle(0, 0, a, c), this._transparent = d, this._id = m.display.DisplayObject.getNextSyncID(), this._setData(new Uint8Array(a * c * 4), 1), 0 === f >> 24 && d ? this._solidFillColorPBGRA = 0 : this.fillRect(this._rect, f), this._bitmapReferrers = 
+              this._symbol ? this.applySymbol() : ((a > g.MAXIMUM_WIDTH || 0 >= a || c > g.MAXIMUM_HEIGHT || 0 >= c || a * c > g.MAXIMUM_DIMENSION) && this.sec.throwError("ArgumentError", b.Errors.InvalidBitmapData), this._rect = new this.sec.flash.geom.Rectangle(0, 0, a, c), this._transparent = d, this._id = m.display.DisplayObject.getNextSyncID(), this._setData(new Uint8Array(a * c * 4), 1), 0 === f >> 24 && d ? this._solidFillColorPBGRA = 0 : this.fillRect(this._rect, f), this._bitmapReferrers = 
               []);
             }
-            __extends(p, h);
-            p.classInitializer = function() {
+            __extends(g, h);
+            g.classInitializer = function() {
               this._temporaryRectangle = new this.sec.flash.geom.Rectangle;
             };
-            p.prototype.applySymbol = function() {
+            g.prototype.applySymbol = function() {
               var a = this._symbol;
               this._rect = new this.sec.flash.geom.Rectangle(0, 0, a.width, a.height);
               this._transparent = !0;
@@ -29811,7 +29816,7 @@ var RtmpJs;
               this._solidFillColorPBGRA = null;
               this._bitmapReferrers = [];
             };
-            p.prototype._setData = function(a, b) {
+            g.prototype._setData = function(a, b) {
               a instanceof Uint8ClampedArray && (a = new Uint8Array(a.buffer));
               this._data = a;
               this._type = b;
@@ -29820,15 +29825,15 @@ var RtmpJs;
               this._isDirty = !0;
               this._isRemoteDirty = !1;
             };
-            p.prototype._addBitmapReferrer = function(a) {
+            g.prototype._addBitmapReferrer = function(a) {
               r(this._bitmapReferrers, a);
               this._bitmapReferrers.push(a);
             };
-            p.prototype._removeBitmapReferrer = function(a) {
+            g.prototype._removeBitmapReferrer = function(a) {
               a = r(this._bitmapReferrers, a);
               this._bitmapReferrers[a] = null;
             };
-            p.prototype._invalidate = function() {
+            g.prototype._invalidate = function() {
               if (!this._isDirty) {
                 this._isDirty = !0;
                 this._isRemoteDirty = !1;
@@ -29838,60 +29843,60 @@ var RtmpJs;
                 }
               }
             };
-            p.prototype._getTemporaryRectangleFrom = function(a) {
+            g.prototype._getTemporaryRectangleFrom = function(a) {
               var b = this.sec.flash.display.BitmapData.axClass._temporaryRectangle;
               b.copyFrom(a);
               return b;
             };
-            p.prototype.getDataBuffer = function() {
+            g.prototype.getDataBuffer = function() {
               return this._dataBuffer;
             };
-            p.prototype._getContentBounds = function() {
+            g.prototype._getContentBounds = function() {
               return e.Bounds.FromRectangle(this._rect);
             };
-            p.prototype._getPixelData = function(a) {
+            g.prototype._getPixelData = function(a) {
               var b = this._getTemporaryRectangleFrom(this._rect).intersectInPlace(a);
               if (!b.isEmpty()) {
                 a = b.x;
                 var c = b.x + b.width, d = b.y, f = b.y + b.height;
                 this._ensureBitmapData();
-                for (var h = this._view, k = this._rect.width, b = new Int32Array(b.area), p = 0;d < f;d++) {
-                  for (var g = d * k, e = a;e < c;e++) {
-                    var l = h[g + e], q = l & 255, l = 255 * (l >>> 8) / q << 8 | q;
-                    b[p++] = l;
+                for (var h = this._view, k = this._rect.width, b = new Int32Array(b.area), g = 0;d < f;d++) {
+                  for (var p = d * k, e = a;e < c;e++) {
+                    var l = h[p + e], q = l & 255, l = 255 * (l >>> 8) / q << 8 | q;
+                    b[g++] = l;
                   }
                 }
                 return b;
               }
             };
-            p.prototype._putPixelData = function(a, b) {
+            g.prototype._putPixelData = function(a, b) {
               var c = this._getTemporaryRectangleFrom(this._rect).intersectInPlace(a);
               if (!c.isEmpty()) {
                 var d = c.x, f = c.x + c.width, h = c.y, k = c.y + c.height;
                 this._ensureBitmapData();
-                for (var p = this._view, g = this._rect.width, e = a.width * a.height - c.height + (d - a.x), c = a.width - c.width, l = this._transparent ? 0 : 255;h < k;h++) {
-                  for (var q = h * g, r = d;r < f;r++) {
+                for (var g = this._view, p = this._rect.width, e = a.width * a.height - c.height + (d - a.x), c = a.width - c.width, l = this._transparent ? 0 : 255;h < k;h++) {
+                  for (var q = h * p, r = d;r < f;r++) {
                     var u = b[e++], m = u & l;
-                    p[q + r] = (((u >>> 8) * m + 254) / 255 & 16777215) << 8 | m;
+                    g[q + r] = (((u >>> 8) * m + 254) / 255 & 16777215) << 8 | m;
                   }
                   e += c;
                 }
                 this._invalidate();
               }
             };
-            Object.defineProperty(p.prototype, "width", {get:function() {
+            Object.defineProperty(g.prototype, "width", {get:function() {
               return this._rect.width;
             }, enumerable:!0, configurable:!0});
-            Object.defineProperty(p.prototype, "height", {get:function() {
+            Object.defineProperty(g.prototype, "height", {get:function() {
               return this._rect.height;
             }, enumerable:!0, configurable:!0});
-            Object.defineProperty(p.prototype, "rect", {get:function() {
+            Object.defineProperty(g.prototype, "rect", {get:function() {
               return this._rect.clone();
             }, enumerable:!0, configurable:!0});
-            Object.defineProperty(p.prototype, "transparent", {get:function() {
+            Object.defineProperty(g.prototype, "transparent", {get:function() {
               return this._transparent;
             }, enumerable:!0, configurable:!0});
-            p.prototype.clone = function() {
+            g.prototype.clone = function() {
               var a = Object.create(this.sec.flash.display.BitmapData.axClass.tPrototype);
               a._rect = this._rect.clone();
               a._transparent = this._transparent;
@@ -29902,10 +29907,10 @@ var RtmpJs;
               a._setData(new Uint8Array(this._data), this._type);
               return a;
             };
-            p.prototype.getPixel = function(a, b) {
+            g.prototype.getPixel = function(a, b) {
               return this.getPixel32(a | 0, b | 0) & 16777215;
             };
-            p.prototype.getPixel32 = function(a, b) {
+            g.prototype.getPixel32 = function(a, b) {
               a |= 0;
               b |= 0;
               if (!this._rect.contains(a, b)) {
@@ -29922,13 +29927,13 @@ var RtmpJs;
                   return e.Debug.notImplemented(e.ImageType[this._type]), 0;
               }
             };
-            p.prototype.setPixel = function(a, b, d) {
+            g.prototype.setPixel = function(a, b, d) {
               a |= 0;
               b |= 0;
               d |= 0;
               this._rect.contains(a, b) && (this._ensureBitmapData(), a = b * this._rect.width + a, d = d & 16777215 | (this._view[a] & 255) << 24, d = f(d), this._view[a] = c(d), this._invalidate(), this._solidFillColorPBGRA = null);
             };
-            p.prototype.setPixel32 = function(a, b, d) {
+            g.prototype.setPixel32 = function(a, b, d) {
               a |= 0;
               b |= 0;
               if (this._rect.contains(a, b)) {
@@ -29941,19 +29946,19 @@ var RtmpJs;
                 this._solidFillColorPBGRA = null;
               }
             };
-            p.prototype.applyFilter = function(a, b, c, d) {
+            g.prototype.applyFilter = function(a, b, c, d) {
               l("public flash.display.BitmapData::applyFilter " + d);
             };
-            p.prototype.colorTransform = function(a, b) {
+            g.prototype.colorTransform = function(a, b) {
               l("public flash.display.BitmapData::colorTransform");
             };
-            p.prototype.compare = function(a) {
+            g.prototype.compare = function(a) {
               n("public flash.display.BitmapData::compare");
             };
-            p.prototype.copyChannel = function(a, b, c, d, f) {
+            g.prototype.copyChannel = function(a, b, c, d, f) {
               l("public flash.display.BitmapData::copyChannel");
             };
-            p.prototype.copyPixels = function(a, b, c, d, f, h) {
+            g.prototype.copyPixels = function(a, b, c, d, f, h) {
               void 0 === d && (d = null);
               void 0 === f && (f = null);
               h = !!h;
@@ -29964,22 +29969,22 @@ var RtmpJs;
                 k = b ? this._getTemporaryRectangleFrom(b).roundInPlace() : this.sec.flash.display.BitmapData.axClass._temporaryRectangle.setEmpty();
                 b = this._rect;
                 f = a._rect;
-                var p = Math.max(k.x, 0);
+                var g = Math.max(k.x, 0);
                 d = Math.max(k.y, 0);
-                var g = Math.min(k.x + k.width, f.width), e = Math.min(k.y + k.height, f.height);
-                f = (c.x | 0) + (p - k.x);
+                var p = Math.min(k.x + k.width, f.width), e = Math.min(k.y + k.height, f.height);
+                f = (c.x | 0) + (g - k.x);
                 k = (c.y | 0) + (d - k.y);
-                0 > f && (p -= f, f = 0);
+                0 > f && (g -= f, f = 0);
                 0 > k && (d -= k, k = 0);
-                c = Math.min(g - p, b.width - f);
+                c = Math.min(p - g, b.width - f);
                 b = Math.min(e - d, b.height - k);
                 if (!(0 >= c || 0 >= b)) {
-                  var g = p, e = d, q = f, r = k;
+                  var p = g, e = d, q = f, r = k;
                   d = a._rect.width;
                   f = this._rect.width;
                   this._ensureBitmapData();
                   a._ensureBitmapData();
-                  p = a._view;
+                  g = a._view;
                   k = this._view;
                   a._type !== this._type && l("public flash.display.BitmapData::copyPixels - Color Format Conversion");
                   if (h && 1 !== this._type) {
@@ -29988,20 +29993,20 @@ var RtmpJs;
                     if (null === this._solidFillColorPBGRA || this._solidFillColorPBGRA !== a._solidFillColorPBGRA) {
                       null !== a._solidFillColorPBGRA && 255 === (a._solidFillColorPBGRA & 255) && (h = !1);
                       if (h) {
-                        this._copyPixelsAndMergeAlpha(p, g, e, d, k, q, r, f, c, b);
+                        this._copyPixelsAndMergeAlpha(g, p, e, d, k, q, r, f, c, b);
                       } else {
-                        if (a = e * d + g | 0, h = r * f + q | 0, 0 === (c & 3)) {
-                          for (g = 0;g < b;g = g + 1 | 0) {
+                        if (a = e * d + p | 0, h = r * f + q | 0, 0 === (c & 3)) {
+                          for (p = 0;p < b;p = p + 1 | 0) {
                             for (e = 0;e < c;e = e + 4 | 0) {
-                              k[h + e + 0 | 0] = p[a + e + 0 | 0], k[h + e + 1 | 0] = p[a + e + 1 | 0], k[h + e + 2 | 0] = p[a + e + 2 | 0], k[h + e + 3 | 0] = p[a + e + 3 | 0];
+                              k[h + e + 0 | 0] = g[a + e + 0 | 0], k[h + e + 1 | 0] = g[a + e + 1 | 0], k[h + e + 2 | 0] = g[a + e + 2 | 0], k[h + e + 3 | 0] = g[a + e + 3 | 0];
                             }
                             a = a + d | 0;
                             h = h + f | 0;
                           }
                         } else {
-                          for (g = 0;g < b;g = g + 1 | 0) {
+                          for (p = 0;p < b;p = p + 1 | 0) {
                             for (e = 0;e < c;e = e + 1 | 0) {
-                              k[h + e | 0] = p[a + e | 0];
+                              k[h + e | 0] = g[a + e | 0];
                             }
                             a = a + d | 0;
                             h = h + f | 0;
@@ -30015,11 +30020,11 @@ var RtmpJs;
                 }
               }
             };
-            p.prototype._copyPixelsAndMergeAlpha = function(a, b, c, d, f, h, k, p, g, e) {
+            g.prototype._copyPixelsAndMergeAlpha = function(a, b, c, d, f, h, k, g, p, e) {
               b = c * d + b | 0;
-              h = k * p + h | 0;
+              h = k * g + h | 0;
               for (k = 0;k < e;k = k + 1 | 0) {
-                for (c = 0;c < g;c = c + 1 | 0) {
+                for (c = 0;c < p;c = c + 1 | 0) {
                   var l = a[b + c | 0], q = l & 255;
                   if (255 === q) {
                     f[h + c | 0] = l;
@@ -30031,15 +30036,15 @@ var RtmpJs;
                   }
                 }
                 b = b + d | 0;
-                h = h + p | 0;
+                h = h + g | 0;
               }
             };
-            p.prototype.dispose = function() {
+            g.prototype.dispose = function() {
               this._rect.setEmpty();
               this._view = null;
               this._invalidate();
             };
-            p.prototype.draw = function(b, c, d, f, h, k) {
+            g.prototype.draw = function(b, c, d, f, h, k) {
               void 0 === c && (c = null);
               void 0 === d && (d = null);
               void 0 === f && (f = null);
@@ -30048,42 +30053,42 @@ var RtmpJs;
               f = a(f);
               k = !!k;
               l("public flash.display.BitmapData::draw");
-              var p = this.sec.player;
+              var g = this.sec.player;
               c && (c = c.clone().toTwipsInPlace());
-              p.drawToBitmap(this, b, c, d, f, h, k);
+              g.drawToBitmap(this, b, c, d, f, h, k);
               this._isRemoteDirty = !0;
             };
-            p.prototype.drawWithQuality = function(b, c, d, f, h, k, p) {
+            g.prototype.drawWithQuality = function(b, c, d, f, h, k, g) {
               void 0 === c && (c = null);
               void 0 === d && (d = null);
               void 0 === f && (f = null);
               void 0 === h && (h = null);
               void 0 === k && (k = !1);
-              void 0 === p && (p = null);
-              a(p);
+              void 0 === g && (g = null);
+              a(g);
               l("public flash.display.BitmapData::drawWithQuality");
               this.draw(b, c, d, f, h, k);
             };
-            p.prototype.fillRect = function(a, b) {
+            g.prototype.fillRect = function(a, b) {
               this._ensureBitmapData();
               var d = this._transparent ? f(b) : b | 4278190080, d = c(d), h = this._getTemporaryRectangleFrom(this._rect).intersectInPlace(a);
               if (!h.isEmpty() && this._solidFillColorPBGRA !== d) {
                 var k = this._view;
                 if (h.equals(this._rect)) {
-                  var p = k.length | 0;
-                  if (0 === (p & 3)) {
-                    for (var g = 0;g < p;g += 4) {
-                      k[g] = d, k[g + 1] = d, k[g + 2] = d, k[g + 3] = d;
+                  var g = k.length | 0;
+                  if (0 === (g & 3)) {
+                    for (var p = 0;p < g;p += 4) {
+                      k[p] = d, k[p + 1] = d, k[p + 2] = d, k[p + 3] = d;
                     }
                   } else {
-                    for (g = 0;g < p;g++) {
-                      k[g] = d;
+                    for (p = 0;p < g;p++) {
+                      k[p] = d;
                     }
                   }
                   this._solidFillColorPBGRA = d;
                 } else {
-                  for (var p = h.x | 0, g = h.x + h.width | 0, e = h.y + h.height | 0, l = this._rect.width | 0, h = h.y | 0;h < e;h++) {
-                    for (var q = h * l | 0, r = p;r < g;r++) {
+                  for (var g = h.x | 0, p = h.x + h.width | 0, e = h.y + h.height | 0, l = this._rect.width | 0, h = h.y | 0;h < e;h++) {
+                    for (var q = h * l | 0, r = g;r < p;r++) {
                       k[q + r] = d;
                     }
                   }
@@ -30092,26 +30097,26 @@ var RtmpJs;
                 this._invalidate();
               }
             };
-            p.prototype.floodFill = function(a, b, c) {
+            g.prototype.floodFill = function(a, b, c) {
               l("public flash.display.BitmapData::floodFill");
             };
-            p.prototype.generateFilterRect = function(a, b) {
+            g.prototype.generateFilterRect = function(a, b) {
               l("public flash.display.BitmapData::generateFilterRect");
             };
-            p.prototype.getColorBoundsRect = function(a, b, c) {
+            g.prototype.getColorBoundsRect = function(a, b, c) {
               l("public flash.display.BitmapData::getColorBoundsRect");
               return new this.sec.flash.geom.Rectangle;
             };
-            p.prototype.getPixels = function(a) {
+            g.prototype.getPixels = function(a) {
               var b = new this.sec.flash.utils.ByteArray;
               this.copyPixelsToByteArray(a, b);
               return b;
             };
-            p.prototype.copyPixelsToByteArray = function(a, b) {
+            g.prototype.copyPixelsToByteArray = function(a, b) {
               var c = this._getPixelData(a);
               c && b.writeRawBytes(new Uint8Array(c));
             };
-            p.prototype.getVector = function(a) {
+            g.prototype.getVector = function(a) {
               var b = new this.sec.Uint32Vector(c.length), c = this._getPixelData(a);
               if (!c) {
                 return b;
@@ -30120,51 +30125,51 @@ var RtmpJs;
               b._view().set(c);
               return b;
             };
-            p.prototype.hitTest = function(a, b, c, d, f) {
+            g.prototype.hitTest = function(a, b, c, d, f) {
               l("public flash.display.BitmapData::hitTest");
               return !0;
             };
-            p.prototype.merge = function(a, b, c, d, f, h, k) {
+            g.prototype.merge = function(a, b, c, d, f, h, k) {
               l("public flash.display.BitmapData::merge");
             };
-            p.prototype.noise = function(a, b, c, d, f) {
+            g.prototype.noise = function(a, b, c, d, f) {
               l("public flash.display.BitmapData::noise");
             };
-            p.prototype.paletteMap = function(a, b, c, d, f, h, k) {
+            g.prototype.paletteMap = function(a, b, c, d, f, h, k) {
               l("public flash.display.BitmapData::paletteMap");
             };
-            p.prototype.perlinNoise = function(a, b, c, d, f, h, k, p, g) {
+            g.prototype.perlinNoise = function(a, b, c, d, f, h, k, g, p) {
               l("public flash.display.BitmapData::perlinNoise");
             };
-            p.prototype.pixelDissolve = function(a, b, c, d, f, h) {
+            g.prototype.pixelDissolve = function(a, b, c, d, f, h) {
               l("public flash.display.BitmapData::pixelDissolve");
             };
-            p.prototype.scroll = function(a, b) {
+            g.prototype.scroll = function(a, b) {
               l("public flash.display.BitmapData::scroll");
             };
-            p.prototype.setPixels = function(a, b) {
+            g.prototype.setPixels = function(a, b) {
               this._putPixelData(a, new Int32Array(b.readRawBytes()));
             };
-            p.prototype.setVector = function(a, b) {
+            g.prototype.setVector = function(a, b) {
               this._putPixelData(a, b._view());
             };
-            p.prototype.threshold = function(b, c, d, f, h, k, p, g) {
+            g.prototype.threshold = function(b, c, d, f, h, k, g, p) {
               a(f);
               l("public flash.display.BitmapData::threshold");
             };
-            p.prototype.lock = function() {
+            g.prototype.lock = function() {
               this._locked = !0;
             };
-            p.prototype.unlock = function(a) {
+            g.prototype.unlock = function(a) {
               this._locked = !1;
             };
-            p.prototype.histogram = function(a) {
+            g.prototype.histogram = function(a) {
               n("public flash.display.BitmapData::histogram");
             };
-            p.prototype.encode = function(a, b, c) {
+            g.prototype.encode = function(a, b, c) {
               n("public flash.display.BitmapData::encode");
             };
-            p.prototype._ensureBitmapData = function() {
+            g.prototype._ensureBitmapData = function() {
               if (this._isRemoteDirty) {
                 var a = this.sec.player.requestBitmapData(this);
                 this._setData(a.getBytes(), 3);
@@ -30173,10 +30178,10 @@ var RtmpJs;
               }
               1 !== this._type && (e.ColorUtilities.convertImage(this._type, 1, this._view, this._view), this._type = 1, this._solidFillColorPBGRA = null);
             };
-            p.MAXIMUM_WIDTH = 8191;
-            p.MAXIMUM_HEIGHT = 8191;
-            p.MAXIMUM_DIMENSION = 16777215;
-            return p;
+            g.MAXIMUM_WIDTH = 8191;
+            g.MAXIMUM_HEIGHT = 8191;
+            g.MAXIMUM_DIMENSION = 16777215;
+            return g;
           }(g.ASObject);
           t.BitmapData = q;
           q = function(a) {
@@ -30375,8 +30380,8 @@ var RtmpJs;
                   k("Loader.INIT");
                   try {
                     f.dispatchEvent(this.sec.flash.events.Event.axClass.getInstance(a.Event.INIT));
-                  } catch (p) {
-                    e.Debug.warning("caught error under loaderInfo INIT event:", p);
+                  } catch (g) {
+                    e.Debug.warning("caught error under loaderInfo INIT event:", g);
                   }
                   u();
                   d._loadStatus = 2;
@@ -30384,8 +30389,8 @@ var RtmpJs;
                     k("Loader.Progress", "rootLoader");
                     try {
                       f.dispatchEvent(new this.sec.flash.events.ProgressEvent(a.ProgressEvent.PROGRESS, !1, !1, f.bytesLoaded, f.bytesTotal));
-                    } catch (g) {
-                      e.Debug.warning("caught error under loaderInfo PROGRESS event:", g);
+                    } catch (p) {
+                      e.Debug.warning("caught error under loaderInfo PROGRESS event:", p);
                     }
                     u();
                   }
@@ -30405,10 +30410,10 @@ var RtmpJs;
             };
             p.processLateEvents = function() {
               for (var b = this.sec.flash.display.Loader.axClass._loadQueue, c = 0;c < b.length;c++) {
-                var d = b[c], f = d._contentLoaderInfo, h = d._queuedLoadUpdate, p = f._bytesTotal;
-                if (h && p || 1 === d._loadStatus) {
+                var d = b[c], f = d._contentLoaderInfo, h = d._queuedLoadUpdate, g = f._bytesTotal;
+                if (h && g || 1 === d._loadStatus) {
                   d._queuedLoadUpdate = null;
-                  var g = this.sec.flash.events.ProgressEvent;
+                  var p = this.sec.flash.events.ProgressEvent;
                   if (0 === d._loadStatus) {
                     if (0 === d._loadingType) {
                       k("Loader.Open");
@@ -30421,7 +30426,7 @@ var RtmpJs;
                     }
                     k("Loader.Progress");
                     try {
-                      f.dispatchEvent(new g(a.ProgressEvent.PROGRESS, !1, !1, 0, p));
+                      f.dispatchEvent(new p(a.ProgressEvent.PROGRESS, !1, !1, 0, g));
                     } catch (q) {
                       e.Debug.warning("caught error under loaderInfo PROGRESS event: ", q);
                     }
@@ -30432,7 +30437,7 @@ var RtmpJs;
                     d._applyLoadUpdate(h);
                     k("Loader.Progress");
                     try {
-                      f.dispatchEvent(new g(a.ProgressEvent.PROGRESS, !1, !1, h.bytesLoaded, p));
+                      f.dispatchEvent(new p(a.ProgressEvent.PROGRESS, !1, !1, h.bytesLoaded, g));
                     } catch (r) {
                       e.Debug.warning("caught error under loaderInfo PROGRESS event: ", r);
                     }
@@ -30568,7 +30573,7 @@ var RtmpJs;
                     this._fileLoader.abortLoad();
                     try {
                       this._contentLoaderInfo.dispatchEvent(new this.sec.flash.events.IOErrorEvent(a.SecurityErrorEvent.SECURITY_ERROR, !1, !1, b.Errors.AllowCodeImportError.message, b.Errors.AllowCodeImportError.code));
-                    } catch (p) {
+                    } catch (g) {
                     }
                     return;
                   }
@@ -30609,15 +30614,15 @@ var RtmpJs;
                   var h = c.app, k = d.abcBlocks.length;
                   if (0 < k - c._abcBlocksLoaded) {
                     for (a = c._abcBlocksLoaded;a < k;a++) {
-                      var p = d.abcBlocks[a], g = new b.ABCFile(c, p.data);
-                      p.flags ? h.loadABC(g) : h.loadAndExecuteABC(g);
+                      var g = d.abcBlocks[a], p = new b.ABCFile(c, g.data);
+                      g.flags ? h.loadABC(p) : h.loadAndExecuteABC(p);
                     }
                     c._abcBlocksLoaded = k;
                   }
                   k = d.symbolClassesList.length;
                   if (0 < k - c._mappedSymbolsLoaded) {
                     for (a = c._mappedSymbolsLoaded;a < k;a++) {
-                      p = d.symbolClassesList[a], g = h.getClass(b.Multiname.FromFQNString(p.className, 0)), Object.defineProperty(g.tPrototype, "_symbol", {get:c.getSymbolResolver(g, p.id), configurable:!0});
+                      g = d.symbolClassesList[a], p = h.getClass(b.Multiname.FromFQNString(g.className, 0)), Object.defineProperty(p.tPrototype, "_symbol", {get:c.getSymbolResolver(p, g.id), configurable:!0});
                     }
                     c._mappedSymbolsLoaded = k;
                   }
@@ -30632,7 +30637,7 @@ var RtmpJs;
                 k = d.framesLoaded - h.frames.length;
                 if (0 !== k) {
                   for ((a = this._content) || (a = this.createContentRoot(h, d.sceneAndFrameLabelData)), d = a, a = 0;a < k;a++) {
-                    p = c.getFrame(null, h.frames.length), d._addFrame(p);
+                    g = c.getFrame(null, h.frames.length), d._addFrame(g);
                   }
                 }
               }
@@ -30649,17 +30654,17 @@ var RtmpJs;
                 d.sort(function(a, b) {
                   return a.offset - b.offset;
                 });
-                var k = d.length, p, g;
-                0 < k && 0 < d[0].offset && (p = d[0].offset, g = Math.min(p, c), a.addScene("Scene 0", [], 0, g));
+                var k = d.length, g, p;
+                0 < k && 0 < d[0].offset && (g = d[0].offset, p = Math.min(g, c), a.addScene("Scene 0", [], 0, p));
                 h = 0;
                 for (k = d.length;h < k;h++) {
                   var e = d[h];
-                  p = e.offset;
-                  if (p >= c) {
+                  g = e.offset;
+                  if (g >= c) {
                     break;
                   }
-                  g = h < k - 1 ? Math.min(f[h + 1].offset, c) : c;
-                  a.addScene(e.name, [], p, g - p);
+                  p = h < k - 1 ? Math.min(f[h + 1].offset, c) : c;
+                  a.addScene(e.name, [], g, p - g);
                 }
                 b = b.labels;
                 for (h = 0;h < b.length;h++) {
@@ -33352,34 +33357,34 @@ var RtmpJs;
             };
             r.prototype.load = function(a, c) {
               if (a) {
-                var d = this, k = this._stream = new this.sec.flash.net.URLStream, e = new this.sec.flash.utils.ByteArray, l = 0, r = b.webAudioOption.value, u = null, m = new f;
-                m.completed = !1;
+                var d = this, k = this._stream = new this.sec.flash.net.URLStream, e = new this.sec.flash.utils.ByteArray, l = 0, r = b.webAudioOption.value, m = null, u = new f;
+                u.completed = !1;
                 k.addEventListener("progress", function(a) {
                   d._bytesLoaded = a.axGetPublicProperty("bytesLoaded");
                   d._bytesTotal = a.axGetPublicProperty("bytesTotal");
-                  r && !u && (u = decodeMP3(m, function(a, b) {
-                    0 === d._length && (d._soundData = m, d._playQueue.forEach(function(a) {
-                      a.channel._playSoundDataViaChannel(m, a.startTime);
+                  r && !m && (m = decodeMP3(u, function(a, b) {
+                    0 === d._length && (d._soundData = u, d._playQueue.forEach(function(a) {
+                      a.channel._playSoundDataViaChannel(u, a.startTime);
                     }));
-                    d._length = b ? 1E3 * a : 1E3 * Math.max(a, u.estimateDuration(d._bytesTotal));
+                    d._length = b ? 1E3 * a : 1E3 * Math.max(a, m.estimateDuration(d._bytesTotal));
                   }));
                   var b = k.bytesAvailable;
                   k.readBytes(e, l, b);
-                  u && u.pushData(new Uint8Array(e._buffer, l, b));
+                  m && m.pushData(new Uint8Array(e._buffer, l, b));
                   l += b;
                   d.dispatchEvent(a);
                 });
                 k.addEventListener("complete", function(a) {
                   d.dispatchEvent(a);
-                  m.data = e._buffer;
-                  m.mimeType = "audio/mpeg";
-                  m.completed = !0;
-                  r || (d._soundData = m, n(m, function(a) {
+                  u.data = e._buffer;
+                  u.mimeType = "audio/mpeg";
+                  u.completed = !0;
+                  r || (d._soundData = u, n(u, function(a) {
                     d._length = a.duration;
                   }), d._playQueue.forEach(function(a) {
-                    a.channel._playSoundDataViaAudio(m, a.startTime);
+                    a.channel._playSoundDataViaAudio(u, a.startTime);
                   }));
-                  u && u.close();
+                  m && m.close();
                 });
                 k.load(a);
               }
@@ -37480,12 +37485,12 @@ var RtmpJs;
       (function(m) {
         (function(m) {
           var n = e.AVMX.axCoerceString, l = e.NumberUtilities.roundHalfEven, d = function(a) {
-            function c(b, c, d, e, g, h, p, l, n, A, K, B, E) {
+            function c(b, c, d, g, e, h, p, l, n, A, K, B, E) {
               void 0 === b && (b = null);
               void 0 === c && (c = null);
               void 0 === d && (d = null);
-              void 0 === e && (e = null);
               void 0 === g && (g = null);
+              void 0 === e && (e = null);
               void 0 === h && (h = null);
               void 0 === p && (p = null);
               void 0 === l && (l = null);
@@ -37498,8 +37503,8 @@ var RtmpJs;
               this.font = b;
               this.size = c;
               this.color = d;
-              this.bold = e;
-              this.italic = g;
+              this.bold = g;
+              this.italic = e;
               this.underline = h;
               this.url = p;
               this.target = l;
@@ -37846,14 +37851,14 @@ var RtmpJs;
       (function(e) {
         (function(e) {
           var m = function(b) {
-            function d(a, c, d, k, e, g) {
+            function d(a, c, d, k, g, e) {
               b.call(this);
               this.x = +a;
               this.width = +c;
               this.height = +d;
               this.ascent = +k;
-              this.descent = +e;
-              this.leading = +g;
+              this.descent = +g;
+              this.leading = +e;
             }
             __extends(d, b);
             d.classInitializer = null;
@@ -40911,34 +40916,34 @@ __extends = this.__extends || function(e, b) {
           return this;
         };
         c.prototype.sortOn = function(a, c) {
-          var d = this.context, f = [], e = [];
+          var d = this.context, f = [], h = [];
           if (b.alIsString(d, a)) {
-            f = [b.alToString(d, a)], e = [b.alToInt32(d, c)];
+            f = [b.alToString(d, a)], h = [b.alToInt32(d, c)];
           } else {
             if (b.alIsArray(d, a)) {
-              var f = [], e = [], h = b.alIsArray(d, c) ? c : null, k = b.alToInteger(d, a.alGet("length"));
-              if (h) {
-                var g = b.alToInteger(d, h.alGet("length"));
-                k !== g && (h = null);
+              var f = [], h = [], e = b.alIsArray(d, c) ? c : null, k = b.alToInteger(d, a.alGet("length"));
+              if (e) {
+                var g = b.alToInteger(d, e.alGet("length"));
+                k !== g && (e = null);
               }
               for (g = 0;g < k;g++) {
-                f.push(b.alToString(d, a.alGet(g))), e.push(h ? b.alToInt32(d, h.alGet(g)) : 0);
+                f.push(b.alToString(d, a.alGet(g))), h.push(e ? b.alToInt32(d, e.alGet(g)) : 0);
               }
             } else {
               return;
             }
           }
           m(this, z).value.sort(function(a, c) {
-            var h = b.alToObject(d, a), k = b.alToObject(d, c);
+            var e = b.alToObject(d, a), k = b.alToObject(d, c);
             if (!a || !c) {
               return a ? 1 : c ? -1 : 0;
             }
             for (var g = 0;g < f.length;g++) {
-              var p = h.alGet(f[g]), l = k.alGet(f[g]);
-              e[g] & 16 ? (p = b.alToNumber(d, p), l = b.alToNumber(d, l)) : (p = b.alToString(d, p), l = b.alToString(d, l), e[g] & 1 && (p = p.toLowerCase(), l = l.toLowerCase()));
+              var p = e.alGet(f[g]), l = k.alGet(f[g]);
+              h[g] & 16 ? (p = b.alToNumber(d, p), l = b.alToNumber(d, l)) : (p = b.alToString(d, p), l = b.alToString(d, l), h[g] & 1 && (p = p.toLowerCase(), l = l.toLowerCase()));
               l = p < l ? -1 : p > l ? 1 : 0;
               if (0 !== l) {
-                return e[g] & 2 ? -l : l;
+                return h[g] & 2 ? -l : l;
               }
             }
             return 0;
@@ -44771,11 +44776,11 @@ __extends = this.__extends || function(e, b) {
             d.buttonMode = !0;
             d.addEventListener("addedToStage", this._addListeners.bind(this));
             d.addEventListener("removedFromStage", this._removeListeners.bind(this));
-            for (var k = this._requiredListeners = Object.create(null), g = this._actions = d._symbol.data.buttonActions, n = 0;n < g.length;n++) {
-              var q = g[n];
-              q.actionsBlock || (q.actionsBlock = a.actionsDataFactory.createActionsData(q.actionsData, "s" + d._symbol.id + "e" + n));
+            for (var g = this._requiredListeners = Object.create(null), n = this._actions = d._symbol.data.buttonActions, r = 0;r < n.length;r++) {
+              var q = n[r];
+              q.actionsBlock || (q.actionsBlock = a.actionsDataFactory.createActionsData(q.actionsData, "s" + d._symbol.id + "e" + r));
               if (q.keyCode) {
-                k.keyDown = this._keyDownHandler.bind(this);
+                g.keyDown = this._keyDownHandler.bind(this);
               } else {
                 var h;
                 switch(q.stateTransitionFlags) {
@@ -44808,7 +44813,7 @@ __extends = this.__extends || function(e, b) {
                     a.utils.warn("Unknown AVM1 button action type: " + q.stateTransitionFlags);
                     continue;
                 }
-                k[h] = this._mouseEventHandler.bind(this, q.stateTransitionFlags);
+                g[h] = this._mouseEventHandler.bind(this, q.stateTransitionFlags);
               }
             }
           }
@@ -47851,11 +47856,11 @@ GFX$$inline_406.cacheShapesThreshold = canvas2DOptions$$inline_413.register(new 
         };
         b.getBounds = function(b) {
           for (var c = new a(Number.MAX_VALUE, Number.MAX_VALUE), d = new a(Number.MIN_VALUE, Number.MIN_VALUE), e = 0;4 > e;e++) {
-            var h = b[e].x, g = b[e].y;
-            c.x = Math.min(c.x, h);
-            c.y = Math.min(c.y, g);
-            d.x = Math.max(d.x, h);
-            d.y = Math.max(d.y, g);
+            var g = b[e].x, h = b[e].y;
+            c.x = Math.min(c.x, g);
+            c.y = Math.min(c.y, h);
+            d.x = Math.max(d.x, g);
+            d.y = Math.max(d.y, h);
           }
           return new f(c.x, c.y, d.x - c.x, d.y - c.y);
         };
@@ -50533,19 +50538,19 @@ __extends = this.__extends || function(e, b) {
             if (h + 1 - d && m > b.h) {
               break;
             }
-            for (var n = k.runs, p = 0;p < n.length;p++) {
-              var q = n[p];
-              q.font !== f && (a.font = f = q.font);
-              q.fillStyle !== g && (a.fillStyle = g = q.fillStyle);
-              q.underline && a.fillRect(l, m + k.descent / 2 | 0, q.width, 1);
+            for (var n = k.runs, q = 0;q < n.length;q++) {
+              var p = n[q];
+              p.font !== f && (a.font = f = p.font);
+              p.fillStyle !== g && (a.fillStyle = g = p.fillStyle);
+              p.underline && a.fillRect(l, m + k.descent / 2 | 0, p.width, 1);
               a.textAlign = "left";
               a.textBaseline = "alphabetic";
-              if (0 < q.letterSpacing) {
-                for (var r = q.text, u = 0;u < r.length;u++) {
-                  a.fillText(r[u], l, m), l += t(a, r[u], q.letterSpacing);
+              if (0 < p.letterSpacing) {
+                for (var r = p.text, u = 0;u < r.length;u++) {
+                  a.fillText(r[u], l, m), l += t(a, r[u], p.letterSpacing);
                 }
               } else {
-                a.fillText(q.text, l, m), l += q.width;
+                a.fillText(p.text, l, m), l += p.width;
               }
             }
           }
@@ -50916,21 +50921,19 @@ Shumway$$inline_366.playSymbolCountOption = Shumway$$inline_366.playerOptions.re
             return 2;
           }, 0);
         };
-        b.prototype.writeStage = function(b, c) {
-          f && f.writeLn("Sending Stage");
-          this.output.writeInt(104);
-          this.output.writeInt(b._id);
-          this.output.writeInt(b.color);
-          this._writeRectangle(new d(0, 0, 20 * b.stageWidth, 20 * b.stageHeight));
-          this.output.writeInt(m.display.StageAlign.toNumber(b.align));
-          this.output.writeInt(m.display.StageScaleMode.toNumber(b.scaleMode));
-          this.output.writeInt(m.display.StageDisplayState.toNumber(b.displayState));
-          var e = b.sec.flash.ui.Mouse.axClass.cursor;
+        b.prototype.writeStage = function(a) {
+          a._isDirty && (f && f.writeLn("Sending Stage"), this.output.writeInt(104), this.output.writeInt(a._id), this.output.writeInt(a.color), this._writeRectangle(new d(0, 0, 20 * a.stageWidth, 20 * a.stageHeight)), this.output.writeInt(m.display.StageAlign.toNumber(a.align)), this.output.writeInt(m.display.StageScaleMode.toNumber(a.scaleMode)), this.output.writeInt(m.display.StageDisplayState.toNumber(a.displayState)), a._isDirty = !1);
+        };
+        b.prototype.writeCurrentMouseTarget = function(b, c) {
+          this.output.writeInt(107);
+          var d = b.sec, e = d.flash.ui.Mouse.axClass.cursor;
           if (c) {
-            if (this.output.writeInt(c._id), e === a.AUTO) {
+            var f = d.flash.display.SimpleButton.axClass, d = d.flash.display.Sprite.axClass;
+            this.output.writeInt(c._id);
+            if (e === a.AUTO) {
               var g = c;
               do {
-                if (b.sec.flash.display.SimpleButton.axClass.axIsType(g) || b.sec.flash.display.Sprite.axClass.axIsType(g) && g.buttonMode && c.useHandCursor) {
+                if (f.axIsType(g) || d.axIsType(g) && g.buttonMode && c.useHandCursor) {
                   e = a.BUTTON;
                   break;
                 }
@@ -50944,7 +50947,6 @@ Shumway$$inline_366.playSymbolCountOption = Shumway$$inline_366.playerOptions.re
         };
         b.prototype.writeGraphics = function(a) {
           if (a._isDirty) {
-            f && f.writeLn("Sending Graphics: " + a._id);
             for (var b = a._textures, c = b.length, d = 0;d < c;d++) {
               b[d] && this.writeBitmapData(b[d]);
             }
@@ -51273,7 +51275,7 @@ Shumway$$inline_366.playSymbolCountOption = Shumway$$inline_366.playerOptions.re
         this._mouseEventDispatcher.stage = this._player._stage;
         var b = this._mouseEventDispatcher.handleMouseEvent(a);
         e.traceMouseEventOption.value && (this._writer.writeLn("Mouse Event: type: " + a.type + ", point: " + a.point + ", target: " + b + (b ? ", name: " + b._name : "")), "click" === a.type && b && b.debugTrace());
-        this._player._currentMouseTarget = this._mouseEventDispatcher.currentTarget;
+        this._player.currentMouseTarget = this._mouseEventDispatcher.currentTarget;
       };
       a.prototype.registerEventListener = function(a, b) {
         this._videoEventListeners[a] = b;
@@ -51283,7 +51285,9 @@ Shumway$$inline_366.playSymbolCountOption = Shumway$$inline_366.playerOptions.re
       function c(b, c) {
         this._lastPumpTime = this._framesPlayed = 0;
         this._hasFocus = this._isPageVisible = !0;
-        this._loaderUrl = this._swfUrl = this._pageUrl = this._currentMouseTarget = null;
+        this._currentMouseTarget = null;
+        this._currentMouseTargetIsDirty = !0;
+        this._loaderUrl = this._swfUrl = this._pageUrl = null;
         this._crossDomainSWFLoadingWhitelist = [];
         this.sec = b;
         b.player = this;
@@ -51294,6 +51298,10 @@ Shumway$$inline_366.playSymbolCountOption = Shumway$$inline_366.playerOptions.re
       }
       Object.defineProperty(c.prototype, "framesPlayed", {get:function() {
         return this._framesPlayed;
+      }, enumerable:!0, configurable:!0});
+      Object.defineProperty(c.prototype, "currentMouseTarget", {set:function(a) {
+        this._currentMouseTarget !== a && (this._currentMouseTargetIsDirty = !0);
+        this._currentMouseTarget = a;
       }, enumerable:!0, configurable:!0});
       Object.defineProperty(c.prototype, "stage", {get:function() {
         return this._stage;
@@ -51349,7 +51357,7 @@ Shumway$$inline_366.playSymbolCountOption = Shumway$$inline_366.playerOptions.re
       };
       c.prototype.syncDisplayObject = function(a, c) {
         var d = new e.Remoting.Player.PlayerChannelSerializer;
-        this.sec.flash.display.Stage.axClass.axIsType(a) && d.writeStage(a, this._currentMouseTarget);
+        this.sec.flash.display.Stage.axClass.axIsType(a) && (d.writeStage(a), this._currentMouseTargetIsDirty && (d.writeCurrentMouseTarget(a, this._currentMouseTarget), this._currentMouseTargetIsDirty = !1));
         d.writeDisplayObjectRoot(a);
         d.writeEOF();
         b.enterTimeline("remoting assets");

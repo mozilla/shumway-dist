@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.477";
-Shumway$$inline_0.build = "23a3d09";
+Shumway$$inline_0.version = "0.11.481";
+Shumway$$inline_0.build = "a8304f8";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -662,8 +662,8 @@ var START_TIME = performance.now();
     c.base64ArrayBuffer = function(g) {
       var f = "";
       g = new Uint8Array(g);
-      for (var c = g.byteLength, x = c % 3, c = c - x, y, b, a, l, U = 0;U < c;U += 3) {
-        l = g[U] << 16 | g[U + 1] << 8 | g[U + 2], y = (l & 16515072) >> 18, b = (l & 258048) >> 12, a = (l & 4032) >> 6, l &= 63, f += d("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[y], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[b], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[a], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[l]);
+      for (var c = g.byteLength, x = c % 3, c = c - x, y, b, a, l, T = 0;T < c;T += 3) {
+        l = g[T] << 16 | g[T + 1] << 8 | g[T + 2], y = (l & 16515072) >> 18, b = (l & 258048) >> 12, a = (l & 4032) >> 6, l &= 63, f += d("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[y], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[b], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[a], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[l]);
       }
       1 == x ? (l = g[c], f += e("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(l & 252) >> 2], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(l & 3) << 4], "==")) : 2 == x && (l = g[c] << 8 | g[c + 1], f += d("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(l & 64512) >> 10], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(l & 1008) >> 4], "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(l & 15) << 
       2], "="));
@@ -4606,6 +4606,7 @@ var __extends = this.__extends || function(h, p) {
       a[a.UpdateStage = 104] = "UpdateStage";
       a[a.UpdateNetStream = 105] = "UpdateNetStream";
       a[a.RequestBitmapData = 106] = "RequestBitmapData";
+      a[a.UpdateCurrentMouseTarget = 107] = "UpdateCurrentMouseTarget";
       a[a.DrawToBitmap = 200] = "DrawToBitmap";
       a[a.MouseEvent = 300] = "MouseEvent";
       a[a.KeyboardEvent = 301] = "KeyboardEvent";
@@ -6586,12 +6587,12 @@ __extends = this.__extends || function(h, p) {
                 break;
               case d:
               ;
-              case U:
+              case T:
                 if (a.metaKey || a.ctrlKey) {
                   var m = "";
                   if (this.selection) {
-                    for (var T = this.selection.start;T <= this.selection.end;T++) {
-                      m += this.buffer.get(T) + "\n";
+                    for (var S = this.selection.start;S <= this.selection.end;S++) {
+                      m += this.buffer.get(S) + "\n";
                     }
                   } else {
                     m = this.buffer.get(this.lineIndex);
@@ -6611,7 +6612,7 @@ __extends = this.__extends || function(h, p) {
           a.addEventListener("blur", function(e) {
             this.hasFocus = !1;
           }.bind(this), !1);
-          var b = 33, k = 34, h = 36, q = 35, n = 38, v = 40, c = 37, f = 39, e = 65, d = 67, g = 78, y = 84, x = 72, U = 83;
+          var b = 33, k = 34, h = 36, q = 35, n = 38, v = 40, c = 37, f = 39, e = 65, d = 67, g = 78, y = 84, x = 72, T = 83;
         }
         b.prototype.printHelp = function() {
           var a = this;
@@ -6795,8 +6796,8 @@ console.time("Load GFX Dependencies");
       };
       e.prototype.createCanvasGradient = function(e, a) {
         for (var g = b.call(e, this.x0, this.y0, this.x1, this.y1), d = this.colorStops, f = 0;f < d.length;f++) {
-          var c = d[f], k = c.offset, c = c.color, c = a ? r(e, c, a) : c;
-          m.call(g, k, c);
+          var c = d[f], x = c.offset, c = c.color, c = a ? r(e, c, a) : c;
+          m.call(g, x, c);
         }
         g._template = this;
         g._transform = this._transform;
@@ -6901,10 +6902,10 @@ console.time("Load GFX Dependencies");
       e.prototype._writeData = function(e, a, g, d, b, f) {
         var c = arguments.length;
         this._dataPosition + c >= this._data.length && this._ensureDataCapacity(this._dataPosition + c);
-        var k = this._data, x = this._dataPosition;
-        k[x] = e;
-        k[x + 1] = a;
-        2 < c && (k[x + 2] = g, k[x + 3] = d, 4 < c && (k[x + 4] = b, 6 === c && (k[x + 5] = f)));
+        var x = this._data, k = this._dataPosition;
+        x[k] = e;
+        x[k + 1] = a;
+        2 < c && (x[k + 2] = g, x[k + 3] = d, 4 < c && (x[k + 4] = b, 6 === c && (x[k + 5] = f)));
         this._dataPosition += c;
       };
       e.prototype.closePath = function() {
@@ -7035,8 +7036,8 @@ console.time("Load GFX Dependencies");
           this.setTransform(1, 0, 0, 1, 0, 0);
           switch(d) {
             case 1:
-              var k = Math.sqrt((b.a + b.c) * (b.a + b.c) + (b.d + b.b) * (b.d + b.b)) * Math.SQRT1_2;
-              this.lineWidth = a(c * k, 1, 1024);
+              var x = Math.sqrt((b.a + b.c) * (b.a + b.c) + (b.d + b.b) * (b.d + b.b)) * Math.SQRT1_2;
+              this.lineWidth = a(c * x, 1, 1024);
               break;
             case 2:
               this.lineWidth = a(c * (b.d + b.b), 1, 1024);
@@ -7057,13 +7058,13 @@ console.time("Load GFX Dependencies");
         } else {
           var d = CanvasRenderingContext2D.prototype.setTransform;
           CanvasRenderingContext2D.prototype.setTransform = function(e, a, g, b, f, c) {
-            var k = this.currentTransform;
-            k.a = e;
-            k.b = a;
-            k.c = g;
-            k.d = b;
-            k.e = f;
-            k.f = c;
+            var x = this.currentTransform;
+            x.a = e;
+            x.b = a;
+            x.c = g;
+            x.d = b;
+            x.e = f;
+            x.f = c;
             d.call(this, e, a, g, b, f, c);
           };
           Object.defineProperty(CanvasRenderingContext2D.prototype, "currentTransform", {get:function() {
@@ -7073,7 +7074,7 @@ console.time("Load GFX Dependencies");
       }
     }();
     if ("undefined" !== typeof CanvasRenderingContext2D && void 0 === CanvasRenderingContext2D.prototype.globalColorMatrix) {
-      var y = CanvasRenderingContext2D.prototype.fill, x = CanvasRenderingContext2D.prototype.stroke, U = CanvasRenderingContext2D.prototype.fillText, da = CanvasRenderingContext2D.prototype.strokeText;
+      var y = CanvasRenderingContext2D.prototype.fill, x = CanvasRenderingContext2D.prototype.stroke, T = CanvasRenderingContext2D.prototype.fillText, da = CanvasRenderingContext2D.prototype.strokeText;
       Object.defineProperty(CanvasRenderingContext2D.prototype, "globalColorMatrix", {get:function() {
         return this._globalColorMatrix ? this._globalColorMatrix.clone() : null;
       }, set:function(e) {
@@ -7094,7 +7095,7 @@ console.time("Load GFX Dependencies");
       CanvasRenderingContext2D.prototype.fillText = function(e, a, g, d) {
         var b = null;
         this._globalColorMatrix && (b = this.fillStyle, this.fillStyle = r(this, this.fillStyle, this._globalColorMatrix));
-        3 === arguments.length ? U.call(this, e, a, g) : 4 === arguments.length ? U.call(this, e, a, g, d) : h.Debug.unexpected();
+        3 === arguments.length ? T.call(this, e, a, g) : 4 === arguments.length ? T.call(this, e, a, g, d) : h.Debug.unexpected();
         b && (this.fillStyle = b);
       };
       CanvasRenderingContext2D.prototype.strokeText = function(e, a, g, d) {
@@ -10419,27 +10420,27 @@ __extends = this.__extends || function(h, p) {
         if (!(a._type & 1)) {
           var b = this._data, h = a._data;
           a = b[0];
-          var n = b[1], l = b[2], c = b[3], f = b[4], e = b[5], d = b[6], g = b[7], m = b[8], u = b[9], p = b[10], r = b[11], w = b[12], S = b[13], T = b[14], V = b[15], ga = b[16], ha = b[17], ia = b[18], ja = b[19], J = h[0], D = h[1], z = h[2], B = h[3], E = h[4], A = h[5], C = h[6], F = h[7], G = h[8], I = h[9], H = h[10], K = h[11], L = h[12], M = h[13], N = h[14], O = h[15], P = h[16], Q = h[17], R = h[18], h = h[19];
-          b[0] = a * J + f * D + m * z + w * B;
-          b[1] = n * J + e * D + u * z + S * B;
-          b[2] = l * J + d * D + p * z + T * B;
-          b[3] = c * J + g * D + r * z + V * B;
-          b[4] = a * E + f * A + m * C + w * F;
-          b[5] = n * E + e * A + u * C + S * F;
-          b[6] = l * E + d * A + p * C + T * F;
-          b[7] = c * E + g * A + r * C + V * F;
-          b[8] = a * G + f * I + m * H + w * K;
-          b[9] = n * G + e * I + u * H + S * K;
-          b[10] = l * G + d * I + p * H + T * K;
-          b[11] = c * G + g * I + r * H + V * K;
-          b[12] = a * L + f * M + m * N + w * O;
-          b[13] = n * L + e * M + u * N + S * O;
-          b[14] = l * L + d * M + p * N + T * O;
-          b[15] = c * L + g * M + r * N + V * O;
-          b[16] = a * P + f * Q + m * R + w * h + ga;
-          b[17] = n * P + e * Q + u * R + S * h + ha;
-          b[18] = l * P + d * Q + p * R + T * h + ia;
-          b[19] = c * P + g * Q + r * R + V * h + ja;
+          var n = b[1], l = b[2], c = b[3], f = b[4], e = b[5], d = b[6], g = b[7], m = b[8], x = b[9], u = b[10], p = b[11], r = b[12], w = b[13], S = b[14], V = b[15], ga = b[16], ha = b[17], ia = b[18], ja = b[19], J = h[0], D = h[1], z = h[2], B = h[3], E = h[4], A = h[5], C = h[6], F = h[7], G = h[8], I = h[9], H = h[10], K = h[11], L = h[12], M = h[13], N = h[14], O = h[15], P = h[16], Q = h[17], R = h[18], h = h[19];
+          b[0] = a * J + f * D + m * z + r * B;
+          b[1] = n * J + e * D + x * z + w * B;
+          b[2] = l * J + d * D + u * z + S * B;
+          b[3] = c * J + g * D + p * z + V * B;
+          b[4] = a * E + f * A + m * C + r * F;
+          b[5] = n * E + e * A + x * C + w * F;
+          b[6] = l * E + d * A + u * C + S * F;
+          b[7] = c * E + g * A + p * C + V * F;
+          b[8] = a * G + f * I + m * H + r * K;
+          b[9] = n * G + e * I + x * H + w * K;
+          b[10] = l * G + d * I + u * H + S * K;
+          b[11] = c * G + g * I + p * H + V * K;
+          b[12] = a * L + f * M + m * N + r * O;
+          b[13] = n * L + e * M + x * N + w * O;
+          b[14] = l * L + d * M + u * N + S * O;
+          b[15] = c * L + g * M + p * N + V * O;
+          b[16] = a * P + f * Q + m * R + r * h + ga;
+          b[17] = n * P + e * Q + x * R + w * h + ha;
+          b[18] = l * P + d * Q + u * R + S * h + ia;
+          b[19] = c * P + g * Q + p * R + V * h + ja;
           this._type = 0;
         }
       };
@@ -11412,10 +11413,10 @@ __extends = this.__extends || function(h, p) {
             f && !f.isIdentity() && (d = d.concat(f));
             f = 0;
             if (1 < d.length) {
-              var W, S, T;
-              x ? (e = x, x = p, p = e) : (a._ensureCopyCanvasSize(m, c), x = a._copyCanvasContext, S = W = 0);
+              var W, U, S;
+              x ? (e = x, x = p, p = e) : (a._ensureCopyCanvasSize(m, c), x = a._copyCanvasContext, U = W = 0);
               for (;f < d.length - 1;f++) {
-                x.clearRect(0, 0, m, c), b._applyFilter(g, x, d[f]), x.drawImage(p.canvas, u, r, m, c, W, S, m, c), b._removeFilter(x), e = x, S = u, T = r, x = p, p = e, r = u = W, W = S, S = T;
+                x.clearRect(0, 0, m, c), b._applyFilter(g, x, d[f]), x.drawImage(p.canvas, u, r, m, c, W, U, m, c), b._removeFilter(x), e = x, U = u, S = r, x = p, p = e, r = u = W, W = U, U = S;
               }
               b._removeFilter(p);
               b._removeFilter(x);
@@ -11865,9 +11866,9 @@ __extends = this.__extends || function(h, p) {
             a.video.style.transformOrigin = "0 0";
             a.video.style.transform = c;
             var k = this._backgroundVideoLayer;
-            k !== a.video.parentElement && (k.appendChild(a.video), a.addEventListener(2, function S(a) {
+            k !== a.video.parentElement && (k.appendChild(a.video), a.addEventListener(2, function U(a) {
               k.removeChild(a.video);
-              a.removeEventListener(2, S);
+              a.removeEventListener(2, U);
             }));
             e.free();
           }
@@ -12581,7 +12582,7 @@ __extends = this.__extends || function(h, p) {
         function f() {
         }
         f.prototype.read = function() {
-          for (var a = 0, b = this.input, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0;0 < b.bytesAvailable;) {
+          for (var a = 0, b = this.input, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, m = 0;0 < b.bytesAvailable;) {
             switch(a = b.readInt(), a) {
               case 0:
                 return;
@@ -12605,16 +12606,20 @@ __extends = this.__extends || function(h, p) {
                 g++;
                 this._readUpdateStage();
                 break;
-              case 105:
+              case 107:
                 h++;
+                this._readUpdateCurrentMouseTarget();
+                break;
+              case 105:
+                k++;
                 this._readUpdateNetStream();
                 break;
               case 200:
-                k++;
+                l++;
                 this._readDrawToBitmap();
                 break;
               case 106:
-                l++, this._readRequestBitmapData();
+                m++, this._readRequestBitmapData();
             }
           }
         };
@@ -12692,10 +12697,13 @@ __extends = this.__extends || function(h, p) {
           a.stage.align = this.input.readInt();
           a.stage.scaleMode = this.input.readInt();
           b = this.input.readInt();
-          this.input.readInt();
-          c = this.input.readInt();
-          a._easelHost.cursor = h.UI.toCSSCursor(c);
           a._easelHost.fullscreen = 0 === b || 1 === b;
+        };
+        f.prototype._readUpdateCurrentMouseTarget = function() {
+          var a = this.context;
+          this.input.readInt();
+          var b = this.input.readInt();
+          a._easelHost.cursor = h.UI.toCSSCursor(b);
         };
         f.prototype._readUpdateNetStream = function() {
           var a = this.context, b = this.input.readInt(), c = a._getVideoAsset(b), d = this._readRectangle();
