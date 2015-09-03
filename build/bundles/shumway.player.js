@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_14 = Shumway || (Shumway = {});
-Shumway$$inline_14.version = "0.11.524";
-Shumway$$inline_14.build = "65628cb";
+Shumway$$inline_14.version = "0.11.526";
+Shumway$$inline_14.build = "c4692d5";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -39547,7 +39547,8 @@ __extends = this.__extends || function(e, b) {
         return b ? b : this._prototype ? this._prototype.alGetProperty(a) : void 0;
       };
       b.prototype.alGet = function(a) {
-        if (a = this.alGetProperty(a)) {
+        name = c(this.context, a);
+        if (a = this.alGetProperty(name)) {
           return a.flags & 64 ? a.value : (a = a.get) ? a.alCall(this) : void 0;
         }
       };
@@ -41073,9 +41074,7 @@ __extends = this.__extends || function(e, b) {
       return !1;
     }
     function c(a, c, d) {
-      c = b.alToObject(a, c);
-      d = b.alNormalizeName(a, d);
-      return c.alGet(d);
+      return b.alToObject(a, c).alGet(d);
     }
     function a(a, c, f) {
       c = b.alToObject(a, c);
