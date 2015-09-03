@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.526";
-Shumway$$inline_0.build = "c4692d5";
+Shumway$$inline_0.version = "0.11.532";
+Shumway$$inline_0.build = "94dcd96";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -1778,7 +1778,7 @@ var START_TIME = performance.now();
               if (!b) {
                 continue;
               }
-              l = "boolean" !== b.type ? a.shift() : !0;
+              l = "boolean" !== b.type ? a.shift() : a.length && 0 <= "yes no true false t f".split(" ").indexOf(a[0]) ? 0 <= ["yes", "true", "t"].indexOf(a.shift()) : !0;
             } else {
               h.length ? b = h.shift() : k.push(l);
             }
