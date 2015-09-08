@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_15 = Shumway || (Shumway = {});
-Shumway$$inline_15.version = "0.11.540";
-Shumway$$inline_15.build = "728d4c1";
+Shumway$$inline_15.version = "0.11.542";
+Shumway$$inline_15.build = "02bfa79";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -2801,7 +2801,7 @@ var __extends = this.__extends || function(g, b) {
         this.repLenDecoder = new x;
       };
       c.prototype.decode = function(a) {
-        for (var c = this.rangeDec, b = this.outWindow, d = this.pb, f = this.dictSize, k = this.markerIsMandatory, l = this.leftToUnpack, h = this.isMatch, u = this.isRep, m = this.isRepG0, q = this.isRepG1, t = this.isRepG2, e = this.isRep0Long, z = this.lenDecoder, g = this.repLenDecoder, p = this.reps[0], A = this.reps[1], F = this.reps[2], v = this.reps[3], H = this.state;;) {
+        for (var c = this.rangeDec, b = this.outWindow, d = this.pb, f = this.dictSize, k = this.markerIsMandatory, l = this.leftToUnpack, h = this.isMatch, u = this.isRep, m = this.isRepG0, q = this.isRepG1, t = this.isRepG2, e = this.isRep0Long, g = this.lenDecoder, z = this.repLenDecoder, p = this.reps[0], A = this.reps[1], F = this.reps[2], v = this.reps[3], H = this.state;;) {
           if (a && 48 > c.inStream.available) {
             this.outWindow.flush();
             break;
@@ -2835,13 +2835,13 @@ var __extends = this.__extends || function(g, b) {
                 A = p;
                 p = N;
               }
-              w = g.decode(c, w);
+              w = z.decode(c, w);
               H = 7 > H ? 8 : 11;
             } else {
               v = F;
               F = A;
               A = p;
-              w = z.decode(c, w);
+              w = g.decode(c, w);
               H = 7 > H ? 7 : 10;
               p = this.decodeDistance(w);
               if (-1 === p) {
@@ -25685,36 +25685,40 @@ var RtmpJs;
               for (var a = this._children, b = 0;b < a.length;b++) {
                 var c = a[b];
                 if (!c._hasFlags(256)) {
-                  c.axInitializer();
+                  try {
+                    c.axInitializer();
+                  } catch (d) {
+                    g.Debug.warning("caught error executing child constructor in constructChildren: ", d);
+                  }
                   c._removeReference();
                   c._name && this.axSetPublicProperty(c._name, c);
                   c._setFlags(256);
-                  var d = this.sec.flash.events.Event.axClass;
+                  var e = this.sec.flash.events.Event.axClass;
                   if (c._hasFlags(131072)) {
                     c._removeFlags(131072);
                     g.AVM1.Lib.initializeAVM1Object(c, c._symbol.avm1Context, c._placeObjectTag);
                     try {
-                      c.dispatchEvent(d.getInstance(m.Event.AVM1_INIT));
-                    } catch (e) {
-                      g.Debug.warning("caught error under DisplayObjectContainer AVM1_INIT event: ", e);
+                      c.dispatchEvent(e.getInstance(m.Event.AVM1_INIT));
+                    } catch (f) {
+                      g.Debug.warning("caught error under DisplayObjectContainer AVM1_INIT event: ", f);
                     }
                     try {
-                      c.dispatchEvent(d.getInstance(m.Event.AVM1_CONSTRUCT));
-                    } catch (f) {
-                      g.Debug.warning("caught error under DisplayObjectContainer AVM1_CONSTRUCT event: ", f);
+                      c.dispatchEvent(e.getInstance(m.Event.AVM1_CONSTRUCT));
+                    } catch (h) {
+                      g.Debug.warning("caught error under DisplayObjectContainer AVM1_CONSTRUCT event: ", h);
                     }
                     c.hasEventListener(m.Event.AVM1_LOAD) && (c._setFlags(1024), this._propagateFlagsUp(16384));
                   }
                   try {
-                    c.dispatchEvent(d.getInstance(m.Event.ADDED, !0));
-                  } catch (h) {
-                    g.Debug.warning("caught error under DisplayObject ADDED event: ", h);
+                    c.dispatchEvent(e.getInstance(m.Event.ADDED, !0));
+                  } catch (k) {
+                    g.Debug.warning("caught error under DisplayObject ADDED event: ", k);
                   }
                   if (c.stage) {
                     try {
-                      c.dispatchEvent(d.getInstance(m.Event.ADDED_TO_STAGE));
-                    } catch (k) {
-                      g.Debug.warning("caught error under DisplayObject ADDED_TO_STAGE event: ", k);
+                      c.dispatchEvent(e.getInstance(m.Event.ADDED_TO_STAGE));
+                    } catch (l) {
+                      g.Debug.warning("caught error under DisplayObject ADDED_TO_STAGE event: ", l);
                     }
                   }
                 }
