@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_15 = Shumway || (Shumway = {});
-Shumway$$inline_15.version = "0.11.542";
-Shumway$$inline_15.build = "02bfa79";
+Shumway$$inline_15.version = "0.11.544";
+Shumway$$inline_15.build = "13f8382";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -48756,7 +48756,7 @@ __extends = this.__extends || function(g, b) {
         return this._swfUrl;
       }, enumerable:!0, configurable:!0});
       a.prototype.load = function(a, b) {
-        this._swfUrl = this._loaderUrl = a;
+        this._swfUrl = a;
         this._stage = new this.sec.flash.display.Stage;
         var d = this._loaderInfo = (this._loader = this.sec.flash.display.Loader.axClass.getRootLoader()).contentLoaderInfo;
         g.playAllSymbolsOption.value ? (this._playAllSymbols(), d._allowCodeExecution = !1) : this._enterRootLoadingLoop();
