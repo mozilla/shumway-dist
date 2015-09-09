@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_15 = Shumway || (Shumway = {});
-Shumway$$inline_15.version = "0.11.557";
-Shumway$$inline_15.build = "d8853e9";
+Shumway$$inline_15.version = "0.11.560";
+Shumway$$inline_15.build = "e8cc813";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -10600,7 +10600,7 @@ function as3ToLowerCase(f) {
           this._prototype = a;
         }, enumerable:!0, configurable:!0});
         Object.defineProperty(c.prototype, "length", {get:function() {
-          return this.value.length;
+          return this.value.methodInfo ? this.value.methodInfo.parameters.length : this.value.length;
         }, enumerable:!0, configurable:!0});
         c.prototype.toString = function() {
           return "function Function() {}";
