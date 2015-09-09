@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_15 = Shumway || (Shumway = {});
-Shumway$$inline_15.version = "0.11.560";
-Shumway$$inline_15.build = "e8cc813";
+Shumway$$inline_15.version = "0.11.562";
+Shumway$$inline_15.build = "ec3a5d1";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -46839,7 +46839,7 @@ __extends = this && this.__extends || function(f, b) {
         q.writeDrawToBitmap(a, c, d, h, n, g, m);
         q.writeEOF();
         b.enterTimeline("sendUpdates");
-        this._gfxService.update(q.output, q.outputAssets);
+        this._gfxService.updateAndGet(q.output, q.outputAssets);
         b.leaveTimeline("sendUpdates");
       };
       c.prototype.registerEventListener = function(a, b) {
