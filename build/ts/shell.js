@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.544';
-    Shumway.build = '13f8382';
+    Shumway.version = '0.11.553';
+    Shumway.build = '0013414';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -28,18 +28,19 @@ this.console = {
         if (!Shumway.Shell.verbose) {
             return;
         }
-        print(Shumway.IndentingWriter.YELLOW + Shumway.argumentsToString(arguments) + Shumway.IndentingWriter.ENDC);
+        print(Shumway.IndentingWriter.YELLOW + Shumway.argumentsToString(arguments) +
+            Shumway.IndentingWriter.ENDC);
     },
     warn: function () {
-        print(Shumway.IndentingWriter.RED + Shumway.argumentsToString(arguments) + Shumway.IndentingWriter.ENDC);
+        print(Shumway.IndentingWriter.RED + Shumway.argumentsToString(arguments) +
+            Shumway.IndentingWriter.ENDC);
     },
     error: function () {
-        print(Shumway.IndentingWriter.BOLD_RED + Shumway.argumentsToString(arguments) + Shumway.IndentingWriter.ENDC + '\nstack:\n' + (new Error().stack));
+        print(Shumway.IndentingWriter.BOLD_RED + Shumway.argumentsToString(arguments) +
+            Shumway.IndentingWriter.ENDC + '\nstack:\n' + (new Error().stack));
     },
-    time: function () {
-    },
-    timeEnd: function () {
-    }
+    time: function () { },
+    timeEnd: function () { }
 };
 this.dump = function (message) {
     putstr(Shumway.argumentsToString(arguments));
@@ -96,8 +97,7 @@ this.document = {
         }
     }
 };
-this.Image = function () {
-};
+this.Image = function () { };
 this.Image.prototype = {};
 this.URL = function (url, baseURL) {
     if (baseURL === void 0) { baseURL = ''; }
@@ -139,11 +139,9 @@ this.URL.prototype = {
 this.URL.createObjectURL = function createObjectURL() {
     return "";
 };
-this.Blob = function () {
-};
+this.Blob = function () { };
 this.Blob.prototype = {};
-this.XMLHttpRequest = function () {
-};
+this.XMLHttpRequest = function () { };
 this.XMLHttpRequest.prototype = {
     open: function (method, url, async) {
         this.url = url;
@@ -155,7 +153,8 @@ this.XMLHttpRequest.prototype = {
         setTimeout(function () {
             try {
                 console.log('XHR: ' + this.url);
-                var response = this.responseType === 'arraybuffer' ? read(this.url, 'binary').buffer : read(this.url);
+                var response = this.responseType === 'arraybuffer' ?
+                    read(this.url, 'binary').buffer : read(this.url);
                 if (this.responseType === 'json') {
                     response = JSON.parse(response);
                 }
@@ -232,7 +231,8 @@ this.window.Promise = (function () {
         return true;
     }
     function isPromise(x) {
-        return typeof x === 'object' && x !== null && typeof x.promiseStatus !== 'undefined';
+        return typeof x === 'object' && x !== null &&
+            typeof x.promiseStatus !== 'undefined';
     }
     function rejectPromise(promise, reason) {
         if (promise.promiseStatus !== 'unresolved') {
@@ -432,8 +432,10 @@ this.window.Promise = (function () {
             }
             var cstr = promise.promiseConstructor;
             var deferred = getDeferred(cstr);
-            var rejectionHandler = typeof onRejected === 'function' ? onRejected : throwerFunction;
-            var fulfillmentHandler = typeof onFulfilled === 'function' ? onFulfilled : identityFunction;
+            var rejectionHandler = typeof onRejected === 'function' ? onRejected :
+                throwerFunction;
+            var fulfillmentHandler = typeof onFulfilled === 'function' ? onFulfilled :
+                identityFunction;
             var resolutionHandler = createPromiseResolutionHandlerFunctions(promise, fulfillmentHandler, rejectionHandler);
             var resolveReaction = { deferred: deferred, handler: resolutionHandler };
             var rejectReaction = { deferred: deferred, handler: rejectionHandler };
@@ -514,7 +516,8 @@ var Shumway;
         function neq(a, b, test) {
             test = description(test);
             if (a === b) {
-                return fail("FAIL " + test + ". Got " + a + ", expected different (!==) value" + failedLocation());
+                return fail("FAIL " + test + ". Got " + a + ", expected different (!==) value" +
+                    failedLocation());
             }
             Unit.writer.debugLn("PASS" + test);
         }
@@ -536,12 +539,14 @@ var Shumway;
                 return fail("FAIL" + test + " Null Array: b" + failedLocation());
             }
             if (a.length !== b.length) {
-                return fail("FAIL" + test + " Array Length Mismatch, got " + a.length + ", expected " + b.length + failedLocation());
+                return fail("FAIL" + test + " Array Length Mismatch, got " + a.length + ", expected " +
+                    b.length + failedLocation());
             }
             for (var i = 0; i < a.length; i++) {
                 if (a[i] !== b[i]) {
                     if (!(typeof a[i] == "number" && typeof b[i] == "number" && isNaN(a[i]) && isNaN(b[i]))) {
-                        return fail("FAIL" + test + " Array Element " + i + ": got " + a[i] + ", expected " + b[i] + failedLocation());
+                        return fail("FAIL" + test + " Array Element " + i + ": got " + a[i] + ", expected " +
+                            b[i] + failedLocation());
                     }
                 }
             }
@@ -551,23 +556,27 @@ var Shumway;
         function structEq(a, b, test) {
             test = description(test);
             if (a == undefined && b) {
-                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " + "but only `a` was" + failedLocation());
+                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " +
+                    "but only `a` was" + failedLocation());
             }
             if (a && b == undefined) {
-                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " + "but only `b` was" + failedLocation());
+                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " +
+                    "but only `b` was" + failedLocation());
             }
             var aKeys = Object.keys(a);
             var bKeys = Object.keys(b);
             for (var i = 0; i < aKeys.length; i++) {
                 var key = aKeys[i];
                 if (a[key] !== b[key]) {
-                    return fail("FAIL" + test + " properties differ. a." + key + " = " + a[key] + ", b." + key + " = " + b[key] + failedLocation());
+                    return fail("FAIL" + test + " properties differ. a." + key + " = " + a[key] +
+                        ", b." + key + " = " + b[key] + failedLocation());
                 }
             }
             for (i = 0; i < bKeys.length; i++) {
                 key = bKeys[i];
                 if (a[key] !== b[key]) {
-                    return fail("FAIL" + test + " properties differ. a." + key + " = " + a[key] + ", b." + key + " = " + b[key] + failedLocation());
+                    return fail("FAIL" + test + " properties differ. a." + key + " = " + a[key] +
+                        ", b." + key + " = " + b[key] + failedLocation());
                 }
             }
             Unit.writer.debugLn("PASS" + test);
@@ -576,12 +585,16 @@ var Shumway;
         function matrixEq(a, b, test) {
             test = description(test);
             if (a == undefined && b) {
-                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " + "but only `a` was" + failedLocation());
+                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " +
+                    "but only `a` was" + failedLocation());
             }
             if (a && b == undefined) {
-                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " + "but only `b` was" + failedLocation());
+                return fail("FAIL" + test + " Expected neither or both objects to be null/undefined, " +
+                    "but only `b` was" + failedLocation());
             }
-            if (a.a !== b.a || a.b !== b.b || a.c !== b.c || a.d !== b.d || a.tx !== b.tx || a.ty !== b.ty) {
+            if (a.a !== b.a || a.b !== b.b ||
+                a.c !== b.c || a.d !== b.d ||
+                a.tx !== b.tx || a.ty !== b.ty) {
                 return fail("FAIL" + test + " matrices differ." + failedLocation());
             }
             Unit.writer.debugLn("PASS" + test);
@@ -590,7 +603,8 @@ var Shumway;
         function check(condition, test) {
             test = description(test);
             if (!condition) {
-                return fail("FAIL" + test + ". Got " + condition + ", expected truthy value" + failedLocation());
+                return fail("FAIL" + test + ". Got " + condition + ", expected truthy value" +
+                    failedLocation());
             }
             Unit.writer.debugLn("PASS" + test);
         }
@@ -672,7 +686,8 @@ var Shumway;
                 Unit.writer.warnLn("Test would have had the same result with half as many iterations.");
             }
             if (result > threshold) {
-                return fail("FAIL " + test + ". Got " + result.toFixed(2) + " ms, expected less than " + threshold.toFixed(2) + " ms" + failedLocation());
+                return fail("FAIL " + test + ". Got " + result.toFixed(2) + " ms, expected less than " + threshold.toFixed(2) + " ms" +
+                    failedLocation());
             }
             var details = "Iterations: " + iterations + ", Elapsed: " + elapsed.toFixed(2) + " ms (" + result.toFixed(2) + " ms / Iteration)";
             Unit.writer.debugLn("PASS " + test + " " + details);
@@ -868,9 +883,7 @@ var Shumway;
             return MicroTask;
         })();
         Shell.MicroTask = MicroTask;
-        var jsGlobal = (function () {
-            return this || (1, eval)('this//# sourceURL=jsGlobal-getter');
-        })();
+        var jsGlobal = (function () { return this || (1, eval)('this//# sourceURL=jsGlobal-getter'); })();
         var MicroTasksQueue = (function () {
             function MicroTasksQueue() {
                 this.tasks = [];
@@ -1162,7 +1175,6 @@ var Shumway;
         var WriterFlags = Shumway.AVMX.WriterFlags;
         var Option = Shumway.Options.Option;
         var ArgumentParser = Shumway.Options.ArgumentParser;
-        var SwfTagCode = Shumway.SWF.Parser.SwfTagCode;
         var DataBuffer = Shumway.ArrayUtilities.DataBuffer;
         var ShellGFXServer = (function () {
             function ShellGFXServer() {
@@ -1273,9 +1285,10 @@ var Shumway;
                 writer.leave("");
             }
             argumentParser.addArgument("h", "help", "boolean", { parse: function (x) {
-                printUsage();
-            } });
+                    printUsage();
+                } });
             var files = [];
+            // Try and parse command line arguments.
             try {
                 argumentParser.parse(commandLineArguments).filter(function (value, index, array) {
                     if (value[0] === "@" || value.endsWith(".abc") || value.endsWith(".swf") || value.endsWith(".js") || value.endsWith(".json")) {
@@ -1293,8 +1306,7 @@ var Shumway;
             Shell.initializePlayerServices();
             microTaskQueue = new Shumway.Shell.MicroTasksQueue();
             if (porcelainOutputOption.value) {
-                console.info = console.log = console.warn = console.error = function () {
-                };
+                console.info = console.log = console.warn = console.error = function () { };
                 writer.suppressOutput = true;
             }
             profile = profileOption.value;
@@ -1308,15 +1320,15 @@ var Shumway;
                 fuzzer.fuzz();
             }
             Shumway.Unit.writer = new Shumway.IndentingWriter();
-            var writerFlags = 0 /* None */;
+            var writerFlags = WriterFlags.None;
             if (writersOption.value.indexOf("r") >= 0) {
-                writerFlags |= 1 /* Runtime */;
+                writerFlags |= WriterFlags.Runtime;
             }
             if (writersOption.value.indexOf("e") >= 0) {
-                writerFlags |= 2 /* Execution */;
+                writerFlags |= WriterFlags.Execution;
             }
             if (writersOption.value.indexOf("i") >= 0) {
-                writerFlags |= 4 /* Interpreter */;
+                writerFlags |= WriterFlags.Interpreter;
             }
             Shumway.AVMX.setWriters(writerFlags);
             if (compileOption.value) {
@@ -1424,7 +1436,10 @@ var Shumway;
         }
         function executeSWFFile(file, runDuration, runCount, frameCount) {
             if (Shell.verbose) {
-                writer.writeLn("executeSWF: " + file + ", runDuration: " + runDuration + ", runCount: " + runCount + ", frameCount: " + frameCount);
+                writer.writeLn("executeSWF: " + file +
+                    ", runDuration: " + runDuration +
+                    ", runCount: " + runCount +
+                    ", frameCount: " + frameCount);
             }
             function runSWF(file) {
                 microTaskQueue.clear();
@@ -1617,18 +1632,6 @@ var Shumway;
             writer.writeLn("Executed JS File: " + file);
             writer.outdent();
         }
-        function ignoreTag(code, symbolFilters) {
-            if (symbolFilters[0].length === 0) {
-                return false;
-            }
-            for (var i = 0; i < symbolFilters.length; i++) {
-                var filterCode = SwfTagCode[symbolFilters[i]];
-                if (filterCode !== undefined && filterCode === code) {
-                    return false;
-                }
-            }
-            return true;
-        }
         function extractABCsFromSWF(buffer) {
             var abcData = [];
             try {
@@ -1648,8 +1651,7 @@ var Shumway;
                     onNewEagerlyParsedSymbols: function (dictionaryEntries, delta) {
                         return Promise.resolve();
                     },
-                    onImageBytesLoaded: function () {
-                    }
+                    onImageBytesLoaded: function () { }
                 };
                 var loader = new Shumway.FileLoader(loadListener, null);
                 loader.loadBytes(buffer);
@@ -1678,7 +1680,11 @@ var Shumway;
                 var SWF_TAG_CODE_DO_ABC_ = 72 /* CODE_DO_ABC_DEFINE */;
                 try {
                     var buffer = read(file, "binary");
-                    if (!((buffer[0] === 'Z'.charCodeAt(0) || buffer[0] === 'F'.charCodeAt(0) || buffer[0] === 'C'.charCodeAt(0)) && buffer[1] === 'W'.charCodeAt(0) && buffer[2] === 'S'.charCodeAt(0))) {
+                    if (!((buffer[0] === 'Z'.charCodeAt(0) ||
+                        buffer[0] === 'F'.charCodeAt(0) ||
+                        buffer[0] === 'C'.charCodeAt(0)) &&
+                        buffer[1] === 'W'.charCodeAt(0) &&
+                        buffer[2] === 'S'.charCodeAt(0))) {
                         writer.redLn("Cannot parse: " + file + " because it doesn't have a valid header. " + buffer[0] + " " + buffer[1] + " " + buffer[2]);
                         return;
                     }
@@ -1717,8 +1723,7 @@ var Shumway;
                         onNewEagerlyParsedSymbols: function (dictionaryEntries, delta) {
                             return Promise.resolve();
                         },
-                        onImageBytesLoaded: function () {
-                        }
+                        onImageBytesLoaded: function () { }
                     };
                     var loader = new Shumway.FileLoader(loadListener, null);
                     loader.loadBytes(buffer);
