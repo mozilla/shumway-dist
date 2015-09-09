@@ -1,7 +1,7 @@
 var Shumway;
 (function (Shumway) {
-    Shumway.version = '0.11.553';
-    Shumway.build = '0013414';
+    Shumway.version = '0.11.557';
+    Shumway.build = 'd8853e9';
 })(Shumway || (Shumway = {}));
 /**
  * Copyright 2014 Mozilla Foundation
@@ -1343,7 +1343,7 @@ var Shumway;
                     }
                 });
                 Shell.verbose && writer.writeLn("Loading " + buffers.length + " ABCs");
-                Shumway.Debug.notImplemented("Compile");
+                release || Shumway.Debug.notImplemented("Compile");
                 Shumway.AVM2.timelineBuffer.createSnapshot().trace(new Shumway.IndentingWriter());
             }
             if (parseOption.value) {
