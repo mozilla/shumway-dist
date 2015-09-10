@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_15 = Shumway || (Shumway = {});
-Shumway$$inline_15.version = "0.11.586";
-Shumway$$inline_15.build = "4412235";
+Shumway$$inline_15.version = "0.11.588";
+Shumway$$inline_15.build = "b8476ae";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -41961,7 +41961,10 @@ __extends = this && this.__extends || function(e, b) {
           for (var e = [b.alCoerceString(a, c)], f = 0;f < d.length;f++) {
             e.push(d[f]);
           }
-          return a.sec.flash.external.ExternalInterface.axClass.call.apply(a.sec.flash.external.ExternalInterface.axClass, e);
+          try {
+            return a.sec.flash.external.ExternalInterface.axClass.call.apply(a.sec.flash.external.ExternalInterface.axClass, e);
+          } catch (g) {
+          }
         };
         return d;
       }(b.AVM1Object);
