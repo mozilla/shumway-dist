@@ -17,8 +17,8 @@
 console.time("Load Player Dependencies");
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_15 = Shumway || (Shumway = {});
-Shumway$$inline_15.version = "0.11.579";
-Shumway$$inline_15.build = "dbcfcc5";
+Shumway$$inline_15.version = "0.11.581";
+Shumway$$inline_15.build = "a097f10";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -8470,7 +8470,17 @@ __extends = this && this.__extends || function(f, b) {
         for (var l = this.locals = [c], q = this.sec = (this.app = d.abc.applicationDomain).sec, f = g.length, n, B = 0, p = d.parameters.length;B < p;B++) {
           var A = d.parameters[B];
           n = B < f ? g[B] : A.hasOptionalValue() ? A.getOptionalValue() : void 0;
-          (A = A.getType()) && !A.isAnyName() && (n = h.getScopeProperty(A, !0, !1).axCoerce(n));
+          if ((A = A.getType()) && !A.isAnyName()) {
+            var z = h.getScopeProperty(A, !0, !1);
+            if (!z) {
+              if ("axClass" in c && c.axClass.name.matches(A)) {
+                z = c.axClass;
+              } else {
+                continue;
+              }
+            }
+            n = z.axCoerce(n);
+          }
           l.push(n);
         }
         d.needsRest() ? l.push(q.createArrayUnsafe(b.sliceArguments(g, d.parameters.length))) : d.needsArguments() && (h = b.sliceArguments(g, 0), q = Object.create(q.argumentsPrototype), q.value = h, q.callee = e, q.receiver = c, q.methodInfo = d, l.push(q));
