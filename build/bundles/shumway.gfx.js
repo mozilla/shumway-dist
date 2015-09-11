@@ -16,8 +16,8 @@
 */
 console.time("Load Shared Dependencies");
 var Shumway, Shumway$$inline_0 = Shumway || (Shumway = {});
-Shumway$$inline_0.version = "0.11.588";
-Shumway$$inline_0.build = "b8476ae";
+Shumway$$inline_0.version = "0.11.590";
+Shumway$$inline_0.build = "191a430";
 var jsGlobal = function() {
   return this || (0,eval)("this//# sourceURL=jsGlobal-getter");
 }(), inBrowser = "undefined" !== typeof window && "document" in window && "plugins" in window.document, inFirefox = "undefined" !== typeof navigator && 0 <= navigator.userAgent.indexOf("Firefox");
@@ -2738,7 +2738,7 @@ var __extends = this && this.__extends || function(f, h) {
         this.repLenDecoder = new H;
       };
       a.prototype.decode = function(a) {
-        for (var b = this.rangeDec, k = this.outWindow, m = this.pb, e = this.dictSize, c = this.markerIsMandatory, n = this.leftToUnpack, t = this.isMatch, v = this.isRep, d = this.isRepG0, A = this.isRepG1, p = this.isRepG2, l = this.isRep0Long, H = this.lenDecoder, C = this.repLenDecoder, D = this.reps[0], B = this.reps[1], J = this.reps[2], G = this.reps[3], g = this.state;;) {
+        for (var b = this.rangeDec, k = this.outWindow, m = this.pb, e = this.dictSize, c = this.markerIsMandatory, n = this.leftToUnpack, t = this.isMatch, v = this.isRep, d = this.isRepG0, A = this.isRepG1, p = this.isRepG2, l = this.isRep0Long, H = this.lenDecoder, C = this.repLenDecoder, D = this.reps[0], J = this.reps[1], B = this.reps[2], G = this.reps[3], g = this.state;;) {
           if (a && 48 > b.inStream.available) {
             this.outWindow.flush();
             break;
@@ -2768,16 +2768,16 @@ var __extends = this && this.__extends || function(f, h) {
                 }
               } else {
                 var f;
-                0 === b.decodeBit(A, g) ? f = B : (0 === b.decodeBit(p, g) ? f = J : (f = G, G = J), J = B);
-                B = D;
+                0 === b.decodeBit(A, g) ? f = J : (0 === b.decodeBit(p, g) ? f = B : (f = G, G = B), B = J);
+                J = D;
                 D = f;
               }
               z = C.decode(b, z);
               g = 7 > g ? 8 : 11;
             } else {
-              G = J;
-              J = B;
-              B = D;
+              G = B;
+              B = J;
+              J = D;
               z = H.decode(b, z);
               g = 7 > g ? 7 : 10;
               D = this.decodeDistance(z);
@@ -2800,8 +2800,8 @@ var __extends = this && this.__extends || function(f, h) {
         }
         this.state = g;
         this.reps[0] = D;
-        this.reps[1] = B;
-        this.reps[2] = J;
+        this.reps[1] = J;
+        this.reps[2] = B;
         this.reps[3] = G;
         this.leftToUnpack = n;
         return u;
@@ -5292,10 +5292,10 @@ __extends = this && this.__extends || function(f, h) {
           this._dragInfo = null;
           this.onMouseMove(d, a);
         };
-        b.prototype.onClick = function(b, d) {
+        b.prototype.onClick = function(b, c) {
           1 === this._dragInfo.target && this._mouseController.updateCursor(u.MouseCursor.GRAB);
         };
-        b.prototype.onHoverStart = function(b, d) {
+        b.prototype.onHoverStart = function(b, c) {
         };
         b.prototype.onHoverEnd = function() {
         };
@@ -11295,8 +11295,8 @@ __extends = this && this.__extends || function(f, h) {
           return {syncId:a, data:b};
         };
         b.prototype.parseImage = function() {
-          var a = this.currentData.readInt(), b = this.currentData.readInt(), d = this.currentData.readInt(), e = c(this.currentData);
-          return {syncId:a, symbolId:b, imageType:d, data:e};
+          var a = this.currentData.readInt(), b = this.currentData.readInt(), d = this.currentData.readInt(), e = c(this.currentData), f = c(this.currentData);
+          return {syncId:a, symbolId:b, imageType:d, data:e, alphaData:f};
         };
         b.prototype.dump = function() {
           for (var a;a = this.readNextRecord();) {
